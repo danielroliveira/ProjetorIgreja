@@ -16,5 +16,15 @@ namespace CamadaUI
         {
             InitializeComponent();
         }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMinimizer_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }

@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CamadaUI", "CamadaUI\CamadaUI.csproj", "{F51439D7-C524-40BC-9454-978DD91409E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CamadaDAO", "CamadaDAO\CamadaDAO.csproj", "{00574BBC-1958-47FC-A820-3ED3DA7A5447}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CamadaDTO", "CamadaDTO\CamadaDTO.csproj", "{4ADFF0F4-56BE-41BC-BF98-CD70322661A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CamadaBLL", "CamadaBLL\CamadaBLL.csproj", "{F82995CA-8379-4E51-9B2E-1C7D67D7489B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CamadaDAL", "CamadaDAL\CamadaDAL.csproj", "{00574BBC-1958-47FC-A820-3ED3DA7A5447}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{F51439D7-C524-40BC-9454-978DD91409E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F51439D7-C524-40BC-9454-978DD91409E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F51439D7-C524-40BC-9454-978DD91409E3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00574BBC-1958-47FC-A820-3ED3DA7A5447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00574BBC-1958-47FC-A820-3ED3DA7A5447}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00574BBC-1958-47FC-A820-3ED3DA7A5447}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00574BBC-1958-47FC-A820-3ED3DA7A5447}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4ADFF0F4-56BE-41BC-BF98-CD70322661A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4ADFF0F4-56BE-41BC-BF98-CD70322661A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ADFF0F4-56BE-41BC-BF98-CD70322661A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{F82995CA-8379-4E51-9B2E-1C7D67D7489B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F82995CA-8379-4E51-9B2E-1C7D67D7489B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F82995CA-8379-4E51-9B2E-1C7D67D7489B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00574BBC-1958-47FC-A820-3ED3DA7A5447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00574BBC-1958-47FC-A820-3ED3DA7A5447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00574BBC-1958-47FC-A820-3ED3DA7A5447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00574BBC-1958-47FC-A820-3ED3DA7A5447}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

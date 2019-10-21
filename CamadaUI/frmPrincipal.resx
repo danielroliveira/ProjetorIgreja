@@ -117,23 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="DropdownIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DropdownIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ConfigIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ConfigIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sair_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sair_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="biblia_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\biblia_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Louvores" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Louvores.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="CloseIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CloseIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <metadata name="mnuPrincipal.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAuJJREFUSEvFk81OE1EUx32EPoJrVyxcKwsegEfgCQxrP0pBCBQhY+LCxMSgC0kE
+        lSAYKIHS0AJtKfSTFqbMTKelX0CpoR+0bI7nDHPrRWaKqIkn+WWamd7f/945Z+78tyqUvnfMOZYFRCH0
+        2/+m0oWTYCp3BK4NH6Cc0eMNRjsQAVGQHv3vty85W4R9NQdxKaXJp2a+gtsXAPmwAP7wLqCcYdOX3Fwo
+        6kYmEEXB3e+pWUim87AdiWvyZDoHe6ksSJk8uDb9sORyU7igL29fmWKpN5ZUwO0NQCgugohikiV06DTs
+        t4SnoFPp/N4JcMcKE7XEymGLOEdCTsPswhJMz87Dh6nPvbqifWFAkJcYIl8SS6bAsbqGu1+BTxgyt7jc
+        oWvMC6fm7kGmUGYSYiu6B5PTX+D95EcI7IrlXTkDBD2L7kvYAw8sLLvA49tWQvF9m8e/063rjCuVP+pm
+        EmJ0XICBoWGwjwlQrlTv4WtbiUkZIBJKFk+iQEJSYSMQgkXn5YkQi667XnL2qJMJnOt+ePKsD6z9z2Fo
+        5AXQ87Na/T4G16JSGjQOLvHuRJmcMP82cDpsMVxIrHh88PipFay2ARiyj/0VmlxU86u0c7arNX8Qnlpt
+        0Nc/aLjIiDXPhuFVC8BRDEYOVOAZHX8Jg8N27U8XFxe3otlsarQCcPZtkaQKYQ6Hax1evX5jGjAVOTO8
+        z+SNRoMLUHMWpAdHUIji7sNiSsOBo8gHBOQTOD4+BvtqER7Nl66ICV5+fn7+M4AvnJSJEMoZfEDXRAH6
+        nWXtelptavfC4fA1SG4agKewUA+MAjbFIjx4WwBPIte6R/y6c6JerxsH4DRZqAdGATysB2byWq1mFpDu
+        pPdPcrryAawHo9SDb6W2ctMA/A7oBEEKWHC6rwR0vdN7gNfTakOTG/WA5NVq1TiACkfWshUTZ0bGhV4+
+        wIs9eEg9iGfb7pzklUrFPIAvPoC46bUw+a0C/pwx+AGcg0IdvQCiDAAAAABJRU5ErkJggg==
+</value>
   </data>
 </root>
