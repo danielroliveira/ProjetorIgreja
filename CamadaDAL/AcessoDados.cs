@@ -5,7 +5,7 @@ using System.Data.OleDb;
 
 namespace CamadaDAL
 {
-    class AcessoDados
+    public class AcessoDados
     {
         // -------------------------------------------------------------------------------------------------------
         // DECLARAÇÃO DAS VARIÁVEIS
@@ -33,7 +33,7 @@ namespace CamadaDAL
             if (conn == null) {
                 try
                 {
-                    connstr = GetConnectionString();
+                    //connstr = GetConnectionString();
                     if (connstr != string.Empty)
                     {
                         conn = new OleDbConnection(connstr);
@@ -75,12 +75,6 @@ namespace CamadaDAL
             }
         }
 
-        // GET STRING CONNECTION
-        public static string GetConnectionString()
-        {
-            return null;
-        }
-
         // CLEAR PARAMETERS
         public void LimparParametros()
         {
@@ -93,7 +87,7 @@ namespace CamadaDAL
             ParamList.Add(new OleDbParameter(nomeParametro, valorParametro));
         }
 
-        //**********************************************
+        // ==============================================================================
         #region DATABASE CRUD COMMANDS
 
         // EXECUTAR MANIPULACAO
@@ -165,14 +159,13 @@ namespace CamadaDAL
             }
         }
 
-        #endregion
-        //**********************************************
+		#endregion
 
-        //**********************************************
-        #region TRANSACTION
-        
-        // BEGIN TRANSACTION
-        public void BeginTransaction()
+		// ==============================================================================
+		#region TRANSACTION
+
+		// BEGIN TRANSACTION
+		public void BeginTransaction()
         {
             if (isTran) return;
 
@@ -210,7 +203,6 @@ namespace CamadaDAL
         public bool isTran { get; set; }
 
         #endregion
-        //**********************************************
 
     }
 }

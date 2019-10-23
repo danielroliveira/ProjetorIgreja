@@ -39,10 +39,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CamadaDAL\CamadaDAL.csproj">
+      <Project>{00574bbc-1958-47fc-a820-3ed3da7a5447}</Project>
+      <Name>CamadaDAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CamadaDTO\CamadaDTO.csproj">
       <Project>{4adff0f4-56be-41bc-bf98-cd70322661a9}</Project>
       <Name>CamadaDTO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="VersiculoBLL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Data" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
