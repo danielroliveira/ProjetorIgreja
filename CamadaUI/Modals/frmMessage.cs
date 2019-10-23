@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace CamadaUI.Modals
 {
-	public partial class frmMessage : Form
+	public partial class frmMessage : frmModFinBorder
 	{
 		public frmMessage()
 		{
 			InitializeComponent();
+		}
+
+		private void btnClose_Click(object sender, EventArgs e)
+		{
+			DialogResult = DialogResult.Cancel;
+			Close();
 		}
 	}
 }

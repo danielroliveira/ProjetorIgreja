@@ -33,8 +33,32 @@
 			this.btnSim = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.lblMensagem = new System.Windows.Forms.Label();
+			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
 			this.SuspendLayout();
+			// 
+			// lblTitulo
+			// 
+			this.lblTitulo.Dock = System.Windows.Forms.DockStyle.Left;
+			this.lblTitulo.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblTitulo.Location = new System.Drawing.Point(0, 0);
+			this.lblTitulo.Padding = new System.Windows.Forms.Padding(7, 0, 0, 4);
+			this.lblTitulo.Size = new System.Drawing.Size(493, 35);
+			this.lblTitulo.Text = "Titulo";
+			this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// btnClose
+			// 
+			this.btnClose.FlatAppearance.BorderSize = 0;
+			this.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGoldenrodYellow;
+			this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Firebrick;
+			this.btnClose.Location = new System.Drawing.Point(503, 0);
+			this.btnClose.Size = new System.Drawing.Size(40, 35);
+			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+			// 
+			// panel1
+			// 
+			this.panel1.Size = new System.Drawing.Size(543, 35);
 			// 
 			// picLogo
 			// 
@@ -104,16 +128,20 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(543, 299);
-			this.Controls.Add(this.lblMensagem);
 			this.Controls.Add(this.btnNao);
 			this.Controls.Add(this.btnSim);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.picLogo);
-			this.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Controls.Add(this.lblMensagem);
 			this.Name = "frmMessage";
 			this.Text = "frmMessage";
+			this.Controls.SetChildIndex(this.panel1, 0);
+			this.Controls.SetChildIndex(this.lblMensagem, 0);
+			this.Controls.SetChildIndex(this.picLogo, 0);
+			this.Controls.SetChildIndex(this.btnCancel, 0);
+			this.Controls.SetChildIndex(this.btnSim, 0);
+			this.Controls.SetChildIndex(this.btnNao, 0);
+			this.panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
 			this.ResumeLayout(false);
 

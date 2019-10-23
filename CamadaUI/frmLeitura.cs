@@ -24,7 +24,7 @@ namespace CamadaUI
 			InitializeComponent();
 
 			pnlTop.BackColor = Properties.Settings.Default.PanelTopColor;
-
+			
 			GetVersiculos(1,1,1,1);
 			
 		}
@@ -47,6 +47,9 @@ namespace CamadaUI
 				verList = vBLL.GetVersiculoList(IDLinguagem, IDLivro, Capitulo);
 				verTotal = (byte)verList.Count;
 				VerAtual = Versiculo;
+				_capituloAtual = Capitulo;
+				_IDLivroAtual = IDLivro;
+				_IDLinguagemAtual = IDLinguagem;
 			}
 			catch (Exception ex)
 			{

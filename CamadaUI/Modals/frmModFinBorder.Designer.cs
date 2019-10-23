@@ -99,9 +99,8 @@
 		}
 
 		#endregion
-
-		private System.Windows.Forms.Panel panel1;
-		protected System.Windows.Forms.Label lblTitulo;
-		protected System.Windows.Forms.Button btnClose;
+		protected internal System.Windows.Forms.Label lblTitulo;
+		protected internal System.Windows.Forms.Button btnClose;
+		protected System.Windows.Forms.Panel panel1;
 	}
 }
