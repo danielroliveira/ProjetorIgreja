@@ -110,6 +110,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilidades.cs" />
     <EmbeddedResource Include="frmLeitura.resx">
       <DependentUpon>frmLeitura.cs</DependentUpon>
     </EmbeddedResource>
@@ -187,6 +188,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="projetor.ico" />
+    <None Include="Resources\search_peq.png" />
+    <None Include="Resources\book_32.png" />
     <None Include="Resources\Previous_32px_disabled.png" />
     <None Include="Resources\Next_32px_disabled.png" />
     <None Include="Resources\Last_32px_disabled.png" />

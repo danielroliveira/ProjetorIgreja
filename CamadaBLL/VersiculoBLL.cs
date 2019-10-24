@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CamadaDAL;
 using CamadaDTO;
 
@@ -21,11 +18,7 @@ namespace CamadaBLL
 
 		// GET VERSICULO LIST
 		public List<clVersiculo> GetVersiculoList
-			(
-			byte IDLinguagem, 
-			byte IDLivro, 
-			byte Capitulo 
-			)
+			(byte IDLinguagem, byte IDLivro, byte Capitulo)
 		{
 			try
 			{
@@ -49,7 +42,7 @@ namespace CamadaBLL
 
 				foreach (DataRow row in dt.Rows)
 				{
-					list.Add(ConvertRowInClass(row));
+					list.Add(ConvertRowInClVersiculo(row));
 				}
 
 				return list;
@@ -60,8 +53,8 @@ namespace CamadaBLL
 			}
 		}
 
-		// CONVERT DT IN CLASS
-		private clVersiculo ConvertRowInClass(DataRow r)
+		// CONVERT DT IN CLASS VERSICULO
+		private clVersiculo ConvertRowInClVersiculo(DataRow r)
 		{
 			clVersiculo versiculo = new clVersiculo()
 			{
@@ -76,6 +69,48 @@ namespace CamadaBLL
 
 			return versiculo;
 
+		}
+
+		// GET LINGUAGENS LIST
+		public List<clLinguagem> GetLinguagemList()
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(_dataBasePath);
+				DataTable dt = new DataTable();
+
+				string query = "SELECT * FROM tblLinguagens";
+
+				dt = db.ExecutarConsulta(CommandType.Text, query);
+
+				List<clLinguagem> list = new List<clLinguagem>();
+
+				if (dt.Rows.Count == 0) return list;
+
+				foreach (DataRow row in dt.Rows)
+				{
+					list.Add(ConvertRowInClLinguagem(row));
+				}
+
+				return list;
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		// CONVERT DT IN CLASS LINGUAGEM
+		private clLinguagem ConvertRowInClLinguagem(DataRow r)
+		{
+			clLinguagem ling = new clLinguagem()
+			{
+				IDLinguagem = (byte)r["IDLinguagem"],
+				Linguagem = (string)r["Linguagem"],
+				Sigla = (string)r["Sigla"]
+			};
+
+			return ling;
 		}
 
 	}

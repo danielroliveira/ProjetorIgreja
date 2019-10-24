@@ -2,23 +2,18 @@
 using System.Drawing;
 using System.Windows.Forms;
 using CamadaUI.Properties;
-using static CamadaUI.Modals.frmMessage;
 
-namespace CamadaUI.Modals
+namespace CamadaUI
 {
-	public partial class frmMessage : frmModFinBorder
+	public partial class frmMessage : Modals.frmModFinBorder
 	{
-		public enum DialogType	{ SIM_NAO, OK, OK_CANCELAR, SIM_NAO_CANCELAR }
-		public enum DialogIcon { Question, Information, Exclamation, Warning }
-		public enum DialogDefaultButton { First, Second, Third }
-
 		private DialogType _dialogType;
 		private DialogIcon _icon;
 		private DialogDefaultButton _defaultButton = DialogDefaultButton.First;
 
 		public frmMessage(
 			string Mensagem, 
-			string Titulo, 
+			string Titulo,
 			DialogType dialogType,
 			DialogIcon Icon,
 			DialogDefaultButton defaultButton = DialogDefaultButton.First)
@@ -170,23 +165,5 @@ namespace CamadaUI.Modals
 			Close();
 		}
 
-	}
-
-	public static class AbrirDialogMessage
-	{
-
-		public static DialogResult AbrirDialog
-			(string Message,
-			string Title,
-			DialogType Type,
-			DialogIcon Icon,
-			DialogDefaultButton DefaultButton = DialogDefaultButton.First)
-		{
-			using (frmMessage f = new frmMessage(Message, Title, Type, Icon, DefaultButton))
-			{
-				f.ShowDialog();
-				return f.DialogResult;
-			}
-		}
 	}
 }

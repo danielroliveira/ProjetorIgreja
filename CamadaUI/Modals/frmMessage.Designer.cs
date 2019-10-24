@@ -1,4 +1,4 @@
-﻿namespace CamadaUI.Modals
+﻿namespace CamadaUI
 {
 	partial class frmMessage
 	{

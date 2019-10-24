@@ -6,7 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using static CamadaUI.Modals.AbrirDialogMessage;
+using static CamadaUI.Utilidades;
 
 namespace CamadaUI
 {
@@ -48,8 +48,8 @@ namespace CamadaUI
 				{
 					AbrirDialog("Já estamos no ÚLTIMO versículo deste capítulo...", 
 						"Último Versiculo", 
-						Modals.frmMessage.DialogType.OK, 
-						Modals.frmMessage.DialogIcon.Information);
+						DialogType.OK, 
+						DialogIcon.Information);
 					value = verMax;
 				}
 
@@ -245,8 +245,8 @@ namespace CamadaUI
 			else
 				AbrirDialog("Já estamos no ÚLTIMO versículo deste capítulo...",
 					"Último Versiculo",
-					Modals.frmMessage.DialogType.OK,
-					Modals.frmMessage.DialogIcon.Information);
+					DialogType.OK,
+					DialogIcon.Information);
 		}
 
 		// NEXT
@@ -261,8 +261,8 @@ namespace CamadaUI
 			if (VerAtual == 1)
 				AbrirDialog("Já estamos no PRIMEIRO versículo deste capítulo...",
 							"Último Versiculo",
-							Modals.frmMessage.DialogType.OK,
-							Modals.frmMessage.DialogIcon.Information);
+							DialogType.OK,
+							DialogIcon.Information);
 			else VerAtual -= 1;
 		}
 
@@ -272,8 +272,8 @@ namespace CamadaUI
 			if (VerAtual == 1)
 				AbrirDialog("Já estamos no PRIMEIRO versículo deste capítulo...",
 							"Último Versiculo",
-							Modals.frmMessage.DialogType.OK,
-							Modals.frmMessage.DialogIcon.Information);
+							DialogType.OK,
+							DialogIcon.Information);
 			else VerAtual = 1;
 		}
 
@@ -317,6 +317,16 @@ namespace CamadaUI
 		{
 			WindowState = FormWindowState.Minimized;
 		}
+
+		#region LINGUAGENS
+		private void miLinguagem_Click(object sender, EventArgs e)
+		{
+			ToolStripMenuItem c = (ToolStripMenuItem)sender;
+			byte IDLing = Convert.ToByte(c.Tag);
+			GetVersiculos(IDLing, Versiculo.IDLivro, Versiculo.Capitulo, Versiculo.Versiculo);
+		}
+
+		#endregion
 	}
 
 }
