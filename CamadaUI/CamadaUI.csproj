@@ -57,6 +57,14 @@
     <ApplicationIcon>projetor.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GlassButton">
+      <HintPath>E:\Desktop\GlassButton (demo)\GlassButton.dll</HintPath>
+    </Reference>
+    <Reference Include="MBGlassButton, Version=1.0.4377.15689, Culture=neutral, PublicKeyToken=c734814c4b88a51b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MBGlassButton.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -179,6 +187,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="projetor.ico" />
+    <None Include="Resources\Previous_32px_disabled.png" />
+    <None Include="Resources\Next_32px_disabled.png" />
+    <None Include="Resources\Last_32px_disabled.png" />
+    <None Include="Resources\First_32px_disabled.png" />
+    <None Include="Resources\Previous_32px.png" />
+    <None Include="Resources\First_32px.png" />
+    <None Include="Resources\Next_32px.png" />
+    <None Include="Resources\Last_32px.png" />
     <None Include="Resources\icon_question.png" />
     <None Include="Resources\icon_information.png" />
     <None Include="Resources\icon_exclamation.png" />

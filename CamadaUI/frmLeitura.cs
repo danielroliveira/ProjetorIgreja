@@ -19,10 +19,11 @@ namespace CamadaUI
 		private byte _capituloAtual;
 		private byte _IDLivroAtual;
 		private byte _IDLinguagemAtual;
-
+		
 		private clVersiculo Versiculo;
+		private bool NavDisabled;
 
-		private byte verTotal;
+		private byte verMax;
 		List<clVersiculo> verList = null;
 
 		// VOID NEW
@@ -43,20 +44,71 @@ namespace CamadaUI
 			get => _verAtual;
 			set
 			{
-				if (value > verTotal)
+				if (value > verMax)
 				{
-					AbrirDialog("Já estamos no último versículo deste capítulo", 
+					AbrirDialog("Já estamos no ÚLTIMO versículo deste capítulo...", 
 						"Último Versiculo", 
 						Modals.frmMessage.DialogType.OK, 
 						Modals.frmMessage.DialogIcon.Information);
-					value = verTotal;
+					value = verMax;
 				}
 
 				_verAtual = value;
 				Versiculo = verList[_verAtual - 1];
 				txtEscritura.Text = Versiculo.Escritura;
 				lblLivro.Text = $"{Versiculo.Livro} {Versiculo.Capitulo}:{Versiculo.Versiculo}";
+				lblNavegacao.Text = $"Ver. {Versiculo.Versiculo} de {verMax}";
+
+				CheckNavButtonsState();
 			}
+		}
+
+		// CHECK AND CHANGE NAV BUTTONS STATE (ENABLED / DISABLED)
+		private void CheckNavButtonsState()
+		{
+			if (VerAtual >= verMax || VerAtual <= 1) // disabled buttons
+			{
+				NavDisabled = true;
+
+				if (VerAtual >= verMax)
+				{
+					btnNext.Enabled = false;
+					btnNext.Image = Properties.Resources.Next_32px_disabled;
+					btnLast.Enabled = false;
+					btnLast.Image = Properties.Resources.Last_32px_disabled;
+					btnPrev.Enabled = true;
+					btnPrev.Image = Properties.Resources.Previous_32px;
+					btnFirst.Enabled = true;
+					btnFirst.Image = Properties.Resources.First_32px;
+
+				}
+				else if (VerAtual <= 1)
+				{
+					btnNext.Enabled = true;
+					btnNext.Image = Properties.Resources.Next_32px;
+					btnLast.Enabled = true;
+					btnLast.Image = Properties.Resources.Last_32px;
+
+					btnPrev.Enabled = false;
+					btnPrev.Image = Properties.Resources.Previous_32px_disabled;
+					btnFirst.Enabled = false;
+					btnFirst.Image = Properties.Resources.First_32px_disabled;
+				};
+			}
+			else if (NavDisabled) // else: enabled buttons
+			{
+				btnNext.Enabled = true;
+				btnLast.Enabled = true;
+				btnPrev.Enabled = true;
+				btnFirst.Enabled = true;
+
+				btnPrev.Image = Properties.Resources.Previous_32px;
+				btnFirst.Image = Properties.Resources.First_32px;
+				btnNext.Image = Properties.Resources.Next_32px;
+				btnLast.Image = Properties.Resources.Last_32px;
+				NavDisabled = false;
+			}
+
 		}
 
 		// GET LIST VERSICULOS
@@ -69,7 +121,7 @@ namespace CamadaUI
 				VersiculoBLL vBLL = new VersiculoBLL(DBPath);
 
 				verList = vBLL.GetVersiculoList(IDLinguagem, IDLivro, Capitulo);
-				verTotal = (byte)verList.Count;
+				verMax = (byte)verList.Count;
 				VerAtual = Versiculo;
 				_capituloAtual = Capitulo;
 				_IDLivroAtual = IDLivro;
@@ -86,21 +138,6 @@ namespace CamadaUI
 		#region BUTTONS
 		// ================================================================================================
 
-		private void btnNext_Click(object sender, EventArgs e)
-		{
-			VerAtual += 1;
-		}
-
-		private void btnPrev_Click(object sender, EventArgs e)
-		{
-			if (VerAtual == 1)
-			{
-				return;
-			}
-
-			VerAtual -= 1;
-		}
-
 		// CLOSE FORM
 		private void btnFechar_Click(object sender, EventArgs e)
 		{
@@ -110,6 +147,10 @@ namespace CamadaUI
 
 		#endregion
 
+		#region FUNCTIONS
+		// ================================================================================================
+
+		// PREVINE SELECT TXT ESCRITURA
 		private void txtEscritura_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			e.Handled = true;
@@ -191,5 +232,91 @@ namespace CamadaUI
 			Cursor.Current = Cursors.Default;
 
 		}
+
+		#endregion
+
+		#region NAVEGACAO VERSICULOS
+		// ================================================================================================
+
+		// LAST
+		private void btnLast_Click(object sender, EventArgs e)
+		{
+			if (verMax != VerAtual)	VerAtual = verMax;
+			else
+				AbrirDialog("Já estamos no ÚLTIMO versículo deste capítulo...",
+					"Último Versiculo",
+					Modals.frmMessage.DialogType.OK,
+					Modals.frmMessage.DialogIcon.Information);
+		}
+
+		// NEXT
+		private void btnNext_Click(object sender, EventArgs e)
+		{
+			VerAtual += 1;
+		}
+
+		// PREV
+		private void btnPrev_Click(object sender, EventArgs e)
+		{
+			if (VerAtual == 1)
+				AbrirDialog("Já estamos no PRIMEIRO versículo deste capítulo...",
+							"Último Versiculo",
+							Modals.frmMessage.DialogType.OK,
+							Modals.frmMessage.DialogIcon.Information);
+			else VerAtual -= 1;
+		}
+
+		// FIRST
+		private void btnFirst_Click(object sender, EventArgs e)
+		{
+			if (VerAtual == 1)
+				AbrirDialog("Já estamos no PRIMEIRO versículo deste capítulo...",
+							"Último Versiculo",
+							Modals.frmMessage.DialogType.OK,
+							Modals.frmMessage.DialogIcon.Information);
+			else VerAtual = 1;
+		}
+
+		#endregion
+
+		private void frmLeitura_KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyCode == Keys.Up)
+			{
+				e.Handled = true;
+				btnLast_Click(sender, e);
+			}
+			else if(e.KeyCode == Keys.Left)
+			{
+				e.Handled = true;
+				btnPrev_Click(sender, e);
+			}
+			else if (e.KeyCode == Keys.Right)
+			{
+				e.Handled = true;
+				btnNext_Click(sender, e);
+			}
+			else if (e.KeyCode == Keys.Down)
+			{
+				e.Handled = true;
+				btnFirst_Click(sender, e);
+			}
+			else if (e.KeyCode == Keys.Escape)
+			{
+				e.Handled = true;
+				btnFechar_Click(sender, e);
+			}
+		}
+
+		private void frmLeitura_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+		{
+			e.IsInputKey = true;
+		}
+
+		private void btnMinimizer_Click(object sender, EventArgs e)
+		{
+			WindowState = FormWindowState.Minimized;
+		}
 	}
+
 }

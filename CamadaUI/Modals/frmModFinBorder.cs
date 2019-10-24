@@ -1,5 +1,6 @@
 ﻿
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CamadaUI.Modals
@@ -40,8 +41,10 @@ namespace CamadaUI.Modals
 			if (this.IsMdiChild)
 				Py = Cursor.Position.Y - Top + Screen.PrimaryScreen.WorkingArea.Height - Parent.ClientSize.Height + 3;
 			else
-				frmPrincipal f = Application.OpenForms[0];
-				Py = Cursor.Position.Y - Top + Screen.PrimaryScreen.WorkingArea.Height - frmPrincipal.ClientSize.Height + panel1.Height - 10;
+			{
+				frmPrincipal form = (frmPrincipal)Application.OpenForms[0];
+				Py = Cursor.Position.Y - Top + Screen.PrimaryScreen.WorkingArea.Height - form.ClientSize.Height + panel1.Height + 5;
+			}
 
 			mover = true;
 		}
