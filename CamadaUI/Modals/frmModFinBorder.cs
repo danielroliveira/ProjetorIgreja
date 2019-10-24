@@ -40,8 +40,8 @@ namespace CamadaUI.Modals
 			if (this.IsMdiChild)
 				Py = Cursor.Position.Y - Top + Screen.PrimaryScreen.WorkingArea.Height - Parent.ClientSize.Height + 3;
 			else
-				Py = Cursor.Position.Y - Top + Screen.PrimaryScreen.WorkingArea.Height - Parent.ClientSize.Height + 3;
-				//Py = Cursor.Position.Y - this.Top + Screen.PrimaryScreen.WorkingArea.Height - frmPrincipal.ClientSize.Height + panel1.Height - 10;
+				frmPrincipal f = Application.OpenForms[0];
+				Py = Cursor.Position.Y - Top + Screen.PrimaryScreen.WorkingArea.Height - frmPrincipal.ClientSize.Height + panel1.Height - 10;
 
 			mover = true;
 		}

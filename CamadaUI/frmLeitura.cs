@@ -3,17 +3,24 @@ using CamadaDTO;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
+using static CamadaUI.Modals.AbrirDialogMessage;
 
 namespace CamadaUI
 {
 	public partial class frmLeitura : Form
 	{
+		#region OPEN
+		// ================================================================================================
 
 		private byte _verAtual;
 		private byte _capituloAtual;
 		private byte _IDLivroAtual;
 		private byte _IDLinguagemAtual;
+
+		private clVersiculo Versiculo;
 
 		private byte verTotal;
 		List<clVersiculo> verList = null;
@@ -24,16 +31,32 @@ namespace CamadaUI
 			InitializeComponent();
 
 			pnlTop.BackColor = Properties.Settings.Default.PanelTopColor;
-			
-			GetVersiculos(1,1,1,1);
-			
+			lblLivro.BackColor = pnlInfo.BackColor;
+
+			GetVersiculos(1, 1, 1, 1);
+
 		}
 
-		// CLOSE FORM
-		private void btnFechar_Click(object sender, EventArgs e)
+		// PROPERTY VERSICULO ATUAL
+		public byte VerAtual
 		{
-			Application.OpenForms["frmPrincipal"].Visible = true;
-			Close();
+			get => _verAtual;
+			set
+			{
+				if (value > verTotal)
+				{
+					AbrirDialog("Já estamos no último versículo deste capítulo", 
+						"Último Versiculo", 
+						Modals.frmMessage.DialogType.OK, 
+						Modals.frmMessage.DialogIcon.Information);
+					value = verTotal;
+				}
+
+				_verAtual = value;
+				Versiculo = verList[_verAtual - 1];
+				txtEscritura.Text = Versiculo.Escritura;
+				lblLivro.Text = $"{Versiculo.Livro} {Versiculo.Capitulo}:{Versiculo.Versiculo}";
+			}
 		}
 
 		// GET LIST VERSICULOS
@@ -41,7 +64,8 @@ namespace CamadaUI
 		{
 			try
 			{
-				string DBPath = @"D:\Projetos\ProjetorIgreja\Database\ProjetorDB.MDB";
+				string DBPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjetorDB.mdb");
+
 				VersiculoBLL vBLL = new VersiculoBLL(DBPath);
 
 				verList = vBLL.GetVersiculoList(IDLinguagem, IDLivro, Capitulo);
@@ -57,13 +81,59 @@ namespace CamadaUI
 			}
 		}
 
+		#endregion
+
+		#region BUTTONS
+		// ================================================================================================
+
+		private void btnNext_Click(object sender, EventArgs e)
+		{
+			VerAtual += 1;
+		}
+
+		private void btnPrev_Click(object sender, EventArgs e)
+		{
+			if (VerAtual == 1)
+			{
+				return;
+			}
+
+			VerAtual -= 1;
+		}
+
+		// CLOSE FORM
+		private void btnFechar_Click(object sender, EventArgs e)
+		{
+			Application.OpenForms["frmPrincipal"].Visible = true;
+			Close();
+		}
+
+		#endregion
+
+		private void txtEscritura_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = true;
+		}
+
 		// RESIZE TEXTFONT SIZE ESCRITURA
 		private void txtEscritura_SizeChanged(object sender, EventArgs e)
 		{
 			TextBox tb = sender as TextBox;
-			if (tb.Height < 10) return;
-			if (tb == null) return;
-			if (tb.Text == "") return;
+			if (tb.Height < 10)
+			{
+				return;
+			}
+
+			if (tb == null)
+			{
+				return;
+			}
+
+			if (tb.Text == "")
+			{
+				return;
+			}
+
 			SizeF stringSize;
 
 			// AMPULHETA ON
@@ -77,7 +147,9 @@ namespace CamadaUI
 				//test how many rows
 				int rows = (int)((double)tb.Height / (stringSize.Height));
 				if (rows == 0)
+				{
 					return;
+				}
 
 				double areaAvailable = rows * stringSize.Height * tb.Width;
 				double areaRequired = stringSize.Width * stringSize.Height * 1.1;
@@ -114,43 +186,10 @@ namespace CamadaUI
 					}
 				}
 			}
-			
+
 			// Ampulheta OFF
 			Cursor.Current = Cursors.Default;
 
 		}
-
-		private void btnNext_Click(object sender, EventArgs e)
-		{
-			VerAtual += 1;
-		}
-
-		private void btnPrev_Click(object sender, EventArgs e)
-		{
-			if (VerAtual == 1) return;
-			VerAtual -= 1;
-		}
-
-		private void txtEscritura_KeyPress(object sender, KeyPressEventArgs e)
-		{
-			e.Handled = true;
-		}
-
-		// PROPERTY VERSICULO ATUAL
-		public byte VerAtual
-		{
-			get => _verAtual;
-			set
-			{
-				if(value > verTotal) value = verTotal;
-				
-				_verAtual = value;
-				txtEscritura.Text = verList[_verAtual - 1].Escritura;
-			}
-		}
-			
-
-
-
 	}
 }

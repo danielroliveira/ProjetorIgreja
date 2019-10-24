@@ -40,7 +40,7 @@
 			// lblTitulo
 			// 
 			this.lblTitulo.Dock = System.Windows.Forms.DockStyle.Left;
-			this.lblTitulo.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblTitulo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTitulo.Location = new System.Drawing.Point(0, 0);
 			this.lblTitulo.Padding = new System.Windows.Forms.Padding(7, 0, 0, 4);
 			this.lblTitulo.Size = new System.Drawing.Size(493, 35);
@@ -62,6 +62,7 @@
 			// 
 			// picLogo
 			// 
+			this.picLogo.Image = global::CamadaUI.Properties.Resources.icon_warning;
 			this.picLogo.InitialImage = null;
 			this.picLogo.Location = new System.Drawing.Point(15, 71);
 			this.picLogo.Margin = new System.Windows.Forms.Padding(0);
@@ -110,6 +111,7 @@
 			this.btnCancel.Size = new System.Drawing.Size(118, 42);
 			this.btnCancel.TabIndex = 5;
 			this.btnCancel.Text = "Cancelar";
+			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
 			// lblMensagem
 			// 
@@ -135,6 +137,7 @@
 			this.Controls.Add(this.lblMensagem);
 			this.Name = "frmMessage";
 			this.Text = "frmMessage";
+			this.Shown += new System.EventHandler(this.frmMessage_Shown);
 			this.Controls.SetChildIndex(this.panel1, 0);
 			this.Controls.SetChildIndex(this.lblMensagem, 0);
 			this.Controls.SetChildIndex(this.picLogo, 0);

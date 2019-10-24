@@ -179,7 +179,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="projetor.ico" />
+    <None Include="Resources\icon_question.png" />
+    <None Include="Resources\icon_information.png" />
+    <None Include="Resources\icon_exclamation.png" />
+    <None Include="Resources\icon_warning.png" />
     <None Include="Resources\projetor.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy $(SolutionDir)\Database\ProjetorDB.mdb $(TargetDir)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

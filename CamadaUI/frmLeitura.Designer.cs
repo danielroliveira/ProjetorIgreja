@@ -32,10 +32,11 @@
 			this.lblTitulo = new System.Windows.Forms.Label();
 			this.btnClose = new System.Windows.Forms.Button();
 			this.btnMinimizer = new System.Windows.Forms.Button();
-			this.panel1 = new System.Windows.Forms.Panel();
+			this.pnlInfo = new System.Windows.Forms.Panel();
 			this.btnNext = new System.Windows.Forms.Button();
-			this.txtEscritura = new CamadaUI.Controls.TextBox_unclick();
 			this.btnPrevious = new System.Windows.Forms.Button();
+			this.lblLivro = new System.Windows.Forms.Label();
+			this.txtEscritura = new CamadaUI.Controls.TextBox_unclick();
 			this.pnlTop.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -102,15 +103,15 @@
 			this.btnMinimizer.TabStop = false;
 			this.btnMinimizer.UseVisualStyleBackColor = false;
 			// 
-			// panel1
+			// pnlInfo
 			// 
-			this.panel1.BackColor = System.Drawing.Color.Gainsboro;
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel1.Location = new System.Drawing.Point(0, 40);
-			this.panel1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(973, 60);
-			this.panel1.TabIndex = 2;
+			this.pnlInfo.BackColor = System.Drawing.Color.Gainsboro;
+			this.pnlInfo.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnlInfo.Location = new System.Drawing.Point(0, 40);
+			this.pnlInfo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+			this.pnlInfo.Name = "pnlInfo";
+			this.pnlInfo.Size = new System.Drawing.Size(973, 60);
+			this.pnlInfo.TabIndex = 2;
 			// 
 			// btnNext
 			// 
@@ -123,25 +124,6 @@
 			this.btnNext.UseVisualStyleBackColor = true;
 			this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
 			// 
-			// txtEscritura
-			// 
-			this.txtEscritura.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.txtEscritura.BackColor = System.Drawing.SystemColors.Control;
-			this.txtEscritura.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.txtEscritura.Font = new System.Drawing.Font("Verdana", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtEscritura.Location = new System.Drawing.Point(19, 120);
-			this.txtEscritura.Margin = new System.Windows.Forms.Padding(10);
-			this.txtEscritura.Multiline = true;
-			this.txtEscritura.Name = "txtEscritura";
-			this.txtEscritura.ShortcutsEnabled = false;
-			this.txtEscritura.Size = new System.Drawing.Size(935, 432);
-			this.txtEscritura.TabIndex = 5;
-			this.txtEscritura.Text = "Escritura Bíblica";
-			this.txtEscritura.TextChanged += new System.EventHandler(this.txtEscritura_SizeChanged);
-			this.txtEscritura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEscritura_KeyPress);
-			// 
 			// btnPrevious
 			// 
 			this.btnPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -153,15 +135,47 @@
 			this.btnPrevious.UseVisualStyleBackColor = true;
 			this.btnPrevious.Click += new System.EventHandler(this.btnPrev_Click);
 			// 
+			// lblLivro
+			// 
+			this.lblLivro.AutoSize = true;
+			this.lblLivro.BackColor = System.Drawing.Color.Gainsboro;
+			this.lblLivro.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblLivro.Location = new System.Drawing.Point(31, 54);
+			this.lblLivro.Name = "lblLivro";
+			this.lblLivro.Size = new System.Drawing.Size(165, 29);
+			this.lblLivro.TabIndex = 0;
+			this.lblLivro.Text = "Livro Nome";
+			// 
+			// txtEscritura
+			// 
+			this.txtEscritura.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.txtEscritura.BackColor = System.Drawing.SystemColors.Control;
+			this.txtEscritura.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.txtEscritura.Font = new System.Drawing.Font("Verdana", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtEscritura.Location = new System.Drawing.Point(19, 120);
+			this.txtEscritura.Margin = new System.Windows.Forms.Padding(0);
+			this.txtEscritura.Multiline = true;
+			this.txtEscritura.Name = "txtEscritura";
+			this.txtEscritura.ShortcutsEnabled = false;
+			this.txtEscritura.Size = new System.Drawing.Size(935, 432);
+			this.txtEscritura.TabIndex = 5;
+			this.txtEscritura.TabStop = false;
+			this.txtEscritura.Text = "Escritura Bíblica";
+			this.txtEscritura.TextChanged += new System.EventHandler(this.txtEscritura_SizeChanged);
+			this.txtEscritura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEscritura_KeyPress);
+			// 
 			// frmLeitura
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(973, 623);
+			this.Controls.Add(this.lblLivro);
 			this.Controls.Add(this.txtEscritura);
 			this.Controls.Add(this.btnPrevious);
 			this.Controls.Add(this.btnNext);
-			this.Controls.Add(this.panel1);
+			this.Controls.Add(this.pnlInfo);
 			this.Controls.Add(this.pnlTop);
 			this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -182,9 +196,10 @@
 		internal System.Windows.Forms.Button btnClose;
 		internal System.Windows.Forms.Button btnMinimizer;
 		private System.Windows.Forms.Label lblTitulo;
-		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Panel pnlInfo;
 		private System.Windows.Forms.Button btnNext;
 		private Controls.TextBox_unclick txtEscritura;
 		private System.Windows.Forms.Button btnPrevious;
+		private System.Windows.Forms.Label lblLivro;
 	}
 }
