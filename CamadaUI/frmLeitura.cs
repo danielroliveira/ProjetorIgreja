@@ -25,6 +25,7 @@ namespace CamadaUI
 
 		private byte verMax;
 		List<clVersiculo> verList = null;
+		List<clLinguagem> LinguagemList = null;
 
 		// VOID NEW
 		public frmLeitura()
@@ -34,8 +35,8 @@ namespace CamadaUI
 			pnlTop.BackColor = Properties.Settings.Default.PanelTopColor;
 			lblLivro.BackColor = pnlInfo.BackColor;
 
+			GetLinguagens();
 			GetVersiculos(1, 1, 1, 1);
-
 		}
 
 		// PROPERTY VERSICULO ATUAL
@@ -58,6 +59,8 @@ namespace CamadaUI
 				txtEscritura.Text = Versiculo.Escritura;
 				lblLivro.Text = $"{Versiculo.Livro} {Versiculo.Capitulo}:{Versiculo.Versiculo}";
 				lblNavegacao.Text = $"Ver. {Versiculo.Versiculo} de {verMax}";
+
+				lblLinguagem.Text = LinguagemList.Find(x => x.IDLinguagem == _IDLinguagemAtual).Linguagem;
 
 				CheckNavButtonsState();
 			}
@@ -118,14 +121,42 @@ namespace CamadaUI
 			{
 				string DBPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjetorDB.mdb");
 
+				// Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
 				VersiculoBLL vBLL = new VersiculoBLL(DBPath);
 
 				verList = vBLL.GetVersiculoList(IDLinguagem, IDLivro, Capitulo);
 				verMax = (byte)verList.Count;
-				VerAtual = Versiculo;
 				_capituloAtual = Capitulo;
 				_IDLivroAtual = IDLivro;
 				_IDLinguagemAtual = IDLinguagem;
+				VerAtual = Versiculo;
+
+				// Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
+
+		// GET LIST LINGUAGENS
+		private void GetLinguagens()
+		{
+			try
+			{
+				// Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+				
+				string DBPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjetorDB.mdb");
+
+				VersiculoBLL vBLL = new VersiculoBLL(DBPath);
+				LinguagemList = vBLL.GetLinguagemList();
+				
+				// Ampulheta OFF
+				Cursor.Current = Cursors.Default;
 			}
 			catch (Exception ex)
 			{

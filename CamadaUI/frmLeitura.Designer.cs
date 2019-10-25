@@ -32,25 +32,27 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLeitura));
 			this.pnlTop = new System.Windows.Forms.Panel();
 			this.lblTitulo = new System.Windows.Forms.Label();
+			this.btnClose = new System.Windows.Forms.Button();
+			this.btnMinimizer = new System.Windows.Forms.Button();
 			this.pnlInfo = new System.Windows.Forms.Panel();
 			this.lblLivro = new System.Windows.Forms.Label();
 			this.pnlNav = new System.Windows.Forms.Panel();
-			this.lblNavegacao = new System.Windows.Forms.Label();
-			this.txtEscritura = new CamadaUI.Controls.TextBox_unclick();
-			this.mnuLinguagens = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.btnLinguagens = new MBGlassStyleButton.MBGlassButton();
 			this.btnLast = new MBGlassStyleButton.MBGlassButton();
+			this.lblNavegacao = new System.Windows.Forms.Label();
 			this.btnNext = new MBGlassStyleButton.MBGlassButton();
 			this.btnFirst = new MBGlassStyleButton.MBGlassButton();
 			this.btnPrev = new MBGlassStyleButton.MBGlassButton();
-			this.btnClose = new System.Windows.Forms.Button();
-			this.btnMinimizer = new System.Windows.Forms.Button();
+			this.txtEscritura = new CamadaUI.Controls.TextBox_unclick();
+			this.mnuLinguagens = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.miRC = new System.Windows.Forms.ToolStripMenuItem();
 			this.miRA = new System.Windows.Forms.ToolStripMenuItem();
 			this.miNVI = new System.Windows.Forms.ToolStripMenuItem();
 			this.miFiel = new System.Windows.Forms.ToolStripMenuItem();
 			this.miNTLH = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnLinguagens = new MBGlassStyleButton.MBGlassButton();
+			this.lblLinguagem = new System.Windows.Forms.Label();
 			this.pnlTop.SuspendLayout();
+			this.pnlInfo.SuspendLayout();
 			this.pnlNav.SuspendLayout();
 			this.mnuLinguagens.SuspendLayout();
 			this.SuspendLayout();
@@ -81,9 +83,50 @@
 			this.lblTitulo.Text = "Leitura Bíblica";
 			this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
+			// btnClose
+			// 
+			this.btnClose.BackColor = System.Drawing.Color.Transparent;
+			this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
+			this.btnClose.FlatAppearance.BorderSize = 0;
+			this.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGoldenrodYellow;
+			this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Firebrick;
+			this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnClose.Image = global::CamadaUI.Properties.Resources.CloseIcon;
+			this.btnClose.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			this.btnClose.Location = new System.Drawing.Point(933, 0);
+			this.btnClose.Margin = new System.Windows.Forms.Padding(0);
+			this.btnClose.Name = "btnClose";
+			this.btnClose.Size = new System.Drawing.Size(40, 40);
+			this.btnClose.TabIndex = 12;
+			this.btnClose.TabStop = false;
+			this.btnClose.UseVisualStyleBackColor = false;
+			this.btnClose.Click += new System.EventHandler(this.btnFechar_Click);
+			this.btnClose.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLeitura_PreviewKeyDown);
+			// 
+			// btnMinimizer
+			// 
+			this.btnMinimizer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnMinimizer.BackColor = System.Drawing.Color.Transparent;
+			this.btnMinimizer.FlatAppearance.BorderSize = 0;
+			this.btnMinimizer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGoldenrodYellow;
+			this.btnMinimizer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+			this.btnMinimizer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnMinimizer.Image = global::CamadaUI.Properties.Resources.DropdownIcon;
+			this.btnMinimizer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			this.btnMinimizer.Location = new System.Drawing.Point(893, 0);
+			this.btnMinimizer.Margin = new System.Windows.Forms.Padding(0);
+			this.btnMinimizer.Name = "btnMinimizer";
+			this.btnMinimizer.Size = new System.Drawing.Size(40, 40);
+			this.btnMinimizer.TabIndex = 13;
+			this.btnMinimizer.TabStop = false;
+			this.btnMinimizer.UseVisualStyleBackColor = false;
+			this.btnMinimizer.Click += new System.EventHandler(this.btnMinimizer_Click);
+			this.btnMinimizer.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLeitura_PreviewKeyDown);
+			// 
 			// pnlInfo
 			// 
 			this.pnlInfo.BackColor = System.Drawing.Color.Gainsboro;
+			this.pnlInfo.Controls.Add(this.lblLinguagem);
 			this.pnlInfo.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnlInfo.Location = new System.Drawing.Point(0, 40);
 			this.pnlInfo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
@@ -95,10 +138,10 @@
 			// 
 			this.lblLivro.AutoSize = true;
 			this.lblLivro.BackColor = System.Drawing.Color.Gainsboro;
-			this.lblLivro.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblLivro.Location = new System.Drawing.Point(31, 54);
+			this.lblLivro.Font = new System.Drawing.Font("Verdana", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblLivro.Location = new System.Drawing.Point(31, 47);
 			this.lblLivro.Name = "lblLivro";
-			this.lblLivro.Size = new System.Drawing.Size(165, 29);
+			this.lblLivro.Size = new System.Drawing.Size(257, 45);
 			this.lblLivro.TabIndex = 0;
 			this.lblLivro.Text = "Livro Nome";
 			// 
@@ -114,79 +157,6 @@
 			this.pnlNav.Name = "pnlNav";
 			this.pnlNav.Size = new System.Drawing.Size(330, 40);
 			this.pnlNav.TabIndex = 8;
-			// 
-			// lblNavegacao
-			// 
-			this.lblNavegacao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblNavegacao.Location = new System.Drawing.Point(93, 11);
-			this.lblNavegacao.Name = "lblNavegacao";
-			this.lblNavegacao.Size = new System.Drawing.Size(140, 19);
-			this.lblNavegacao.TabIndex = 2;
-			this.lblNavegacao.Text = "Ver. 1 de 1";
-			this.lblNavegacao.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// txtEscritura
-			// 
-			this.txtEscritura.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.txtEscritura.BackColor = System.Drawing.SystemColors.Control;
-			this.txtEscritura.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.txtEscritura.Font = new System.Drawing.Font("Verdana", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtEscritura.Location = new System.Drawing.Point(12, 113);
-			this.txtEscritura.Multiline = true;
-			this.txtEscritura.Name = "txtEscritura";
-			this.txtEscritura.ShortcutsEnabled = false;
-			this.txtEscritura.Size = new System.Drawing.Size(949, 453);
-			this.txtEscritura.TabIndex = 5;
-			this.txtEscritura.TabStop = false;
-			this.txtEscritura.Text = "Escritura Bíblica";
-			this.txtEscritura.TextChanged += new System.EventHandler(this.txtEscritura_SizeChanged);
-			this.txtEscritura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
-			this.txtEscritura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEscritura_KeyPress);
-			this.txtEscritura.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLeitura_PreviewKeyDown);
-			// 
-			// mnuLinguagens
-			// 
-			this.mnuLinguagens.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.mnuLinguagens.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miRC,
-            this.miRA,
-            this.miNVI,
-            this.miFiel,
-            this.miNTLH});
-			this.mnuLinguagens.Name = "mnuLinguagens";
-			this.mnuLinguagens.Size = new System.Drawing.Size(438, 194);
-			// 
-			// btnLinguagens
-			// 
-			this.btnLinguagens.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnLinguagens.Arrow = MBGlassStyleButton.MBGlassButton.MB_Arrow.ToDown;
-			this.btnLinguagens.BackColor = System.Drawing.Color.Transparent;
-			this.btnLinguagens.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(211)))), ((int)(((byte)(211)))));
-			this.btnLinguagens.BaseStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-			this.btnLinguagens.ContextMenuStrip = this.mnuLinguagens;
-			this.btnLinguagens.FlatAppearance.BorderSize = 0;
-			this.btnLinguagens.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnLinguagens.Image = global::CamadaUI.Properties.Resources.search_peq;
-			this.btnLinguagens.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnLinguagens.ImageSize = new System.Drawing.Size(24, 24);
-			this.btnLinguagens.Location = new System.Drawing.Point(12, 575);
-			this.btnLinguagens.MenuListPosition = new System.Drawing.Point(0, 0);
-			this.btnLinguagens.Name = "btnLinguagens";
-			this.btnLinguagens.OnColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(214)))), ((int)(((byte)(78)))));
-			this.btnLinguagens.OnStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(177)))), ((int)(((byte)(118)))));
-			this.btnLinguagens.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-			this.btnLinguagens.PressStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-			this.btnLinguagens.Size = new System.Drawing.Size(150, 40);
-			this.btnLinguagens.SplitButton = MBGlassStyleButton.MBGlassButton.MB_SplitButton.Yes;
-			this.btnLinguagens.SplitDistance = 30;
-			this.btnLinguagens.SplitLocation = MBGlassStyleButton.MBGlassButton.MB_SplitLocation.Right;
-			this.btnLinguagens.TabIndex = 9;
-			this.btnLinguagens.Text = "Procura";
-			this.btnLinguagens.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnLinguagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnLinguagens.UseVisualStyleBackColor = false;
 			// 
 			// btnLast
 			// 
@@ -213,6 +183,16 @@
 			this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
 			this.btnLast.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
 			this.btnLast.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLeitura_PreviewKeyDown);
+			// 
+			// lblNavegacao
+			// 
+			this.lblNavegacao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblNavegacao.Location = new System.Drawing.Point(93, 11);
+			this.lblNavegacao.Name = "lblNavegacao";
+			this.lblNavegacao.Size = new System.Drawing.Size(140, 19);
+			this.lblNavegacao.TabIndex = 2;
+			this.lblNavegacao.Text = "Ver. 1 de 1";
+			this.lblNavegacao.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// btnNext
 			// 
@@ -292,45 +272,38 @@
 			this.btnPrev.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
 			this.btnPrev.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLeitura_PreviewKeyDown);
 			// 
-			// btnClose
+			// txtEscritura
 			// 
-			this.btnClose.BackColor = System.Drawing.Color.Transparent;
-			this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
-			this.btnClose.FlatAppearance.BorderSize = 0;
-			this.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGoldenrodYellow;
-			this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Firebrick;
-			this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnClose.Image = global::CamadaUI.Properties.Resources.CloseIcon;
-			this.btnClose.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.btnClose.Location = new System.Drawing.Point(933, 0);
-			this.btnClose.Margin = new System.Windows.Forms.Padding(0);
-			this.btnClose.Name = "btnClose";
-			this.btnClose.Size = new System.Drawing.Size(40, 40);
-			this.btnClose.TabIndex = 12;
-			this.btnClose.TabStop = false;
-			this.btnClose.UseVisualStyleBackColor = false;
-			this.btnClose.Click += new System.EventHandler(this.btnFechar_Click);
-			this.btnClose.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLeitura_PreviewKeyDown);
+			this.txtEscritura.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.txtEscritura.BackColor = System.Drawing.SystemColors.Control;
+			this.txtEscritura.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.txtEscritura.Font = new System.Drawing.Font("Verdana", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtEscritura.Location = new System.Drawing.Point(12, 113);
+			this.txtEscritura.Multiline = true;
+			this.txtEscritura.Name = "txtEscritura";
+			this.txtEscritura.ShortcutsEnabled = false;
+			this.txtEscritura.Size = new System.Drawing.Size(949, 453);
+			this.txtEscritura.TabIndex = 5;
+			this.txtEscritura.TabStop = false;
+			this.txtEscritura.Text = "Escritura Bíblica";
+			this.txtEscritura.TextChanged += new System.EventHandler(this.txtEscritura_SizeChanged);
+			this.txtEscritura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
+			this.txtEscritura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEscritura_KeyPress);
+			this.txtEscritura.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLeitura_PreviewKeyDown);
 			// 
-			// btnMinimizer
+			// mnuLinguagens
 			// 
-			this.btnMinimizer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnMinimizer.BackColor = System.Drawing.Color.Transparent;
-			this.btnMinimizer.FlatAppearance.BorderSize = 0;
-			this.btnMinimizer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGoldenrodYellow;
-			this.btnMinimizer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
-			this.btnMinimizer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnMinimizer.Image = global::CamadaUI.Properties.Resources.DropdownIcon;
-			this.btnMinimizer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.btnMinimizer.Location = new System.Drawing.Point(893, 0);
-			this.btnMinimizer.Margin = new System.Windows.Forms.Padding(0);
-			this.btnMinimizer.Name = "btnMinimizer";
-			this.btnMinimizer.Size = new System.Drawing.Size(40, 40);
-			this.btnMinimizer.TabIndex = 13;
-			this.btnMinimizer.TabStop = false;
-			this.btnMinimizer.UseVisualStyleBackColor = false;
-			this.btnMinimizer.Click += new System.EventHandler(this.btnMinimizer_Click);
-			this.btnMinimizer.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLeitura_PreviewKeyDown);
+			this.mnuLinguagens.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.mnuLinguagens.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miRC,
+            this.miRA,
+            this.miNVI,
+            this.miFiel,
+            this.miNTLH});
+			this.mnuLinguagens.Name = "mnuLinguagens";
+			this.mnuLinguagens.Size = new System.Drawing.Size(438, 194);
 			// 
 			// miRC
 			// 
@@ -379,6 +352,48 @@
 			this.miNTLH.Text = "NTLH - Nova Tradução da Linguagem de Hoje";
 			this.miNTLH.Click += new System.EventHandler(this.miLinguagem_Click);
 			// 
+			// btnLinguagens
+			// 
+			this.btnLinguagens.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnLinguagens.Arrow = MBGlassStyleButton.MBGlassButton.MB_Arrow.ToDown;
+			this.btnLinguagens.BackColor = System.Drawing.Color.Transparent;
+			this.btnLinguagens.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(211)))), ((int)(((byte)(211)))));
+			this.btnLinguagens.BaseStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+			this.btnLinguagens.ContextMenuStrip = this.mnuLinguagens;
+			this.btnLinguagens.FlatAppearance.BorderSize = 0;
+			this.btnLinguagens.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnLinguagens.Image = global::CamadaUI.Properties.Resources.search_peq;
+			this.btnLinguagens.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnLinguagens.ImageSize = new System.Drawing.Size(24, 24);
+			this.btnLinguagens.Location = new System.Drawing.Point(12, 575);
+			this.btnLinguagens.MenuListPosition = new System.Drawing.Point(0, 0);
+			this.btnLinguagens.Name = "btnLinguagens";
+			this.btnLinguagens.OnColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(214)))), ((int)(((byte)(78)))));
+			this.btnLinguagens.OnStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(177)))), ((int)(((byte)(118)))));
+			this.btnLinguagens.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+			this.btnLinguagens.PressStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+			this.btnLinguagens.Size = new System.Drawing.Size(150, 40);
+			this.btnLinguagens.SplitButton = MBGlassStyleButton.MBGlassButton.MB_SplitButton.Yes;
+			this.btnLinguagens.SplitDistance = 30;
+			this.btnLinguagens.SplitLocation = MBGlassStyleButton.MBGlassButton.MB_SplitLocation.Right;
+			this.btnLinguagens.TabIndex = 9;
+			this.btnLinguagens.Text = "Procura";
+			this.btnLinguagens.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnLinguagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnLinguagens.UseVisualStyleBackColor = false;
+			// 
+			// lblLinguagem
+			// 
+			this.lblLinguagem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblLinguagem.BackColor = System.Drawing.Color.Gainsboro;
+			this.lblLinguagem.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblLinguagem.Location = new System.Drawing.Point(468, 7);
+			this.lblLinguagem.Name = "lblLinguagem";
+			this.lblLinguagem.Size = new System.Drawing.Size(496, 45);
+			this.lblLinguagem.TabIndex = 0;
+			this.lblLinguagem.Text = "Linguagem";
+			this.lblLinguagem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			// 
 			// frmLeitura
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -401,6 +416,7 @@
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
 			this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLeitura_PreviewKeyDown);
 			this.pnlTop.ResumeLayout(false);
+			this.pnlInfo.ResumeLayout(false);
 			this.pnlNav.ResumeLayout(false);
 			this.mnuLinguagens.ResumeLayout(false);
 			this.ResumeLayout(false);
@@ -429,5 +445,6 @@
 		private System.Windows.Forms.ToolStripMenuItem miNVI;
 		private System.Windows.Forms.ToolStripMenuItem miFiel;
 		private System.Windows.Forms.ToolStripMenuItem miNTLH;
+		private System.Windows.Forms.Label lblLinguagem;
 	}
 }
