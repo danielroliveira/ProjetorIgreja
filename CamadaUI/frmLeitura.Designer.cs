@@ -35,6 +35,7 @@
 			this.btnClose = new System.Windows.Forms.Button();
 			this.btnMinimizer = new System.Windows.Forms.Button();
 			this.pnlInfo = new System.Windows.Forms.Panel();
+			this.lblLinguagem = new System.Windows.Forms.Label();
 			this.lblLivro = new System.Windows.Forms.Label();
 			this.pnlNav = new System.Windows.Forms.Panel();
 			this.btnLast = new MBGlassStyleButton.MBGlassButton();
@@ -42,7 +43,6 @@
 			this.btnNext = new MBGlassStyleButton.MBGlassButton();
 			this.btnFirst = new MBGlassStyleButton.MBGlassButton();
 			this.btnPrev = new MBGlassStyleButton.MBGlassButton();
-			this.txtEscritura = new CamadaUI.Controls.TextBox_unclick();
 			this.mnuLinguagens = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.miRC = new System.Windows.Forms.ToolStripMenuItem();
 			this.miRA = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,7 +50,7 @@
 			this.miFiel = new System.Windows.Forms.ToolStripMenuItem();
 			this.miNTLH = new System.Windows.Forms.ToolStripMenuItem();
 			this.btnLinguagens = new MBGlassStyleButton.MBGlassButton();
-			this.lblLinguagem = new System.Windows.Forms.Label();
+			this.txtEscritura = new CamadaUI.Controls.TextBox_unclick();
 			this.pnlTop.SuspendLayout();
 			this.pnlInfo.SuspendLayout();
 			this.pnlNav.SuspendLayout();
@@ -133,6 +133,18 @@
 			this.pnlInfo.Name = "pnlInfo";
 			this.pnlInfo.Size = new System.Drawing.Size(973, 60);
 			this.pnlInfo.TabIndex = 2;
+			// 
+			// lblLinguagem
+			// 
+			this.lblLinguagem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblLinguagem.BackColor = System.Drawing.Color.Gainsboro;
+			this.lblLinguagem.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblLinguagem.Location = new System.Drawing.Point(468, 7);
+			this.lblLinguagem.Name = "lblLinguagem";
+			this.lblLinguagem.Size = new System.Drawing.Size(496, 45);
+			this.lblLinguagem.TabIndex = 0;
+			this.lblLinguagem.Text = "Linguagem";
+			this.lblLinguagem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			// 
 			// lblLivro
 			// 
@@ -272,29 +284,9 @@
 			this.btnPrev.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
 			this.btnPrev.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLeitura_PreviewKeyDown);
 			// 
-			// txtEscritura
-			// 
-			this.txtEscritura.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.txtEscritura.BackColor = System.Drawing.SystemColors.Control;
-			this.txtEscritura.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.txtEscritura.Font = new System.Drawing.Font("Verdana", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.txtEscritura.Location = new System.Drawing.Point(12, 113);
-			this.txtEscritura.Multiline = true;
-			this.txtEscritura.Name = "txtEscritura";
-			this.txtEscritura.ShortcutsEnabled = false;
-			this.txtEscritura.Size = new System.Drawing.Size(949, 453);
-			this.txtEscritura.TabIndex = 5;
-			this.txtEscritura.TabStop = false;
-			this.txtEscritura.Text = "Escritura Bíblica";
-			this.txtEscritura.TextChanged += new System.EventHandler(this.txtEscritura_SizeChanged);
-			this.txtEscritura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
-			this.txtEscritura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEscritura_KeyPress);
-			this.txtEscritura.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLeitura_PreviewKeyDown);
-			// 
 			// mnuLinguagens
 			// 
+			this.mnuLinguagens.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.mnuLinguagens.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.mnuLinguagens.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miRC,
@@ -303,14 +295,16 @@
             this.miFiel,
             this.miNTLH});
 			this.mnuLinguagens.Name = "mnuLinguagens";
-			this.mnuLinguagens.Size = new System.Drawing.Size(438, 194);
+			this.mnuLinguagens.Size = new System.Drawing.Size(440, 194);
+			this.mnuLinguagens.Opening += new System.ComponentModel.CancelEventHandler(this.mnuLinguagens_Opening);
 			// 
 			// miRC
 			// 
-			this.miRC.Image = global::CamadaUI.Properties.Resources.book_32;
+			this.miRC.BackColor = System.Drawing.Color.Moccasin;
+			this.miRC.Image = global::CamadaUI.Properties.Resources.bibliaicon_peq;
 			this.miRC.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this.miRC.Name = "miRC";
-			this.miRC.Size = new System.Drawing.Size(437, 38);
+			this.miRC.Size = new System.Drawing.Size(439, 38);
 			this.miRC.Tag = "3";
 			this.miRC.Text = "RC - Almeida Revista e Corrigida";
 			this.miRC.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -318,36 +312,40 @@
 			// 
 			// miRA
 			// 
-			this.miRA.Image = global::CamadaUI.Properties.Resources.book_32;
+			this.miRA.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.miRA.Image = global::CamadaUI.Properties.Resources.bibliaicon_peq;
 			this.miRA.Name = "miRA";
-			this.miRA.Size = new System.Drawing.Size(437, 38);
+			this.miRA.Size = new System.Drawing.Size(439, 38);
 			this.miRA.Tag = "4";
 			this.miRA.Text = "RA - Almeira Revista e Atualizada";
 			this.miRA.Click += new System.EventHandler(this.miLinguagem_Click);
 			// 
 			// miNVI
 			// 
-			this.miNVI.Image = global::CamadaUI.Properties.Resources.book_32;
+			this.miNVI.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.miNVI.Image = global::CamadaUI.Properties.Resources.bibliaicon_peq;
 			this.miNVI.Name = "miNVI";
-			this.miNVI.Size = new System.Drawing.Size(437, 38);
+			this.miNVI.Size = new System.Drawing.Size(439, 38);
 			this.miNVI.Tag = "2";
 			this.miNVI.Text = "NVI - Nova Versão Internacional";
 			this.miNVI.Click += new System.EventHandler(this.miLinguagem_Click);
 			// 
 			// miFiel
 			// 
-			this.miFiel.Image = global::CamadaUI.Properties.Resources.book_32;
+			this.miFiel.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.miFiel.Image = global::CamadaUI.Properties.Resources.bibliaicon_peq;
 			this.miFiel.Name = "miFiel";
-			this.miFiel.Size = new System.Drawing.Size(437, 38);
+			this.miFiel.Size = new System.Drawing.Size(439, 38);
 			this.miFiel.Tag = "1";
 			this.miFiel.Text = "ACF - Almeida Corrigida Fiel";
 			this.miFiel.Click += new System.EventHandler(this.miLinguagem_Click);
 			// 
 			// miNTLH
 			// 
-			this.miNTLH.Image = global::CamadaUI.Properties.Resources.book_32;
+			this.miNTLH.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.miNTLH.Image = global::CamadaUI.Properties.Resources.bibliaicon_peq;
 			this.miNTLH.Name = "miNTLH";
-			this.miNTLH.Size = new System.Drawing.Size(437, 38);
+			this.miNTLH.Size = new System.Drawing.Size(439, 38);
 			this.miNTLH.Tag = "5";
 			this.miNTLH.Text = "NTLH - Nova Tradução da Linguagem de Hoje";
 			this.miNTLH.Click += new System.EventHandler(this.miLinguagem_Click);
@@ -381,18 +379,28 @@
 			this.btnLinguagens.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnLinguagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnLinguagens.UseVisualStyleBackColor = false;
+			this.btnLinguagens.Click += new System.EventHandler(this.btnLinguagens_Click);
 			// 
-			// lblLinguagem
+			// txtEscritura
 			// 
-			this.lblLinguagem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblLinguagem.BackColor = System.Drawing.Color.Gainsboro;
-			this.lblLinguagem.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblLinguagem.Location = new System.Drawing.Point(468, 7);
-			this.lblLinguagem.Name = "lblLinguagem";
-			this.lblLinguagem.Size = new System.Drawing.Size(496, 45);
-			this.lblLinguagem.TabIndex = 0;
-			this.lblLinguagem.Text = "Linguagem";
-			this.lblLinguagem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.txtEscritura.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.txtEscritura.BackColor = System.Drawing.SystemColors.Control;
+			this.txtEscritura.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.txtEscritura.Font = new System.Drawing.Font("Ezra SIL", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtEscritura.Location = new System.Drawing.Point(12, 113);
+			this.txtEscritura.Multiline = true;
+			this.txtEscritura.Name = "txtEscritura";
+			this.txtEscritura.ShortcutsEnabled = false;
+			this.txtEscritura.Size = new System.Drawing.Size(949, 453);
+			this.txtEscritura.TabIndex = 5;
+			this.txtEscritura.TabStop = false;
+			this.txtEscritura.Text = "Escritura Bíblica";
+			this.txtEscritura.TextChanged += new System.EventHandler(this.txtEscritura_SizeChanged);
+			this.txtEscritura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
+			this.txtEscritura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEscritura_KeyPress);
+			this.txtEscritura.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLeitura_PreviewKeyDown);
 			// 
 			// frmLeitura
 			// 

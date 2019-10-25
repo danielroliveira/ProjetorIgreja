@@ -73,9 +73,9 @@ namespace CamadaUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap book_32 {
+        internal static System.Drawing.Bitmap bibliaicon_peq {
             get {
-                object obj = ResourceManager.GetObject("book_32", resourceCulture);
+                object obj = ResourceManager.GetObject("bibliaicon_peq", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

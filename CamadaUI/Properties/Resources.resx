@@ -124,11 +124,8 @@
   <data name="icon_question" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_question.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="book_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\book_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DropdownIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DropdownIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ConfigIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ConfigIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="First_32px_disabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\First_32px_disabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,11 +154,14 @@
   <data name="biblia_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\biblia_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="search_peq" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search_peq.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Last_32px_disabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Last_32px_disabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ConfigIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ConfigIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DropdownIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DropdownIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_exclamation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_exclamation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,7 +175,7 @@
   <data name="icon_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="search_peq" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search_peq.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bibliaicon_peq" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bibliaicon_peq.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

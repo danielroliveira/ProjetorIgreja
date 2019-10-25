@@ -113,5 +113,48 @@ namespace CamadaBLL
 			return ling;
 		}
 
+		// GET LIVROS LIST
+		public List<clLivro> GetLivroList()
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(_dataBasePath);
+				DataTable dt = new DataTable();
+
+				string query = "SELECT * FROM tblLivros";
+
+				dt = db.ExecutarConsulta(CommandType.Text, query);
+
+				List<clLivro> list = new List<clLivro>();
+
+				if (dt.Rows.Count == 0) return list;
+
+				foreach (DataRow row in dt.Rows)
+				{
+					list.Add(ConvertRowInClLivro(row));
+				}
+
+				return list;
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		// CONVERT DT IN CLASS LINGUAGEM
+		private clLivro ConvertRowInClLivro(DataRow r)
+		{
+			clLivro livro = new clLivro()
+			{
+				IDLivro = (byte)r["IDLivro"],
+				Livro = (string)r["Livro"],
+				Abreviacao = (string)r["Abreviacao"],
+				Capitulos = (byte)r["Capitulo"]
+			};
+
+			return livro;
+		}
+
 	}
 }

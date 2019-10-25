@@ -43,7 +43,7 @@ namespace CamadaUI.Modals
 			else
 			{
 				frmPrincipal form = (frmPrincipal)Application.OpenForms[0];
-				Py = Cursor.Position.Y - Top + Screen.PrimaryScreen.WorkingArea.Height - form.ClientSize.Height + panel1.Height + 5;
+				Py = Cursor.Position.Y - Top + Screen.PrimaryScreen.WorkingArea.Height - form.ClientSize.Height + panel1.Height - 10;
 			}
 
 			mover = true;

@@ -19,9 +19,10 @@ namespace CamadaUI
 		private byte _capituloAtual;
 		private byte _IDLivroAtual;
 		private byte _IDLinguagemAtual;
-		
+
 		private clVersiculo Versiculo;
 		private bool NavDisabled;
+		private string DBPath;
 
 		private byte verMax;
 		List<clVersiculo> verList = null;
@@ -34,9 +35,15 @@ namespace CamadaUI
 
 			pnlTop.BackColor = Properties.Settings.Default.PanelTopColor;
 			lblLivro.BackColor = pnlInfo.BackColor;
-
+			DBPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjetorDB.mdb");
 			GetLinguagens();
 			GetVersiculos(1, 1, 1, 1);
+
+			// selecionar a fonte
+			// ---------------------------------------------------------------------------------------------
+			//txtEscritura.Font = new Font("Verdana", 72F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			txtEscritura.Font = new Font("Ezra SIL", 72F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			txtEscritura_SizeChanged(txtEscritura, new EventArgs());
 		}
 
 		// PROPERTY VERSICULO ATUAL
@@ -47,9 +54,9 @@ namespace CamadaUI
 			{
 				if (value > verMax)
 				{
-					AbrirDialog("Já estamos no ÚLTIMO versículo deste capítulo...", 
-						"Último Versiculo", 
-						DialogType.OK, 
+					AbrirDialog("Já estamos no ÚLTIMO versículo deste capítulo...",
+						"Último Versiculo",
+						DialogType.OK,
 						DialogIcon.Information);
 					value = verMax;
 				}
@@ -119,8 +126,6 @@ namespace CamadaUI
 		{
 			try
 			{
-				string DBPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjetorDB.mdb");
-
 				// Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
 
@@ -149,12 +154,10 @@ namespace CamadaUI
 			{
 				// Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
-				
-				string DBPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjetorDB.mdb");
 
 				VersiculoBLL vBLL = new VersiculoBLL(DBPath);
 				LinguagemList = vBLL.GetLinguagemList();
-				
+
 				// Ampulheta OFF
 				Cursor.Current = Cursors.Default;
 			}
@@ -272,12 +275,17 @@ namespace CamadaUI
 		// LAST
 		private void btnLast_Click(object sender, EventArgs e)
 		{
-			if (verMax != VerAtual)	VerAtual = verMax;
+			if (verMax != VerAtual)
+			{
+				VerAtual = verMax;
+			}
 			else
+			{
 				AbrirDialog("Já estamos no ÚLTIMO versículo deste capítulo...",
 					"Último Versiculo",
 					DialogType.OK,
 					DialogIcon.Information);
+			}
 		}
 
 		// NEXT
@@ -290,34 +298,44 @@ namespace CamadaUI
 		private void btnPrev_Click(object sender, EventArgs e)
 		{
 			if (VerAtual == 1)
+			{
 				AbrirDialog("Já estamos no PRIMEIRO versículo deste capítulo...",
 							"Último Versiculo",
 							DialogType.OK,
 							DialogIcon.Information);
-			else VerAtual -= 1;
+			}
+			else
+			{
+				VerAtual -= 1;
+			}
 		}
 
 		// FIRST
 		private void btnFirst_Click(object sender, EventArgs e)
 		{
 			if (VerAtual == 1)
+			{
 				AbrirDialog("Já estamos no PRIMEIRO versículo deste capítulo...",
 							"Último Versiculo",
 							DialogType.OK,
 							DialogIcon.Information);
-			else VerAtual = 1;
+			}
+			else
+			{
+				VerAtual = 1;
+			}
 		}
 
 		#endregion
 
 		private void frmLeitura_KeyDown(object sender, KeyEventArgs e)
 		{
-			if(e.KeyCode == Keys.Up)
+			if (e.KeyCode == Keys.Up)
 			{
 				e.Handled = true;
 				btnLast_Click(sender, e);
 			}
-			else if(e.KeyCode == Keys.Left)
+			else if (e.KeyCode == Keys.Left)
 			{
 				e.Handled = true;
 				btnPrev_Click(sender, e);
@@ -350,14 +368,36 @@ namespace CamadaUI
 		}
 
 		#region LINGUAGENS
+
 		private void miLinguagem_Click(object sender, EventArgs e)
 		{
-			ToolStripMenuItem c = (ToolStripMenuItem)sender;
-			byte IDLing = Convert.ToByte(c.Tag);
+			ToolStripMenuItem menu = (ToolStripMenuItem)sender;
+			byte IDLing = Convert.ToByte(menu.Tag);
 			GetVersiculos(IDLing, Versiculo.IDLivro, Versiculo.Capitulo, Versiculo.Versiculo);
 		}
 
+		private void mnuLinguagens_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+
+			ContextMenuStrip cms = (ContextMenuStrip)sender;
+
+			foreach (ToolStripMenuItem item in cms.Items)
+			{
+				if (Convert.ToByte(item.Tag) == _IDLinguagemAtual)
+					item.BackColor = Color.Moccasin;
+				else
+					item.BackColor = Color.WhiteSmoke;
+			}
+		}
+
 		#endregion
+
+		private void btnLinguagens_Click(object sender, EventArgs e)
+		{
+			Escritura.frmEscrituraEscolher frm = new Escritura.frmEscrituraEscolher(DBPath);
+
+			frm.ShowDialog();
+		}
 	}
 
 }
