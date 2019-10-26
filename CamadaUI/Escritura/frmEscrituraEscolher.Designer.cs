@@ -108,9 +108,15 @@
 			this.btnLivro56 = new System.Windows.Forms.Button();
 			this.btnLivro48 = new System.Windows.Forms.Button();
 			this.btnLivro40 = new System.Windows.Forms.Button();
+			this.pnlCapitulosItems = new System.Windows.Forms.FlowLayoutPanel();
+			this.btnCap1 = new System.Windows.Forms.Button();
+			this.pnlCapitulos = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.pnlAT.SuspendLayout();
 			this.pnlNT.SuspendLayout();
+			this.pnlCapitulosItems.SuspendLayout();
+			this.pnlCapitulos.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lblTitulo
@@ -910,7 +916,7 @@
 			// btnAntigoTestamento
 			// 
 			this.btnAntigoTestamento.BackColor = System.Drawing.Color.SlateGray;
-			this.btnAntigoTestamento.Font = new System.Drawing.Font("Ezra SIL", 18F);
+			this.btnAntigoTestamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
 			this.btnAntigoTestamento.ForeColor = System.Drawing.Color.Black;
 			this.btnAntigoTestamento.InnerBorderColor = System.Drawing.Color.SlateGray;
 			this.btnAntigoTestamento.Location = new System.Drawing.Point(29, 61);
@@ -925,7 +931,7 @@
 			// btnNovoTestamento
 			// 
 			this.btnNovoTestamento.BackColor = System.Drawing.Color.LightGray;
-			this.btnNovoTestamento.Font = new System.Drawing.Font("Ezra SIL", 18F);
+			this.btnNovoTestamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
 			this.btnNovoTestamento.ForeColor = System.Drawing.Color.DimGray;
 			this.btnNovoTestamento.InnerBorderColor = System.Drawing.Color.DarkGray;
 			this.btnNovoTestamento.Location = new System.Drawing.Point(276, 61);
@@ -1494,25 +1500,82 @@
 			this.btnLivro40.UseVisualStyleBackColor = true;
 			this.btnLivro40.Click += new System.EventHandler(this.btnLivro_Click);
 			// 
+			// pnlCapitulosItems
+			// 
+			this.pnlCapitulosItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.pnlCapitulosItems.BackColor = System.Drawing.Color.Lavender;
+			this.pnlCapitulosItems.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+			this.pnlCapitulosItems.Controls.Add(this.btnCap1);
+			this.pnlCapitulosItems.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+			this.pnlCapitulosItems.Location = new System.Drawing.Point(0, 41);
+			this.pnlCapitulosItems.Name = "pnlCapitulosItems";
+			this.pnlCapitulosItems.Size = new System.Drawing.Size(1002, 412);
+			this.pnlCapitulosItems.TabIndex = 6;
+			// 
+			// btnCap1
+			// 
+			this.btnCap1.FlatAppearance.BorderSize = 0;
+			this.btnCap1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Wheat;
+			this.btnCap1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+			this.btnCap1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnCap1.Font = new System.Drawing.Font("Geometr706 BlkCn BT", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnCap1.Location = new System.Drawing.Point(11, 3);
+			this.btnCap1.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
+			this.btnCap1.Name = "btnCap1";
+			this.btnCap1.Size = new System.Drawing.Size(54, 30);
+			this.btnCap1.TabIndex = 1;
+			this.btnCap1.Text = "150";
+			this.btnCap1.UseVisualStyleBackColor = true;
+			this.btnCap1.Click += new System.EventHandler(this.btnCap_Click);
+			// 
+			// pnlCapitulos
+			// 
+			this.pnlCapitulos.Controls.Add(this.label1);
+			this.pnlCapitulos.Controls.Add(this.pnlCapitulosItems);
+			this.pnlCapitulos.Location = new System.Drawing.Point(44, 134);
+			this.pnlCapitulos.Name = "pnlCapitulos";
+			this.pnlCapitulos.Size = new System.Drawing.Size(1002, 453);
+			this.pnlCapitulos.TabIndex = 7;
+			this.pnlCapitulos.Visible = false;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.BackColor = System.Drawing.Color.Transparent;
+			this.label1.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.ForeColor = System.Drawing.Color.DimGray;
+			this.label1.Location = new System.Drawing.Point(6, 7);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(256, 29);
+			this.label1.TabIndex = 7;
+			this.label1.Text = "Escolha o Capítulo";
+			// 
 			// frmEscrituraEscolher
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
-			this.ClientSize = new System.Drawing.Size(1086, 626);
+			this.ClientSize = new System.Drawing.Size(1086, 621);
 			this.Controls.Add(this.lblVersiculo);
 			this.Controls.Add(this.btnNovoTestamento);
 			this.Controls.Add(this.btnAntigoTestamento);
 			this.Controls.Add(this.pnlAT);
 			this.Controls.Add(this.pnlNT);
+			this.Controls.Add(this.pnlCapitulos);
 			this.Name = "frmEscrituraEscolher";
+			this.Controls.SetChildIndex(this.pnlCapitulos, 0);
 			this.Controls.SetChildIndex(this.pnlNT, 0);
 			this.Controls.SetChildIndex(this.pnlAT, 0);
-			this.Controls.SetChildIndex(this.panel1, 0);
 			this.Controls.SetChildIndex(this.btnAntigoTestamento, 0);
 			this.Controls.SetChildIndex(this.btnNovoTestamento, 0);
 			this.Controls.SetChildIndex(this.lblVersiculo, 0);
+			this.Controls.SetChildIndex(this.panel1, 0);
 			this.panel1.ResumeLayout(false);
 			this.pnlAT.ResumeLayout(false);
 			this.pnlNT.ResumeLayout(false);
+			this.pnlCapitulosItems.ResumeLayout(false);
+			this.pnlCapitulos.ResumeLayout(false);
+			this.pnlCapitulos.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1600,5 +1663,9 @@
 		private System.Windows.Forms.Button btnLivro56;
 		private System.Windows.Forms.Button btnLivro48;
 		private System.Windows.Forms.Button btnLivro40;
+		private System.Windows.Forms.FlowLayoutPanel pnlCapitulosItems;
+		private System.Windows.Forms.Button btnCap1;
+		private System.Windows.Forms.Panel pnlCapitulos;
+		private System.Windows.Forms.Label label1;
 	}
 }

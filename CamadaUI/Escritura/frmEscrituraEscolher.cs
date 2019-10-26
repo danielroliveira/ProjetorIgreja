@@ -13,9 +13,12 @@ namespace CamadaUI.Escritura
 
 		private byte _IDTestamento;
 		private clLivro _Livro = null;
+		private int _Etapa = 1;
 		private List<clLivro> listLivros = null;
 		private string _DBPath;
 
+		public clVersiculo SelVersiculo = new clVersiculo();
+		
 		// SUB NEW
 		public frmEscrituraEscolher(string DBPath, byte Testamento = 1, byte IDLivro = 1)
 		{
@@ -59,6 +62,8 @@ namespace CamadaUI.Escritura
 				{
 					if (value == 1)
 					{
+						pnlAT.Visible = true;
+						pnlNT.Visible = false;
 						btnAntigoTestamento.BackColor = Color.SlateGray;
 						btnAntigoTestamento.InnerBorderColor = Color.SlateGray;
 						btnAntigoTestamento.ShineColor = Color.Linen;
@@ -72,6 +77,8 @@ namespace CamadaUI.Escritura
 					}
 					else
 					{
+						pnlAT.Visible = false;
+						pnlNT.Visible = true;
 						btnAntigoTestamento.BackColor = Color.LightGray;
 						btnAntigoTestamento.InnerBorderColor = Color.DarkGray;
 						btnAntigoTestamento.ShineColor = Color.White;
@@ -89,18 +96,79 @@ namespace CamadaUI.Escritura
 			}
 		}
 
+		// PROPERTY LIVRO
+		private clLivro Livro
+		{
+			get => _Livro;
+			set
+			{
+				_Livro = value;
+				lblVersiculo.Text = _Livro.Livro;
+
+				pnlCapitulosItems.Controls.Clear();
+
+				for (int i = 0; i < _Livro.Capitulos; i++)
+				{
+
+					Button btnCap = new Button(){
+						FlatStyle = FlatStyle.Flat,
+						Font = new Font("Geometr706 BlkCn BT", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0),
+						Location = new Point(11, 3),
+						Margin = new Padding(3, 3, 3, 3),
+						Name = $"btnCap{i + 1}",
+						Size = new Size(54, 30),
+						TabIndex = i + 1,
+						Text = $"{i + 1}",
+						UseVisualStyleBackColor = true,
+					};
+
+					btnCap.FlatAppearance.BorderSize = 0;
+					btnCap.FlatAppearance.MouseDownBackColor = Color.Wheat;
+					btnCap.FlatAppearance.MouseOverBackColor = Color.LightSteelBlue;
+					btnCap.Click += new EventHandler(btnCap_Click);
+
+					pnlCapitulosItems.Controls.Add(btnCap);
+				};
+
+				pnlAT.Visible = false;
+				pnlNT.Visible = false;
+				pnlCapitulos.Visible = true;
+			}
+		}
+
+		public int Etapa
+		{
+			get => _Etapa;
+			set
+			{
+				_Etapa = value;
+				switch (_Etapa)
+				{
+					case 1: // busca LIVRO
+						SelVersiculo.IDLivro = null;
+						SelVersiculo.Capitulo = null;
+						SelVersiculo.Versiculo = null;
+						break;
+					case 2: // busca CAPITULO
+
+						break;
+					case 3: // busca VERSICULO
+
+						break;
+					default:
+						break;
+				}
+			}
+		}
+
 		private void btnAntigoTestamento_Click(object sender, EventArgs e)
 		{
 			IDTestamento = 1;
-			pnlAT.Visible = true;
-			pnlNT.Visible = false;
 		}
 
 		private void btnNovoTestamento_Click(object sender, EventArgs e)
 		{
 			IDTestamento = 2;
-			pnlAT.Visible = false;
-			pnlNT.Visible = true;
 		}
 
 		// CHANGE LIVRO SELECTED
@@ -122,22 +190,15 @@ namespace CamadaUI.Escritura
 					Button oldBtn = (Button)pnlNT.Controls["btnLivro" + _Livro.IDLivro];
 					oldBtn.BackColor = Color.White;
 				}
-
-				/*if (IDTestamento == 1)
-				{
-				}
-				else
-				{
-				}*/
 			}
 
 			// get LIVRO ID by button name
 			string name = btn.Name;
-			byte livro = Convert.ToByte(name.Substring(8));
+			byte IDLivro = Convert.ToByte(name.Substring(8));
 			
 			// define NEW selected Livro
-			_Livro = listLivros.Find(x => x.IDLivro == livro);     //livro;
-			lblVersiculo.Text = _Livro.Livro;
+			Livro = listLivros.Find(x => x.IDLivro == IDLivro);
+
 		}
 
 		// CLOSE FORM
@@ -145,6 +206,11 @@ namespace CamadaUI.Escritura
 		{
 			DialogResult = DialogResult.Cancel;
 			Close();
+		}
+
+		private void btnCap_Click(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

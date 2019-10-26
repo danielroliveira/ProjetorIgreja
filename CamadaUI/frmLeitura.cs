@@ -373,7 +373,7 @@ namespace CamadaUI
 		{
 			ToolStripMenuItem menu = (ToolStripMenuItem)sender;
 			byte IDLing = Convert.ToByte(menu.Tag);
-			GetVersiculos(IDLing, Versiculo.IDLivro, Versiculo.Capitulo, Versiculo.Versiculo);
+			GetVersiculos(IDLing, (byte)Versiculo.IDLivro , (byte)Versiculo.Capitulo, (byte)Versiculo.Versiculo);
 		}
 
 		private void mnuLinguagens_Opening(object sender, System.ComponentModel.CancelEventArgs e)
