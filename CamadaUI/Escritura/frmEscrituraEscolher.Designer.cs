@@ -111,7 +111,8 @@
 			this.pnlCapitulosItems = new System.Windows.Forms.FlowLayoutPanel();
 			this.btnCap1 = new System.Windows.Forms.Button();
 			this.pnlCapitulos = new System.Windows.Forms.Panel();
-			this.label1 = new System.Windows.Forms.Label();
+			this.lblPanelCapTitulo = new System.Windows.Forms.Label();
+			this.btnVoltar = new Glass.GlassButton();
 			this.panel1.SuspendLayout();
 			this.pnlAT.SuspendLayout();
 			this.pnlNT.SuspendLayout();
@@ -916,42 +917,42 @@
 			// btnAntigoTestamento
 			// 
 			this.btnAntigoTestamento.BackColor = System.Drawing.Color.SlateGray;
-			this.btnAntigoTestamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+			this.btnAntigoTestamento.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnAntigoTestamento.ForeColor = System.Drawing.Color.Black;
 			this.btnAntigoTestamento.InnerBorderColor = System.Drawing.Color.SlateGray;
-			this.btnAntigoTestamento.Location = new System.Drawing.Point(29, 61);
+			this.btnAntigoTestamento.Location = new System.Drawing.Point(577, 61);
 			this.btnAntigoTestamento.Name = "btnAntigoTestamento";
 			this.btnAntigoTestamento.OuterBorderColor = System.Drawing.Color.Transparent;
 			this.btnAntigoTestamento.ShineColor = System.Drawing.Color.Linen;
 			this.btnAntigoTestamento.Size = new System.Drawing.Size(241, 49);
 			this.btnAntigoTestamento.TabIndex = 3;
 			this.btnAntigoTestamento.Text = "Antigo Testamento";
-			this.btnAntigoTestamento.Click += new System.EventHandler(this.btnAntigoTestamento_Click);
+			this.btnAntigoTestamento.Click += new System.EventHandler(this.btnTestamento_Click);
 			// 
 			// btnNovoTestamento
 			// 
 			this.btnNovoTestamento.BackColor = System.Drawing.Color.LightGray;
-			this.btnNovoTestamento.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+			this.btnNovoTestamento.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold);
 			this.btnNovoTestamento.ForeColor = System.Drawing.Color.DimGray;
 			this.btnNovoTestamento.InnerBorderColor = System.Drawing.Color.DarkGray;
-			this.btnNovoTestamento.Location = new System.Drawing.Point(276, 61);
+			this.btnNovoTestamento.Location = new System.Drawing.Point(824, 61);
 			this.btnNovoTestamento.Name = "btnNovoTestamento";
 			this.btnNovoTestamento.OuterBorderColor = System.Drawing.Color.Transparent;
 			this.btnNovoTestamento.Size = new System.Drawing.Size(241, 49);
 			this.btnNovoTestamento.TabIndex = 3;
 			this.btnNovoTestamento.Text = "Novo Testamento";
-			this.btnNovoTestamento.Click += new System.EventHandler(this.btnNovoTestamento_Click);
+			this.btnNovoTestamento.Click += new System.EventHandler(this.btnTestamento_Click);
 			// 
 			// lblVersiculo
 			// 
 			this.lblVersiculo.AutoSize = true;
 			this.lblVersiculo.BackColor = System.Drawing.Color.Transparent;
 			this.lblVersiculo.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblVersiculo.Location = new System.Drawing.Point(546, 69);
+			this.lblVersiculo.Location = new System.Drawing.Point(80, 70);
 			this.lblVersiculo.Name = "lblVersiculo";
-			this.lblVersiculo.Size = new System.Drawing.Size(165, 29);
+			this.lblVersiculo.Size = new System.Drawing.Size(213, 29);
 			this.lblVersiculo.TabIndex = 4;
-			this.lblVersiculo.Text = "Livro Nome";
+			this.lblVersiculo.Text = "Escolha o Livro";
 			// 
 			// pnlNT
 			// 
@@ -1532,7 +1533,7 @@
 			// 
 			// pnlCapitulos
 			// 
-			this.pnlCapitulos.Controls.Add(this.label1);
+			this.pnlCapitulos.Controls.Add(this.lblPanelCapTitulo);
 			this.pnlCapitulos.Controls.Add(this.pnlCapitulosItems);
 			this.pnlCapitulos.Location = new System.Drawing.Point(44, 134);
 			this.pnlCapitulos.Name = "pnlCapitulos";
@@ -1540,36 +1541,53 @@
 			this.pnlCapitulos.TabIndex = 7;
 			this.pnlCapitulos.Visible = false;
 			// 
-			// label1
+			// lblPanelCapTitulo
 			// 
-			this.label1.AutoSize = true;
-			this.label1.BackColor = System.Drawing.Color.Transparent;
-			this.label1.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.ForeColor = System.Drawing.Color.DimGray;
-			this.label1.Location = new System.Drawing.Point(6, 7);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(256, 29);
-			this.label1.TabIndex = 7;
-			this.label1.Text = "Escolha o Capítulo";
+			this.lblPanelCapTitulo.AutoSize = true;
+			this.lblPanelCapTitulo.BackColor = System.Drawing.Color.Transparent;
+			this.lblPanelCapTitulo.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblPanelCapTitulo.ForeColor = System.Drawing.Color.DimGray;
+			this.lblPanelCapTitulo.Location = new System.Drawing.Point(6, 7);
+			this.lblPanelCapTitulo.Name = "lblPanelCapTitulo";
+			this.lblPanelCapTitulo.Size = new System.Drawing.Size(256, 29);
+			this.lblPanelCapTitulo.TabIndex = 7;
+			this.lblPanelCapTitulo.Text = "Escolha o Capítulo";
+			// 
+			// btnVoltar
+			// 
+			this.btnVoltar.BackColor = System.Drawing.Color.AliceBlue;
+			this.btnVoltar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+			this.btnVoltar.ForeColor = System.Drawing.Color.Black;
+			this.btnVoltar.Image = global::CamadaUI.Properties.Resources.back;
+			this.btnVoltar.InnerBorderColor = System.Drawing.Color.Transparent;
+			this.btnVoltar.Location = new System.Drawing.Point(9, 61);
+			this.btnVoltar.Name = "btnVoltar";
+			this.btnVoltar.OuterBorderColor = System.Drawing.Color.Transparent;
+			this.btnVoltar.ShineColor = System.Drawing.Color.Linen;
+			this.btnVoltar.Size = new System.Drawing.Size(65, 49);
+			this.btnVoltar.TabIndex = 3;
+			this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
 			// 
 			// frmEscrituraEscolher
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
 			this.ClientSize = new System.Drawing.Size(1086, 621);
+			this.Controls.Add(this.pnlCapitulos);
 			this.Controls.Add(this.lblVersiculo);
 			this.Controls.Add(this.btnNovoTestamento);
+			this.Controls.Add(this.btnVoltar);
 			this.Controls.Add(this.btnAntigoTestamento);
 			this.Controls.Add(this.pnlAT);
 			this.Controls.Add(this.pnlNT);
-			this.Controls.Add(this.pnlCapitulos);
 			this.Name = "frmEscrituraEscolher";
-			this.Controls.SetChildIndex(this.pnlCapitulos, 0);
 			this.Controls.SetChildIndex(this.pnlNT, 0);
 			this.Controls.SetChildIndex(this.pnlAT, 0);
 			this.Controls.SetChildIndex(this.btnAntigoTestamento, 0);
+			this.Controls.SetChildIndex(this.btnVoltar, 0);
 			this.Controls.SetChildIndex(this.btnNovoTestamento, 0);
 			this.Controls.SetChildIndex(this.lblVersiculo, 0);
 			this.Controls.SetChildIndex(this.panel1, 0);
+			this.Controls.SetChildIndex(this.pnlCapitulos, 0);
 			this.panel1.ResumeLayout(false);
 			this.pnlAT.ResumeLayout(false);
 			this.pnlNT.ResumeLayout(false);
@@ -1666,6 +1684,7 @@
 		private System.Windows.Forms.FlowLayoutPanel pnlCapitulosItems;
 		private System.Windows.Forms.Button btnCap1;
 		private System.Windows.Forms.Panel pnlCapitulos;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label lblPanelCapTitulo;
+		private Glass.GlassButton btnVoltar;
 	}
 }

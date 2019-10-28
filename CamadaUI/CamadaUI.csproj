@@ -202,6 +202,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="projetor.ico" />
+    <None Include="Resources\back.png" />
     <None Include="Resources\MBGlassButton.dll" />
     <None Include="Resources\GlassButton.dll" />
     <None Include="Resources\AwesomeShapeControl.dll" />

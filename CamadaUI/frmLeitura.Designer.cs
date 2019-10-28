@@ -67,7 +67,7 @@
 			this.pnlTop.Location = new System.Drawing.Point(0, 0);
 			this.pnlTop.Name = "pnlTop";
 			this.pnlTop.Size = new System.Drawing.Size(973, 40);
-			this.pnlTop.TabIndex = 1;
+			this.pnlTop.TabIndex = 0;
 			// 
 			// lblTitulo
 			// 
@@ -79,7 +79,7 @@
 			this.lblTitulo.Name = "lblTitulo";
 			this.lblTitulo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 5);
 			this.lblTitulo.Size = new System.Drawing.Size(172, 40);
-			this.lblTitulo.TabIndex = 14;
+			this.lblTitulo.TabIndex = 1;
 			this.lblTitulo.Text = "Leitura Bíblica";
 			this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
@@ -97,7 +97,7 @@
 			this.btnClose.Margin = new System.Windows.Forms.Padding(0);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(40, 40);
-			this.btnClose.TabIndex = 12;
+			this.btnClose.TabIndex = 0;
 			this.btnClose.TabStop = false;
 			this.btnClose.UseVisualStyleBackColor = false;
 			this.btnClose.Click += new System.EventHandler(this.btnFechar_Click);
@@ -117,7 +117,7 @@
 			this.btnMinimizer.Margin = new System.Windows.Forms.Padding(0);
 			this.btnMinimizer.Name = "btnMinimizer";
 			this.btnMinimizer.Size = new System.Drawing.Size(40, 40);
-			this.btnMinimizer.TabIndex = 13;
+			this.btnMinimizer.TabIndex = 2;
 			this.btnMinimizer.TabStop = false;
 			this.btnMinimizer.UseVisualStyleBackColor = false;
 			this.btnMinimizer.Click += new System.EventHandler(this.btnMinimizer_Click);
@@ -132,7 +132,7 @@
 			this.pnlInfo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.pnlInfo.Name = "pnlInfo";
 			this.pnlInfo.Size = new System.Drawing.Size(973, 60);
-			this.pnlInfo.TabIndex = 2;
+			this.pnlInfo.TabIndex = 0;
 			// 
 			// lblLinguagem
 			// 
@@ -154,7 +154,7 @@
 			this.lblLivro.Location = new System.Drawing.Point(31, 47);
 			this.lblLivro.Name = "lblLivro";
 			this.lblLivro.Size = new System.Drawing.Size(257, 45);
-			this.lblLivro.TabIndex = 0;
+			this.lblLivro.TabIndex = 1;
 			this.lblLivro.Text = "Livro Nome";
 			// 
 			// pnlNav
@@ -168,7 +168,7 @@
 			this.pnlNav.Location = new System.Drawing.Point(632, 575);
 			this.pnlNav.Name = "pnlNav";
 			this.pnlNav.Size = new System.Drawing.Size(330, 40);
-			this.pnlNav.TabIndex = 8;
+			this.pnlNav.TabIndex = 3;
 			// 
 			// btnLast
 			// 
@@ -189,7 +189,7 @@
 			this.btnLast.PressStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
 			this.btnLast.Radius = 10;
 			this.btnLast.Size = new System.Drawing.Size(42, 35);
-			this.btnLast.TabIndex = 9;
+			this.btnLast.TabIndex = 4;
 			this.btnLast.TabStop = false;
 			this.btnLast.UseVisualStyleBackColor = false;
 			this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
@@ -225,7 +225,7 @@
 			this.btnNext.PressStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
 			this.btnNext.Radius = 10;
 			this.btnNext.Size = new System.Drawing.Size(42, 35);
-			this.btnNext.TabIndex = 9;
+			this.btnNext.TabIndex = 3;
 			this.btnNext.TabStop = false;
 			this.btnNext.UseVisualStyleBackColor = false;
 			this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
@@ -251,7 +251,7 @@
 			this.btnFirst.PressStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
 			this.btnFirst.Radius = 10;
 			this.btnFirst.Size = new System.Drawing.Size(42, 35);
-			this.btnFirst.TabIndex = 9;
+			this.btnFirst.TabIndex = 0;
 			this.btnFirst.TabStop = false;
 			this.btnFirst.UseVisualStyleBackColor = false;
 			this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
@@ -277,7 +277,7 @@
 			this.btnPrev.PressStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
 			this.btnPrev.Radius = 10;
 			this.btnPrev.Size = new System.Drawing.Size(42, 35);
-			this.btnPrev.TabIndex = 9;
+			this.btnPrev.TabIndex = 1;
 			this.btnPrev.TabStop = false;
 			this.btnPrev.UseVisualStyleBackColor = false;
 			this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
@@ -374,7 +374,7 @@
 			this.btnLinguagens.SplitButton = MBGlassStyleButton.MBGlassButton.MB_SplitButton.Yes;
 			this.btnLinguagens.SplitDistance = 30;
 			this.btnLinguagens.SplitLocation = MBGlassStyleButton.MBGlassButton.MB_SplitLocation.Right;
-			this.btnLinguagens.TabIndex = 9;
+			this.btnLinguagens.TabIndex = 2;
 			this.btnLinguagens.Text = "Procura";
 			this.btnLinguagens.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnLinguagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -389,12 +389,13 @@
 			this.txtEscritura.BackColor = System.Drawing.SystemColors.Control;
 			this.txtEscritura.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.txtEscritura.Font = new System.Drawing.Font("Ezra SIL", 72F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtEscritura.HideSelection = false;
 			this.txtEscritura.Location = new System.Drawing.Point(12, 113);
 			this.txtEscritura.Multiline = true;
 			this.txtEscritura.Name = "txtEscritura";
 			this.txtEscritura.ShortcutsEnabled = false;
 			this.txtEscritura.Size = new System.Drawing.Size(949, 453);
-			this.txtEscritura.TabIndex = 5;
+			this.txtEscritura.TabIndex = 4;
 			this.txtEscritura.TabStop = false;
 			this.txtEscritura.Text = "Escritura Bíblica";
 			this.txtEscritura.TextChanged += new System.EventHandler(this.txtEscritura_SizeChanged);
@@ -416,6 +417,7 @@
 			this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.KeyPreview = true;
 			this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
 			this.Name = "frmLeitura";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

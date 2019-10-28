@@ -12,21 +12,22 @@ namespace CamadaUI
 {
 	public partial class frmLeitura : Form
 	{
-		#region OPEN
-		// ================================================================================================
-
 		private byte _verAtual;
 		private byte _capituloAtual;
-		private byte _IDLivroAtual;
+		private clLivro _LivroAtual;
 		private byte _IDLinguagemAtual;
 
 		private clVersiculo Versiculo;
 		private bool NavDisabled;
-		private string DBPath;
+		public string DBPath;
 
 		private byte verMax;
-		List<clVersiculo> verList = null;
-		List<clLinguagem> LinguagemList = null;
+		private List<clVersiculo> verList = null;
+		private List<clLinguagem> LinguagemList = null;
+		public List<clLivro> listLivros = null;
+
+		#region OPEN AND PROPERTIES
+		// ================================================================================================
 
 		// VOID NEW
 		public frmLeitura()
@@ -37,6 +38,7 @@ namespace CamadaUI
 			lblLivro.BackColor = pnlInfo.BackColor;
 			DBPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjetorDB.mdb");
 			GetLinguagens();
+			GetLivrosList();
 			GetVersiculos(1, 1, 1, 1);
 
 			// selecionar a fonte
@@ -63,6 +65,11 @@ namespace CamadaUI
 
 				_verAtual = value;
 				Versiculo = verList[_verAtual - 1];
+
+				_capituloAtual = (byte)Versiculo.Capitulo;
+				_LivroAtual = listLivros.Find(l => l.IDLivro == (byte)Versiculo.IDLivro);
+				_IDLinguagemAtual = Versiculo.IDLinguagem;
+							   
 				txtEscritura.Text = Versiculo.Escritura;
 				lblLivro.Text = $"{Versiculo.Livro} {Versiculo.Capitulo}:{Versiculo.Versiculo}";
 				lblNavegacao.Text = $"Ver. {Versiculo.Versiculo} de {verMax}";
@@ -121,23 +128,25 @@ namespace CamadaUI
 
 		}
 
+		#endregion
+
+		#region GET DATA
+
 		// GET LIST VERSICULOS
+		// =============================================================================
 		private void GetVersiculos(byte IDLinguagem, byte IDLivro, byte Capitulo, byte Versiculo)
 		{
 			try
 			{
 				// Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
-
+				// Get LIST DB
 				VersiculoBLL vBLL = new VersiculoBLL(DBPath);
-
 				verList = vBLL.GetVersiculoList(IDLinguagem, IDLivro, Capitulo);
+				// Define Max
 				verMax = (byte)verList.Count;
-				_capituloAtual = Capitulo;
-				_IDLivroAtual = IDLivro;
-				_IDLinguagemAtual = IDLinguagem;
+				//Define NEW VersiculoAtual;
 				VerAtual = Versiculo;
-
 				// Ampulheta OFF
 				Cursor.Current = Cursors.Default;
 			}
@@ -147,7 +156,36 @@ namespace CamadaUI
 			}
 		}
 
+		// GET LIVROS LIST
+		// =============================================================================
+		private void GetLivrosList()
+		{
+			try
+			{
+				// Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				VersiculoBLL vBLL = new VersiculoBLL(DBPath);
+				listLivros = vBLL.GetLivroList();
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog(
+					"Um exceção ocorreu ao obter a Lista de Livros" +
+					ex.Message,
+					"Exceção Inesperada",
+					DialogType.OK,
+					DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+		}
+
 		// GET LIST LINGUAGENS
+		// =============================================================================
 		private void GetLinguagens()
 		{
 			try
@@ -170,9 +208,37 @@ namespace CamadaUI
 		#endregion
 
 		#region BUTTONS
-		// ================================================================================================
+		//*********************************************************************************************************
+
+		// PROCURAR NOVO VERSICULO
+		// =============================================================================
+		private void btnLinguagens_Click(object sender, EventArgs e)
+		{
+			clVersiculo verOrigem = Versiculo ?? new clVersiculo();
+
+			using (Escritura.frmEscrituraEscolher frm = new Escritura.frmEscrituraEscolher(verOrigem, this))
+			{
+				frm.ShowDialog();
+				if (frm.DialogResult == DialogResult.OK)
+				{
+					verList = frm.ListVersiculos;
+					verMax = (byte)verList.Count;
+					VerAtual = (byte)frm.SelVersiculo.Versiculo;
+				}
+			};
+
+
+		}
+
+		// MINIMIZE
+		// =============================================================================
+		private void btnMinimizer_Click(object sender, EventArgs e)
+		{
+			WindowState = FormWindowState.Minimized;
+		}
 
 		// CLOSE FORM
+		// =============================================================================
 		private void btnFechar_Click(object sender, EventArgs e)
 		{
 			Application.OpenForms["frmPrincipal"].Visible = true;
@@ -269,8 +335,8 @@ namespace CamadaUI
 
 		#endregion
 
-		#region NAVEGACAO VERSICULOS
-		// ================================================================================================
+		#region NAVEGACAO VERSICULOS / CAPITULOS
+		//*********************************************************************************************************
 
 		// LAST
 		private void btnLast_Click(object sender, EventArgs e)
@@ -303,6 +369,8 @@ namespace CamadaUI
 							"Último Versiculo",
 							DialogType.OK,
 							DialogIcon.Information);
+				txtEscritura.SelectionLength = 0;
+				btnNext.Focus();
 			}
 			else
 			{
@@ -319,6 +387,8 @@ namespace CamadaUI
 							"Último Versiculo",
 							DialogType.OK,
 							DialogIcon.Information);
+				txtEscritura.SelectionLength = 0;
+				btnNext.Focus();
 			}
 			else
 			{
@@ -326,26 +396,26 @@ namespace CamadaUI
 			}
 		}
 
-		#endregion
-
+		// SHORTCUTS NAVEGACAO BY VERSICULOS
+		// =============================================================================
 		private void frmLeitura_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Up)
-			{
-				e.Handled = true;
-				btnLast_Click(sender, e);
-			}
-			else if (e.KeyCode == Keys.Left)
-			{
-				e.Handled = true;
-				btnPrev_Click(sender, e);
-			}
-			else if (e.KeyCode == Keys.Right)
+			if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Right)
 			{
 				e.Handled = true;
 				btnNext_Click(sender, e);
 			}
-			else if (e.KeyCode == Keys.Down)
+			else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Down)
+			{
+				e.Handled = true;
+				btnPrev_Click(sender, e);
+			}
+			else if (e.KeyCode == Keys.End)
+			{
+				e.Handled = true;
+				btnLast_Click(sender, e);
+			}
+			else if (e.KeyCode == Keys.Home)
 			{
 				e.Handled = true;
 				btnFirst_Click(sender, e);
@@ -355,17 +425,61 @@ namespace CamadaUI
 				e.Handled = true;
 				btnFechar_Click(sender, e);
 			}
+			else if (e.KeyCode == Keys.PageUp)
+			{
+				e.Handled = true;
+				NextCapitulo();
+			}
+			else if (e.KeyCode == Keys.PageDown)
+			{
+				e.Handled = true;
+				PrevCapitulo();
+			}
 		}
 
-		private void frmLeitura_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+		// PROXIMO CAPITULO
+		// =============================================================================
+		private void NextCapitulo()
 		{
-			e.IsInputKey = true;
+			byte maxCapitulos = _LivroAtual.Capitulos;
+
+			if(Versiculo.Capitulo < maxCapitulos)
+			{
+				int proxVersiculo = Convert.ToInt16(Versiculo.Capitulo) + 1;
+				GetVersiculos(Versiculo.IDLinguagem, (byte)Versiculo.IDLivro, (byte)proxVersiculo, 1);
+			}
+			else
+			{
+				AbrirDialog("Já estamos no ULTIMO capítulo do livro de: " + _LivroAtual.Livro.ToUpper(),
+							"Último Capítulo",
+							DialogType.OK,
+							DialogIcon.Information);
+			}
+
 		}
 
-		private void btnMinimizer_Click(object sender, EventArgs e)
+		// ANTERIOR CAPITULO
+		// =============================================================================
+		private void PrevCapitulo()
 		{
-			WindowState = FormWindowState.Minimized;
+			byte maxCapitulos = _LivroAtual.Capitulos;
+
+			if (Versiculo.Capitulo > 1)
+			{
+				int prevVersiculo = Convert.ToInt16(Versiculo.Capitulo) - 1;
+				GetVersiculos(Versiculo.IDLinguagem, (byte)Versiculo.IDLivro, (byte)prevVersiculo, 1);
+			}
+			else
+			{
+				AbrirDialog("Já estamos no PRIMEIRO capítulo do livro de: " + _LivroAtual.Livro.ToUpper(),
+							"Primeiro Capítulo",
+							DialogType.OK,
+							DialogIcon.Information);
+			}
+
 		}
+
+		#endregion
 
 		#region LINGUAGENS
 
@@ -392,12 +506,15 @@ namespace CamadaUI
 
 		#endregion
 
-		private void btnLinguagens_Click(object sender, EventArgs e)
-		{
-			Escritura.frmEscrituraEscolher frm = new Escritura.frmEscrituraEscolher(DBPath);
+		#region OTHER FUNCTIONS
 
-			frm.ShowDialog();
+		private void frmLeitura_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+		{
+			e.IsInputKey = true;
 		}
+
+		#endregion
+
 	}
 
 }

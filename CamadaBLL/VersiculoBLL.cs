@@ -64,7 +64,8 @@ namespace CamadaBLL
 				Capitulo = (byte)r["Capitulo"],
 				Versiculo = (byte)r["Versiculo"],
 				IDLinguagem = (byte)r["IDLinguagem"],
-				Escritura = (string)r["Escritura"]
+				Escritura = (string)r["Escritura"],
+				Testamento = (byte)r["Testamento"]
 			};
 
 			return versiculo;
