@@ -11,8 +11,8 @@ namespace CamadaUI
 		public static DialogResult AbrirDialog
 			(string Message,
 			string Title,
-			DialogType Type,
-			DialogIcon Icon,
+			DialogType Type = DialogType.OK,
+			DialogIcon Icon = DialogIcon.Information,
 			DialogDefaultButton DefaultButton = DialogDefaultButton.First)
 		{
 			using (frmMessage f = new frmMessage(Message, Title, Type, Icon, DefaultButton))

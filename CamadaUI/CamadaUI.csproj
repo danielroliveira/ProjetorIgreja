@@ -107,6 +107,7 @@
     <Compile Include="frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="FuncoesGlobais.cs" />
     <Compile Include="Modals\frmMessage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +202,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config.xml" />
     <Content Include="projetor.ico" />
     <None Include="Resources\back.png" />
     <None Include="Resources\MBGlassButton.dll" />

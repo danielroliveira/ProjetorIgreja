@@ -38,12 +38,19 @@ namespace CamadaUI.Modals
 		{
 			Px = Cursor.Position.X - Left;
 
-			if (this.IsMdiChild)
+			if (IsMdiChild)
 				Py = Cursor.Position.Y - Top + Screen.PrimaryScreen.WorkingArea.Height - Parent.ClientSize.Height + 3;
 			else
 			{
-				frmPrincipal form = (frmPrincipal)Application.OpenForms[0];
-				Py = Cursor.Position.Y - Top + Screen.PrimaryScreen.WorkingArea.Height - form.ClientSize.Height + panel1.Height - 10;
+				if(Application.OpenForms[0].Name == "frmPrincipal")
+				{
+					frmPrincipal form = (frmPrincipal)Application.OpenForms[0];
+					Py = Cursor.Position.Y - Top + Screen.PrimaryScreen.WorkingArea.Height - form.ClientSize.Height + panel1.Height - 10;
+				}
+				else
+				{
+					Py = Cursor.Position.Y - Top;
+				}
 			}
 
 			mover = true;

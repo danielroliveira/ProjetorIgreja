@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using static CamadaUI.Utilidades;
 
-namespace CamadaUI
+namespace CamadaUI.Escritura
 {
 	public partial class frmLeitura : Form
 	{

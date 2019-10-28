@@ -1,4 +1,4 @@
-﻿namespace CamadaUI
+﻿namespace CamadaUI.Escritura
 {
     partial class frmLeitura
     {

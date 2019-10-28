@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static CamadaUI.FuncoesGlobais;
 
 namespace CamadaUI
 {
@@ -16,6 +17,13 @@ namespace CamadaUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+			// check and create Config XML
+			if(!VerificaConfigXML())
+			{
+				CriarConfigXML();
+			}
+
             Application.Run(new frmPrincipal());
         }
     }
