@@ -12,6 +12,7 @@ namespace CamadaUI.Escritura
 {
 	public partial class frmLeitura : Form
 	{
+		private VersiculoBLL vBLL = null;
 		private byte _verAtual;
 		private byte _capituloAtual;
 		private clLivro _LivroAtual;
@@ -36,16 +37,62 @@ namespace CamadaUI.Escritura
 
 			pnlTop.BackColor = Properties.Settings.Default.PanelTopColor;
 			lblLivro.BackColor = pnlInfo.BackColor;
+
+			// GET DADOS
 			DBPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjetorDB.mdb");
-			GetLinguagens();
-			GetLivrosList();
-			GetVersiculos(1, 1, 1, 1);
+			vBLL = new VersiculoBLL(DBPath);
+			GetDadosInicial();
 
 			// selecionar a fonte
 			// ---------------------------------------------------------------------------------------------
 			//txtEscritura.Font = new Font("Verdana", 72F, FontStyle.Regular, GraphicsUnit.Point, 0);
 			txtEscritura.Font = new Font("Ezra SIL", 72F, FontStyle.Regular, GraphicsUnit.Point, 0);
 			txtEscritura_SizeChanged(txtEscritura, new EventArgs());
+		}
+
+		// GET INICIAL: linguagens + livros + versiculoinicial
+		private void GetDadosInicial()
+		{
+			try
+			{
+				// Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				// GET LIST LINGUAGENS
+				LinguagemList = vBLL.GetLinguagemList();
+
+				// GET LIST LIVROS
+				listLivros = vBLL.GetLivroList();
+
+				// GET Versiculo Inicial
+				string ultID = FuncoesGlobais.ObterDefault("IDVersiculoUltimo");
+
+				if(ultID != string.Empty)
+				{
+					clVersiculo ultVer = vBLL.GetVersiculoByID(Convert.ToInt32(ultID));
+					if(ultVer != null)
+						GetVersiculos(ultVer.IDLinguagem, (byte)ultVer.IDLivro, (byte)ultVer.Capitulo, (byte)ultVer.Versiculo);
+					else
+						GetVersiculos(1, 1, 1, 1);
+				}
+				else // if not finded
+				{
+					GetVersiculos(1, 1, 1, 1);
+				}
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Um exceção ocorreu ao obter os Dados Iniciais " + "\n" +
+							ex.Message,
+							"Exceção Inesperada",
+							DialogType.OK,
+							DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
 		}
 
 		// PROPERTY VERSICULO ATUAL
@@ -77,6 +124,7 @@ namespace CamadaUI.Escritura
 				lblLinguagem.Text = LinguagemList.Find(x => x.IDLinguagem == _IDLinguagemAtual).Linguagem;
 
 				CheckNavButtonsState();
+				SaveLastVersiculo();
 			}
 		}
 
@@ -156,55 +204,6 @@ namespace CamadaUI.Escritura
 			}
 		}
 
-		// GET LIVROS LIST
-		// =============================================================================
-		private void GetLivrosList()
-		{
-			try
-			{
-				// Ampulheta ON
-				Cursor.Current = Cursors.WaitCursor;
-
-				VersiculoBLL vBLL = new VersiculoBLL(DBPath);
-				listLivros = vBLL.GetLivroList();
-			}
-			catch (Exception ex)
-			{
-				AbrirDialog(
-					"Um exceção ocorreu ao obter a Lista de Livros" +
-					ex.Message,
-					"Exceção Inesperada",
-					DialogType.OK,
-					DialogIcon.Exclamation);
-			}
-			finally
-			{
-				// Ampulheta OFF
-				Cursor.Current = Cursors.Default;
-			}
-		}
-
-		// GET LIST LINGUAGENS
-		// =============================================================================
-		private void GetLinguagens()
-		{
-			try
-			{
-				// Ampulheta ON
-				Cursor.Current = Cursors.WaitCursor;
-
-				VersiculoBLL vBLL = new VersiculoBLL(DBPath);
-				LinguagemList = vBLL.GetLinguagemList();
-
-				// Ampulheta OFF
-				Cursor.Current = Cursors.Default;
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message);
-			}
-		}
-
 		#endregion
 
 		#region BUTTONS
@@ -216,7 +215,7 @@ namespace CamadaUI.Escritura
 		{
 			clVersiculo verOrigem = Versiculo ?? new clVersiculo();
 
-			using (Escritura.frmEscrituraEscolher frm = new Escritura.frmEscrituraEscolher(verOrigem, this))
+			using (frmEscrituraEscolher frm = new frmEscrituraEscolher(verOrigem, this))
 			{
 				frm.ShowDialog();
 				if (frm.DialogResult == DialogResult.OK)
@@ -224,6 +223,20 @@ namespace CamadaUI.Escritura
 					verList = frm.ListVersiculos;
 					verMax = (byte)verList.Count;
 					VerAtual = (byte)frm.SelVersiculo.Versiculo;
+
+					// add in HISTORICO if selected different versiculo
+					if(verOrigem.IDVersiculo != frm.SelVersiculo.IDVersiculo)
+					{
+						try
+						{
+							vBLL.AddHistorico((int)frm.SelVersiculo.IDVersiculo, DBPath);
+						}
+						catch (Exception ex)
+						{
+							AbrirDialog("Um exceção ocorreu ao salvar Histórico \n" + ex.Message,
+								"Exceção", DialogType.OK, DialogIcon.Exclamation);
+						}
+					}
 				}
 			};
 
@@ -524,8 +537,13 @@ namespace CamadaUI.Escritura
 		{
 			// send first PreviewKey
 			SendKeys.Send("{LEFT}");
-
 		}
+
+		private void SaveLastVersiculo()
+		{
+			FuncoesGlobais.SaveDefault("IDVersiculoUltimo", Versiculo.IDVersiculo.ToString());
+		}
+
 	}
 
 }
