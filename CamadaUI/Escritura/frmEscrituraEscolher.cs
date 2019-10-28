@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using static CamadaUI.Utilidades;
 
 namespace CamadaUI.Escritura
 {
@@ -257,7 +256,7 @@ namespace CamadaUI.Escritura
 
 		#endregion
 
-		#region BUTTONSN FUNCTION
+		#region BUTTONS FUNCTION
 
 		// DEFINE TESTAMENTO
 		// =============================================================================
@@ -382,7 +381,27 @@ namespace CamadaUI.Escritura
 			}
 		}
 
+		private void frmEscrituraEscolher_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Escape)
+			{
+				e.Handled = true;
+				btnClose_Click(sender, e);
+			}
+		}
+
 		#endregion
 
+		private void frmEscrituraEscolher_Activated(object sender, EventArgs e)
+		{
+			Panel pnl = (Panel)_formOrigem.Controls["pnlTop"];
+			pnl.BackColor = Color.Silver;
+		}
+
+		private void frmEscrituraEscolher_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			Panel pnl = (Panel)_formOrigem.Controls["pnlTop"];
+			pnl.BackColor = Properties.Settings.Default.PanelTopColor;
+		}
 	}
 }

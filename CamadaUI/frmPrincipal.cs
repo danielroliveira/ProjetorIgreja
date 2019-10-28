@@ -30,7 +30,8 @@ namespace CamadaUI
 
 		private void frmPrincipal_Load(object sender, EventArgs e)
 		{
-
+			mnuPrincipal.Focus();
+			//btnBiblia.Select();
 		}
 	}
 }

@@ -95,10 +95,10 @@
     <Compile Include="Escritura\frmEscrituraEscolher.Designer.cs">
       <DependentUpon>frmEscrituraEscolher.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLeitura.cs">
+    <Compile Include="Escritura\frmLeitura.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLeitura.Designer.cs">
+    <Compile Include="Escritura\frmLeitura.Designer.cs">
       <DependentUpon>frmLeitura.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPrincipal.cs">
@@ -125,7 +125,7 @@
     <EmbeddedResource Include="Escritura\frmEscrituraEscolher.resx">
       <DependentUpon>frmEscrituraEscolher.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLeitura.resx">
+    <EmbeddedResource Include="Escritura\frmLeitura.resx">
       <DependentUpon>frmLeitura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">

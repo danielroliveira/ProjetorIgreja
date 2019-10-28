@@ -435,6 +435,11 @@ namespace CamadaUI
 				e.Handled = true;
 				PrevCapitulo();
 			}
+			else if (e.KeyCode == Keys.P)
+			{
+				e.Handled = true;
+				btnLinguagens_Click(sender, e);
+			}
 		}
 
 		// PROXIMO CAPITULO
@@ -515,6 +520,12 @@ namespace CamadaUI
 
 		#endregion
 
+		private void frmLeitura_Shown(object sender, EventArgs e)
+		{
+			// send first PreviewKey
+			SendKeys.Send("{LEFT}");
+
+		}
 	}
 
 }

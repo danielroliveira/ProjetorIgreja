@@ -56,7 +56,7 @@
 			this.mnuPrincipal.Location = new System.Drawing.Point(0, 40);
 			this.mnuPrincipal.Name = "mnuPrincipal";
 			this.mnuPrincipal.Size = new System.Drawing.Size(1110, 56);
-			this.mnuPrincipal.TabIndex = 1;
+			this.mnuPrincipal.TabIndex = 0;
 			this.mnuPrincipal.Text = "toolStrip1";
 			// 
 			// btnSair

@@ -32,7 +32,8 @@ namespace CamadaBLL
 				string query = "SELECT * FROM qryLeituraBiblica WHERE " +
 					"IDLinguagem = @IDLinguagem AND " +
 					"IDLivro = @IDLivro AND " +
-					"Capitulo = @Capitulo";
+					"Capitulo = @Capitulo " + 
+					"ORDER BY Versiculo";
 
 				dt = db.ExecutarConsulta(CommandType.Text, query);
 

@@ -67,7 +67,7 @@
 			this.pnlTop.Location = new System.Drawing.Point(0, 0);
 			this.pnlTop.Name = "pnlTop";
 			this.pnlTop.Size = new System.Drawing.Size(973, 40);
-			this.pnlTop.TabIndex = 0;
+			this.pnlTop.TabIndex = 6;
 			// 
 			// lblTitulo
 			// 
@@ -132,7 +132,7 @@
 			this.pnlInfo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
 			this.pnlInfo.Name = "pnlInfo";
 			this.pnlInfo.Size = new System.Drawing.Size(973, 60);
-			this.pnlInfo.TabIndex = 0;
+			this.pnlInfo.TabIndex = 7;
 			// 
 			// lblLinguagem
 			// 
@@ -168,7 +168,7 @@
 			this.pnlNav.Location = new System.Drawing.Point(632, 575);
 			this.pnlNav.Name = "pnlNav";
 			this.pnlNav.Size = new System.Drawing.Size(330, 40);
-			this.pnlNav.TabIndex = 3;
+			this.pnlNav.TabIndex = 1;
 			// 
 			// btnLast
 			// 
@@ -374,7 +374,7 @@
 			this.btnLinguagens.SplitButton = MBGlassStyleButton.MBGlassButton.MB_SplitButton.Yes;
 			this.btnLinguagens.SplitDistance = 30;
 			this.btnLinguagens.SplitLocation = MBGlassStyleButton.MBGlassButton.MB_SplitLocation.Right;
-			this.btnLinguagens.TabIndex = 2;
+			this.btnLinguagens.TabIndex = 0;
 			this.btnLinguagens.Text = "Procura";
 			this.btnLinguagens.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnLinguagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -393,6 +393,7 @@
 			this.txtEscritura.Location = new System.Drawing.Point(12, 113);
 			this.txtEscritura.Multiline = true;
 			this.txtEscritura.Name = "txtEscritura";
+			this.txtEscritura.SelectionHighlightEnabled = false;
 			this.txtEscritura.ShortcutsEnabled = false;
 			this.txtEscritura.Size = new System.Drawing.Size(949, 453);
 			this.txtEscritura.TabIndex = 4;
@@ -423,6 +424,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "frmLeitura";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+			this.Shown += new System.EventHandler(this.frmLeitura_Shown);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
 			this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLeitura_PreviewKeyDown);
 			this.pnlTop.ResumeLayout(false);

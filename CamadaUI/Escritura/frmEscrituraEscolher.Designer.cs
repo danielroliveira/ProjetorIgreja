@@ -200,7 +200,8 @@
 			this.line5.Opacity = 0.6F;
 			this.line5.Size = new System.Drawing.Size(10, 455);
 			this.line5.StartPoint = new System.Drawing.Point(5, 5);
-			this.line5.TabIndex = 4;
+			this.line5.TabIndex = 54;
+			this.line5.TabStop = false;
 			// 
 			// line4
 			// 
@@ -212,7 +213,8 @@
 			this.line4.Opacity = 0.6F;
 			this.line4.Size = new System.Drawing.Size(10, 455);
 			this.line4.StartPoint = new System.Drawing.Point(5, 5);
-			this.line4.TabIndex = 4;
+			this.line4.TabIndex = 53;
+			this.line4.TabStop = false;
 			// 
 			// line3
 			// 
@@ -224,7 +226,8 @@
 			this.line3.Opacity = 0.6F;
 			this.line3.Size = new System.Drawing.Size(10, 455);
 			this.line3.StartPoint = new System.Drawing.Point(5, 5);
-			this.line3.TabIndex = 4;
+			this.line3.TabIndex = 52;
+			this.line3.TabStop = false;
 			// 
 			// line1
 			// 
@@ -236,7 +239,8 @@
 			this.line1.Opacity = 0.6F;
 			this.line1.Size = new System.Drawing.Size(10, 455);
 			this.line1.StartPoint = new System.Drawing.Point(5, 5);
-			this.line1.TabIndex = 4;
+			this.line1.TabIndex = 51;
+			this.line1.TabStop = false;
 			// 
 			// line2
 			// 
@@ -248,7 +252,8 @@
 			this.line2.Opacity = 0.6F;
 			this.line2.Size = new System.Drawing.Size(10, 455);
 			this.line2.StartPoint = new System.Drawing.Point(5, 5);
-			this.line2.TabIndex = 4;
+			this.line2.TabIndex = 50;
+			this.line2.TabStop = false;
 			// 
 			// btnLivro33
 			// 
@@ -261,7 +266,7 @@
 			this.btnLivro33.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro33.Name = "btnLivro33";
 			this.btnLivro33.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro33.TabIndex = 0;
+			this.btnLivro33.TabIndex = 33;
 			this.btnLivro33.Text = "Miquéias";
 			this.btnLivro33.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro33.UseVisualStyleBackColor = true;
@@ -278,7 +283,7 @@
 			this.btnLivro25.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro25.Name = "btnLivro25";
 			this.btnLivro25.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro25.TabIndex = 0;
+			this.btnLivro25.TabIndex = 25;
 			this.btnLivro25.Text = "Lamentações";
 			this.btnLivro25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro25.UseVisualStyleBackColor = true;
@@ -295,7 +300,7 @@
 			this.btnLivro16.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro16.Name = "btnLivro16";
 			this.btnLivro16.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro16.TabIndex = 0;
+			this.btnLivro16.TabIndex = 16;
 			this.btnLivro16.Text = "Neemias";
 			this.btnLivro16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro16.UseVisualStyleBackColor = true;
@@ -312,7 +317,7 @@
 			this.btnLivro8.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro8.Name = "btnLivro8";
 			this.btnLivro8.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro8.TabIndex = 0;
+			this.btnLivro8.TabIndex = 8;
 			this.btnLivro8.Text = "Rute";
 			this.btnLivro8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro8.UseVisualStyleBackColor = true;
@@ -329,7 +334,7 @@
 			this.btnLivro32.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro32.Name = "btnLivro32";
 			this.btnLivro32.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro32.TabIndex = 0;
+			this.btnLivro32.TabIndex = 32;
 			this.btnLivro32.Text = "Jonas";
 			this.btnLivro32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro32.UseVisualStyleBackColor = true;
@@ -346,7 +351,7 @@
 			this.btnLivro24.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro24.Name = "btnLivro24";
 			this.btnLivro24.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro24.TabIndex = 0;
+			this.btnLivro24.TabIndex = 24;
 			this.btnLivro24.Text = "Jeremias";
 			this.btnLivro24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro24.UseVisualStyleBackColor = true;
@@ -363,7 +368,7 @@
 			this.btnLivro15.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro15.Name = "btnLivro15";
 			this.btnLivro15.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro15.TabIndex = 0;
+			this.btnLivro15.TabIndex = 15;
 			this.btnLivro15.Text = "Esdras";
 			this.btnLivro15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro15.UseVisualStyleBackColor = true;
@@ -380,7 +385,7 @@
 			this.btnLivro7.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro7.Name = "btnLivro7";
 			this.btnLivro7.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro7.TabIndex = 0;
+			this.btnLivro7.TabIndex = 7;
 			this.btnLivro7.Text = "Juízes";
 			this.btnLivro7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro7.UseVisualStyleBackColor = true;
@@ -397,7 +402,7 @@
 			this.btnLivro31.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro31.Name = "btnLivro31";
 			this.btnLivro31.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro31.TabIndex = 0;
+			this.btnLivro31.TabIndex = 31;
 			this.btnLivro31.Text = "Obadias";
 			this.btnLivro31.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro31.UseVisualStyleBackColor = true;
@@ -414,7 +419,7 @@
 			this.btnLivro23.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro23.Name = "btnLivro23";
 			this.btnLivro23.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro23.TabIndex = 0;
+			this.btnLivro23.TabIndex = 23;
 			this.btnLivro23.Text = "Isaías";
 			this.btnLivro23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro23.UseVisualStyleBackColor = true;
@@ -431,7 +436,7 @@
 			this.btnLivro14.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro14.Name = "btnLivro14";
 			this.btnLivro14.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro14.TabIndex = 0;
+			this.btnLivro14.TabIndex = 14;
 			this.btnLivro14.Text = "II Crônicas";
 			this.btnLivro14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro14.UseVisualStyleBackColor = true;
@@ -448,7 +453,7 @@
 			this.btnLivro6.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro6.Name = "btnLivro6";
 			this.btnLivro6.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro6.TabIndex = 0;
+			this.btnLivro6.TabIndex = 6;
 			this.btnLivro6.Text = "Josué";
 			this.btnLivro6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro6.UseVisualStyleBackColor = true;
@@ -465,7 +470,7 @@
 			this.btnLivro30.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro30.Name = "btnLivro30";
 			this.btnLivro30.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro30.TabIndex = 0;
+			this.btnLivro30.TabIndex = 30;
 			this.btnLivro30.Text = "Omós";
 			this.btnLivro30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro30.UseVisualStyleBackColor = true;
@@ -482,7 +487,7 @@
 			this.btnLivro22.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro22.Name = "btnLivro22";
 			this.btnLivro22.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro22.TabIndex = 0;
+			this.btnLivro22.TabIndex = 22;
 			this.btnLivro22.Text = "Cantares";
 			this.btnLivro22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro22.UseVisualStyleBackColor = true;
@@ -499,7 +504,7 @@
 			this.btnLivro13.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro13.Name = "btnLivro13";
 			this.btnLivro13.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro13.TabIndex = 0;
+			this.btnLivro13.TabIndex = 13;
 			this.btnLivro13.Text = "I Crônicas";
 			this.btnLivro13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro13.UseVisualStyleBackColor = true;
@@ -516,7 +521,7 @@
 			this.btnLivro5.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro5.Name = "btnLivro5";
 			this.btnLivro5.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro5.TabIndex = 0;
+			this.btnLivro5.TabIndex = 5;
 			this.btnLivro5.Text = "Deuteronômio";
 			this.btnLivro5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro5.UseVisualStyleBackColor = true;
@@ -533,7 +538,7 @@
 			this.btnLivro29.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro29.Name = "btnLivro29";
 			this.btnLivro29.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro29.TabIndex = 0;
+			this.btnLivro29.TabIndex = 29;
 			this.btnLivro29.Text = "Joel";
 			this.btnLivro29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro29.UseVisualStyleBackColor = true;
@@ -550,7 +555,7 @@
 			this.btnLivro21.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro21.Name = "btnLivro21";
 			this.btnLivro21.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro21.TabIndex = 0;
+			this.btnLivro21.TabIndex = 21;
 			this.btnLivro21.Text = "Eclesiastes";
 			this.btnLivro21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro21.UseVisualStyleBackColor = true;
@@ -567,7 +572,7 @@
 			this.btnLivro12.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro12.Name = "btnLivro12";
 			this.btnLivro12.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro12.TabIndex = 0;
+			this.btnLivro12.TabIndex = 12;
 			this.btnLivro12.Text = "II Reis";
 			this.btnLivro12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro12.UseVisualStyleBackColor = true;
@@ -584,7 +589,7 @@
 			this.btnLivro4.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro4.Name = "btnLivro4";
 			this.btnLivro4.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro4.TabIndex = 0;
+			this.btnLivro4.TabIndex = 4;
 			this.btnLivro4.Text = "Números";
 			this.btnLivro4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro4.UseVisualStyleBackColor = true;
@@ -601,7 +606,7 @@
 			this.btnLivro17.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro17.Name = "btnLivro17";
 			this.btnLivro17.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro17.TabIndex = 0;
+			this.btnLivro17.TabIndex = 17;
 			this.btnLivro17.Text = "Ester";
 			this.btnLivro17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro17.UseVisualStyleBackColor = true;
@@ -618,7 +623,7 @@
 			this.btnLivro28.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro28.Name = "btnLivro28";
 			this.btnLivro28.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro28.TabIndex = 0;
+			this.btnLivro28.TabIndex = 28;
 			this.btnLivro28.Text = "Oséias";
 			this.btnLivro28.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro28.UseVisualStyleBackColor = true;
@@ -635,7 +640,7 @@
 			this.btnLivro20.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro20.Name = "btnLivro20";
 			this.btnLivro20.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro20.TabIndex = 0;
+			this.btnLivro20.TabIndex = 20;
 			this.btnLivro20.Text = "Provérbios";
 			this.btnLivro20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro20.UseVisualStyleBackColor = true;
@@ -652,7 +657,7 @@
 			this.btnLivro11.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro11.Name = "btnLivro11";
 			this.btnLivro11.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro11.TabIndex = 0;
+			this.btnLivro11.TabIndex = 11;
 			this.btnLivro11.Text = "I Reis";
 			this.btnLivro11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro11.UseVisualStyleBackColor = true;
@@ -669,7 +674,7 @@
 			this.btnLivro3.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro3.Name = "btnLivro3";
 			this.btnLivro3.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro3.TabIndex = 0;
+			this.btnLivro3.TabIndex = 3;
 			this.btnLivro3.Text = "Levítico";
 			this.btnLivro3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro3.UseVisualStyleBackColor = true;
@@ -686,7 +691,7 @@
 			this.btnLivro39.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro39.Name = "btnLivro39";
 			this.btnLivro39.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro39.TabIndex = 0;
+			this.btnLivro39.TabIndex = 39;
 			this.btnLivro39.Text = "Malaquias";
 			this.btnLivro39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro39.UseVisualStyleBackColor = true;
@@ -703,7 +708,7 @@
 			this.btnLivro38.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro38.Name = "btnLivro38";
 			this.btnLivro38.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro38.TabIndex = 0;
+			this.btnLivro38.TabIndex = 38;
 			this.btnLivro38.Text = "Zacarias";
 			this.btnLivro38.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro38.UseVisualStyleBackColor = true;
@@ -720,7 +725,7 @@
 			this.btnLivro37.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro37.Name = "btnLivro37";
 			this.btnLivro37.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro37.TabIndex = 0;
+			this.btnLivro37.TabIndex = 37;
 			this.btnLivro37.Text = "Ageu";
 			this.btnLivro37.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro37.UseVisualStyleBackColor = true;
@@ -737,7 +742,7 @@
 			this.btnLivro36.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro36.Name = "btnLivro36";
 			this.btnLivro36.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro36.TabIndex = 0;
+			this.btnLivro36.TabIndex = 36;
 			this.btnLivro36.Text = "Sofonias";
 			this.btnLivro36.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro36.UseVisualStyleBackColor = true;
@@ -754,7 +759,7 @@
 			this.btnLivro35.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro35.Name = "btnLivro35";
 			this.btnLivro35.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro35.TabIndex = 0;
+			this.btnLivro35.TabIndex = 35;
 			this.btnLivro35.Text = "Habacuque";
 			this.btnLivro35.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro35.UseVisualStyleBackColor = true;
@@ -771,7 +776,7 @@
 			this.btnLivro27.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro27.Name = "btnLivro27";
 			this.btnLivro27.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro27.TabIndex = 0;
+			this.btnLivro27.TabIndex = 27;
 			this.btnLivro27.Text = "Daniel";
 			this.btnLivro27.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro27.UseVisualStyleBackColor = true;
@@ -789,7 +794,7 @@
 			this.btnLivro19.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro19.Name = "btnLivro19";
 			this.btnLivro19.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro19.TabIndex = 0;
+			this.btnLivro19.TabIndex = 19;
 			this.btnLivro19.Text = "Salmos";
 			this.btnLivro19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro19.UseVisualStyleBackColor = false;
@@ -806,7 +811,7 @@
 			this.btnLivro10.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro10.Name = "btnLivro10";
 			this.btnLivro10.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro10.TabIndex = 0;
+			this.btnLivro10.TabIndex = 10;
 			this.btnLivro10.Text = "II Samuel";
 			this.btnLivro10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro10.UseVisualStyleBackColor = true;
@@ -823,7 +828,7 @@
 			this.btnLivro2.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro2.Name = "btnLivro2";
 			this.btnLivro2.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro2.TabIndex = 0;
+			this.btnLivro2.TabIndex = 2;
 			this.btnLivro2.Text = "Êxodo";
 			this.btnLivro2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro2.UseVisualStyleBackColor = true;
@@ -840,7 +845,7 @@
 			this.btnLivro34.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro34.Name = "btnLivro34";
 			this.btnLivro34.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro34.TabIndex = 0;
+			this.btnLivro34.TabIndex = 34;
 			this.btnLivro34.Text = "Naum";
 			this.btnLivro34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro34.UseVisualStyleBackColor = true;
@@ -857,7 +862,7 @@
 			this.btnLivro26.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro26.Name = "btnLivro26";
 			this.btnLivro26.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro26.TabIndex = 0;
+			this.btnLivro26.TabIndex = 26;
 			this.btnLivro26.Text = "Ezequiel";
 			this.btnLivro26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro26.UseVisualStyleBackColor = true;
@@ -874,7 +879,7 @@
 			this.btnLivro18.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro18.Name = "btnLivro18";
 			this.btnLivro18.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro18.TabIndex = 0;
+			this.btnLivro18.TabIndex = 18;
 			this.btnLivro18.Text = "Jó";
 			this.btnLivro18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro18.UseVisualStyleBackColor = true;
@@ -891,7 +896,7 @@
 			this.btnLivro9.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro9.Name = "btnLivro9";
 			this.btnLivro9.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro9.TabIndex = 0;
+			this.btnLivro9.TabIndex = 9;
 			this.btnLivro9.Text = "I Samuel";
 			this.btnLivro9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro9.UseVisualStyleBackColor = true;
@@ -908,7 +913,7 @@
 			this.btnLivro1.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro1.Name = "btnLivro1";
 			this.btnLivro1.Size = new System.Drawing.Size(184, 45);
-			this.btnLivro1.TabIndex = 0;
+			this.btnLivro1.TabIndex = 1;
 			this.btnLivro1.Text = "Gênesis";
 			this.btnLivro1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro1.UseVisualStyleBackColor = true;
@@ -1003,7 +1008,8 @@
 			this.line7.Opacity = 0.6F;
 			this.line7.Size = new System.Drawing.Size(10, 410);
 			this.line7.StartPoint = new System.Drawing.Point(5, 5);
-			this.line7.TabIndex = 4;
+			this.line7.TabIndex = 30;
+			this.line7.TabStop = false;
 			// 
 			// line8
 			// 
@@ -1015,7 +1021,8 @@
 			this.line8.Opacity = 0.6F;
 			this.line8.Size = new System.Drawing.Size(10, 410);
 			this.line8.StartPoint = new System.Drawing.Point(5, 5);
-			this.line8.TabIndex = 4;
+			this.line8.TabIndex = 30;
+			this.line8.TabStop = false;
 			// 
 			// line9
 			// 
@@ -1027,7 +1034,8 @@
 			this.line9.Opacity = 0.6F;
 			this.line9.Size = new System.Drawing.Size(10, 410);
 			this.line9.StartPoint = new System.Drawing.Point(5, 5);
-			this.line9.TabIndex = 4;
+			this.line9.TabIndex = 30;
+			this.line9.TabStop = false;
 			// 
 			// line10
 			// 
@@ -1039,7 +1047,8 @@
 			this.line10.Opacity = 0.6F;
 			this.line10.Size = new System.Drawing.Size(10, 410);
 			this.line10.StartPoint = new System.Drawing.Point(5, 5);
-			this.line10.TabIndex = 4;
+			this.line10.TabIndex = 30;
+			this.line10.TabStop = false;
 			// 
 			// btnLivro63
 			// 
@@ -1052,7 +1061,7 @@
 			this.btnLivro63.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro63.Name = "btnLivro63";
 			this.btnLivro63.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro63.TabIndex = 0;
+			this.btnLivro63.TabIndex = 24;
 			this.btnLivro63.Text = "II João";
 			this.btnLivro63.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro63.UseVisualStyleBackColor = true;
@@ -1069,7 +1078,7 @@
 			this.btnLivro55.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro55.Name = "btnLivro55";
 			this.btnLivro55.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro55.TabIndex = 0;
+			this.btnLivro55.TabIndex = 16;
 			this.btnLivro55.Text = "II Timóteo";
 			this.btnLivro55.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro55.UseVisualStyleBackColor = true;
@@ -1086,7 +1095,7 @@
 			this.btnLivro47.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro47.Name = "btnLivro47";
 			this.btnLivro47.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro47.TabIndex = 0;
+			this.btnLivro47.TabIndex = 8;
 			this.btnLivro47.Text = "II Coríntios";
 			this.btnLivro47.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro47.UseVisualStyleBackColor = true;
@@ -1103,7 +1112,7 @@
 			this.btnLivro62.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro62.Name = "btnLivro62";
 			this.btnLivro62.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro62.TabIndex = 0;
+			this.btnLivro62.TabIndex = 23;
 			this.btnLivro62.Text = "I João";
 			this.btnLivro62.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro62.UseVisualStyleBackColor = true;
@@ -1120,7 +1129,7 @@
 			this.btnLivro54.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro54.Name = "btnLivro54";
 			this.btnLivro54.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro54.TabIndex = 0;
+			this.btnLivro54.TabIndex = 15;
 			this.btnLivro54.Text = "I Timóteo";
 			this.btnLivro54.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro54.UseVisualStyleBackColor = true;
@@ -1137,7 +1146,7 @@
 			this.btnLivro46.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro46.Name = "btnLivro46";
 			this.btnLivro46.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro46.TabIndex = 0;
+			this.btnLivro46.TabIndex = 7;
 			this.btnLivro46.Text = "I Coríntios";
 			this.btnLivro46.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro46.UseVisualStyleBackColor = true;
@@ -1154,7 +1163,7 @@
 			this.btnLivro61.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro61.Name = "btnLivro61";
 			this.btnLivro61.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro61.TabIndex = 0;
+			this.btnLivro61.TabIndex = 22;
 			this.btnLivro61.Text = "II Pedro";
 			this.btnLivro61.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro61.UseVisualStyleBackColor = true;
@@ -1171,7 +1180,7 @@
 			this.btnLivro53.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro53.Name = "btnLivro53";
 			this.btnLivro53.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro53.TabIndex = 0;
+			this.btnLivro53.TabIndex = 14;
 			this.btnLivro53.Text = "II Tessalonicenses";
 			this.btnLivro53.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro53.UseVisualStyleBackColor = true;
@@ -1188,7 +1197,7 @@
 			this.btnLivro45.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro45.Name = "btnLivro45";
 			this.btnLivro45.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro45.TabIndex = 0;
+			this.btnLivro45.TabIndex = 6;
 			this.btnLivro45.Text = "Romanos";
 			this.btnLivro45.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro45.UseVisualStyleBackColor = true;
@@ -1205,7 +1214,7 @@
 			this.btnLivro60.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro60.Name = "btnLivro60";
 			this.btnLivro60.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro60.TabIndex = 0;
+			this.btnLivro60.TabIndex = 21;
 			this.btnLivro60.Text = "I Pedro";
 			this.btnLivro60.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro60.UseVisualStyleBackColor = true;
@@ -1222,7 +1231,7 @@
 			this.btnLivro52.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro52.Name = "btnLivro52";
 			this.btnLivro52.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro52.TabIndex = 0;
+			this.btnLivro52.TabIndex = 13;
 			this.btnLivro52.Text = "I Tessalonicenses";
 			this.btnLivro52.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro52.UseVisualStyleBackColor = true;
@@ -1239,7 +1248,7 @@
 			this.btnLivro44.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro44.Name = "btnLivro44";
 			this.btnLivro44.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro44.TabIndex = 0;
+			this.btnLivro44.TabIndex = 5;
 			this.btnLivro44.Text = "Atos dos Apóstolos";
 			this.btnLivro44.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro44.UseVisualStyleBackColor = true;
@@ -1256,7 +1265,7 @@
 			this.btnLivro59.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro59.Name = "btnLivro59";
 			this.btnLivro59.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro59.TabIndex = 0;
+			this.btnLivro59.TabIndex = 20;
 			this.btnLivro59.Text = "Tiago";
 			this.btnLivro59.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro59.UseVisualStyleBackColor = true;
@@ -1273,7 +1282,7 @@
 			this.btnLivro51.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro51.Name = "btnLivro51";
 			this.btnLivro51.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro51.TabIndex = 0;
+			this.btnLivro51.TabIndex = 12;
 			this.btnLivro51.Text = "Colossenses";
 			this.btnLivro51.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro51.UseVisualStyleBackColor = true;
@@ -1290,7 +1299,7 @@
 			this.btnLivro43.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro43.Name = "btnLivro43";
 			this.btnLivro43.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro43.TabIndex = 0;
+			this.btnLivro43.TabIndex = 4;
 			this.btnLivro43.Text = "João";
 			this.btnLivro43.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro43.UseVisualStyleBackColor = true;
@@ -1307,7 +1316,7 @@
 			this.btnLivro66.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro66.Name = "btnLivro66";
 			this.btnLivro66.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro66.TabIndex = 0;
+			this.btnLivro66.TabIndex = 27;
 			this.btnLivro66.Text = "Apocalipse";
 			this.btnLivro66.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro66.UseVisualStyleBackColor = true;
@@ -1324,7 +1333,7 @@
 			this.btnLivro58.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro58.Name = "btnLivro58";
 			this.btnLivro58.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro58.TabIndex = 0;
+			this.btnLivro58.TabIndex = 19;
 			this.btnLivro58.Text = "Hebreus";
 			this.btnLivro58.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro58.UseVisualStyleBackColor = true;
@@ -1341,7 +1350,7 @@
 			this.btnLivro50.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro50.Name = "btnLivro50";
 			this.btnLivro50.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro50.TabIndex = 0;
+			this.btnLivro50.TabIndex = 11;
 			this.btnLivro50.Text = "Filipenses";
 			this.btnLivro50.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro50.UseVisualStyleBackColor = true;
@@ -1358,7 +1367,7 @@
 			this.btnLivro42.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro42.Name = "btnLivro42";
 			this.btnLivro42.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro42.TabIndex = 0;
+			this.btnLivro42.TabIndex = 3;
 			this.btnLivro42.Text = "Lucas";
 			this.btnLivro42.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro42.UseVisualStyleBackColor = true;
@@ -1375,7 +1384,7 @@
 			this.btnLivro65.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro65.Name = "btnLivro65";
 			this.btnLivro65.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro65.TabIndex = 0;
+			this.btnLivro65.TabIndex = 26;
 			this.btnLivro65.Text = "Judas";
 			this.btnLivro65.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro65.UseVisualStyleBackColor = true;
@@ -1393,7 +1402,7 @@
 			this.btnLivro57.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro57.Name = "btnLivro57";
 			this.btnLivro57.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro57.TabIndex = 0;
+			this.btnLivro57.TabIndex = 18;
 			this.btnLivro57.Text = "Filemom";
 			this.btnLivro57.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro57.UseVisualStyleBackColor = false;
@@ -1410,7 +1419,7 @@
 			this.btnLivro49.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro49.Name = "btnLivro49";
 			this.btnLivro49.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro49.TabIndex = 0;
+			this.btnLivro49.TabIndex = 10;
 			this.btnLivro49.Text = "Efésios";
 			this.btnLivro49.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro49.UseVisualStyleBackColor = true;
@@ -1427,7 +1436,7 @@
 			this.btnLivro41.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro41.Name = "btnLivro41";
 			this.btnLivro41.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro41.TabIndex = 0;
+			this.btnLivro41.TabIndex = 2;
 			this.btnLivro41.Text = "Marcos";
 			this.btnLivro41.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro41.UseVisualStyleBackColor = true;
@@ -1444,7 +1453,7 @@
 			this.btnLivro64.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro64.Name = "btnLivro64";
 			this.btnLivro64.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro64.TabIndex = 0;
+			this.btnLivro64.TabIndex = 25;
 			this.btnLivro64.Text = "III João";
 			this.btnLivro64.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro64.UseVisualStyleBackColor = true;
@@ -1461,7 +1470,7 @@
 			this.btnLivro56.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro56.Name = "btnLivro56";
 			this.btnLivro56.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro56.TabIndex = 0;
+			this.btnLivro56.TabIndex = 17;
 			this.btnLivro56.Text = "Tito";
 			this.btnLivro56.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro56.UseVisualStyleBackColor = true;
@@ -1478,7 +1487,7 @@
 			this.btnLivro48.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro48.Name = "btnLivro48";
 			this.btnLivro48.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro48.TabIndex = 0;
+			this.btnLivro48.TabIndex = 9;
 			this.btnLivro48.Text = "Gálatas";
 			this.btnLivro48.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro48.UseVisualStyleBackColor = true;
@@ -1495,7 +1504,7 @@
 			this.btnLivro40.Margin = new System.Windows.Forms.Padding(11, 3, 11, 3);
 			this.btnLivro40.Name = "btnLivro40";
 			this.btnLivro40.Size = new System.Drawing.Size(211, 45);
-			this.btnLivro40.TabIndex = 0;
+			this.btnLivro40.TabIndex = 1;
 			this.btnLivro40.Text = "Mateus";
 			this.btnLivro40.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnLivro40.UseVisualStyleBackColor = true;
@@ -1572,22 +1581,26 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
 			this.ClientSize = new System.Drawing.Size(1086, 621);
-			this.Controls.Add(this.pnlCapitulos);
 			this.Controls.Add(this.lblVersiculo);
 			this.Controls.Add(this.btnNovoTestamento);
 			this.Controls.Add(this.btnVoltar);
 			this.Controls.Add(this.btnAntigoTestamento);
+			this.Controls.Add(this.pnlCapitulos);
 			this.Controls.Add(this.pnlAT);
 			this.Controls.Add(this.pnlNT);
+			this.KeyPreview = true;
 			this.Name = "frmEscrituraEscolher";
+			this.Activated += new System.EventHandler(this.frmEscrituraEscolher_Activated);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmEscrituraEscolher_FormClosed);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmEscrituraEscolher_KeyDown);
 			this.Controls.SetChildIndex(this.pnlNT, 0);
 			this.Controls.SetChildIndex(this.pnlAT, 0);
+			this.Controls.SetChildIndex(this.pnlCapitulos, 0);
 			this.Controls.SetChildIndex(this.btnAntigoTestamento, 0);
 			this.Controls.SetChildIndex(this.btnVoltar, 0);
 			this.Controls.SetChildIndex(this.btnNovoTestamento, 0);
 			this.Controls.SetChildIndex(this.lblVersiculo, 0);
 			this.Controls.SetChildIndex(this.panel1, 0);
-			this.Controls.SetChildIndex(this.pnlCapitulos, 0);
 			this.panel1.ResumeLayout(false);
 			this.pnlAT.ResumeLayout(false);
 			this.pnlNT.ResumeLayout(false);
