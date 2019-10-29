@@ -95,6 +95,12 @@
     <Compile Include="Escritura\frmEscrituraEscolher.Designer.cs">
       <DependentUpon>frmEscrituraEscolher.cs</DependentUpon>
     </Compile>
+    <Compile Include="Escritura\frmHistorico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Escritura\frmHistorico.Designer.cs">
+      <DependentUpon>frmHistorico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Escritura\frmLeitura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     <Compile Include="Utilidades.cs" />
     <EmbeddedResource Include="Escritura\frmEscrituraEscolher.resx">
       <DependentUpon>frmEscrituraEscolher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Escritura\frmHistorico.resx">
+      <DependentUpon>frmHistorico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Escritura\frmLeitura.resx">
       <DependentUpon>frmLeitura.cs</DependentUpon>
