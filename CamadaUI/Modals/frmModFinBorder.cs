@@ -42,7 +42,8 @@ namespace CamadaUI.Modals
 				Py = Cursor.Position.Y - Top + Screen.PrimaryScreen.WorkingArea.Height - Parent.ClientSize.Height + 3;
 			else
 			{
-				if(Application.OpenForms[0].Name == "frmPrincipal")
+				Py = Cursor.Position.Y - Top;
+				/* if(Application.OpenForms[0].Name == "frmPrincipal")
 				{
 					frmPrincipal form = (frmPrincipal)Application.OpenForms[0];
 					Py = Cursor.Position.Y - Top + Screen.PrimaryScreen.WorkingArea.Height - form.ClientSize.Height + panel1.Height - 10;
@@ -50,7 +51,7 @@ namespace CamadaUI.Modals
 				else
 				{
 					Py = Cursor.Position.Y - Top;
-				}
+				} */
 			}
 
 			mover = true;

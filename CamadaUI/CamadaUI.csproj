@@ -83,6 +83,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ctrlDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlDataGridView.Designer.cs">
+      <DependentUpon>ctrlDataGridView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TextBox_unclick.cs">
       <SubType>Component</SubType>
     </Compile>

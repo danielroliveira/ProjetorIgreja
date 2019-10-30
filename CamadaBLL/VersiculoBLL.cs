@@ -133,7 +133,7 @@ namespace CamadaBLL
 				DataTable dt = new DataTable();
 
 				string query = "SELECT * FROM qryHistorico " +
-					"ORDER BY IDHistorico";
+					"ORDER BY IDHistorico DESC";
 
 				dt = db.ExecutarConsulta(CommandType.Text, query);
 
@@ -155,7 +155,9 @@ namespace CamadaBLL
 						Versiculo = (byte)r["Versiculo"],
 						IDLinguagem = (byte)r["IDLinguagem"],
 						Escritura = (string)r["Escritura"],
-						Testamento = (byte)r["Testamento"]
+						Testamento = (byte)r["Testamento"],
+						Sigla = (string)r["Sigla"],
+						Abreviacao = (string)r["Abreviacao"]
 					};
 
 					list.Add(versiculo);

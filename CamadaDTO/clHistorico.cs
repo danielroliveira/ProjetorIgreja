@@ -8,7 +8,13 @@ namespace CamadaDTO
 {
 	public class clHistorico: clVersiculo
 	{
-		public int IDHistorico;
-		public DateTime HistoricoData;
+		public int IDHistorico { get; set; }
+		public DateTime HistoricoData { get; set; }
+		public string Sigla { get; set; }
+		public string Abreviacao { get; set; }
+
+		public string Referencia {
+			get	{return $"{Abreviacao} {Capitulo}:{Versiculo} {Sigla}";}
+		}
 	}
 }

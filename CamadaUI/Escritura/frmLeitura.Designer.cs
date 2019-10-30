@@ -169,6 +169,7 @@
 			this.pnlNav.Name = "pnlNav";
 			this.pnlNav.Size = new System.Drawing.Size(330, 40);
 			this.pnlNav.TabIndex = 1;
+			this.pnlNav.TabStop = true;
 			// 
 			// btnLast
 			// 
@@ -190,7 +191,6 @@
 			this.btnLast.Radius = 10;
 			this.btnLast.Size = new System.Drawing.Size(42, 35);
 			this.btnLast.TabIndex = 4;
-			this.btnLast.TabStop = false;
 			this.btnLast.UseVisualStyleBackColor = false;
 			this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
 			this.btnLast.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
@@ -226,7 +226,6 @@
 			this.btnNext.Radius = 10;
 			this.btnNext.Size = new System.Drawing.Size(42, 35);
 			this.btnNext.TabIndex = 3;
-			this.btnNext.TabStop = false;
 			this.btnNext.UseVisualStyleBackColor = false;
 			this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
 			this.btnNext.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
@@ -252,7 +251,6 @@
 			this.btnFirst.Radius = 10;
 			this.btnFirst.Size = new System.Drawing.Size(42, 35);
 			this.btnFirst.TabIndex = 0;
-			this.btnFirst.TabStop = false;
 			this.btnFirst.UseVisualStyleBackColor = false;
 			this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
 			this.btnFirst.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
@@ -278,7 +276,6 @@
 			this.btnPrev.Radius = 10;
 			this.btnPrev.Size = new System.Drawing.Size(42, 35);
 			this.btnPrev.TabIndex = 1;
-			this.btnPrev.TabStop = false;
 			this.btnPrev.UseVisualStyleBackColor = false;
 			this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
 			this.btnPrev.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
@@ -380,6 +377,7 @@
 			this.btnLinguagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnLinguagens.UseVisualStyleBackColor = false;
 			this.btnLinguagens.Click += new System.EventHandler(this.btnLinguagens_Click);
+			this.btnLinguagens.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
 			// 
 			// txtEscritura
 			// 
@@ -396,10 +394,11 @@
 			this.txtEscritura.SelectionHighlightEnabled = false;
 			this.txtEscritura.ShortcutsEnabled = false;
 			this.txtEscritura.Size = new System.Drawing.Size(949, 453);
-			this.txtEscritura.TabIndex = 4;
+			this.txtEscritura.TabIndex = 60;
 			this.txtEscritura.TabStop = false;
 			this.txtEscritura.Text = "Escritura Bíblica";
 			this.txtEscritura.TextChanged += new System.EventHandler(this.txtEscritura_SizeChanged);
+			this.txtEscritura.Enter += new System.EventHandler(this.txtEscritura_Enter);
 			this.txtEscritura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
 			this.txtEscritura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEscritura_KeyPress);
 			this.txtEscritura.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLeitura_PreviewKeyDown);
@@ -418,7 +417,6 @@
 			this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.KeyPreview = true;
 			this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
 			this.Name = "frmLeitura";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -442,7 +440,6 @@
 		internal System.Windows.Forms.Button btnMinimizer;
 		private System.Windows.Forms.Label lblTitulo;
 		private System.Windows.Forms.Panel pnlInfo;
-		private Controls.TextBox_unclick txtEscritura;
 		private System.Windows.Forms.Label lblLivro;
 		internal System.Windows.Forms.Panel pnlNav;
 		internal System.Windows.Forms.Label lblNavegacao;
@@ -450,7 +447,6 @@
 		private MBGlassStyleButton.MBGlassButton btnPrev;
 		private MBGlassStyleButton.MBGlassButton btnNext;
 		private MBGlassStyleButton.MBGlassButton btnLast;
-		private MBGlassStyleButton.MBGlassButton btnLinguagens;
 		private System.Windows.Forms.ContextMenuStrip mnuLinguagens;
 		private System.Windows.Forms.ToolStripMenuItem miRC;
 		private System.Windows.Forms.ToolStripMenuItem miRA;
@@ -458,5 +454,7 @@
 		private System.Windows.Forms.ToolStripMenuItem miFiel;
 		private System.Windows.Forms.ToolStripMenuItem miNTLH;
 		private System.Windows.Forms.Label lblLinguagem;
+		private Controls.TextBox_unclick txtEscritura;
+		internal MBGlassStyleButton.MBGlassButton btnLinguagens;
 	}
 }

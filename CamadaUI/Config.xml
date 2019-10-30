@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuracao>
+  <DefaultValues>
+    <IDVersiculoPadrao>1</IDVersiculoPadrao>
+    <IDVersiculoUltimo>116299</IDVersiculoUltimo>
+  </DefaultValues>
+</Configuracao>

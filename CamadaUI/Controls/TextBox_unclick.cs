@@ -8,17 +8,16 @@ namespace CamadaUI.Controls
 		int WM_LBUTTONDOWN = 0x0201; //513
 		int WM_LBUTTONUP = 0x0202; //514
 		int WM_LBUTTONDBLCLK = 0x0203; //515
+		const int WM_SETFOCUS = 0x0007;
+		const int WM_KILLFOCUS = 0x0008;
+		[DefaultValue(true)]
+		public bool SelectionHighlightEnabled { get; set; }
 
 		public TextBox_unclick()
 		{
 			InitializeComponent();
 			SelectionHighlightEnabled = false;
 		}
-
-		const int WM_SETFOCUS = 0x0007;
-		const int WM_KILLFOCUS = 0x0008;
-		[DefaultValue(true)]
-		public bool SelectionHighlightEnabled { get; set; }
 
 		protected override void WndProc(ref Message m)
 		{
@@ -45,6 +44,5 @@ namespace CamadaUI.Controls
 			base.OnMouseMove(e);
 			Cursor.Current = Cursors.Arrow;
 		}
-
 	}
 }
