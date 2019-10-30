@@ -50,11 +50,15 @@
 			this.miFiel = new System.Windows.Forms.ToolStripMenuItem();
 			this.miNTLH = new System.Windows.Forms.ToolStripMenuItem();
 			this.btnLinguagens = new MBGlassStyleButton.MBGlassButton();
+			this.pnlHistorico = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
+			this.btnHistorico = new System.Windows.Forms.Button();
 			this.txtEscritura = new CamadaUI.Controls.TextBox_unclick();
 			this.pnlTop.SuspendLayout();
 			this.pnlInfo.SuspendLayout();
 			this.pnlNav.SuspendLayout();
 			this.mnuLinguagens.SuspendLayout();
+			this.pnlHistorico.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pnlTop
@@ -141,10 +145,11 @@
 			this.lblLinguagem.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblLinguagem.Location = new System.Drawing.Point(468, 7);
 			this.lblLinguagem.Name = "lblLinguagem";
-			this.lblLinguagem.Size = new System.Drawing.Size(496, 45);
+			this.lblLinguagem.Size = new System.Drawing.Size(500, 45);
 			this.lblLinguagem.TabIndex = 0;
 			this.lblLinguagem.Text = "Linguagem";
 			this.lblLinguagem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.lblLinguagem.Click += new System.EventHandler(this.lblLinguagem_Click);
 			// 
 			// lblLivro
 			// 
@@ -379,6 +384,51 @@
 			this.btnLinguagens.Click += new System.EventHandler(this.btnLinguagens_Click);
 			this.btnLinguagens.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
 			// 
+			// pnlHistorico
+			// 
+			this.pnlHistorico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pnlHistorico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(171)))), ((int)(((byte)(205)))));
+			this.pnlHistorico.Controls.Add(this.label1);
+			this.pnlHistorico.Controls.Add(this.btnHistorico);
+			this.pnlHistorico.Location = new System.Drawing.Point(753, 100);
+			this.pnlHistorico.Name = "pnlHistorico";
+			this.pnlHistorico.Size = new System.Drawing.Size(220, 32);
+			this.pnlHistorico.TabIndex = 62;
+			// 
+			// label1
+			// 
+			this.label1.Dock = System.Windows.Forms.DockStyle.Right;
+			this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
+			this.label1.ForeColor = System.Drawing.Color.White;
+			this.label1.Location = new System.Drawing.Point(5, 0);
+			this.label1.Name = "label1";
+			this.label1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 4);
+			this.label1.Size = new System.Drawing.Size(175, 32);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Histórico de Leitura";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.label1.Click += new System.EventHandler(this.label1_Click);
+			// 
+			// btnHistorico
+			// 
+			this.btnHistorico.BackColor = System.Drawing.Color.Transparent;
+			this.btnHistorico.Dock = System.Windows.Forms.DockStyle.Right;
+			this.btnHistorico.FlatAppearance.BorderSize = 0;
+			this.btnHistorico.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGoldenrodYellow;
+			this.btnHistorico.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+			this.btnHistorico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnHistorico.Image = global::CamadaUI.Properties.Resources.DropdownIcon;
+			this.btnHistorico.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			this.btnHistorico.Location = new System.Drawing.Point(180, 0);
+			this.btnHistorico.Margin = new System.Windows.Forms.Padding(0);
+			this.btnHistorico.Name = "btnHistorico";
+			this.btnHistorico.Size = new System.Drawing.Size(40, 32);
+			this.btnHistorico.TabIndex = 1;
+			this.btnHistorico.TabStop = false;
+			this.btnHistorico.UseVisualStyleBackColor = false;
+			this.btnHistorico.Click += new System.EventHandler(this.btnHistorico_Click);
+			this.btnHistorico.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
+			// 
 			// txtEscritura
 			// 
 			this.txtEscritura.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -398,7 +448,6 @@
 			this.txtEscritura.TabStop = false;
 			this.txtEscritura.Text = "Escritura Bíblica";
 			this.txtEscritura.TextChanged += new System.EventHandler(this.txtEscritura_SizeChanged);
-			this.txtEscritura.Enter += new System.EventHandler(this.txtEscritura_Enter);
 			this.txtEscritura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLeitura_KeyDown);
 			this.txtEscritura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEscritura_KeyPress);
 			this.txtEscritura.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLeitura_PreviewKeyDown);
@@ -408,6 +457,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(973, 623);
+			this.Controls.Add(this.pnlHistorico);
 			this.Controls.Add(this.btnLinguagens);
 			this.Controls.Add(this.pnlNav);
 			this.Controls.Add(this.lblLivro);
@@ -429,6 +479,7 @@
 			this.pnlInfo.ResumeLayout(false);
 			this.pnlNav.ResumeLayout(false);
 			this.mnuLinguagens.ResumeLayout(false);
+			this.pnlHistorico.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -456,5 +507,8 @@
 		private System.Windows.Forms.Label lblLinguagem;
 		private Controls.TextBox_unclick txtEscritura;
 		internal MBGlassStyleButton.MBGlassButton btnLinguagens;
+		private System.Windows.Forms.Label label1;
+		protected internal System.Windows.Forms.Button btnHistorico;
+		public System.Windows.Forms.Panel pnlHistorico;
 	}
 }

@@ -187,7 +187,7 @@ namespace CamadaBLL
 
 				db.LimparParametros();
 				db.AdicionarParametros("@IDHistorico", IDHistorico);
-				string query = "DELETE tblHistorico WHERE IDHistorico = @IDHistorico";
+				string query = "DELETE IDHistorico FROM tblHistorico WHERE IDHistorico = @IDHistorico";
 
 				db.ExecutarManipulacao(CommandType.Text, query);
 			}
@@ -205,7 +205,7 @@ namespace CamadaBLL
 			{
 				AcessoDados db = new AcessoDados(DBPath);
 
-				string query = "DELETE tblHistorico";
+				string query = "DELETE * FROM tblHistorico";
 
 				db.ExecutarManipulacao(CommandType.Text, query);
 			}

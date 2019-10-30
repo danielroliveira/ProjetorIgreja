@@ -35,6 +35,7 @@ namespace CamadaUI.Escritura
 		{
 			InitializeComponent();
 
+			this.DoubleBuffered = true;
 			pnlTop.BackColor = Properties.Settings.Default.PanelTopColor;
 			lblLivro.BackColor = pnlInfo.BackColor;
 
@@ -49,6 +50,13 @@ namespace CamadaUI.Escritura
 			txtEscritura.Font = new Font("Ezra SIL", 72F, FontStyle.Regular, GraphicsUnit.Point, 0);
 			txtEscritura_SizeChanged(txtEscritura, new EventArgs());
 
+		}
+
+		// ON SHOW
+		private void frmLeitura_Shown(object sender, EventArgs e)
+		{
+			// send first PreviewKey
+			SendKeys.Send("{LEFT}");
 		}
 
 		// GET INICIAL: linguagens + livros + versiculoinicial
@@ -239,8 +247,13 @@ namespace CamadaUI.Escritura
 					}
 				}
 			};
+		}
 
-
+		// OPEN MENU LINGUAGENS ON CLICK LBL LINGUAGEM
+		// =============================================================================
+		private void lblLinguagem_Click(object sender, EventArgs e)
+		{
+			mnuLinguagens.Show(lblLinguagem, new Point(lblLinguagem.Width, lblLinguagem.Height));
 		}
 
 		// MINIMIZE
@@ -532,36 +545,27 @@ namespace CamadaUI.Escritura
 
 		#region OTHER FUNCTIONS
 
-		private void frmLeitura_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-		{
-			e.IsInputKey = true;
-		}
-
-		#endregion
-
-		private void frmLeitura_Shown(object sender, EventArgs e)
-		{
-			// send first PreviewKey
-			SendKeys.Send("{LEFT}");
-		}
-
-		private void SaveLastVersiculo()
-		{
-			FuncoesGlobais.SaveDefault("IDVersiculoUltimo", Versiculo.IDVersiculo.ToString());
-		}
-
+		// OPEN HISTORICO FORM
 		private void OpenHistorico()
 		{
-
 			try
 			{
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
 
+				pnlHistorico.Width = 450;
+				pnlHistorico.Location = new Point(ClientSize.Width - 450, 100);
+
 				using (frmHistorico frm = new frmHistorico(this))
 				{
 					frm.ShowDialog();
 				}
+
+				pnlHistorico.Visible = true;
+				Timer tmr = new Timer();
+				tmr.Interval = 1;
+				tmr.Tick += Tmr_Tick;
+				tmr.Start();
 			}
 			catch (Exception ex)
 			{
@@ -573,12 +577,43 @@ namespace CamadaUI.Escritura
 				// --- Ampulheta OFF
 				Cursor.Current = Cursors.Default;
 			}
-
 		}
 
-		private void txtEscritura_Enter(object sender, EventArgs e)
+		private void Tmr_Tick(object sender, EventArgs e)
 		{
-			btnLinguagens.Focus();
+			if(pnlHistorico.Width <= 220)
+			{
+				pnlHistorico.Width = 220;
+				Timer tmr = (Timer)sender;
+				tmr.Stop();
+			}
+
+			pnlHistorico.Width -= 5;
+			pnlHistorico.Location = new Point(pnlHistorico.Location.X + 5, pnlHistorico.Location.Y);
+			pnlHistorico.Refresh();
+		}
+
+		// SAVE THE LAST VERSICULO ON CONFIG
+		private void SaveLastVersiculo()
+		{
+			FuncoesGlobais.SaveDefault("IDVersiculoUltimo", Versiculo.IDVersiculo.ToString());
+		}
+
+		private void frmLeitura_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+		{
+			e.IsInputKey = true;
+		}
+
+		#endregion
+
+		private void btnHistorico_Click(object sender, EventArgs e)
+		{
+			OpenHistorico();
+		}
+
+		private void label1_Click(object sender, EventArgs e)
+		{
+			OpenHistorico();
 		}
 	}
 

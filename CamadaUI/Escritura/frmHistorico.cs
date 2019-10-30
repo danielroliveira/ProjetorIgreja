@@ -73,6 +73,7 @@ namespace CamadaUI.Escritura
 		{
 			dgvListagem.ScrollBars = ScrollBars.None;
 			tmr.Start();
+			_formOrigem.pnlHistorico.Visible = false;
 		}
 
 		// GET HISTORICO
@@ -206,17 +207,75 @@ namespace CamadaUI.Escritura
 
 		private void DeletarHistorico()
 		{
-			????
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
 
+				if(dgvListagem.SelectedRows.Count == 0)
+				{
+					return;
+				}
+
+				clHistorico hist = (clHistorico)dgvListagem.SelectedRows[0].DataBoundItem;
+				vBLL.DeleteHistoricoByID(hist.IDHistorico, _formOrigem.DBPath);
+
+				// GET ITEM LIST
+				GetHistorico();
+				dgvListagem.DataSource = HistoricoList;
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Excluir Histórico..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
 		}
 
 		#endregion
 
 		#region BUTTONS FUNCTION
 
-		private void btnClose_Click(object sender, EventArgs e)
+		// LIMPAR HISTORICO
+		// =============================================================================
+		private void btnLimpar_Click(object sender, EventArgs e)
 		{
-			Close();
+			try
+			{
+				// ASK USER
+				if (AbrirDialog("Deseja limpar o Histórico?", "Tem Certeza?", 
+					 DialogType.SIM_NAO, 
+					 DialogIcon.Warning, 
+					 DialogDefaultButton.Second) == DialogResult.No)
+				{
+					return;
+				}
+
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				if (dgvListagem.Rows.Count == 0) return;
+
+				vBLL.ClearHistorico(_formOrigem.DBPath);
+
+				// GET NEW LIST
+				GetHistorico();
+				dgvListagem.DataSource = HistoricoList;
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Limpar Histórico..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
 		}
 
 		// PRESS ESC TO CLOSE
@@ -230,6 +289,14 @@ namespace CamadaUI.Escritura
 			}
 		}
 
+		// CLOSE FORM
+		// =============================================================================
+		private void btnClose_Click(object sender, EventArgs e)
+		{
+			Close();
+		}
+
+
 		#endregion
 		
 		#region RESIZE FORM AND CREATE BORDER
@@ -238,10 +305,11 @@ namespace CamadaUI.Escritura
 		// =============================================================================
 		private void Tmr_Tick(object sender, EventArgs e)
 		{
-			Height += 20;
+			Height += 30;
 
 			if (Height >= _formOrigem.Height - 155)
 			{
+				Height = _formOrigem.Height - 155;
 				btnFechar.Visible = true;
 				btnLimpar.Visible = true;
 				tmr.Stop();
@@ -264,5 +332,6 @@ namespace CamadaUI.Escritura
 		}
 
 		#endregion
+
 	}
 }
