@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Define bloco TRY com cursor de espera</Title>
+      <Author>Daniel Oliveira</Author>
+      <Description>Define uma Mensagem de Erro Padrao.</Description>
+      <Shortcut>mytry</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>Evento</ID>
+          <Type>String</Type>
+          <ToolTip>Coloque o evento que provocou o erro.</ToolTip>
+          <Default>Evento</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp"><![CDATA[try
+	{
+	// --- Ampulheta ON
+	Cursor.Current = Cursors.WaitCursor;
+	}
+catch (Exception ex)
+	{
+	AbrirDialog("Uma exceção ocorreu ao $Evento$..." + "\n" +
+				ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+	}
+finally
+	{
+	// --- Ampulheta OFF
+	Cursor.Current = Cursors.Default;
+	}
+]]></Code>
+
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
