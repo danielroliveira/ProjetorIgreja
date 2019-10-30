@@ -132,6 +132,12 @@
     <Compile Include="Modals\frmModFinBorder.Designer.cs">
       <DependentUpon>frmModFinBorder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modals\frmModNoBorder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modals\frmModNoBorder.designer.cs">
+      <DependentUpon>frmModNoBorder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilidades.cs" />
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modals\frmModFinBorder.resx">
       <DependentUpon>frmModFinBorder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modals\frmModNoBorder.resx">
+      <DependentUpon>frmModNoBorder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -219,6 +228,8 @@
   <ItemGroup>
     <Content Include="Config.xml" />
     <Content Include="projetor.ico" />
+    <None Include="Resources\delete_page_24px.png" />
+    <None Include="Resources\Fechar 24x24.png" />
     <None Include="Resources\back.png" />
     <None Include="Resources\MBGlassButton.dll" />
     <None Include="Resources\GlassButton.dll" />

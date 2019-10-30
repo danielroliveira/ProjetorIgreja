@@ -17,6 +17,8 @@ namespace CamadaBLL
 			_dataBasePath = dataBasePath;
 		}
 
+		#region VERSICULOS
+		
 		// GET VERSICULO LIST
 		// =============================================================================
 		public List<clVersiculo> GetVersiculoList
@@ -103,6 +105,10 @@ namespace CamadaBLL
 
 		}
 
+		#endregion
+		
+		#region HISTORICO
+
 		// ADD HISTORICO
 		// =============================================================================
 		public void AddHistorico(int IDVersiculo, string DBPath)
@@ -171,6 +177,26 @@ namespace CamadaBLL
 			}
 		}
 
+		// DELETE HISTORICO
+		// =============================================================================
+		public void DeleteHistoricoByID(int IDHistorico, string DBPath)
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(DBPath);
+
+				db.LimparParametros();
+				db.AdicionarParametros("@IDHistorico", IDHistorico);
+				string query = "DELETE tblHistorico WHERE IDHistorico = @IDHistorico";
+
+				db.ExecutarManipulacao(CommandType.Text, query);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
 		// CLEAR HISTORICO
 		// =============================================================================
 		public void ClearHistorico(string DBPath)
@@ -188,6 +214,10 @@ namespace CamadaBLL
 				throw ex;
 			}
 		}
+
+		#endregion
+
+		#region LINGUAGENS
 
 		// GET LINGUAGENS LIST
 		// =============================================================================
@@ -233,6 +263,10 @@ namespace CamadaBLL
 			return ling;
 		}
 
+		#endregion
+
+		#region LIVROS
+
 		// GET LIVROS LIST
 		// =============================================================================
 		public List<clLivro> GetLivroList()
@@ -263,7 +297,7 @@ namespace CamadaBLL
 			}
 		}
 
-		// CONVERT DT IN CLASS LINGUAGEM
+		// CONVERT DT IN CLASS LIVRO
 		// =============================================================================
 		private clLivro ConvertRowInClLivro(DataRow r)
 		{
@@ -277,6 +311,8 @@ namespace CamadaBLL
 
 			return livro;
 		}
+
+		#endregion
 
 	}
 }

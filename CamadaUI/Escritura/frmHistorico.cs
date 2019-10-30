@@ -11,13 +11,18 @@ using static CamadaUI.Utilidades;
 
 namespace CamadaUI.Escritura
 {
-	public partial class frmHistorico : Modals.frmModFinBorder
+	public partial class frmHistorico : Modals.frmModNoBorder
 	{
 		private List<clHistorico> HistoricoList;
 		private frmLeitura _formOrigem;
+		private VersiculoBLL vBLL;
 
 		private int rowHeight = 32;
 		private Color BackupRowBackColor;
+
+		// BORDER RECTANGLE
+		private Rectangle rect;
+		private Timer tmr = new Timer();
 
 		#region NEW | GET
 
@@ -28,6 +33,7 @@ namespace CamadaUI.Escritura
 			InitializeComponent();
 
 			_formOrigem = formOrigem;
+			vBLL = new VersiculoBLL(formOrigem.DBPath);
 			GetHistorico();
 			ConfiguraDataGrid();
 
@@ -35,7 +41,13 @@ namespace CamadaUI.Escritura
 			Point ptLocation = new Point(L - Width, 100);
 			
 			Location = ptLocation;
-			Size = new Size(Width, formOrigem.Size.Height - 155);
+			// Size = new Size(Width, formOrigem.Size.Height - 155);
+
+			Size = new Size(Width, 32);
+			tmr.Interval = 1;
+			tmr.Tick += Tmr_Tick;
+
+			btnFechar.Visible = false;
 		}
 
 		// ON SHOW
@@ -55,6 +67,14 @@ namespace CamadaUI.Escritura
 			}
 		}
 
+		// LOAD FORM: RESIZE FORM AND RECREATE BORDER
+		// =============================================================================
+		private void frmHistorico_Load(object sender, EventArgs e)
+		{
+			dgvListagem.ScrollBars = ScrollBars.None;
+			tmr.Start();
+		}
+
 		// GET HISTORICO
 		// =============================================================================
 		private void GetHistorico()
@@ -64,7 +84,6 @@ namespace CamadaUI.Escritura
 				// Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
 
-				VersiculoBLL vBLL = new VersiculoBLL(_formOrigem.DBPath);
 				HistoricoList = vBLL.GetHistorico();
 
 			}
@@ -161,6 +180,11 @@ namespace CamadaUI.Escritura
 				e.Handled = true;
 				EscolherVersiculo();
 			}
+			else if(e.KeyCode == Keys.Delete)
+			{
+				e.Handled = true;
+				DeletarHistorico();
+			}
 		}
 
 		private void dgvListagem_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -180,6 +204,12 @@ namespace CamadaUI.Escritura
 			_formOrigem.GetVersiculos(hist.IDLinguagem, (byte)hist.IDLivro, (byte)hist.Capitulo, (byte)hist.Versiculo);
 		}
 
+		private void DeletarHistorico()
+		{
+			????
+
+		}
+
 		#endregion
 
 		#region BUTTONS FUNCTION
@@ -188,9 +218,6 @@ namespace CamadaUI.Escritura
 		{
 			Close();
 		}
-
-
-		#endregion
 
 		// PRESS ESC TO CLOSE
 		// =============================================================================
@@ -203,5 +230,39 @@ namespace CamadaUI.Escritura
 			}
 		}
 
+		#endregion
+		
+		#region RESIZE FORM AND CREATE BORDER
+
+		// TIMER TICK RESIZE FORM
+		// =============================================================================
+		private void Tmr_Tick(object sender, EventArgs e)
+		{
+			Height += 20;
+
+			if (Height >= _formOrigem.Height - 155)
+			{
+				btnFechar.Visible = true;
+				btnLimpar.Visible = true;
+				tmr.Stop();
+				dgvListagem.ScrollBars = ScrollBars.Vertical;
+			}
+		}
+
+		// ON RESIZE FORM
+		private void frmHistorico_Resize(object sender, EventArgs e)
+		{
+			Refresh();
+		}
+
+		// ON PAINT CREATE BORDER
+		private void frmHistorico_Paint(object sender, PaintEventArgs e)
+		{
+			rect = new Rectangle(0, 0, ClientSize.Width - 1, ClientSize.Height - 1);
+			e.Graphics.DrawRectangle(new Pen(Color.SlateGray, 3),
+									 rect);
+		}
+
+		#endregion
 	}
 }

@@ -123,9 +123,29 @@ namespace CamadaUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap delete_page_24px {
+            get {
+                object obj = ResourceManager.GetObject("delete_page_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DropdownIcon {
             get {
                 object obj = ResourceManager.GetObject("DropdownIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Fechar_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("Fechar 24x24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
