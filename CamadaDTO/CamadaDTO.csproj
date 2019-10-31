@@ -39,6 +39,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clHarpaHino.cs" />
+    <Compile Include="clHinoEstrofe.cs" />
     <Compile Include="clHistorico.cs" />
     <Compile Include="clLinguagem.cs" />
     <Compile Include="clLivro.cs" />

@@ -30,8 +30,9 @@ namespace CamadaUI
 				new XDocument(
 					new XElement("Configuracao",
 						new XElement("DefaultValues",
-							new XElement("IDVersiculoPadrao", "1"),
-							new XElement("IDVersiculoUltimo", "1")
+							new XElement("IDVersiculoPadrao", 1),
+							new XElement("IDVersiculoUltimo", 1),
+							new XElement("IDHinoUltimo", 1)
 						)
 					)
 				)

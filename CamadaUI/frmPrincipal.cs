@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using CamadaUI.Escritura;
+using static CamadaUI.Utilidades;
 
 namespace CamadaUI
 {
@@ -33,6 +34,35 @@ namespace CamadaUI
 		{
 			mnuPrincipal.Focus();
 			//btnBiblia.Select();
+		}
+
+		private void btnHarpa_Click(object sender, EventArgs e)
+		{
+
+			AbrirDialog("Ainda está em Implementação...", "Implementando");
+			return;
+
+			/* try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				Form f = new Harpa.frmHarpa();
+				f.Show();
+				Visible = false;
+
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Abrir o formulário de Hinos..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			} */
+
 		}
 	}
 }

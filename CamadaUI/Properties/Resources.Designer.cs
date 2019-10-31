@@ -243,6 +243,36 @@ namespace CamadaUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Logo_FAES_Branco_PNG_201406 {
+            get {
+                object obj = ResourceManager.GetObject("Logo FAES Branco PNG 201406", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Logo_FAES_cinza_PNG__201910 {
+            get {
+                object obj = ResourceManager.GetObject("Logo FAES cinza PNG -201910", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Logo_FAES_PRETO_PNG__201407 {
+            get {
+                object obj = ResourceManager.GetObject("Logo FAES PRETO PNG -201407", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Louvores {
             get {
                 object obj = ResourceManager.GetObject("Louvores", resourceCulture);

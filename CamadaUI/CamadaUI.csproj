@@ -120,6 +120,12 @@
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="FuncoesGlobais.cs" />
+    <Compile Include="Harpa\frmHarpa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Harpa\frmHarpa.designer.cs">
+      <DependentUpon>frmHarpa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modals\frmMessage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Harpa\frmHarpa.resx">
+      <DependentUpon>frmHarpa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modals\frmMessage.resx">
       <DependentUpon>frmMessage.cs</DependentUpon>
@@ -228,6 +237,9 @@
   <ItemGroup>
     <Content Include="Config.xml" />
     <Content Include="projetor.ico" />
+    <None Include="Resources\Logo FAES cinza PNG -201910.png" />
+    <None Include="Resources\Logo FAES Branco PNG 201406.png" />
+    <None Include="Resources\Logo FAES PRETO PNG -201407.png" />
     <None Include="Resources\delete_page_24px.png" />
     <None Include="Resources\Fechar 24x24.png" />
     <None Include="Resources\back.png" />
@@ -250,6 +262,7 @@
     <None Include="Resources\icon_warning.png" />
     <None Include="Resources\projetor.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy $(SolutionDir)\Database\ProjetorDB.mdb $(TargetDir)</PostBuildEvent>

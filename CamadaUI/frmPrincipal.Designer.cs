@@ -39,8 +39,10 @@
 			this.btnClose = new System.Windows.Forms.Button();
 			this.btnMinimizer = new System.Windows.Forms.Button();
 			this.btnConfig = new System.Windows.Forms.Button();
+			this.picFundo = new System.Windows.Forms.PictureBox();
 			this.mnuPrincipal.SuspendLayout();
 			this.pnlTop.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.picFundo)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// mnuPrincipal
@@ -113,6 +115,7 @@
 			this.btnHarpa.Padding = new System.Windows.Forms.Padding(5);
 			this.btnHarpa.Size = new System.Drawing.Size(173, 46);
 			this.btnHarpa.Text = "Harpa Cristã";
+			this.btnHarpa.Click += new System.EventHandler(this.btnHarpa_Click);
 			// 
 			// pnlTop
 			// 
@@ -183,12 +186,28 @@
 			this.btnConfig.TabStop = false;
 			this.btnConfig.UseVisualStyleBackColor = false;
 			// 
+			// picFundo
+			// 
+			this.picFundo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.picFundo.BackColor = System.Drawing.Color.Transparent;
+			this.picFundo.ErrorImage = null;
+			this.picFundo.Image = global::CamadaUI.Properties.Resources.Logo_FAES_cinza_PNG__201910;
+			this.picFundo.Location = new System.Drawing.Point(221, 228);
+			this.picFundo.Name = "picFundo";
+			this.picFundo.Size = new System.Drawing.Size(710, 318);
+			this.picFundo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.picFundo.TabIndex = 2;
+			this.picFundo.TabStop = false;
+			// 
 			// frmPrincipal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.ClientSize = new System.Drawing.Size(1110, 732);
+			this.Controls.Add(this.picFundo);
 			this.Controls.Add(this.pnlTop);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -206,6 +225,7 @@
 			this.mnuPrincipal.PerformLayout();
 			this.pnlTop.ResumeLayout(false);
 			this.pnlTop.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.picFundo)).EndInit();
 			this.ResumeLayout(false);
 
         }
@@ -222,6 +242,7 @@
         internal System.Windows.Forms.Button btnConfig;
         internal System.Windows.Forms.Button btnClose;
         internal System.Windows.Forms.Button btnMinimizer;
-    }
+		private System.Windows.Forms.PictureBox picFundo;
+	}
 }
 

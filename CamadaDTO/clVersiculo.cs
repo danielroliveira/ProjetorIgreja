@@ -19,7 +19,5 @@
 			Versiculo = 1;
 			IDLinguagem = 1; // define RC
 		}
-
-
 	}
 }
