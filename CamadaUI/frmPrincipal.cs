@@ -38,11 +38,7 @@ namespace CamadaUI
 
 		private void btnHarpa_Click(object sender, EventArgs e)
 		{
-
-			AbrirDialog("Ainda está em Implementação...", "Implementando");
-			return;
-
-			/* try
+			try
 			{
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
@@ -61,7 +57,7 @@ namespace CamadaUI
 			{
 				// --- Ampulheta OFF
 				Cursor.Current = Cursors.Default;
-			} */
+			}
 
 		}
 	}

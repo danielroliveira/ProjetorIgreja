@@ -15,8 +15,8 @@ namespace CamadaUI.Harpa
 		private HarpaBLL hBLL = null;
 		private BindingSource bindEstrofe = new BindingSource();
 		private List<clHinoEstrofe> estrofeList = null;
-		private int CountEstrofes;
-		private bool HaveCoro;
+		private clHinoEstrofe coroEstrofe = null;
+		private clHinoEstrofe _EstrofeAtual;
 
 		private bool NavDisabled;
 		public string DBPath;
@@ -36,7 +36,6 @@ namespace CamadaUI.Harpa
 			// GET DADOS
 			DBPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjetorDB.mdb");
 			hBLL = new HarpaBLL(DBPath);
-			bindEstrofe.CurrentChanged += BindEstrofe_CurrentChanged;
 			GetDadosInicial();
 			
 			// selecionar a fonte
@@ -45,12 +44,6 @@ namespace CamadaUI.Harpa
 			txtEstrofe.Font = new Font("Ezra SIL", 72F, FontStyle.Regular, GraphicsUnit.Point, 0);
 			txtEstrofe_SizeChanged(txtEstrofe, new EventArgs());
 
-		}
-
-		private void BindEstrofe_CurrentChanged(object sender, EventArgs e)
-		{
-			clHinoEstrofe curEstrofe = (clHinoEstrofe)bindEstrofe.Current;
-			txtEstrofe.Text = curEstrofe.Estrofe;
 		}
 		
 		// ON SHOW
@@ -79,6 +72,8 @@ namespace CamadaUI.Harpa
 				{
 					GetEstrofesHinoByID(1);
 				}
+
+				EstrofeAtual = (clHinoEstrofe)bindEstrofe.Current;
 			}
 			catch (Exception ex)
 			{
@@ -95,84 +90,94 @@ namespace CamadaUI.Harpa
 			}
 		}
 
-		// PROPERTY VERSICULO ATUAL
-		/*private byte VerAtual
+		// PROPERTY ESTROFE ATUAL
+		private clHinoEstrofe EstrofeAtual
 		{
-			get => _verAtual;
+			get => _EstrofeAtual;
 			set
 			{
-				if (value > verMax)
-				{
-					AbrirDialog("Já estamos no ÚLTIMO versículo deste capítulo...",
-						"Último Versiculo",
-						DialogType.OK,
-						DialogIcon.Information);
-					value = verMax;
-				}
-
-				_verAtual = value;
-				Versiculo = verList[_verAtual - 1];
-
-				_capituloAtual = (byte)Versiculo.Capitulo;
-				_LivroAtual = listLivros.Find(l => l.IDLivro == (byte)Versiculo.IDLivro);
-				_IDLinguagemAtual = Versiculo.IDLinguagem;
-							   
-				txtEstrofe.Text = Versiculo.Escritura;
-				lblHinoTitulo.Text = $"{Versiculo.Livro} {Versiculo.Capitulo}:{Versiculo.Versiculo}";
-				lblNavegacao.Text = $"Ver. {Versiculo.Versiculo} de {verMax}";
-
-				lblHinoNumero.Text = LinguagemList.Find(x => x.IDLinguagem == _IDLinguagemAtual).Linguagem;
-
+				_EstrofeAtual = value;
+				txtEstrofe.Text = _EstrofeAtual.Estrofe;
 				CheckNavButtonsState();
-				SaveLastVersiculo();
+				// controla Label Navegacao
+				if(coroEstrofe == null)
+				{
+					if (_EstrofeAtual.EstrofeOrdem == estrofeList.Count)
+					{
+						lblNavegacao.Text = "FINAL";
+					}
+					else
+					{
+						lblNavegacao.Text = $"Estrofe {_EstrofeAtual.EstrofeOrdem} de {estrofeList.Count}";
+					}
+				}
+				else
+				{
+					if (_EstrofeAtual.IsCoro)
+					{
+						if (bindEstrofe.Position == estrofeList.Count -1 )
+						{
+							lblNavegacao.Text = "FINAL";
+						}
+						else
+						{
+							lblNavegacao.Text = $"Coro {bindEstrofe.Position + 1} de {estrofeList.Count}";
+						}
+					}
+					else
+					{
+						lblNavegacao.Text = $"Estrofe {_EstrofeAtual.EstrofeOrdem} de {estrofeList.Count}";
+					}
+				}
 			}
-		}*/
+		}
 
 		// CHECK AND CHANGE NAV BUTTONS STATE (ENABLED / DISABLED)
 		private void CheckNavButtonsState()
 		{
-			/*if (VerAtual >= verMax || VerAtual <= 1) // disabled buttons
+			if (bindEstrofe.Position >= estrofeList.Count - 1) // disabled buttons
 			{
-				NavDisabled = true;
-
-				if (VerAtual >= verMax)
+				if ((coroEstrofe != null && EstrofeAtual.IsCoro) || (coroEstrofe == null)  )
 				{
-					btnNext.Enabled = false;
-					btnNext.Image = Properties.Resources.Next_32px_disabled;
-					btnLast.Enabled = false;
-					btnLast.Image = Properties.Resources.Last_32px_disabled;
-					btnPrev.Enabled = true;
-					btnPrev.Image = Properties.Resources.Previous_32px;
-					btnFirst.Enabled = true;
-					btnFirst.Image = Properties.Resources.First_32px;
+					NavDisabled = true;
 
+					if (bindEstrofe.Position >= estrofeList.Count - 1)
+					{
+						btnNext.Enabled = false;
+						btnNext.Image = Properties.Resources.Next_32px_disabled;
+						btnPrev.Enabled = true;
+						btnPrev.Image = Properties.Resources.Previous_32px;
+					}
 				}
-				else if (VerAtual <= 1)
+			}
+			else if (bindEstrofe.Position == 0)
+			{
+				if (!EstrofeAtual.IsCoro) // IS NOT CORO
 				{
+					NavDisabled = true;
+
 					btnNext.Enabled = true;
 					btnNext.Image = Properties.Resources.Next_32px;
-					btnLast.Enabled = true;
-					btnLast.Image = Properties.Resources.Last_32px;
-
 					btnPrev.Enabled = false;
 					btnPrev.Image = Properties.Resources.Previous_32px_disabled;
-					btnFirst.Enabled = false;
-					btnFirst.Image = Properties.Resources.First_32px_disabled;
-				};
+				}
+				else // IS CORO
+				{
+					btnNext.Enabled = true;
+					btnPrev.Enabled = true;
+					btnPrev.Image = Properties.Resources.Previous_32px;
+					btnNext.Image = Properties.Resources.Next_32px;
+					NavDisabled = false;
+				}
 			}
 			else if (NavDisabled) // else: enabled buttons
 			{
 				btnNext.Enabled = true;
-				btnLast.Enabled = true;
 				btnPrev.Enabled = true;
-				btnFirst.Enabled = true;
-
 				btnPrev.Image = Properties.Resources.Previous_32px;
-				btnFirst.Image = Properties.Resources.First_32px;
 				btnNext.Image = Properties.Resources.Next_32px;
-				btnLast.Image = Properties.Resources.Last_32px;
 				NavDisabled = false;
-			}*/
+			}
 		}
 
 		#endregion
@@ -187,15 +192,27 @@ namespace CamadaUI.Harpa
 			{
 				// Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
+
 				// Get LIST DB
 				HarpaBLL hBLL = new HarpaBLL(DBPath);
+				coroEstrofe = null;
 				estrofeList = hBLL.GetEstrofesListByID(IDHino);
+
+				// Define a Estrofe do Coro
+				if (estrofeList.Exists(estrofe => estrofe.IsCoro))
+				{
+					coroEstrofe = estrofeList.Find(estrofe => estrofe.IsCoro);
+					// remove coro from list
+					estrofeList.Remove(coroEstrofe);
+				}
+
+				// define Hino Titulo
+				lblHinoTitulo.Text = estrofeList[0].Titulo;
+				lblHinoNumero.Text = $"Harpa Cristã {estrofeList[0].IDHino:D3}";
+
 				// define databind
 				bindEstrofe.DataSource = estrofeList;
-				// Define Max
-				CountEstrofes = (byte)estrofeList.Count;
-				//Define Estrofe Inicial;
-				bindEstrofe.Position = 0;
+
 				// Ampulheta OFF
 				Cursor.Current = Cursors.Default;
 			}
@@ -268,7 +285,10 @@ namespace CamadaUI.Harpa
 			using (Graphics gfx = this.CreateGraphics())
 			{
 				// Get the size given the string and the font
-				stringSize = gfx.MeasureString(tb.Text, tb.Font);
+				//stringSize = gfx.MeasureString(tb.Text, tb.Font);
+				//stringSize = gfx.MeasureString(tb.Text.Split(new[] { '\r', '\n' })[0], tb.Font);
+				stringSize = gfx.MeasureString(tb.Text.Replace("\r", " ").Replace("\n",""), tb.Font);
+
 				//test how many rows
 				int rows = (int)((double)tb.Height / (stringSize.Height));
 				if (rows == 0)
@@ -277,7 +297,7 @@ namespace CamadaUI.Harpa
 				}
 
 				double areaAvailable = rows * stringSize.Height * tb.Width;
-				double areaRequired = stringSize.Width * stringSize.Height * 1.1;
+				double areaRequired = stringSize.Width * stringSize.Height * 1.3;
 
 				if (areaAvailable / areaRequired > 1.1)
 				{
@@ -319,34 +339,96 @@ namespace CamadaUI.Harpa
 
 		#endregion
 
-		#region NAVEGACAO VERSICULOS / CAPITULOS
+		#region NAVEGACAO ESTROFES / HINOS
 		//*********************************************************************************************************
 
 		// NEXT
 		private void btnNext_Click(object sender, EventArgs e)
 		{
-			bindEstrofe.Position += 1;
+			if (bindEstrofe.Position < estrofeList.Count -1 ) // MENOR
+			{
+				if(coroEstrofe == null) // NOT HAVE CORO
+				{
+					bindEstrofe.Position += 1;
+					EstrofeAtual = (clHinoEstrofe)bindEstrofe.Current;
+				}
+				else // HAVE CORO
+				{
+					if (EstrofeAtual.IsCoro) // IS CORO
+					{
+						bindEstrofe.Position += 1;
+						EstrofeAtual = (clHinoEstrofe)bindEstrofe.Current;
+					}
+					else // NOT IS CORO
+					{
+						EstrofeAtual = coroEstrofe;
+					}
+				}
+			}
+			else if(bindEstrofe.Position == estrofeList.Count - 1)
+			{
+				if (coroEstrofe == null) // NOT HAVE CORO
+				{
+					AbrirDialog("Fim do Hino...", "Fim");
+				}
+				else // HAVE CORO
+				{
+					if (EstrofeAtual.IsCoro) // IS CORO
+					{
+						AbrirDialog("Fim do Hino...", "Fim");
+					}
+					else // NOT IS CORO
+					{
+						EstrofeAtual = coroEstrofe;
+					}
+				}
+			}
 		}
 
 		// PREV
 		private void btnPrev_Click(object sender, EventArgs e)
 		{
-			if (bindEstrofe.Position == 0)
+			if (bindEstrofe.Position > 0) // MAIOR
 			{
-				AbrirDialog("Já estamos na PRIMEIRA ESTROFE deste HINO...",
-							"Primeira Estrofe",
-							DialogType.OK,
-							DialogIcon.Information);
-				//txtEscritura.SelectionLength = 0;
-				btnNext.Focus();
+				if (coroEstrofe == null) // NOT HAVE CORO
+				{
+					bindEstrofe.Position -= 1;
+					EstrofeAtual = (clHinoEstrofe)bindEstrofe.Current;
+				}
+				else // HAVE CORO
+				{
+					if (EstrofeAtual.IsCoro) // IS CORO
+					{
+						EstrofeAtual = (clHinoEstrofe)bindEstrofe.Current;
+					}
+					else // NOT IS CORO
+					{
+						bindEstrofe.Position -= 1;
+						EstrofeAtual = coroEstrofe;
+					}
+				}
 			}
-			else
+			else if (bindEstrofe.Position == 0)
 			{
-				bindEstrofe.Position -= 1;
+				if (coroEstrofe == null) // NOT HAVE CORO
+				{
+					AbrirDialog("Início do Hino...", "Início");
+				}
+				else // HAVE CORO
+				{
+					if (!EstrofeAtual.IsCoro) // not IS CORO
+					{
+						AbrirDialog("Início do Hino...", "Início");
+					}
+					else // IS CORO
+					{
+						EstrofeAtual = (clHinoEstrofe)bindEstrofe.Current;
+					}
+				}
 			}
 		}
 
-		// SHORTCUTS NAVEGACAO BY VERSICULOS
+		// SHORTCUTS NAVEGACAO BY ESTROFES
 		// =============================================================================
 		private void frmHarpa_KeyDown(object sender, KeyEventArgs e)
 		{
@@ -381,42 +463,69 @@ namespace CamadaUI.Harpa
 		// =============================================================================
 		private void NextHino()
 		{
-			/* byte maxCapitulos = _LivroAtual.Capitulos;
+			int IDHinoAtual = (int)_EstrofeAtual.IDHino;
 
-			if(Versiculo.Capitulo < maxCapitulos)
+			try
 			{
-				int proxVersiculo = Convert.ToInt16(Versiculo.Capitulo) + 1;
-				GetVersiculos(Versiculo.IDLinguagem, (byte)Versiculo.IDLivro, (byte)proxVersiculo, 1);
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				int MaxID = hBLL.GetMaxIDHinos();
+
+				if(IDHinoAtual == MaxID)
+				{
+					AbrirDialog("Nós já estamos no último Hino da Harpa Cristã...",
+						"Último Hino");
+					return;
+				}
+
+				GetEstrofesHinoByID(IDHinoAtual + 1);
+				EstrofeAtual = (clHinoEstrofe)bindEstrofe.Current;
+
 			}
-			else
+			catch (Exception ex)
 			{
-				AbrirDialog("Já estamos no ULTIMO capítulo do livro de: " + _LivroAtual.Livro.ToUpper(),
-							"Último Capítulo",
-							DialogType.OK,
-							DialogIcon.Information);
-			} */
-
+				AbrirDialog("Uma exceção ocorreu ao ir para o próximo Hino da Harpa..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
 		}
 
 		// ANTERIOR CAPITULO
 		// =============================================================================
 		private void PrevHino()
 		{
-			/* byte maxCapitulos = _LivroAtual.Capitulos;
+			int IDHinoAtual = (int)_EstrofeAtual.IDHino;
 
-			if (Versiculo.Capitulo > 1)
+			try
 			{
-				int prevVersiculo = Convert.ToInt16(Versiculo.Capitulo) - 1;
-				GetVersiculos(Versiculo.IDLinguagem, (byte)Versiculo.IDLivro, (byte)prevVersiculo, 1);
+				if (IDHinoAtual == 1)
+				{
+					AbrirDialog("Nós já estamos no Primeiro Hino da Harpa Cristã...",
+						"Primeiro Hino");
+					return;
+				}
+
+				GetEstrofesHinoByID(IDHinoAtual - 1);
+				EstrofeAtual = (clHinoEstrofe)bindEstrofe.Current;
+
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
 			}
-			else
+			catch (Exception ex)
 			{
-				AbrirDialog("Já estamos no PRIMEIRO capítulo do livro de: " + _LivroAtual.Livro.ToUpper(),
-							"Primeiro Capítulo",
-							DialogType.OK,
-							DialogIcon.Information);
+				AbrirDialog("Uma exceção ocorreu ao ir para o Hino Anterior da Harpa..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
 			}
-			*/
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
 		}
 
 		#endregion

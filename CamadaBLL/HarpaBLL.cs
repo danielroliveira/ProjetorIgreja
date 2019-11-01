@@ -126,5 +126,33 @@ namespace CamadaBLL
 
 		}
 
+		// GET THE ID OF LAST OR MAX IDHINO
+		// =============================================================================
+		public int GetMaxIDHinos()
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(_dataBasePath);
+				DataTable dt = new DataTable();
+
+				string query = "SELECT Max(IDHino) AS MaxID FROM tblHinosHarpa;";
+
+				dt = db.ExecutarConsulta(CommandType.Text, query);
+
+				List<clHarpaHino> list = new List<clHarpaHino>();
+
+				if (dt.Rows.Count == 0)
+					throw new Exception("Não houve possibilidade de consultar o último valor de IDHino");
+
+				object ID = dt.Rows[0][0];
+
+				return Convert.ToInt32(ID);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
 	}
 }

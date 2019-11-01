@@ -44,8 +44,8 @@
 			this.pnlHistorico = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.btnHistorico = new System.Windows.Forms.Button();
-			this.txtEstrofe = new CamadaUI.Controls.TextBox_unclick();
 			this.pnlItems = new System.Windows.Forms.FlowLayoutPanel();
+			this.txtEstrofe = new CamadaUI.Controls.TextBox_unclick();
 			this.pnlTop.SuspendLayout();
 			this.pnlInfo.SuspendLayout();
 			this.pnlNav.SuspendLayout();
@@ -158,24 +158,25 @@
 			this.pnlNav.Controls.Add(this.lblNavegacao);
 			this.pnlNav.Controls.Add(this.btnNext);
 			this.pnlNav.Controls.Add(this.btnPrev);
-			this.pnlNav.Location = new System.Drawing.Point(632, 575);
+			this.pnlNav.Location = new System.Drawing.Point(700, 575);
 			this.pnlNav.Name = "pnlNav";
-			this.pnlNav.Size = new System.Drawing.Size(330, 40);
+			this.pnlNav.Size = new System.Drawing.Size(262, 40);
 			this.pnlNav.TabIndex = 1;
 			this.pnlNav.TabStop = true;
 			// 
 			// lblNavegacao
 			// 
-			this.lblNavegacao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblNavegacao.Location = new System.Drawing.Point(93, 11);
+			this.lblNavegacao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblNavegacao.Location = new System.Drawing.Point(63, 11);
 			this.lblNavegacao.Name = "lblNavegacao";
-			this.lblNavegacao.Size = new System.Drawing.Size(140, 19);
+			this.lblNavegacao.Size = new System.Drawing.Size(136, 19);
 			this.lblNavegacao.TabIndex = 2;
 			this.lblNavegacao.Text = "Ver. 1 de 1";
 			this.lblNavegacao.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// btnNext
 			// 
+			this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Right;
 			this.btnNext.BackColor = System.Drawing.Color.Transparent;
 			this.btnNext.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(211)))), ((int)(((byte)(211)))));
 			this.btnNext.BaseStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -183,7 +184,7 @@
 			this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnNext.Image = global::CamadaUI.Properties.Resources.Next_32px;
 			this.btnNext.ImageSize = new System.Drawing.Size(24, 24);
-			this.btnNext.Location = new System.Drawing.Point(242, 3);
+			this.btnNext.Location = new System.Drawing.Point(216, 3);
 			this.btnNext.Margin = new System.Windows.Forms.Padding(1);
 			this.btnNext.MenuListPosition = new System.Drawing.Point(0, 0);
 			this.btnNext.Name = "btnNext";
@@ -201,6 +202,7 @@
 			// 
 			// btnPrev
 			// 
+			this.btnPrev.Anchor = System.Windows.Forms.AnchorStyles.Left;
 			this.btnPrev.BackColor = System.Drawing.Color.Transparent;
 			this.btnPrev.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(211)))), ((int)(((byte)(211)))));
 			this.btnPrev.BaseStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -208,7 +210,7 @@
 			this.btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPrev.Image = global::CamadaUI.Properties.Resources.Previous_32px;
 			this.btnPrev.ImageSize = new System.Drawing.Size(24, 24);
-			this.btnPrev.Location = new System.Drawing.Point(47, 3);
+			this.btnPrev.Location = new System.Drawing.Point(3, 3);
 			this.btnPrev.Margin = new System.Windows.Forms.Padding(1);
 			this.btnPrev.MenuListPosition = new System.Drawing.Point(0, 0);
 			this.btnPrev.Name = "btnPrev";
@@ -297,6 +299,15 @@
 			this.btnHistorico.UseVisualStyleBackColor = false;
 			this.btnHistorico.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmHarpa_KeyDown);
 			// 
+			// pnlItems
+			// 
+			this.pnlItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.pnlItems.Location = new System.Drawing.Point(168, 572);
+			this.pnlItems.Name = "pnlItems";
+			this.pnlItems.Size = new System.Drawing.Size(458, 43);
+			this.pnlItems.TabIndex = 63;
+			// 
 			// txtEstrofe
 			// 
 			this.txtEstrofe.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -319,15 +330,6 @@
 			this.txtEstrofe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmHarpa_KeyDown);
 			this.txtEstrofe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEstrofe_KeyPress);
 			this.txtEstrofe.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmHarpa_PreviewKeyDown);
-			// 
-			// pnlItems
-			// 
-			this.pnlItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.pnlItems.Location = new System.Drawing.Point(168, 572);
-			this.pnlItems.Name = "pnlItems";
-			this.pnlItems.Size = new System.Drawing.Size(458, 43);
-			this.pnlItems.TabIndex = 63;
 			// 
 			// frmHarpa
 			// 
