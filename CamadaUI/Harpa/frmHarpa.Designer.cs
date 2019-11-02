@@ -40,16 +40,20 @@
 			this.lblNavegacao = new System.Windows.Forms.Label();
 			this.btnNext = new MBGlassStyleButton.MBGlassButton();
 			this.btnPrev = new MBGlassStyleButton.MBGlassButton();
-			this.btnLinguagens = new MBGlassStyleButton.MBGlassButton();
+			this.btnProcura = new MBGlassStyleButton.MBGlassButton();
 			this.pnlHistorico = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.btnHistorico = new System.Windows.Forms.Button();
 			this.pnlItems = new System.Windows.Forms.FlowLayoutPanel();
+			this.btnEstrofe1 = new MBGlassStyleButton.MBGlassButton();
+			this.mbGlassButton1 = new MBGlassStyleButton.MBGlassButton();
 			this.txtEstrofe = new CamadaUI.Controls.TextBox_unclick();
+			this.lblEstrofes = new System.Windows.Forms.Label();
 			this.pnlTop.SuspendLayout();
 			this.pnlInfo.SuspendLayout();
 			this.pnlNav.SuspendLayout();
 			this.pnlHistorico.SuspendLayout();
+			this.pnlItems.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pnlTop
@@ -226,35 +230,33 @@
 			this.btnPrev.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmHarpa_KeyDown);
 			this.btnPrev.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmHarpa_PreviewKeyDown);
 			// 
-			// btnLinguagens
+			// btnProcura
 			// 
-			this.btnLinguagens.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnLinguagens.Arrow = MBGlassStyleButton.MBGlassButton.MB_Arrow.ToDown;
-			this.btnLinguagens.BackColor = System.Drawing.Color.Transparent;
-			this.btnLinguagens.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(211)))), ((int)(((byte)(211)))));
-			this.btnLinguagens.BaseStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-			this.btnLinguagens.FlatAppearance.BorderSize = 0;
-			this.btnLinguagens.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnLinguagens.Image = global::CamadaUI.Properties.Resources.search_peq;
-			this.btnLinguagens.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnLinguagens.ImageSize = new System.Drawing.Size(24, 24);
-			this.btnLinguagens.Location = new System.Drawing.Point(12, 575);
-			this.btnLinguagens.MenuListPosition = new System.Drawing.Point(0, 0);
-			this.btnLinguagens.Name = "btnLinguagens";
-			this.btnLinguagens.OnColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(214)))), ((int)(((byte)(78)))));
-			this.btnLinguagens.OnStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(177)))), ((int)(((byte)(118)))));
-			this.btnLinguagens.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-			this.btnLinguagens.PressStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-			this.btnLinguagens.Size = new System.Drawing.Size(150, 40);
-			this.btnLinguagens.SplitButton = MBGlassStyleButton.MBGlassButton.MB_SplitButton.Yes;
-			this.btnLinguagens.SplitDistance = 30;
-			this.btnLinguagens.SplitLocation = MBGlassStyleButton.MBGlassButton.MB_SplitLocation.Right;
-			this.btnLinguagens.TabIndex = 0;
-			this.btnLinguagens.Text = "Procura";
-			this.btnLinguagens.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnLinguagens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnLinguagens.UseVisualStyleBackColor = false;
-			this.btnLinguagens.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmHarpa_KeyDown);
+			this.btnProcura.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnProcura.Arrow = MBGlassStyleButton.MBGlassButton.MB_Arrow.ToDown;
+			this.btnProcura.BackColor = System.Drawing.Color.Transparent;
+			this.btnProcura.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(211)))), ((int)(((byte)(211)))));
+			this.btnProcura.BaseStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+			this.btnProcura.FlatAppearance.BorderSize = 0;
+			this.btnProcura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnProcura.Image = global::CamadaUI.Properties.Resources.search_peq;
+			this.btnProcura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.btnProcura.ImageSize = new System.Drawing.Size(24, 24);
+			this.btnProcura.Location = new System.Drawing.Point(12, 575);
+			this.btnProcura.MenuListPosition = new System.Drawing.Point(0, 0);
+			this.btnProcura.Name = "btnProcura";
+			this.btnProcura.OnColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(214)))), ((int)(((byte)(78)))));
+			this.btnProcura.OnStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(177)))), ((int)(((byte)(118)))));
+			this.btnProcura.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+			this.btnProcura.PressStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+			this.btnProcura.Size = new System.Drawing.Size(120, 40);
+			this.btnProcura.SplitDistance = 30;
+			this.btnProcura.SplitLocation = MBGlassStyleButton.MBGlassButton.MB_SplitLocation.None;
+			this.btnProcura.TabIndex = 0;
+			this.btnProcura.Text = "Procura";
+			this.btnProcura.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnProcura.UseVisualStyleBackColor = false;
+			this.btnProcura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmHarpa_KeyDown);
 			// 
 			// pnlHistorico
 			// 
@@ -301,12 +303,64 @@
 			// 
 			// pnlItems
 			// 
-			this.pnlItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.pnlItems.Location = new System.Drawing.Point(168, 572);
+			this.pnlItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.pnlItems.AutoSize = true;
+			this.pnlItems.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.pnlItems.Controls.Add(this.btnEstrofe1);
+			this.pnlItems.Controls.Add(this.mbGlassButton1);
+			this.pnlItems.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+			this.pnlItems.Location = new System.Drawing.Point(576, 573);
+			this.pnlItems.Margin = new System.Windows.Forms.Padding(0);
 			this.pnlItems.Name = "pnlItems";
-			this.pnlItems.Size = new System.Drawing.Size(458, 43);
+			this.pnlItems.Padding = new System.Windows.Forms.Padding(5);
+			this.pnlItems.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+			this.pnlItems.Size = new System.Drawing.Size(118, 45);
 			this.pnlItems.TabIndex = 63;
+			// 
+			// btnEstrofe1
+			// 
+			this.btnEstrofe1.BackColor = System.Drawing.Color.Transparent;
+			this.btnEstrofe1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(211)))), ((int)(((byte)(211)))));
+			this.btnEstrofe1.BaseStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+			this.btnEstrofe1.FlatAppearance.BorderSize = 0;
+			this.btnEstrofe1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnEstrofe1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnEstrofe1.ImageSize = new System.Drawing.Size(24, 24);
+			this.btnEstrofe1.Location = new System.Drawing.Point(5, 5);
+			this.btnEstrofe1.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.btnEstrofe1.MenuListPosition = new System.Drawing.Point(0, 0);
+			this.btnEstrofe1.Name = "btnEstrofe1";
+			this.btnEstrofe1.OnColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(214)))), ((int)(((byte)(78)))));
+			this.btnEstrofe1.OnStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(177)))), ((int)(((byte)(118)))));
+			this.btnEstrofe1.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+			this.btnEstrofe1.PressStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+			this.btnEstrofe1.Size = new System.Drawing.Size(49, 35);
+			this.btnEstrofe1.TabIndex = 0;
+			this.btnEstrofe1.Text = "1";
+			this.btnEstrofe1.UseVisualStyleBackColor = false;
+			this.btnEstrofe1.Click += new System.EventHandler(this.btnEstrofe_Click);
+			// 
+			// mbGlassButton1
+			// 
+			this.mbGlassButton1.BackColor = System.Drawing.Color.Transparent;
+			this.mbGlassButton1.BaseColor = System.Drawing.Color.SandyBrown;
+			this.mbGlassButton1.BaseStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(244)))), ((int)(((byte)(164)))), ((int)(((byte)(96)))));
+			this.mbGlassButton1.FlatAppearance.BorderSize = 0;
+			this.mbGlassButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.mbGlassButton1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.mbGlassButton1.ImageSize = new System.Drawing.Size(24, 24);
+			this.mbGlassButton1.Location = new System.Drawing.Point(59, 5);
+			this.mbGlassButton1.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
+			this.mbGlassButton1.MenuListPosition = new System.Drawing.Point(0, 0);
+			this.mbGlassButton1.Name = "mbGlassButton1";
+			this.mbGlassButton1.OnColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(214)))), ((int)(((byte)(78)))));
+			this.mbGlassButton1.OnStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(255)))), ((int)(((byte)(214)))), ((int)(((byte)(78)))));
+			this.mbGlassButton1.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+			this.mbGlassButton1.PressStrokeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+			this.mbGlassButton1.Size = new System.Drawing.Size(49, 35);
+			this.mbGlassButton1.TabIndex = 1;
+			this.mbGlassButton1.Text = "1";
+			this.mbGlassButton1.UseVisualStyleBackColor = false;
 			// 
 			// txtEstrofe
 			// 
@@ -331,14 +385,25 @@
 			this.txtEstrofe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEstrofe_KeyPress);
 			this.txtEstrofe.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmHarpa_PreviewKeyDown);
 			// 
+			// lblEstrofes
+			// 
+			this.lblEstrofes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblEstrofes.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblEstrofes.Location = new System.Drawing.Point(454, 581);
+			this.lblEstrofes.Name = "lblEstrofes";
+			this.lblEstrofes.Size = new System.Drawing.Size(115, 25);
+			this.lblEstrofes.TabIndex = 64;
+			this.lblEstrofes.Text = "Estrofes:";
+			// 
 			// frmHarpa
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(973, 623);
+			this.Controls.Add(this.lblEstrofes);
 			this.Controls.Add(this.pnlItems);
 			this.Controls.Add(this.pnlHistorico);
-			this.Controls.Add(this.btnLinguagens);
+			this.Controls.Add(this.btnProcura);
 			this.Controls.Add(this.pnlNav);
 			this.Controls.Add(this.lblHinoTitulo);
 			this.Controls.Add(this.pnlInfo);
@@ -359,6 +424,7 @@
 			this.pnlInfo.ResumeLayout(false);
 			this.pnlNav.ResumeLayout(false);
 			this.pnlHistorico.ResumeLayout(false);
+			this.pnlItems.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -377,10 +443,13 @@
 		private MBGlassStyleButton.MBGlassButton btnNext;
 		private System.Windows.Forms.Label lblHinoNumero;
 		private Controls.TextBox_unclick txtEstrofe;
-		internal MBGlassStyleButton.MBGlassButton btnLinguagens;
+		internal MBGlassStyleButton.MBGlassButton btnProcura;
 		private System.Windows.Forms.Label label1;
 		protected internal System.Windows.Forms.Button btnHistorico;
 		public System.Windows.Forms.Panel pnlHistorico;
 		private System.Windows.Forms.FlowLayoutPanel pnlItems;
+		private MBGlassStyleButton.MBGlassButton btnEstrofe1;
+		private MBGlassStyleButton.MBGlassButton mbGlassButton1;
+		private System.Windows.Forms.Label lblEstrofes;
 	}
 }

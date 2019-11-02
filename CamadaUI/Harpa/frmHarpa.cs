@@ -99,6 +99,7 @@ namespace CamadaUI.Harpa
 				_EstrofeAtual = value;
 				txtEstrofe.Text = _EstrofeAtual.Estrofe;
 				CheckNavButtonsState();
+
 				// controla Label Navegacao
 				if(coroEstrofe == null)
 				{
@@ -129,6 +130,10 @@ namespace CamadaUI.Harpa
 						lblNavegacao.Text = $"Estrofe {_EstrofeAtual.EstrofeOrdem} de {estrofeList.Count}";
 					}
 				}
+
+				// SELECIONA E MARCA A ESTROFE NO PAINEL
+				EstrofeSelected();
+
 			}
 		}
 
@@ -212,6 +217,9 @@ namespace CamadaUI.Harpa
 
 				// define databind
 				bindEstrofe.DataSource = estrofeList;
+
+				// fill panel Estrofes Buttons
+				PainelItensInserir();
 
 				// Ampulheta OFF
 				Cursor.Current = Cursors.Default;
@@ -556,6 +564,131 @@ namespace CamadaUI.Harpa
 		private void frmHarpa_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
 		{
 			e.IsInputKey = true;
+		}
+
+		#endregion
+
+		#region PAINEL ITEMS
+
+		private void PainelItensInserir()
+		{
+			pnlItems.Controls.Clear();
+
+			for (int i = 0; i < estrofeList.Count ; i++)
+			{
+
+				Button btnEstrofe = new ButtonEstrofe()
+				{
+					Name = $"btnEstrofe{i + 1}",
+					TabIndex = i,
+					Text = $"{i + 1}",
+					Tag = $"{i + 1}"
+				};
+
+				btnEstrofe.Click += new EventHandler(btnEstrofe_Click);
+				btnEstrofe.KeyDown += frmHarpa_KeyDown;
+				btnEstrofe.PreviewKeyDown += frmHarpa_PreviewKeyDown;
+
+				pnlItems.Controls.Add(btnEstrofe);
+
+			};
+
+			if(coroEstrofe != null)
+			{
+				Button btnEstrofe = new ButtonEstrofe(80)
+				{
+					Name = $"btnEstrofeCoro",
+					TabIndex = estrofeList.Count,
+					Text = $"Coro",
+					Tag = 0
+				};
+
+				btnEstrofe.Click += new EventHandler(btnEstrofe_Click);
+				btnEstrofe.KeyDown += frmHarpa_KeyDown;
+				btnEstrofe.PreviewKeyDown += frmHarpa_PreviewKeyDown;
+
+				pnlItems.Controls.Add(btnEstrofe);
+			}
+
+			// move label
+			pnlItems.Refresh();
+			lblEstrofes.Location = new Point(pnlItems.Location.X - 115, lblEstrofes.Location.Y);
+
+		}
+
+
+		private class ButtonEstrofe : MBGlassStyleButton.MBGlassButton
+		{
+			public ButtonEstrofe(int width = 49)
+			{
+			BackColor = Color.Transparent;
+			BaseColor = Color.FromArgb(211, 211, 211);
+			BaseStrokeColor = Color.FromArgb(192, 192, 192);
+			FlatAppearance.BorderSize = 0;
+			FlatStyle = FlatStyle.Flat;
+			Font = new Font("Calibri", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+			ImageSize = new Size(24, 24);
+			Location = new Point(5, 5);
+			Margin = new Padding(5, 0, 0, 0);
+			MenuListPosition = new Point(0, 0);
+			Name = "btnEstrofe";
+			OnColor = Color.FromArgb(255, 214, 78);
+			OnStrokeColor = Color.FromArgb(196, 177, 118);
+			PressColor = Color.FromArgb(255, 128, 0);
+			PressStrokeColor = Color.FromArgb(128, 64, 0);
+			Size = new Size(width, 35);
+			TabIndex = 0;
+			Text = "";
+			UseVisualStyleBackColor = false;
+			}
+
+		}
+
+		private void btnEstrofe_Click(object sender, EventArgs e)
+		{
+			MBGlassStyleButton.MBGlassButton btn = (MBGlassStyleButton.MBGlassButton)sender;
+			
+			// get ESTROFE ID by button TAG
+			byte IDEstrofe = Convert.ToByte(btn.Tag);
+
+			// define new position of Binding
+			bindEstrofe.Position = IDEstrofe - 1;
+
+			// define NEW selected Estrofe
+			if(IDEstrofe != 0)
+				EstrofeAtual = estrofeList.Find(x => x.EstrofeOrdem == IDEstrofe);
+			else
+				EstrofeAtual = coroEstrofe;
+		}
+
+		private void EstrofeSelected()
+		{
+			MBGlassStyleButton.MBGlassButton btnEstrofe = null;
+
+			// Descobre qual deve ser o selected button
+			if (EstrofeAtual.IsCoro)
+			{
+				btnEstrofe = (MBGlassStyleButton.MBGlassButton)pnlItems.Controls[ "btnEstrofeCoro" ];
+			}
+			else
+			{
+				string btnName = $"btnEstrofe{ EstrofeAtual.EstrofeOrdem }";
+				btnEstrofe = (MBGlassStyleButton.MBGlassButton)pnlItems.Controls[btnName];
+			}
+
+			// REMOVE ESPECIAL COLOR FROM ALL BTN
+			foreach (Control control in pnlItems.Controls)
+			{
+				MBGlassStyleButton.MBGlassButton btn = (MBGlassStyleButton.MBGlassButton)control;
+				btn.BaseColor = Color.FromArgb(211, 211, 211);
+				btn.BaseStrokeColor = Color.FromArgb(192, 192, 192);
+				btn.Enabled = true;
+			}
+
+			// PUT SELECTED COLOR
+			btnEstrofe.BaseColor = Color.SandyBrown;
+			btnEstrofe.BaseStrokeColor = Color.FromArgb(100, 244, 164, 96);
+			btnEstrofe.Enabled = false;
 		}
 
 		#endregion
