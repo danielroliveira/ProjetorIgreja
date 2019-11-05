@@ -104,6 +104,7 @@
 			this.btnLouvores.Padding = new System.Windows.Forms.Padding(5);
 			this.btnLouvores.Size = new System.Drawing.Size(144, 46);
 			this.btnLouvores.Text = "Louvores";
+			this.btnLouvores.Click += new System.EventHandler(this.btnLouvores_Click);
 			// 
 			// btnHarpa
 			// 

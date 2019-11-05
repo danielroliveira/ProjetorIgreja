@@ -60,5 +60,28 @@ namespace CamadaUI
 			}
 
 		}
+
+		private void btnLouvores_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				Form f = new Louvor.frmLouvorEscolher();
+				f.Show();
+				Visible = false;
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Abrir o formulário de Louvores..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+		}
 	}
 }

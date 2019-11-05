@@ -44,7 +44,12 @@
     <Compile Include="clHistorico.cs" />
     <Compile Include="clLinguagem.cs" />
     <Compile Include="clLivro.cs" />
+    <Compile Include="clLouvor.cs" />
+    <Compile Include="clLouvorFolder.cs" />
     <Compile Include="clVersiculo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
