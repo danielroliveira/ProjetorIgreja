@@ -61,6 +61,16 @@ namespace CamadaUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap accept {
+            get {
+                object obj = ResourceManager.GetObject("accept", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] AwesomeShapeControl {
@@ -143,9 +153,59 @@ namespace CamadaUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Favorito1 {
+            get {
+                object obj = ResourceManager.GetObject("Favorito1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Favorito2 {
+            get {
+                object obj = ResourceManager.GetObject("Favorito2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Favorito3 {
+            get {
+                object obj = ResourceManager.GetObject("Favorito3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Favorito4 {
+            get {
+                object obj = ResourceManager.GetObject("Favorito4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Favorito5 {
+            get {
+                object obj = ResourceManager.GetObject("Favorito5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Fechar_24x24 {
             get {
-                object obj = ResourceManager.GetObject("Fechar 24x24", resourceCulture);
+                object obj = ResourceManager.GetObject("Fechar_24x24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,9 +303,9 @@ namespace CamadaUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Logo_FAES_Branco_PNG_201406 {
+        internal static System.Drawing.Bitmap Logo_FAES_Branco {
             get {
-                object obj = ResourceManager.GetObject("Logo FAES Branco PNG 201406", resourceCulture);
+                object obj = ResourceManager.GetObject("Logo_FAES_Branco", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,9 +313,9 @@ namespace CamadaUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Logo_FAES_cinza_PNG__201910 {
+        internal static System.Drawing.Bitmap Logo_FAES_cinza {
             get {
-                object obj = ResourceManager.GetObject("Logo FAES cinza PNG -201910", resourceCulture);
+                object obj = ResourceManager.GetObject("Logo_FAES_cinza", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -263,9 +323,9 @@ namespace CamadaUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Logo_FAES_PRETO_PNG__201407 {
+        internal static System.Drawing.Bitmap Logo_FAES_PRETO {
             get {
-                object obj = ResourceManager.GetObject("Logo FAES PRETO PNG -201407", resourceCulture);
+                object obj = ResourceManager.GetObject("Logo_FAES_PRETO", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

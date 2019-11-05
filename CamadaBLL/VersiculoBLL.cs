@@ -118,7 +118,7 @@ namespace CamadaBLL
 				AcessoDados db = new AcessoDados(DBPath);
 				db.AdicionarParametros("@IDVersiculo", IDVersiculo);
 
-				string query = "INSERT INTO tblHistorico(IDVersiculo) VALUES (@IDVersiculo)";
+				string query = "INSERT INTO tblBibliasHistorico(IDVersiculo) VALUES (@IDVersiculo)";
 
 				db.ExecutarManipulacao(CommandType.Text, query);
 
@@ -131,26 +131,26 @@ namespace CamadaBLL
 
 		// GET HISTORICO
 		// =============================================================================
-		public List<clHistorico> GetHistorico()
+		public List<clHistoricoVersiculo> GetHistorico()
 		{
 			try
 			{
 				AcessoDados db = new AcessoDados(_dataBasePath);
 				DataTable dt = new DataTable();
 
-				string query = "SELECT * FROM qryHistorico " +
+				string query = "SELECT * FROM qryBibliasHistorico " +
 					"ORDER BY IDHistorico DESC";
 
 				dt = db.ExecutarConsulta(CommandType.Text, query);
 
-				List<clHistorico> list = new List<clHistorico>();
+				List<clHistoricoVersiculo> list = new List<clHistoricoVersiculo>();
 
 				if (dt.Rows.Count == 0)
 					return list;
 
 				foreach (DataRow r in dt.Rows)
 				{
-					clHistorico versiculo = new clHistorico()
+					clHistoricoVersiculo versiculo = new clHistoricoVersiculo()
 					{
 						IDHistorico = (int)r["IDHistorico"],
 						HistoricoData = (DateTime)r["HistoricoData"],
@@ -187,7 +187,7 @@ namespace CamadaBLL
 
 				db.LimparParametros();
 				db.AdicionarParametros("@IDHistorico", IDHistorico);
-				string query = "DELETE IDHistorico FROM tblHistorico WHERE IDHistorico = @IDHistorico";
+				string query = "DELETE IDHistorico FROM tblBibliasHistorico WHERE IDHistorico = @IDHistorico";
 
 				db.ExecutarManipulacao(CommandType.Text, query);
 			}
@@ -205,7 +205,7 @@ namespace CamadaBLL
 			{
 				AcessoDados db = new AcessoDados(DBPath);
 
-				string query = "DELETE * FROM tblHistorico";
+				string query = "DELETE * FROM tblBibliasHistorico";
 
 				db.ExecutarManipulacao(CommandType.Text, query);
 			}

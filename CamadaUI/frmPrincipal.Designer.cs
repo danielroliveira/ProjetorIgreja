@@ -193,7 +193,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.picFundo.BackColor = System.Drawing.Color.Transparent;
 			this.picFundo.ErrorImage = null;
-			this.picFundo.Image = global::CamadaUI.Properties.Resources.Logo_FAES_cinza_PNG__201910;
+			this.picFundo.Image = global::CamadaUI.Properties.Resources.Logo_FAES_cinza;
 			this.picFundo.Location = new System.Drawing.Point(221, 228);
 			this.picFundo.Name = "picFundo";
 			this.picFundo.Size = new System.Drawing.Size(710, 318);

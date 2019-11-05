@@ -130,8 +130,8 @@
   <data name="icon_information" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_information.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Fechar 24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Fechar 24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Favorito4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Favorito4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="First_32px_disabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\First_32px_disabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -139,11 +139,17 @@
   <data name="sair_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sair_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Logo FAES Branco PNG 201406" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Logo FAES Branco PNG 201406.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Logo_FAES_cinza" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo FAES cinza PNG -201910.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\back.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Favorito1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Favorito1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Logo_FAES_Branco" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo FAES Branco PNG 201406.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AwesomeShapeControl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AwesomeShapeControl.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -151,11 +157,11 @@
   <data name="Last_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Last_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CloseIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CloseIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Favorito3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Favorito3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Logo FAES PRETO PNG -201407" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Logo FAES PRETO PNG -201407.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Favorito2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Favorito2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Previous_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Previous_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,29 +169,41 @@
   <data name="search_peq" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_peq.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Next_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Next_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Louvores" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Louvores.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CloseIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CloseIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_question" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_question.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Favorito5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Favorito5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ConfigIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ConfigIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Next_32px_disabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Next_32px_disabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Logo_FAES_PRETO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo FAES PRETO PNG -201407.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Fechar_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Fechar 24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MBGlassButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MBGlassButton.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Louvores" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Louvores.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Next_32px_disabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Next_32px_disabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DropdownIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DropdownIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="GlassButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\GlassButton.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Next_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Next_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="First_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\First_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,7 +220,7 @@
   <data name="icon_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Logo FAES cinza PNG -201910" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Logo FAES cinza PNG -201910.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="accept" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\accept.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

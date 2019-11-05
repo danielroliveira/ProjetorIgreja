@@ -3,5 +3,6 @@
   <DefaultValues>
     <IDVersiculoPadrao>1</IDVersiculoPadrao>
     <IDVersiculoUltimo>116299</IDVersiculoUltimo>
+	<IDHinoUltimo></IDHinoUltimo>
   </DefaultValues>
 </Configuracao>

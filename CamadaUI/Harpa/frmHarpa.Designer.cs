@@ -256,6 +256,7 @@
 			this.btnProcura.Text = "Procura";
 			this.btnProcura.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnProcura.UseVisualStyleBackColor = false;
+			this.btnProcura.Click += new System.EventHandler(this.btnProcura_Click);
 			this.btnProcura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmHarpa_KeyDown);
 			// 
 			// pnlHistorico

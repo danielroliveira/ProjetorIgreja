@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CamadaDTO
 {
-	public class clHistorico: clVersiculo
+	public class clHistoricoVersiculo: clVersiculo
 	{
 		public int IDHistorico { get; set; }
 		public DateTime HistoricoData { get; set; }
@@ -16,5 +16,11 @@ namespace CamadaDTO
 		public string Referencia {
 			get	{return $"{Abreviacao} {Capitulo}:{Versiculo} {Sigla}";}
 		}
+	}
+
+	public class clHistoricoHino : clHarpaHino
+	{
+		public int IDHistorico { get; set; }
+		public DateTime HistoricoData { get; set; }
 	}
 }

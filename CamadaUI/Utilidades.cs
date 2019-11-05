@@ -22,6 +22,9 @@ namespace CamadaUI
 			}
 		}
 
+		// VERIFY IS STRING CAN CHANGE TO NUMERIC
+		public static bool IsNumeric(this string text) => double.TryParse(text, out _);
+
 	}
 
 }

@@ -20,6 +20,7 @@ namespace CamadaUI.Harpa
 
 		private bool NavDisabled;
 		public string DBPath;
+		private bool HinoEscolhidoAdded = false; // to previne ADD again
 
 		#region OPEN AND PROPERTIES
 		// ================================================================================================
@@ -72,8 +73,6 @@ namespace CamadaUI.Harpa
 				{
 					GetEstrofesHinoByID(1);
 				}
-
-				EstrofeAtual = (clHinoEstrofe)bindEstrofe.Current;
 			}
 			catch (Exception ex)
 			{
@@ -134,6 +133,15 @@ namespace CamadaUI.Harpa
 				// SELECIONA E MARCA A ESTROFE NO PAINEL
 				EstrofeSelected();
 
+				// add Escolhido Count if Last Estrofe
+				if (!_EstrofeAtual.IsCoro)
+				{
+					if(_EstrofeAtual.EstrofeOrdem == estrofeList.Count && !HinoEscolhidoAdded)
+					{
+						EscolhidoCountAdd(); // update DB
+						HinoEscolhidoAdded = true; // to previne add again
+					}
+				}
 			}
 		}
 
@@ -201,6 +209,7 @@ namespace CamadaUI.Harpa
 				// Get LIST DB
 				HarpaBLL hBLL = new HarpaBLL(DBPath);
 				coroEstrofe = null;
+				HinoEscolhidoAdded = false;
 				estrofeList = hBLL.GetEstrofesListByID(IDHino);
 
 				// Define a Estrofe do Coro
@@ -221,6 +230,12 @@ namespace CamadaUI.Harpa
 				// fill panel Estrofes Buttons
 				PainelItensInserir();
 
+				// define Strofe Atual as first strofe
+				EstrofeAtual = (clHinoEstrofe)bindEstrofe.Current;
+
+				// Save Last Hino in CONFIG
+				SaveConfigLastHino();
+
 				// Ampulheta OFF
 				Cursor.Current = Cursors.Default;
 			}
@@ -238,6 +253,44 @@ namespace CamadaUI.Harpa
 
 		#region BUTTONS
 		//*********************************************************************************************************
+
+		// ABRIR PROCURA
+		//-------------------------------------------------------------------------------------------------
+		private void btnProcura_Click(object sender, EventArgs e)
+		{
+			ProcurarHino();
+		}
+
+		// ABRIR PROCURA
+		// =============================================================================
+		private void ProcurarHino()
+		{
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				using (frmHarpaEscolher frm = new frmHarpaEscolher(this))
+				{
+					frm.ShowDialog();
+					if(frm.DialogResult == DialogResult.OK)
+					{
+						GetEstrofesHinoByID((int)frm.HinoEscolhido.IDHino);
+					}
+				}
+
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Abrir formulário de procura..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+		}
 
 		// MINIMIZE
 		// =============================================================================
@@ -284,11 +337,15 @@ namespace CamadaUI.Harpa
 				return;
 			}
 
-			SizeF stringSize;
 
+			SizeF stringSize;
+			
 			// AMPULHETA ON
 			Cursor.Current = Cursors.WaitCursor;
 
+			// return Original Font
+			txtEstrofe.Font = new Font("Ezra SIL", 72F, FontStyle.Regular, GraphicsUnit.Point, 0);
+			
 			// create a graphics object for this form
 			using (Graphics gfx = this.CreateGraphics())
 			{
@@ -465,6 +522,16 @@ namespace CamadaUI.Harpa
 				e.Handled = true;
 				PrevHino();
 			}
+			else if (e.KeyCode == Keys.P)
+			{
+				e.Handled = true;
+				ProcurarHino();
+			}
+			else if (e.KeyCode == Keys.H)
+			{
+				e.Handled = true;
+				//OpenHistorico();
+			}
 		}
 
 		// PROXIMO CAPITULO
@@ -488,7 +555,8 @@ namespace CamadaUI.Harpa
 				}
 
 				GetEstrofesHinoByID(IDHinoAtual + 1);
-				EstrofeAtual = (clHinoEstrofe)bindEstrofe.Current;
+				
+				btnNext.Focus();
 
 			}
 			catch (Exception ex)
@@ -519,7 +587,8 @@ namespace CamadaUI.Harpa
 				}
 
 				GetEstrofesHinoByID(IDHinoAtual - 1);
-				EstrofeAtual = (clHinoEstrofe)bindEstrofe.Current;
+				
+				btnNext.Focus();
 
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
@@ -555,10 +624,34 @@ namespace CamadaUI.Harpa
 		}
 
 		// SAVE THE LAST VERSICULO ON CONFIG
-		private void SaveLastVersiculo()
+		private void SaveConfigLastHino()
 		{
-			clHinoEstrofe est = (clHinoEstrofe)bindEstrofe.Current;
-			FuncoesGlobais.SaveDefault("IDHinoUltimo", est.IDHino.ToString());
+			FuncoesGlobais.SaveDefault("IDHinoUltimo", _EstrofeAtual.IDHino.ToString());
+		}
+
+		// ADD ESCOLHIDO COUNT OF HINO
+		private	void EscolhidoCountAdd()
+		{
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				// --- ADD DB
+				hBLL.EscolhidoCountAdd((int)_EstrofeAtual.IDHino);
+
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Adicionar selecionado..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+
 		}
 
 		private void frmHarpa_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -589,6 +682,7 @@ namespace CamadaUI.Harpa
 				btnEstrofe.KeyDown += frmHarpa_KeyDown;
 				btnEstrofe.PreviewKeyDown += frmHarpa_PreviewKeyDown;
 
+				// add btn at panel
 				pnlItems.Controls.Add(btnEstrofe);
 
 			};

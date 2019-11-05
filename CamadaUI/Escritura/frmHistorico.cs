@@ -13,7 +13,7 @@ namespace CamadaUI.Escritura
 {
 	public partial class frmHistorico : Modals.frmModNoBorder
 	{
-		private List<clHistorico> HistoricoList;
+		private List<clHistoricoVersiculo> HistoricoList;
 		private frmLeitura _formOrigem;
 		private VersiculoBLL vBLL;
 
@@ -201,7 +201,7 @@ namespace CamadaUI.Escritura
 
 		private void EscolherVersiculo()
 		{
-			clHistorico hist = (clHistorico)dgvListagem.SelectedRows[0].DataBoundItem;
+			clHistoricoVersiculo hist = (clHistoricoVersiculo)dgvListagem.SelectedRows[0].DataBoundItem;
 			_formOrigem.GetVersiculos(hist.IDLinguagem, (byte)hist.IDLivro, (byte)hist.Capitulo, (byte)hist.Versiculo);
 		}
 
@@ -217,7 +217,7 @@ namespace CamadaUI.Escritura
 					return;
 				}
 
-				clHistorico hist = (clHistorico)dgvListagem.SelectedRows[0].DataBoundItem;
+				clHistoricoVersiculo hist = (clHistoricoVersiculo)dgvListagem.SelectedRows[0].DataBoundItem;
 				vBLL.DeleteHistoricoByID(hist.IDHistorico, _formOrigem.DBPath);
 
 				// GET ITEM LIST
