@@ -262,7 +262,7 @@ namespace CamadaBLL
 						IDHino = (int)r["IDHino"],
 						Titulo = (string)r["Titulo"],
 						Tom = (byte)r["Tom"],
-						Escolhido = (int)r["Escolhido"]
+						Escolhido = (short)r["Escolhido"]
 					};
 
 					list.Add(versiculo);

@@ -90,7 +90,7 @@ namespace CamadaUI.Harpa
 		}
 
 		// PROPERTY ESTROFE ATUAL
-		private clHinoEstrofe EstrofeAtual
+		public clHinoEstrofe EstrofeAtual
 		{
 			get => _EstrofeAtual;
 			set
@@ -270,12 +270,28 @@ namespace CamadaUI.Harpa
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
 
+				int IDOrigem = EstrofeAtual.IDHino ?? 1;
+
 				using (frmHarpaEscolher frm = new frmHarpaEscolher(this))
 				{
 					frm.ShowDialog();
 					if(frm.DialogResult == DialogResult.OK)
 					{
 						GetEstrofesHinoByID((int)frm.HinoEscolhido.IDHino);
+						
+						// add in HISTORICO if selected different Hino
+						if (IDOrigem != frm.HinoEscolhido.IDHino)
+						{
+							try
+							{
+								hBLL.AddHistorico((int)frm.HinoEscolhido.IDHino, DBPath);
+							}
+							catch (Exception ex)
+							{
+								AbrirDialog("Um exceção ocorreu ao salvar Histórico \n" + ex.Message,
+									"Exceção", DialogType.OK, DialogIcon.Exclamation);
+							}
+						}
 					}
 				}
 
@@ -530,7 +546,7 @@ namespace CamadaUI.Harpa
 			else if (e.KeyCode == Keys.H)
 			{
 				e.Handled = true;
-				//OpenHistorico();
+				OpenHistorico();
 			}
 		}
 
@@ -783,6 +799,54 @@ namespace CamadaUI.Harpa
 			btnEstrofe.BaseColor = Color.SandyBrown;
 			btnEstrofe.BaseStrokeColor = Color.FromArgb(100, 244, 164, 96);
 			btnEstrofe.Enabled = false;
+		}
+
+		#endregion
+
+		#region PANEL HISTORICO
+
+		private void btnHistorico_Click(object sender, EventArgs e)
+		{
+			OpenHistorico();
+		}
+
+		private void label1_Click(object sender, EventArgs e)
+		{
+			OpenHistorico();
+		}
+
+		// OPEN HISTORICO FORM
+		private void OpenHistorico()
+		{
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				pnlHistorico.Width = 450;
+				pnlHistorico.Location = new Point(ClientSize.Width - 450, 100);
+
+				using (frmHarpaHistorico frm = new frmHarpaHistorico(this))
+				{
+					frm.ShowDialog();
+				}
+
+				pnlHistorico.Visible = true;
+				Timer tmr = new Timer();
+				tmr.Interval = 1;
+				tmr.Tick += Tmr_Tick;
+				tmr.Start();
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Abrir o histórico de Hinos..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
 		}
 
 		#endregion

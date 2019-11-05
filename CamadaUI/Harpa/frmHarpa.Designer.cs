@@ -282,6 +282,7 @@
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Histórico de Hinos";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.label1.Click += new System.EventHandler(this.label1_Click);
 			// 
 			// btnHistorico
 			// 
@@ -300,6 +301,7 @@
 			this.btnHistorico.TabIndex = 1;
 			this.btnHistorico.TabStop = false;
 			this.btnHistorico.UseVisualStyleBackColor = false;
+			this.btnHistorico.Click += new System.EventHandler(this.btnHistorico_Click);
 			this.btnHistorico.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmHarpa_KeyDown);
 			// 
 			// pnlItems

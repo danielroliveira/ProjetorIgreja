@@ -135,6 +135,12 @@
     <Compile Include="Harpa\frmHarpaEscolher.designer.cs">
       <DependentUpon>frmHarpaEscolher.cs</DependentUpon>
     </Compile>
+    <Compile Include="Harpa\frmHarpaHistorico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Harpa\frmHarpaHistorico.designer.cs">
+      <DependentUpon>frmHarpaHistorico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modals\frmMessage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Harpa\frmHarpaEscolher.resx">
       <DependentUpon>frmHarpaEscolher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Harpa\frmHarpaHistorico.resx">
+      <DependentUpon>frmHarpaHistorico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modals\frmMessage.resx">
       <DependentUpon>frmMessage.cs</DependentUpon>
