@@ -68,7 +68,7 @@ namespace CamadaUI
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
 
-				Form f = new Louvor.frmLouvorEscolher();
+				Form f = new Louvor.frmLouvorLista();
 				f.Show();
 				Visible = false;
 			}

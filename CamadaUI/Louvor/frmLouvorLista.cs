@@ -12,7 +12,7 @@ using static CamadaUI.Utilidades;
 
 namespace CamadaUI.Louvor
 {
-	public partial class frmLouvorEscolher : Modals.frmModFinBorder
+	public partial class frmLouvorLista : Form
 	{
 		private List<clLouvor> ListLouvor = null;
 		private string[] MensagemInicial = null;
@@ -25,11 +25,11 @@ namespace CamadaUI.Louvor
 		private Image imgFav4;
 		private Image imgFav5;
 
-		
+
 		#region NEW AND PROPERTIES
 
 		// SUB NEW
-		public frmLouvorEscolher()
+		public frmLouvorLista()
 		{
 			InitializeComponent();
 
@@ -40,7 +40,6 @@ namespace CamadaUI.Louvor
 
 			// get data
 			GetLouvores();
-			lstListagem.DataSource = ListLouvor;
 			FormataListagem();
 		}
 
@@ -49,7 +48,7 @@ namespace CamadaUI.Louvor
 			txtProcura.Focus();
 			if (MensagemInicial != null)
 			{
-				AbrirDialog(MensagemInicial[0], MensagemInicial[1], 
+				AbrirDialog(MensagemInicial[0], MensagemInicial[1],
 					DialogType.OK, DialogIcon.Exclamation);
 			}
 		}
@@ -71,7 +70,7 @@ namespace CamadaUI.Louvor
 		// =============================================================================
 		private void GetLouvores()
 		{
-			 try
+			try
 			{
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
@@ -79,6 +78,8 @@ namespace CamadaUI.Louvor
 				// Get
 				ListLouvor = lBLL.GetLouvorList();
 
+				// define List DataSource
+				lstListagem.DataSource = ListLouvor;
 			}
 			catch (Exception ex)
 			{
@@ -127,9 +128,9 @@ namespace CamadaUI.Louvor
 			if (eventArgs.ColumnHeaderBounds.BoundsOuter.Width > 0 && eventArgs.ColumnHeaderBounds.BoundsOuter.Height > 0)
 			{
 				Brush brush = new LinearGradientBrush(
-					eventArgs.ColumnHeaderBounds.BoundsOuter, 
-					Color.Transparent, 
-					Color.FromArgb(64, Color.SteelBlue), 
+					eventArgs.ColumnHeaderBounds.BoundsOuter,
+					Color.Transparent,
+					Color.FromArgb(64, Color.SteelBlue),
 					LinearGradientMode.Vertical);
 
 				Pen p = new Pen(Color.SlateGray, 2);
@@ -139,7 +140,7 @@ namespace CamadaUI.Louvor
 				eventArgs.Graphics.DrawLine(p, eventArgs.ColumnHeaderBounds.BoundsOuter.X,
 							eventArgs.ColumnHeaderBounds.BoundsOuter.Height,
 							eventArgs.ColumnHeaderBounds.BoundsOuter.Width + eventArgs.ColumnHeaderBounds.BoundsOuter.X,
-							eventArgs.ColumnHeaderBounds.BoundsOuter.Height); 
+							eventArgs.ColumnHeaderBounds.BoundsOuter.Height);
 
 				brush.Dispose();
 				p.Dispose();
@@ -211,24 +212,25 @@ namespace CamadaUI.Louvor
 		//-------------------------------------------------------------------------------------------------
 		private void EscolherHino()
 		{
-			clLouvor louvor = ListLouvor.Find(l => l.IDLouvor == (int)lstListagem.SelectedItems[0].Value);
-
-			System.Diagnostics.Process.Start(louvor.ProjecaoPath);
-
-			/* if(lstListagem.SelectedItems.Count == 0)
+			if (lstListagem.SelectedItems.Count == 0)
 			{
 				AbrirDialog("Favor selecionar um Hino na listagem antes de Escolher...",
 					"Escolher Hino", DialogType.OK, DialogIcon.Exclamation);
 				return;
 			}
 
+			clLouvor louvor = ListLouvor.Find(l => l.IDLouvor == (int)lstListagem.SelectedItems[0].Value);
+
+			System.Diagnostics.Process.Start(louvor.ProjecaoPath);
+
+			/* 
 			int IDHino = (int)lstListagem.SelectedItems[0].Value;
 			clHarpaHino Hino = ListLouvor.Find(h => h.IDHino == IDHino);
 
 			HinoEscolhido = Hino;
 			DialogResult = DialogResult.OK; */
 		}
-		
+
 
 		#endregion
 
@@ -273,7 +275,7 @@ namespace CamadaUI.Louvor
 			ProcurarHinoTxt();
 			BetterListViewItemCollection itemsFound;
 
-			if( txtProcura.Text.Length > 0)
+			if (txtProcura.Text.Length > 0)
 			{
 				itemsFound = lstListagem.FindItemsWithText(txtProcura.Text);
 			}
@@ -288,7 +290,7 @@ namespace CamadaUI.Louvor
 		// =============================================================================
 		private void ProcurarHinoTxt()
 		{
-			if(txtProcura.TextLength > 0 && txtProcura.Text.Substring(0, 1).IsNumeric())
+			if (txtProcura.TextLength > 0 && txtProcura.Text.Substring(0, 1).IsNumeric())
 			{
 				lstListagem.DataSource = ListLouvor.FindAll(FiltroID);
 			}
@@ -316,7 +318,7 @@ namespace CamadaUI.Louvor
 		// ---------------------------------------------------------------------------
 		private bool FiltroID(clLouvor H)
 		{
-			if(H.IDLouvor == Convert.ToInt32(txtProcura.Text))
+			if (H.IDLouvor == Convert.ToInt32(txtProcura.Text))
 			{
 				return true;
 			}
@@ -335,15 +337,24 @@ namespace CamadaUI.Louvor
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
 
-				string path = @"E:\Desktop\Igreja Membresia\Projetor\Projeção Louvores\Louvores Igreja";
+				string path = @"E:\Desktop\Igreja Membresia\Projetor\Projeção Louvores\Louvores";
 
 				List<clLouvor> newListLouvor = GetFilesProjecao(path);
-				
+
 				foreach (clLouvor louvor in newListLouvor)
 				{
-					lBLL.InsertLouvor(louvor);
+					try
+					{
+						lBLL.InsertLouvor(louvor);
+					}
+					catch (AppException ex)
+					{
+						AbrirDialog(ex.Message, "Duplicado");
+					}
 				}
 
+				GetLouvores();
+				
 			}
 			catch (Exception ex)
 			{

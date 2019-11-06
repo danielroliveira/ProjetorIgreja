@@ -28,7 +28,7 @@ namespace CamadaBLL
 				AcessoDados db = new AcessoDados(_dataBasePath);
 				DataTable dt = new DataTable();
 
-				string query = "SELECT * FROM qryLouvores";
+				string query = "SELECT * FROM qryLouvores ORDER BY Titulo";
 
 				dt = db.ExecutarConsulta(CommandType.Text, query);
 
@@ -66,6 +66,19 @@ namespace CamadaBLL
 					"VALUES (@IDLouvor, @Titulo, @ProjecaoPath);";
 
 				db.ExecutarManipulacao(CommandType.Text, query);
+			}
+			catch (System.Data.OleDb.OleDbException ex)
+			{
+				if(ex.ErrorCode == -2147467259)
+				{
+					//return;
+					throw new AppException("Louvor Duplicado: " + louvor.Titulo);
+				}
+				else
+				{
+					throw ex;
+				}
+
 			}
 			catch (Exception ex)
 			{
