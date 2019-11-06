@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using static CamadaUI.Utilidades;
 
@@ -14,13 +15,16 @@ namespace CamadaUI.Louvor
 	public partial class frmLouvorEscolher : Modals.frmModFinBorder
 	{
 		private List<clLouvor> ListLouvor = null;
+		private string[] MensagemInicial = null;
+		private LouvorBLL lBLL = null;
+		public string DBPath;
 
 		private Image imgFav1;
 		private Image imgFav2;
 		private Image imgFav3;
 		private Image imgFav4;
 		private Image imgFav5;
-		// public clHarpaHino HinoEscolhido = null; // hino escolhido
+
 		
 		#region NEW AND PROPERTIES
 
@@ -31,21 +35,23 @@ namespace CamadaUI.Louvor
 
 			// define Origem and Images
 			DefineImageList();
+			DBPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjetorDB.mdb");
+			lBLL = new LouvorBLL(DBPath);
 
 			// get data
-			GetHinos();
+			GetLouvores();
 			lstListagem.DataSource = ListLouvor;
 			FormataListagem();
-
-			// define height size from Screen Height
-			//int WorkAreaH = Screen.PrimaryScreen.WorkingArea.Size.Height;
-			//Size = new Size(Size.Width, (int)Math.Ceiling(WorkAreaH * (0.9)) );
-			
 		}
 
 		private void frmLouvorEscolher_Shown(object sender, EventArgs e)
 		{
 			txtProcura.Focus();
+			if (MensagemInicial != null)
+			{
+				AbrirDialog(MensagemInicial[0], MensagemInicial[1], 
+					DialogType.OK, DialogIcon.Exclamation);
+			}
 		}
 
 		private void DefineImageList()
@@ -63,78 +69,28 @@ namespace CamadaUI.Louvor
 
 		// GET LIST HINOS
 		// =============================================================================
-		private void GetHinos()
+		private void GetLouvores()
 		{
-
-			string path = @"E:\Desktop\Igreja Membresia\Projetor\Projeção Louvores\Louvores Igreja";
-
-			ListLouvor = DisplayDriveDirectories(path);
-
-			/* try
+			 try
 			{
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
 
 				// Get
-				HarpaBLL hBLL = new HarpaBLL(_formOrigem.DBPath);
-
-				if (txtProcura.Text.IsNumeric())
-				{
-
-				}
-
-				ListLouvor = hBLL.GetHinosList();
+				ListLouvor = lBLL.GetLouvorList();
 
 			}
 			catch (Exception ex)
 			{
-				AbrirDialog("Uma exceção ocorreu ao Obter a lista de Hinos..." + "\n" +
+				AbrirDialog("Uma exceção ocorreu ao Obter a lista de Louvores..." + "\n" +
 							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
 			}
 			finally
 			{
 				// --- Ampulheta OFF
 				Cursor.Current = Cursors.Default;
-			} */
-		}
-
-		public List<clLouvor> DisplayDriveDirectories(string drivePath)
-		{
-			List<clLouvor> list = new List<clLouvor>();
-
-			if (Directory.Exists(drivePath))
-			{
-				foreach (String dirPath in Directory.GetDirectories(drivePath))
-					DisplayDriveDirectories(dirPath);
-
-				DirectoryInfo dir = new DirectoryInfo(drivePath);
-
-				int numFiles = dir.GetFiles().Length;
-				int ID = 0;
-
-				foreach (FileInfo file in dir.GetFiles())
-				{
-					if(file.Extension == ".pps" || file.Extension == ".ppsx")
-					{
-						clLouvor louvor = new clLouvor(ID);
-						louvor.Titulo = file.Name;
-						louvor.ProjecaoPath = file.FullName;
-
-						ID += 1;
-						list.Add(louvor);
-					}
-				}
-
-				return list;
-
-				//Response.Output.WriteLine("<br>{0} : {1} files.", drivePath, numFiles);
-			}
-			else
-			{
-				return list;
 			}
 		}
-
 
 
 		#endregion
@@ -308,6 +264,8 @@ namespace CamadaUI.Louvor
 
 		#endregion
 
+		#region PROCURA TEXT
+
 		// PROCURAR HINO PELO TITULO: TEXT CHANGE
 		// =============================================================================
 		private void txtProcura_TextChanged(object sender, EventArgs e)
@@ -366,6 +324,93 @@ namespace CamadaUI.Louvor
 			{
 				return false;
 			}
+		}
+
+		#endregion
+
+		private void btnInserir_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				string path = @"E:\Desktop\Igreja Membresia\Projetor\Projeção Louvores\Louvores Igreja";
+
+				List<clLouvor> newListLouvor = GetFilesProjecao(path);
+				
+				foreach (clLouvor louvor in newListLouvor)
+				{
+					lBLL.InsertLouvor(louvor);
+				}
+
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Salvar Registros de Louvores..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+
+
+		}
+
+		public List<clLouvor> GetFilesProjecao(string drivePath)
+		{
+			List<clLouvor> list = new List<clLouvor>();
+
+			if (Directory.Exists(drivePath))
+			{
+				foreach (String dirPath in Directory.GetDirectories(drivePath))
+					GetFilesProjecao(dirPath);
+
+				DirectoryInfo dir = new DirectoryInfo(drivePath);
+
+				int numFiles = dir.GetFiles().Length;
+				int ID = 1;
+				bool avisoArquivo = true; // avisa se ext PPT ou PPTX
+
+				foreach (FileInfo file in dir.GetFiles())
+				{
+					if (file.Extension == ".pps" || file.Extension == ".ppsx")
+					{
+						clLouvor louvor = new clLouvor(ID);
+						int extL = file.Extension.Length;
+						int nameL = file.Name.Length;
+						louvor.Titulo = file.Name.Remove(nameL - extL);
+						louvor.ProjecaoPath = file.FullName;
+						louvor.IDLouvor = ID;
+						ID += 1;
+						list.Add(louvor);
+					}
+					else if ((file.Extension == ".ppt" || file.Extension == ".pptx") && avisoArquivo)
+					{
+						MensagemInicial = new string[2];
+						MensagemInicial[0] = "Existem arquivos 'PPT' ou 'PPTX' " +
+							"que podem ser convertidos em 'PPS' ou 'PPSX' " +
+							"nas pastas de pesquisa. Essas projeções serão desprezadas.";
+						MensagemInicial[1] = "Atenção";
+						avisoArquivo = false;
+					}
+				}
+
+				return list;
+
+				//Response.Output.WriteLine("<br>{0} : {1} files.", drivePath, numFiles);
+			}
+			else
+			{
+				return list;
+			}
+		}
+
+		private void btnMinimizer_Click(object sender, EventArgs e)
+		{
+			WindowState = FormWindowState.Minimized;
 		}
 	}
 }

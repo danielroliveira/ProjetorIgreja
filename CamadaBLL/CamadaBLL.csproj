@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HarpaBLL.cs" />
+    <Compile Include="LouvorBLL.cs" />
     <Compile Include="VersiculoBLL.cs" />
   </ItemGroup>
   <ItemGroup>

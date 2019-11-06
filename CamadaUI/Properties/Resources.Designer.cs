@@ -71,16 +71,6 @@ namespace CamadaUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] AwesomeShapeControl {
-            get {
-                object obj = ResourceManager.GetObject("AwesomeShapeControl", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap back {
@@ -231,16 +221,6 @@ namespace CamadaUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] GlassButton {
-            get {
-                object obj = ResourceManager.GetObject("GlassButton", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap icon_exclamation {
@@ -337,16 +317,6 @@ namespace CamadaUI.Properties {
             get {
                 object obj = ResourceManager.GetObject("Louvores", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] MBGlassButton {
-            get {
-                object obj = ResourceManager.GetObject("MBGlassButton", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         

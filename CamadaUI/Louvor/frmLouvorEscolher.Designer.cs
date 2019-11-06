@@ -38,6 +38,7 @@
 			this.clnNota = new ComponentOwl.BetterListView.BetterListViewColumnHeader();
 			this.btnEscolher = new System.Windows.Forms.Button();
 			this.btnMinimizer = new System.Windows.Forms.Button();
+			this.btnInserir = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.lstListagem)).BeginInit();
 			this.SuspendLayout();
@@ -183,11 +184,27 @@
 			this.btnMinimizer.TabIndex = 3;
 			this.btnMinimizer.TabStop = false;
 			this.btnMinimizer.UseVisualStyleBackColor = false;
+			this.btnMinimizer.Click += new System.EventHandler(this.btnMinimizer_Click);
+			// 
+			// btnInserir
+			// 
+			this.btnInserir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnInserir.Image = global::CamadaUI.Properties.Resources.accept;
+			this.btnInserir.Location = new System.Drawing.Point(524, 541);
+			this.btnInserir.Name = "btnInserir";
+			this.btnInserir.Size = new System.Drawing.Size(138, 45);
+			this.btnInserir.TabIndex = 6;
+			this.btnInserir.Text = "&Inserir";
+			this.btnInserir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnInserir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnInserir.UseVisualStyleBackColor = true;
+			this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
 			// 
 			// frmLouvorEscolher
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
 			this.ClientSize = new System.Drawing.Size(818, 593);
+			this.Controls.Add(this.btnInserir);
 			this.Controls.Add(this.btnEscolher);
 			this.Controls.Add(this.lstListagem);
 			this.Controls.Add(this.label1);
@@ -208,6 +225,7 @@
 			this.Controls.SetChildIndex(this.label1, 0);
 			this.Controls.SetChildIndex(this.lstListagem, 0);
 			this.Controls.SetChildIndex(this.btnEscolher, 0);
+			this.Controls.SetChildIndex(this.btnInserir, 0);
 			this.panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.lstListagem)).EndInit();
 			this.ResumeLayout(false);
@@ -226,5 +244,6 @@
 		private ComponentOwl.BetterListView.BetterListViewColumnHeader clnNota;
 		private System.Windows.Forms.Button btnEscolher;
 		internal System.Windows.Forms.Button btnMinimizer;
+		private System.Windows.Forms.Button btnInserir;
 	}
 }

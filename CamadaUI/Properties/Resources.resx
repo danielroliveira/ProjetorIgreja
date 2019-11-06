@@ -151,9 +151,6 @@
   <data name="Logo_FAES_Branco" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo FAES Branco PNG 201406.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AwesomeShapeControl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AwesomeShapeControl.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Last_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Last_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -190,17 +187,11 @@
   <data name="Fechar_24x24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Fechar 24x24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MBGlassButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\MBGlassButton.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Next_32px_disabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Next_32px_disabled.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="DropdownIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DropdownIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="GlassButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\GlassButton.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="Next_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Next_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

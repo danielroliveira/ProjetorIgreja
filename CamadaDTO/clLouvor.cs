@@ -79,7 +79,7 @@ namespace CamadaDTO
 
 		public override string ToString()
 		{
-			return LouvorFolder;
+			return Titulo;
 		}
 
 		public bool RegistroAlterado
@@ -96,25 +96,12 @@ namespace CamadaDTO
 		public int IDLouvor
 		{
 			get => myData.IDLouvor;
+			set => myData.IDLouvor = value;
 		}
 
 		// Property Titulo
 		//------------------------------------------------------
 		public string Titulo
-		{
-			get => myData.Titulo;
-			set
-			{
-				if (value != myData.Titulo)
-				{
-					Alterado?.Invoke();
-				}
-				myData.Titulo = value;
-			}
-		}
-
-		// LouvorFolder
-		public string LouvorFolder
 		{
 			get => myData.Titulo;
 			set
@@ -236,7 +223,63 @@ namespace CamadaDTO
 				myData.Tom = value;
 			}
 		}
-			   		 
+
+		// Property TomCifra
+		//------------------------------------------------------
+		public string TomCifra
+		{
+			get
+			{
+
+				string Cifra;
+
+				switch (Tom)
+				{
+					case 1:
+						Cifra = "A";
+						break;
+					case 2:
+						Cifra = "Bb";
+						break;
+					case 3:
+						Cifra = "B";
+						break;
+					case 4:
+						Cifra = "C";
+						break;
+					case 5:
+						Cifra = "C#";
+						break;
+					case 6:
+						Cifra = "D";
+						break;
+					case 7:
+						Cifra = "Eb";
+						break;
+					case 8:
+						Cifra = "E";
+						break;
+					case 9:
+						Cifra = "F";
+						break;
+					case 10:
+						Cifra = "F#";
+						break;
+					case 11:
+						Cifra = "G";
+						break;
+					case 12:
+						Cifra = "Ab";
+						break;
+					default:
+						Cifra = "A";
+						break;
+				}
+
+				return Cifra;
+			}
+		}
+
 		#endregion
 	}
 }
