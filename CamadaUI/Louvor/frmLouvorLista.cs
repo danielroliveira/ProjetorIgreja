@@ -334,10 +334,26 @@ namespace CamadaUI.Louvor
 		{
 			try
 			{
+				string path = @"E:\Desktop\Igreja Membresia\Projetor\Projeção Louvores\Louvores";
+				
+				using (FolderBrowserDialog FBDiag = new FolderBrowserDialog() {
+					Description = "Pasta das Projeções",
+					SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+				})
+				{
+					DialogResult result = FBDiag.ShowDialog();
+					if (result == DialogResult.OK)
+					{
+						path = FBDiag.SelectedPath;
+					}
+					else
+					{
+						return;
+					}
+				}
+
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
-
-				string path = @"E:\Desktop\Igreja Membresia\Projetor\Projeção Louvores\Louvores";
 
 				List<clLouvor> newListLouvor = GetFilesProjecao(path);
 
@@ -376,7 +392,7 @@ namespace CamadaUI.Louvor
 
 			if (Directory.Exists(drivePath))
 			{
-				foreach (String dirPath in Directory.GetDirectories(drivePath))
+				foreach (string dirPath in Directory.GetDirectories(drivePath))
 					GetFilesProjecao(dirPath);
 
 				DirectoryInfo dir = new DirectoryInfo(drivePath);

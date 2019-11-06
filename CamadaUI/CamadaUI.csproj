@@ -89,6 +89,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\frmConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\frmConfig.Designer.cs">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\frmConfigAvisos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\frmConfigAvisos.designer.cs">
+      <DependentUpon>frmConfigAvisos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\frmConfigGeral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\frmConfigGeral.Designer.cs">
+      <DependentUpon>frmConfigGeral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\frmConfigHarpa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\frmConfigHarpa.designer.cs">
+      <DependentUpon>frmConfigHarpa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\frmConfigLeitura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\frmConfigLeitura.designer.cs">
+      <DependentUpon>frmConfigLeitura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\frmConfigLouvor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\frmConfigLouvor.Designer.cs">
+      <DependentUpon>frmConfigLouvor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ctrlDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -156,6 +192,12 @@
     <Compile Include="Modals\frmMessage.Designer.cs">
       <DependentUpon>frmMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modals\frmModConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modals\frmModConfig.designer.cs">
+      <DependentUpon>frmModConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modals\frmModFinBorder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +213,24 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilidades.cs" />
+    <EmbeddedResource Include="Config\frmConfig.resx">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\frmConfigAvisos.resx">
+      <DependentUpon>frmConfigAvisos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\frmConfigGeral.resx">
+      <DependentUpon>frmConfigGeral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\frmConfigHarpa.resx">
+      <DependentUpon>frmConfigHarpa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\frmConfigLeitura.resx">
+      <DependentUpon>frmConfigLeitura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\frmConfigLouvor.resx">
+      <DependentUpon>frmConfigLouvor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Escritura\frmEscrituraEscolher.resx">
       <DependentUpon>frmEscrituraEscolher.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modals\frmMessage.resx">
       <DependentUpon>frmMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modals\frmModConfig.resx">
+      <DependentUpon>frmModConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modals\frmModFinBorder.resx">
       <DependentUpon>frmModFinBorder.cs</DependentUpon>
@@ -270,6 +333,8 @@
   <ItemGroup>
     <Content Include="Config.xml" />
     <Content Include="projetor.ico" />
+    <None Include="Resources\delete_24px.png" />
+    <None Include="Resources\add_24x24.png" />
     <None Include="Resources\accept.png" />
     <None Include="Resources\Favorito5.png" />
     <None Include="Resources\Favorito4.png" />
@@ -282,9 +347,6 @@
     <None Include="Resources\delete_page_24px.png" />
     <None Include="Resources\Fechar 24x24.png" />
     <None Include="Resources\back.png" />
-    <None Include="Resources\MBGlassButton.dll" />
-    <None Include="Resources\GlassButton.dll" />
-    <None Include="Resources\AwesomeShapeControl.dll" />
     <None Include="Resources\bibliaicon_peq.png" />
     <None Include="Resources\search_peq.png" />
     <None Include="Resources\Previous_32px_disabled.png" />

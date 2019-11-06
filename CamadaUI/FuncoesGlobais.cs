@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
@@ -9,6 +10,12 @@ namespace CamadaUI
 {
 	public static class FuncoesGlobais
 	{
+		// GET PATH OF DATABASE
+		//==============================================================================================
+		public static string DBPath() {
+			return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjetorDB.mdb");
+		}
+
 		// CHECK IF EXIST CONFIG
 		//==============================================================================================
 		public static bool VerificaConfigXML()

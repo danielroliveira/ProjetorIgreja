@@ -186,6 +186,7 @@
 			this.btnConfig.TabIndex = 11;
 			this.btnConfig.TabStop = false;
 			this.btnConfig.UseVisualStyleBackColor = false;
+			this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
 			// 
 			// picFundo
 			// 
@@ -208,8 +209,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
 			this.ClientSize = new System.Drawing.Size(1110, 732);
-			this.Controls.Add(this.picFundo);
 			this.Controls.Add(this.pnlTop);
+			this.Controls.Add(this.picFundo);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -222,6 +223,7 @@
 			this.Text = "Principal";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Load += new System.EventHandler(this.frmPrincipal_Load);
+			this.MdiChildActivate += new System.EventHandler(this.frmPrincipal_MdiChildActivate);
 			this.mnuPrincipal.ResumeLayout(false);
 			this.mnuPrincipal.PerformLayout();
 			this.pnlTop.ResumeLayout(false);

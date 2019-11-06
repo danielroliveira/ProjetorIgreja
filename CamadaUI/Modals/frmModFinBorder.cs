@@ -39,7 +39,8 @@ namespace CamadaUI.Modals
 			Px = Cursor.Position.X - Left;
 
 			if (IsMdiChild)
-				Py = Cursor.Position.Y - Top + Screen.PrimaryScreen.WorkingArea.Height - Parent.ClientSize.Height + 3;
+				Py = Cursor.Position.Y - Top + 98;
+				//Py = Cursor.Position.Y - Top + Screen.PrimaryScreen.WorkingArea.Height - Parent.ClientSize.Height + 3;
 			else
 			{
 				Py = Cursor.Position.Y - Top;

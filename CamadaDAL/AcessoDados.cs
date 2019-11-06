@@ -14,11 +14,14 @@ namespace CamadaDAL
         private OleDbCommand cmd;
         private OleDbTransaction trans;
         private readonly List<OleDbParameter> ParamList = new List<OleDbParameter>();
-        
-        // NEW CONSTRUCTOR
-        public AcessoDados(string dataBasePath)
+		private string _dataBasePath;
+
+		// NEW CONSTRUCTOR
+		public AcessoDados(string dataBasePath)
         {
-            if (!Connect(dataBasePath))
+			_dataBasePath = dataBasePath; // backup DATABASE path
+
+			if (!Connect(dataBasePath))
             {
                 return;
             }
@@ -95,12 +98,16 @@ namespace CamadaDAL
         {
             try
             {
-                if (conn.State == ConnectionState.Closed)
-                {
-                    throw new Exception("Sem conexão ao Database...");
-                }
+				if (conn.State == ConnectionState.Closed)
+				{
+					// try connect
+					Connect(_dataBasePath);
+					// Check Again
+					if (conn.State == ConnectionState.Closed)
+						throw new Exception("Sem conexão ao Database...");
+				}
 
-                cmd = new OleDbConnection().CreateCommand();
+				cmd = new OleDbConnection().CreateCommand();
                 cmd.Connection = conn;
                 cmd.CommandType = commandType;
                 cmd.CommandText = nomeStoredProcedureOuTextoSQL;
@@ -131,10 +138,14 @@ namespace CamadaDAL
             {
                 if (conn.State == ConnectionState.Closed)
                 {
-                    throw new Exception("Sem conexão ao Database...");
-                }
+					// try connect
+					Connect(_dataBasePath);
+					// Check Again
+					if (conn.State == ConnectionState.Closed)
+						throw new Exception("Sem conexão ao Database...");
+				}
 
-                cmd = new OleDbConnection().CreateCommand();
+				cmd = new OleDbConnection().CreateCommand();
                 cmd.Connection = conn;
                 cmd.CommandType = commandType;
                 cmd.CommandText = nomeStoredProcedureOuTextoSQL;

@@ -226,6 +226,7 @@ namespace CamadaUI.Harpa
 
 				// define databind
 				bindEstrofe.DataSource = estrofeList;
+				bindEstrofe.Position = 0;
 
 				// fill panel Estrofes Buttons
 				PainelItensInserir();

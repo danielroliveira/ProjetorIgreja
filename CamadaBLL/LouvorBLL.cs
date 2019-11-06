@@ -17,7 +17,7 @@ namespace CamadaBLL
 			_dataBasePath = dataBasePath;
 		}
 
-		#region HINO
+		#region LOUVOR
 
 		// GET LOUVOR LIST
 		// =============================================================================
@@ -155,5 +155,94 @@ namespace CamadaBLL
 		}
 
 		#endregion
+
+		#region FOLDERS
+		
+		// GET LOUVOR FOLDERS LIST
+		// =============================================================================
+		public DataTable GetFoldersList()
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(_dataBasePath);
+				DataTable dt = new DataTable();
+
+				string query = "SELECT * FROM tblLouvoresFolders ORDER BY IDLouvorFolder";
+
+				return db.ExecutarConsulta(CommandType.Text, query);
+
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		// INSERT LOUVOR IN DB
+		// =============================================================================
+		public int InsertFolder(string folder)
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(_dataBasePath);
+				db.LimparParametros();
+				db.AdicionarParametros("@LouvorFolder", folder);
+
+				string query = "INSERT INTO tblLouvoresFolders (LouvorFolder) " +
+					"VALUES (@LouvorFolder);";
+
+				db.ExecutarManipulacao(CommandType.Text, query);
+
+				db.LimparParametros();
+				query = "SELECT Max(IDLouvorFolder) AS Maximo FROM tblLouvoresFolders";
+				DataTable dt = db.ExecutarConsulta(CommandType.Text, query);
+
+				if (dt.Rows.Count == 0)
+					return 0;
+
+				return (int)dt.Rows[0][0];
+
+			}
+			catch (System.Data.OleDb.OleDbException ex)
+			{
+				if (ex.ErrorCode == -2147467259)
+				{
+					//return;
+					throw new AppException("Essa pasta já foi inserida...");
+				}
+				else
+				{
+					throw ex;
+				}
+
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		// DELETE FOLDER BY ID
+		// =============================================================================
+		public void DeleteFolderByID(int IDLouvorFolder)
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(_dataBasePath);
+
+				db.LimparParametros();
+				db.AdicionarParametros("@IDHistorico", IDLouvorFolder);
+				string query = "DELETE IDLouvorFolder FROM tblLouvoresFolders WHERE IDLouvorFolder = @IDLouvorFolder";
+
+				db.ExecutarManipulacao(CommandType.Text, query);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		#endregion
+
 	}
 }

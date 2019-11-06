@@ -40,7 +40,7 @@ namespace CamadaUI.Escritura
 			lblLivro.BackColor = pnlInfo.BackColor;
 
 			// GET DADOS
-			DBPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjetorDB.mdb");
+			DBPath = FuncoesGlobais.DBPath();
 			vBLL = new VersiculoBLL(DBPath);
 			GetDadosInicial();
 

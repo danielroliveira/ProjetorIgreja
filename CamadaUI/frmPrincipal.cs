@@ -83,5 +83,49 @@ namespace CamadaUI
 				Cursor.Current = Cursors.Default;
 			}
 		}
+
+		private void btnConfig_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				Form f = new Config.frmConfig(this);
+				MenuEnabled(false);
+				f.MdiParent = this;
+				f.Show();
+
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Abrir o formulário de Configuração..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+		}
+
+
+		private void frmPrincipal_MdiChildActivate(object sender, EventArgs e)
+		{
+			if(MdiChildren.Length > 0)
+			{
+				picFundo.Visible = false;
+			}
+			else
+			{
+				picFundo.Visible = true;
+			}
+		}
+
+		public void MenuEnabled(bool IsEnabled)
+		{
+			mnuPrincipal.Enabled = IsEnabled;
+			btnConfig.Enabled = IsEnabled;
+		}
 	}
 }
