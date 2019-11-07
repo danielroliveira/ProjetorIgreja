@@ -160,7 +160,7 @@ namespace CamadaBLL
 		
 		// GET LOUVOR FOLDERS LIST
 		// =============================================================================
-		public DataTable GetFoldersList()
+		public DataTable GetFoldersDT()
 		{
 			try
 			{
@@ -244,5 +244,137 @@ namespace CamadaBLL
 
 		#endregion
 
+		#region CATEGORIAS
+
+		// GET LOUVOR CATEGORIAS DT
+		// =============================================================================
+		public DataTable GetLouvorCategoriaDT()
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(_dataBasePath);
+				DataTable dt = new DataTable();
+
+				string query = "SELECT * FROM tblLouvoresCategorias ORDER BY IDCategoria";
+
+				return db.ExecutarConsulta(CommandType.Text, query);
+
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		// INSERT CATEGORIA IN DB
+		// =============================================================================
+		public int InsertCategoria(string categoria)
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(_dataBasePath);
+
+				// GET NEW ID
+				db.LimparParametros();
+				string query = "SELECT Max(IDCategoria) AS Maximo FROM tblLouvoresCategorias";
+				DataTable dt = db.ExecutarConsulta(CommandType.Text, query);
+
+				int maxID = 0;
+
+				if (dt.Rows.Count == 0)
+					maxID = 0;
+				else
+					maxID = (short)dt.Rows[0][0];
+
+				if(maxID == 255) // check if not is a byte number
+				{
+					throw new AppException("O número máximo de categorias possíveis chegou ao limite...");
+				}
+
+				maxID += 1; // aumenta uma unidade no IDCategoria
+								
+				db.LimparParametros();
+				db.AdicionarParametros("@IDCategoria", maxID);
+				db.AdicionarParametros("@Categoria", categoria);
+
+				query = "INSERT INTO tblLouvoresCategorias (IDCategoria, Categoria) " +
+					"VALUES (@IDCategoria, @Categoria);";
+
+				db.ExecutarManipulacao(CommandType.Text, query);
+
+				return maxID;
+
+			}
+			catch (System.Data.OleDb.OleDbException ex)
+			{
+				if (ex.ErrorCode == -2147467259)
+				{
+					//return;
+					throw new AppException("Essa categoria já foi inserida...");
+				}
+				else
+				{
+					throw ex;
+				}
+
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		// UPDATE CATEGORIA BY ID AND CATEGORIA
+		// =============================================================================
+		public void UpdateCategoria(int IDCategoria, string Categoria)
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(_dataBasePath);
+
+				// UPDATE category
+				db.LimparParametros();
+				db.AdicionarParametros("@Categoria", Categoria);
+				db.AdicionarParametros("@IDCategoria", IDCategoria);
+
+				string query = "UPDATE tblLouvoresCategorias SET Categoria = @Categoria WHERE IDCategoria = @IDCategoria";
+
+				db.ExecutarManipulacao(CommandType.Text, query);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		// DELETE CATEGORIA BY ID
+		// =============================================================================
+		public void DeleteCategoriaByID(int IDCategoria)
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(_dataBasePath);
+
+				// Remove all louvor that it have this category
+				db.LimparParametros();
+				db.AdicionarParametros("@IDCategoria", IDCategoria);
+				string query = "UPDATE tblLouvores SET IDCategoria = NULL WHERE IDCategoria = @IDCategoria;";
+
+				db.ExecutarManipulacao(CommandType.Text, query);
+
+				// delete category
+				db.LimparParametros();
+				db.AdicionarParametros("@IDCategoria", IDCategoria);
+				query = "DELETE IDCategoria FROM tblLouvoresCategorias WHERE IDCategoria = @IDCategoria";
+
+				db.ExecutarManipulacao(CommandType.Text, query);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		#endregion
 	}
 }

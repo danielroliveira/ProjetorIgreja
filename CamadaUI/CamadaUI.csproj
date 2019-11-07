@@ -333,6 +333,8 @@
   <ItemGroup>
     <Content Include="Config.xml" />
     <Content Include="projetor.ico" />
+    <None Include="Resources\salvar_24.png" />
+    <None Include="Resources\refresh_24.png" />
     <None Include="Resources\delete_24px.png" />
     <None Include="Resources\add_24x24.png" />
     <None Include="Resources\accept.png" />

@@ -13,9 +13,9 @@ namespace CamadaUI.Modals
 		public frmModConfig()
 		{
 			InitializeComponent();
-			Handler_MouseMove();
-			Handler_MouseUp();
-			Handler_MouseDown();
+			//Handler_MouseMove();
+			//Handler_MouseUp();
+			//Handler_MouseDown();
 		}
 
 		// MOVER O FORMULÁRIO SEM BORDA
