@@ -118,6 +118,12 @@ namespace CamadaUI.Louvor
 			clnNota.AllowResize = false;
 			clnNota.AlignHorizontalImage = BetterListViewImageAlignmentHorizontal.BeforeTextCenter;
 
+			clnTomDesc.DisplayMember = "TomCifra";
+			clnTomDesc.ValueMember = "Tom";
+			clnTomDesc.Width = 100;
+			clnTomDesc.AllowResize = false;
+			
+
 			lstListagem.SearchSettings = new BetterListViewSearchSettings(BetterListViewSearchMode.PrefixOrSubstring,
 																		  BetterListViewSearchOptions.UpdateSearchHighlight,
 																		  new int[] { 0, 1, 2 });
@@ -150,6 +156,9 @@ namespace CamadaUI.Louvor
 
 		private void lstListagem_DrawItem(object sender, BetterListViewDrawItemEventArgs eventArgs)
 		{
+
+			eventArgs.Item.SubItems[3].AlignHorizontal = TextAlignmentHorizontal.Center;
+
 			eventArgs.Item.Text = $"{eventArgs.Item.Value:000}";
 
 			int Cl = Convert.ToInt32(eventArgs.Item.SubItems[2].Value);
@@ -330,114 +339,45 @@ namespace CamadaUI.Louvor
 
 		#endregion
 
-		private void btnInserir_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				string path = @"E:\Desktop\Igreja Membresia\Projetor\Projeção Louvores\Louvores";
-				
-				using (FolderBrowserDialog FBDiag = new FolderBrowserDialog() {
-					Description = "Pasta das Projeções",
-					SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
-				})
-				{
-					DialogResult result = FBDiag.ShowDialog();
-					if (result == DialogResult.OK)
-					{
-						path = FBDiag.SelectedPath;
-					}
-					else
-					{
-						return;
-					}
-				}
-
-				// --- Ampulheta ON
-				Cursor.Current = Cursors.WaitCursor;
-
-				List<clLouvor> newListLouvor = GetFilesProjecao(path);
-
-				foreach (clLouvor louvor in newListLouvor)
-				{
-					try
-					{
-						lBLL.InsertLouvor(louvor);
-					}
-					catch (AppException ex)
-					{
-						AbrirDialog(ex.Message, "Duplicado");
-					}
-				}
-
-				GetLouvores();
-				
-			}
-			catch (Exception ex)
-			{
-				AbrirDialog("Uma exceção ocorreu ao Salvar Registros de Louvores..." + "\n" +
-							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
-			}
-			finally
-			{
-				// --- Ampulheta OFF
-				Cursor.Current = Cursors.Default;
-			}
 
 
-		}
-
-		public List<clLouvor> GetFilesProjecao(string drivePath)
-		{
-			List<clLouvor> list = new List<clLouvor>();
-
-			if (Directory.Exists(drivePath))
-			{
-				foreach (string dirPath in Directory.GetDirectories(drivePath))
-					GetFilesProjecao(dirPath);
-
-				DirectoryInfo dir = new DirectoryInfo(drivePath);
-
-				int numFiles = dir.GetFiles().Length;
-				int ID = 1;
-				bool avisoArquivo = true; // avisa se ext PPT ou PPTX
-
-				foreach (FileInfo file in dir.GetFiles())
-				{
-					if (file.Extension == ".pps" || file.Extension == ".ppsx")
-					{
-						clLouvor louvor = new clLouvor(ID);
-						int extL = file.Extension.Length;
-						int nameL = file.Name.Length;
-						louvor.Titulo = file.Name.Remove(nameL - extL);
-						louvor.ProjecaoPath = file.FullName;
-						louvor.IDLouvor = ID;
-						ID += 1;
-						list.Add(louvor);
-					}
-					else if ((file.Extension == ".ppt" || file.Extension == ".pptx") && avisoArquivo)
-					{
-						MensagemInicial = new string[2];
-						MensagemInicial[0] = "Existem arquivos 'PPT' ou 'PPTX' " +
-							"que podem ser convertidos em 'PPS' ou 'PPSX' " +
-							"nas pastas de pesquisa. Essas projeções serão desprezadas.";
-						MensagemInicial[1] = "Atenção";
-						avisoArquivo = false;
-					}
-				}
-
-				return list;
-
-				//Response.Output.WriteLine("<br>{0} : {1} files.", drivePath, numFiles);
-			}
-			else
-			{
-				return list;
-			}
-		}
 
 		private void btnMinimizer_Click(object sender, EventArgs e)
 		{
 			WindowState = FormWindowState.Minimized;
+		}
+
+		#region MENU LISTAGEM
+
+
+		#endregion
+
+		private void miEditarLouvor_Click(object sender, EventArgs e)
+		{
+			if(lstListagem.SelectedItems.Count == 0)
+			{
+				return;
+			}
+
+			// get selected Louvor
+			int selID = (int)lstListagem.SelectedItems[0].Value;
+			clLouvor selLouvor = ListLouvor.Find(l => l.IDLouvor == selID);
+
+			// open frmLouvorEditar
+			try
+			{
+				using (frmLouvorEditar frm = new frmLouvorEditar(selLouvor, this) )
+				{
+					frm.ShowDialog();
+				}
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao abrir o formulário de Edição..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+
+
 		}
 	}
 }

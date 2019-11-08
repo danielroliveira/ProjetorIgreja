@@ -30,15 +30,15 @@
         {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
 			this.mnuPrincipal = new System.Windows.Forms.ToolStrip();
-			this.btnSair = new System.Windows.Forms.ToolStripButton();
-			this.btnBiblia = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.btnLouvores = new System.Windows.Forms.ToolStripButton();
-			this.btnHarpa = new System.Windows.Forms.ToolStripButton();
 			this.pnlTop = new System.Windows.Forms.Panel();
 			this.btnClose = new System.Windows.Forms.Button();
 			this.btnMinimizer = new System.Windows.Forms.Button();
 			this.btnConfig = new System.Windows.Forms.Button();
+			this.btnSair = new System.Windows.Forms.ToolStripButton();
+			this.btnBiblia = new System.Windows.Forms.ToolStripButton();
+			this.btnLouvores = new System.Windows.Forms.ToolStripButton();
+			this.btnHarpa = new System.Windows.Forms.ToolStripButton();
 			this.picFundo = new System.Windows.Forms.PictureBox();
 			this.mnuPrincipal.SuspendLayout();
 			this.pnlTop.SuspendLayout();
@@ -61,62 +61,10 @@
 			this.mnuPrincipal.TabIndex = 0;
 			this.mnuPrincipal.Text = "toolStrip1";
 			// 
-			// btnSair
-			// 
-			this.btnSair.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-			this.btnSair.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSair.Image = global::CamadaUI.Properties.Resources.sair_32;
-			this.btnSair.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-			this.btnSair.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btnSair.Margin = new System.Windows.Forms.Padding(5);
-			this.btnSair.Name = "btnSair";
-			this.btnSair.Padding = new System.Windows.Forms.Padding(5);
-			this.btnSair.Size = new System.Drawing.Size(85, 46);
-			this.btnSair.Text = "&Sair";
-			this.btnSair.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnSair.ToolTipText = "Sair do Aplicativo";
-			this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
-			// 
-			// btnBiblia
-			// 
-			this.btnBiblia.Image = global::CamadaUI.Properties.Resources.biblia_32;
-			this.btnBiblia.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-			this.btnBiblia.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btnBiblia.Margin = new System.Windows.Forms.Padding(5);
-			this.btnBiblia.Name = "btnBiblia";
-			this.btnBiblia.Padding = new System.Windows.Forms.Padding(5);
-			this.btnBiblia.Size = new System.Drawing.Size(229, 46);
-			this.btnBiblia.Text = "Leitura Bíblica";
-			this.btnBiblia.Click += new System.EventHandler(this.btnBiblia_Click);
-			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 56);
-			// 
-			// btnLouvores
-			// 
-			this.btnLouvores.Image = global::CamadaUI.Properties.Resources.Louvores;
-			this.btnLouvores.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-			this.btnLouvores.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btnLouvores.Margin = new System.Windows.Forms.Padding(5);
-			this.btnLouvores.Name = "btnLouvores";
-			this.btnLouvores.Padding = new System.Windows.Forms.Padding(5);
-			this.btnLouvores.Size = new System.Drawing.Size(144, 46);
-			this.btnLouvores.Text = "Louvores";
-			this.btnLouvores.Click += new System.EventHandler(this.btnLouvores_Click);
-			// 
-			// btnHarpa
-			// 
-			this.btnHarpa.Image = global::CamadaUI.Properties.Resources.Louvores;
-			this.btnHarpa.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-			this.btnHarpa.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btnHarpa.Margin = new System.Windows.Forms.Padding(5);
-			this.btnHarpa.Name = "btnHarpa";
-			this.btnHarpa.Padding = new System.Windows.Forms.Padding(5);
-			this.btnHarpa.Size = new System.Drawing.Size(173, 46);
-			this.btnHarpa.Text = "Harpa Cristã";
-			this.btnHarpa.Click += new System.EventHandler(this.btnHarpa_Click);
 			// 
 			// pnlTop
 			// 
@@ -187,6 +135,58 @@
 			this.btnConfig.TabStop = false;
 			this.btnConfig.UseVisualStyleBackColor = false;
 			this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
+			// 
+			// btnSair
+			// 
+			this.btnSair.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+			this.btnSair.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnSair.Image = global::CamadaUI.Properties.Resources.sair_32;
+			this.btnSair.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.btnSair.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btnSair.Margin = new System.Windows.Forms.Padding(5);
+			this.btnSair.Name = "btnSair";
+			this.btnSair.Padding = new System.Windows.Forms.Padding(5);
+			this.btnSair.Size = new System.Drawing.Size(85, 46);
+			this.btnSair.Text = "&Sair";
+			this.btnSair.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnSair.ToolTipText = "Sair do Aplicativo";
+			this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
+			// 
+			// btnBiblia
+			// 
+			this.btnBiblia.Image = global::CamadaUI.Properties.Resources.biblia_32;
+			this.btnBiblia.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.btnBiblia.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btnBiblia.Margin = new System.Windows.Forms.Padding(5);
+			this.btnBiblia.Name = "btnBiblia";
+			this.btnBiblia.Padding = new System.Windows.Forms.Padding(5);
+			this.btnBiblia.Size = new System.Drawing.Size(229, 46);
+			this.btnBiblia.Text = "Leitura Bíblica";
+			this.btnBiblia.Click += new System.EventHandler(this.btnBiblia_Click);
+			// 
+			// btnLouvores
+			// 
+			this.btnLouvores.Image = global::CamadaUI.Properties.Resources.NotasColor_32;
+			this.btnLouvores.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.btnLouvores.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btnLouvores.Margin = new System.Windows.Forms.Padding(5);
+			this.btnLouvores.Name = "btnLouvores";
+			this.btnLouvores.Padding = new System.Windows.Forms.Padding(5);
+			this.btnLouvores.Size = new System.Drawing.Size(127, 46);
+			this.btnLouvores.Text = "Louvores";
+			this.btnLouvores.Click += new System.EventHandler(this.btnLouvores_Click);
+			// 
+			// btnHarpa
+			// 
+			this.btnHarpa.Image = global::CamadaUI.Properties.Resources.NotasColor_32;
+			this.btnHarpa.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.btnHarpa.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btnHarpa.Margin = new System.Windows.Forms.Padding(5);
+			this.btnHarpa.Name = "btnHarpa";
+			this.btnHarpa.Padding = new System.Windows.Forms.Padding(5);
+			this.btnHarpa.Size = new System.Drawing.Size(156, 46);
+			this.btnHarpa.Text = "Harpa Cristã";
+			this.btnHarpa.Click += new System.EventHandler(this.btnHarpa_Click);
 			// 
 			// picFundo
 			// 

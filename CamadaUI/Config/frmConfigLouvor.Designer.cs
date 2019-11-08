@@ -42,12 +42,21 @@
 			this.btnRemoverFolder = new System.Windows.Forms.Button();
 			this.pnlPastas = new System.Windows.Forms.Panel();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.btnSalvar = new System.Windows.Forms.Button();
+			this.btnFechar = new System.Windows.Forms.Button();
+			this.pgbLouvores = new System.Windows.Forms.ProgressBar();
+			this.btnPastaBackup = new System.Windows.Forms.Button();
+			this.btnBackupDB = new System.Windows.Forms.Button();
+			this.btnBackupProjecoes = new System.Windows.Forms.Button();
+			this.lblPastaBackup = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.label4 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.lstPastas)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.lstCategorias)).BeginInit();
 			this.pnlPastas.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.panel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lblTitulo
@@ -81,7 +90,7 @@
 			this.lstPastas.HideSelectionMode = ComponentOwl.BetterListView.BetterListViewHideSelectionMode.KeepSelection;
 			this.lstPastas.Location = new System.Drawing.Point(15, 41);
 			this.lstPastas.Name = "lstPastas";
-			this.lstPastas.Size = new System.Drawing.Size(338, 305);
+			this.lstPastas.Size = new System.Drawing.Size(685, 89);
 			this.lstPastas.TabIndex = 1;
 			// 
 			// clnFolder
@@ -91,7 +100,7 @@
 			this.clnFolder.Name = "clnFolder";
 			this.clnFolder.Text = "Pastas de Pesquisa";
 			this.clnFolder.ValueMember = "IDLouvorFolder";
-			this.clnFolder.Width = 300;
+			this.clnFolder.Width = 650;
 			// 
 			// label1
 			// 
@@ -105,16 +114,15 @@
 			// 
 			// btnInserirFolder
 			// 
-			this.btnInserirFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnInserirFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.btnInserirFolder.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
 			this.btnInserirFolder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow;
 			this.btnInserirFolder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
 			this.btnInserirFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnInserirFolder.Image = global::CamadaUI.Properties.Resources.add_24x24;
-			this.btnInserirFolder.Location = new System.Drawing.Point(15, 357);
+			this.btnInserirFolder.Location = new System.Drawing.Point(15, 141);
 			this.btnInserirFolder.Name = "btnInserirFolder";
-			this.btnInserirFolder.Size = new System.Drawing.Size(164, 36);
+			this.btnInserirFolder.Size = new System.Drawing.Size(150, 36);
 			this.btnInserirFolder.TabIndex = 3;
 			this.btnInserirFolder.Text = "Inserir Pasta";
 			this.btnInserirFolder.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -131,7 +139,7 @@
 			this.btnRemoverCategoria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
 			this.btnRemoverCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnRemoverCategoria.Image = global::CamadaUI.Properties.Resources.delete_24px;
-			this.btnRemoverCategoria.Location = new System.Drawing.Point(167, 357);
+			this.btnRemoverCategoria.Location = new System.Drawing.Point(167, 228);
 			this.btnRemoverCategoria.Name = "btnRemoverCategoria";
 			this.btnRemoverCategoria.Size = new System.Drawing.Size(140, 36);
 			this.btnRemoverCategoria.TabIndex = 3;
@@ -144,33 +152,34 @@
 			// btnPesquisaLouvores
 			// 
 			this.btnPesquisaLouvores.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnPesquisaLouvores.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
+			this.btnPesquisaLouvores.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
 			this.btnPesquisaLouvores.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow;
 			this.btnPesquisaLouvores.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
 			this.btnPesquisaLouvores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPesquisaLouvores.Image = global::CamadaUI.Properties.Resources.refresh_24;
 			this.btnPesquisaLouvores.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.btnPesquisaLouvores.Location = new System.Drawing.Point(23, 518);
+			this.btnPesquisaLouvores.Location = new System.Drawing.Point(327, 141);
 			this.btnPesquisaLouvores.Name = "btnPesquisaLouvores";
-			this.btnPesquisaLouvores.Size = new System.Drawing.Size(217, 36);
+			this.btnPesquisaLouvores.Size = new System.Drawing.Size(179, 36);
 			this.btnPesquisaLouvores.TabIndex = 3;
 			this.btnPesquisaLouvores.Text = "Pesquisar Louvores";
 			this.btnPesquisaLouvores.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnPesquisaLouvores.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnPesquisaLouvores.UseVisualStyleBackColor = true;
+			this.btnPesquisaLouvores.Click += new System.EventHandler(this.btnPesquisaLouvores_Click);
 			// 
 			// button1
 			// 
 			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.button1.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
+			this.button1.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
 			this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow;
 			this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
 			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.button1.Image = global::CamadaUI.Properties.Resources.refresh_24;
 			this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-			this.button1.Location = new System.Drawing.Point(246, 518);
+			this.button1.Location = new System.Drawing.Point(512, 141);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(217, 36);
+			this.button1.Size = new System.Drawing.Size(179, 36);
 			this.button1.TabIndex = 3;
 			this.button1.Text = "Verificar Arquivos";
 			this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -189,7 +198,7 @@
 			this.lstCategorias.LabelEditModeItems = ComponentOwl.BetterListView.BetterListViewLabelEditMode.Text;
 			this.lstCategorias.Location = new System.Drawing.Point(14, 41);
 			this.lstCategorias.Name = "lstCategorias";
-			this.lstCategorias.Size = new System.Drawing.Size(293, 305);
+			this.lstCategorias.Size = new System.Drawing.Size(293, 176);
 			this.lstCategorias.TabIndex = 1;
 			this.lstCategorias.AfterLabelEdit += new ComponentOwl.BetterListView.BetterListViewLabelEditEventHandler(this.lstCategorias_AfterLabelEdit);
 			this.lstCategorias.BeforeLabelEdit += new ComponentOwl.BetterListView.BetterListViewLabelEditCancelEventHandler(this.lstCategorias_BeforeLabelEdit);
@@ -222,7 +231,7 @@
 			this.btnInserirCategoria.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
 			this.btnInserirCategoria.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnInserirCategoria.Image = global::CamadaUI.Properties.Resources.add_24x24;
-			this.btnInserirCategoria.Location = new System.Drawing.Point(14, 357);
+			this.btnInserirCategoria.Location = new System.Drawing.Point(14, 228);
 			this.btnInserirCategoria.Name = "btnInserirCategoria";
 			this.btnInserirCategoria.Size = new System.Drawing.Size(140, 36);
 			this.btnInserirCategoria.TabIndex = 3;
@@ -234,16 +243,15 @@
 			// 
 			// btnRemoverFolder
 			// 
-			this.btnRemoverFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnRemoverFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnRemoverFolder.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
 			this.btnRemoverFolder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow;
 			this.btnRemoverFolder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
 			this.btnRemoverFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnRemoverFolder.Image = global::CamadaUI.Properties.Resources.delete_24px;
-			this.btnRemoverFolder.Location = new System.Drawing.Point(189, 357);
+			this.btnRemoverFolder.Location = new System.Drawing.Point(171, 141);
 			this.btnRemoverFolder.Name = "btnRemoverFolder";
-			this.btnRemoverFolder.Size = new System.Drawing.Size(164, 36);
+			this.btnRemoverFolder.Size = new System.Drawing.Size(150, 36);
 			this.btnRemoverFolder.TabIndex = 3;
 			this.btnRemoverFolder.Text = "Remover Pasta";
 			this.btnRemoverFolder.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -258,9 +266,11 @@
 			this.pnlPastas.Controls.Add(this.btnInserirFolder);
 			this.pnlPastas.Controls.Add(this.label1);
 			this.pnlPastas.Controls.Add(this.lstPastas);
+			this.pnlPastas.Controls.Add(this.btnPesquisaLouvores);
+			this.pnlPastas.Controls.Add(this.button1);
 			this.pnlPastas.Location = new System.Drawing.Point(14, 45);
 			this.pnlPastas.Name = "pnlPastas";
-			this.pnlPastas.Size = new System.Drawing.Size(369, 404);
+			this.pnlPastas.Size = new System.Drawing.Size(716, 188);
 			this.pnlPastas.TabIndex = 4;
 			// 
 			// panel2
@@ -270,45 +280,155 @@
 			this.panel2.Controls.Add(this.btnInserirCategoria);
 			this.panel2.Controls.Add(this.label2);
 			this.panel2.Controls.Add(this.lstCategorias);
-			this.panel2.Location = new System.Drawing.Point(409, 45);
+			this.panel2.Location = new System.Drawing.Point(14, 250);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(321, 404);
+			this.panel2.Size = new System.Drawing.Size(321, 275);
 			this.panel2.TabIndex = 5;
 			// 
-			// btnSalvar
+			// btnFechar
 			// 
-			this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			this.btnFechar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnSalvar.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-			this.btnSalvar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow;
-			this.btnSalvar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
-			this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSalvar.Image = global::CamadaUI.Properties.Resources.salvar_24;
-			this.btnSalvar.Location = new System.Drawing.Point(590, 518);
-			this.btnSalvar.Name = "btnSalvar";
-			this.btnSalvar.Size = new System.Drawing.Size(140, 36);
-			this.btnSalvar.TabIndex = 3;
-			this.btnSalvar.Text = "&Salvar";
-			this.btnSalvar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnSalvar.UseVisualStyleBackColor = true;
+			this.btnFechar.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+			this.btnFechar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow;
+			this.btnFechar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+			this.btnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnFechar.Image = global::CamadaUI.Properties.Resources.Fechar_24x24;
+			this.btnFechar.Location = new System.Drawing.Point(590, 532);
+			this.btnFechar.Name = "btnFechar";
+			this.btnFechar.Size = new System.Drawing.Size(140, 40);
+			this.btnFechar.TabIndex = 3;
+			this.btnFechar.Text = "&Fechar";
+			this.btnFechar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnFechar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnFechar.UseVisualStyleBackColor = true;
+			this.btnFechar.Click += new System.EventHandler(this.btnClose_Click);
+			// 
+			// pgbLouvores
+			// 
+			this.pgbLouvores.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.pgbLouvores.Location = new System.Drawing.Point(14, 537);
+			this.pgbLouvores.Name = "pgbLouvores";
+			this.pgbLouvores.Size = new System.Drawing.Size(477, 30);
+			this.pgbLouvores.TabIndex = 6;
+			this.pgbLouvores.Visible = false;
+			// 
+			// btnPastaBackup
+			// 
+			this.btnPastaBackup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnPastaBackup.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+			this.btnPastaBackup.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow;
+			this.btnPastaBackup.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+			this.btnPastaBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnPastaBackup.Image = global::CamadaUI.Properties.Resources.folder_accept;
+			this.btnPastaBackup.Location = new System.Drawing.Point(86, 126);
+			this.btnPastaBackup.Name = "btnPastaBackup";
+			this.btnPastaBackup.Size = new System.Drawing.Size(208, 36);
+			this.btnPastaBackup.TabIndex = 3;
+			this.btnPastaBackup.Text = "&Definir Pasta de Backup";
+			this.btnPastaBackup.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnPastaBackup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnPastaBackup.UseVisualStyleBackColor = true;
+			// 
+			// btnBackupDB
+			// 
+			this.btnBackupDB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnBackupDB.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+			this.btnBackupDB.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow;
+			this.btnBackupDB.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+			this.btnBackupDB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnBackupDB.Image = global::CamadaUI.Properties.Resources.backup_24;
+			this.btnBackupDB.Location = new System.Drawing.Point(86, 168);
+			this.btnBackupDB.Name = "btnBackupDB";
+			this.btnBackupDB.Size = new System.Drawing.Size(208, 36);
+			this.btnBackupDB.TabIndex = 3;
+			this.btnBackupDB.Text = " &Backup BD";
+			this.btnBackupDB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnBackupDB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnBackupDB.UseVisualStyleBackColor = true;
+			// 
+			// btnBackupProjecoes
+			// 
+			this.btnBackupProjecoes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnBackupProjecoes.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+			this.btnBackupProjecoes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightYellow;
+			this.btnBackupProjecoes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+			this.btnBackupProjecoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnBackupProjecoes.Image = global::CamadaUI.Properties.Resources.backup_24;
+			this.btnBackupProjecoes.Location = new System.Drawing.Point(86, 210);
+			this.btnBackupProjecoes.Name = "btnBackupProjecoes";
+			this.btnBackupProjecoes.Size = new System.Drawing.Size(208, 36);
+			this.btnBackupProjecoes.TabIndex = 3;
+			this.btnBackupProjecoes.Text = " Backup &Projeções";
+			this.btnBackupProjecoes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnBackupProjecoes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnBackupProjecoes.UseVisualStyleBackColor = true;
+			// 
+			// lblPastaBackup
+			// 
+			this.lblPastaBackup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(221)))), ((int)(((byte)(234)))));
+			this.lblPastaBackup.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblPastaBackup.Location = new System.Drawing.Point(357, 323);
+			this.lblPastaBackup.Name = "lblPastaBackup";
+			this.lblPastaBackup.Size = new System.Drawing.Size(367, 28);
+			this.lblPastaBackup.TabIndex = 7;
+			this.lblPastaBackup.Text = "c:\\Usuarios\\Documentos\\Projetor\\";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label3.Location = new System.Drawing.Point(10, 52);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(111, 18);
+			this.label3.TabIndex = 7;
+			this.label3.Text = "Pasta de Backup:";
+			// 
+			// panel3
+			// 
+			this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(221)))), ((int)(((byte)(234)))));
+			this.panel3.Controls.Add(this.label3);
+			this.panel3.Controls.Add(this.btnBackupProjecoes);
+			this.panel3.Controls.Add(this.label4);
+			this.panel3.Controls.Add(this.btnBackupDB);
+			this.panel3.Controls.Add(this.btnPastaBackup);
+			this.panel3.Location = new System.Drawing.Point(350, 250);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(379, 275);
+			this.panel3.TabIndex = 8;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label4.Location = new System.Drawing.Point(7, 10);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(212, 23);
+			this.label4.TabIndex = 2;
+			this.label4.Text = "Salvar Arquivos | Backup:";
 			// 
 			// frmConfigLouvor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
 			this.ClientSize = new System.Drawing.Size(744, 579);
-			this.Controls.Add(this.btnSalvar);
+			this.Controls.Add(this.lblPastaBackup);
+			this.Controls.Add(this.pgbLouvores);
+			this.Controls.Add(this.btnFechar);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.pnlPastas);
-			this.Controls.Add(this.button1);
-			this.Controls.Add(this.btnPesquisaLouvores);
+			this.Controls.Add(this.panel3);
 			this.Name = "frmConfigLouvor";
+			this.Controls.SetChildIndex(this.panel3, 0);
 			this.Controls.SetChildIndex(this.panel1, 0);
-			this.Controls.SetChildIndex(this.btnPesquisaLouvores, 0);
-			this.Controls.SetChildIndex(this.button1, 0);
 			this.Controls.SetChildIndex(this.pnlPastas, 0);
 			this.Controls.SetChildIndex(this.panel2, 0);
-			this.Controls.SetChildIndex(this.btnSalvar, 0);
+			this.Controls.SetChildIndex(this.btnFechar, 0);
+			this.Controls.SetChildIndex(this.pgbLouvores, 0);
+			this.Controls.SetChildIndex(this.lblPastaBackup, 0);
 			this.panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.lstPastas)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.lstCategorias)).EndInit();
@@ -316,6 +436,8 @@
 			this.pnlPastas.PerformLayout();
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
+			this.panel3.ResumeLayout(false);
+			this.panel3.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -336,7 +458,15 @@
 		private System.Windows.Forms.Button btnRemoverFolder;
 		private System.Windows.Forms.Panel pnlPastas;
 		private System.Windows.Forms.Panel panel2;
-		private System.Windows.Forms.Button btnSalvar;
+		private System.Windows.Forms.Button btnFechar;
 		private ComponentOwl.BetterListView.BetterListViewColumnHeader clnCategoria;
+		private System.Windows.Forms.ProgressBar pgbLouvores;
+		private System.Windows.Forms.Button btnPastaBackup;
+		private System.Windows.Forms.Button btnBackupDB;
+		private System.Windows.Forms.Button btnBackupProjecoes;
+		private System.Windows.Forms.Label lblPastaBackup;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Panel panel3;
+		private System.Windows.Forms.Label label4;
 	}
 }

@@ -180,6 +180,12 @@
     <Compile Include="Harpa\frmHarpaHistorico.designer.cs">
       <DependentUpon>frmHarpaHistorico.cs</DependentUpon>
     </Compile>
+    <Compile Include="Louvor\frmLouvorEditar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Louvor\frmLouvorEditar.Designer.cs">
+      <DependentUpon>frmLouvorEditar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Louvor\frmLouvorLista.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,6 +258,9 @@
     <EmbeddedResource Include="Harpa\frmHarpaHistorico.resx">
       <DependentUpon>frmHarpaHistorico.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Louvor\frmLouvorEditar.resx">
+      <DependentUpon>frmLouvorEditar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Louvor\frmLouvorLista.resx">
       <DependentUpon>frmLouvorLista.cs</DependentUpon>
     </EmbeddedResource>
@@ -307,9 +316,6 @@
     <None Include="Resources\biblia_32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Louvores.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ConfigIcon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -333,6 +339,16 @@
   <ItemGroup>
     <Content Include="Config.xml" />
     <Content Include="projetor.ico" />
+    <None Include="Resources\cancelar_24.png" />
+    <None Include="Resources\favorite_64_disable.png" />
+    <None Include="Resources\favorite_64.png" />
+    <None Include="Resources\Switch_OFF_PEQ.png" />
+    <None Include="Resources\Switch_ON_PEQ.png" />
+    <None Include="Resources\NotasColor_32.png" />
+    <None Include="Resources\notamusical_16.png" />
+    <None Include="Resources\editar_16.png" />
+    <None Include="Resources\backup_24.png" />
+    <None Include="Resources\folder_accept.png" />
     <None Include="Resources\salvar_24.png" />
     <None Include="Resources\refresh_24.png" />
     <None Include="Resources\delete_24px.png" />

@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 
 namespace CamadaUI
 {
@@ -8,6 +9,8 @@ namespace CamadaUI
 
 	static class Utilidades
 	{
+		// MESSAGE DIALOG BOX
+		// =============================================================================
 		public static DialogResult AbrirDialog
 			(string Message,
 			string Title,
@@ -23,7 +26,21 @@ namespace CamadaUI
 		}
 
 		// VERIFY IS STRING CAN CHANGE TO NUMERIC
+		// =============================================================================
 		public static bool IsNumeric(this string text) => double.TryParse(text, out _);
+
+		// RESIZE FONT SIZE LABEL TO FIT ALL TEXT
+		// =============================================================================
+		public static void ResizeFontLabel(Label myLabel)
+		{
+			Font lblFont = new Font(myLabel.Font.FontFamily, myLabel.Font.Size, myLabel.Font.Style);
+
+			while (myLabel.Width < TextRenderer.MeasureText(myLabel.Text, lblFont).Width)
+			{
+				myLabel.Font = new Font(myLabel.Font.FontFamily, myLabel.Font.Size - 0.5F, myLabel.Font.Style);
+				lblFont = new Font(myLabel.Font.FontFamily, myLabel.Font.Size, myLabel.Font.Style);
+			}
+		}
 
 	}
 

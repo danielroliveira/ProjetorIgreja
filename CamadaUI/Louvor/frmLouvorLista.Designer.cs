@@ -34,7 +34,21 @@
 			this.lblTitulo = new System.Windows.Forms.Label();
 			this.btnClose = new System.Windows.Forms.Button();
 			this.btnMinimizer = new System.Windows.Forms.Button();
-			this.mnuLinguagens = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.mnuLista = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.miEditarLouvor = new System.Windows.Forms.ToolStripMenuItem();
+			this.miDefinirTom = new System.Windows.Forms.ToolStripMenuItem();
+			this.miTom1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.miTom2 = new System.Windows.Forms.ToolStripMenuItem();
+			this.miTom3 = new System.Windows.Forms.ToolStripMenuItem();
+			this.miTom4 = new System.Windows.Forms.ToolStripMenuItem();
+			this.miTom5 = new System.Windows.Forms.ToolStripMenuItem();
+			this.miTom6 = new System.Windows.Forms.ToolStripMenuItem();
+			this.miTom7 = new System.Windows.Forms.ToolStripMenuItem();
+			this.miTom8 = new System.Windows.Forms.ToolStripMenuItem();
+			this.miTom9 = new System.Windows.Forms.ToolStripMenuItem();
+			this.miTom10 = new System.Windows.Forms.ToolStripMenuItem();
+			this.miTom11 = new System.Windows.Forms.ToolStripMenuItem();
+			this.miTom12 = new System.Windows.Forms.ToolStripMenuItem();
 			this.miRC = new System.Windows.Forms.ToolStripMenuItem();
 			this.miRA = new System.Windows.Forms.ToolStripMenuItem();
 			this.miNVI = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,11 +60,13 @@
 			this.clnIDLouvor = new ComponentOwl.BetterListView.BetterListViewColumnHeader();
 			this.clnTitulo = new ComponentOwl.BetterListView.BetterListViewColumnHeader();
 			this.clnNota = new ComponentOwl.BetterListView.BetterListViewColumnHeader();
+			this.clnTomDesc = new ComponentOwl.BetterListView.BetterListViewColumnHeader();
 			this.label1 = new System.Windows.Forms.Label();
 			this.txtProcura = new System.Windows.Forms.TextBox();
 			this.lblVersiculo = new System.Windows.Forms.Label();
 			this.btnVoltar = new Glass.GlassButton();
 			this.pnlTop.SuspendLayout();
+			this.mnuLista.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.lstListagem)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -118,10 +134,126 @@
 			this.btnMinimizer.UseVisualStyleBackColor = false;
 			this.btnMinimizer.Click += new System.EventHandler(this.btnMinimizer_Click);
 			// 
-			// mnuLinguagens
+			// mnuLista
 			// 
-			this.mnuLinguagens.Name = "mnuLinguagens";
-			this.mnuLinguagens.Size = new System.Drawing.Size(61, 4);
+			this.mnuLista.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.mnuLista.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miEditarLouvor,
+            this.miDefinirTom});
+			this.mnuLista.Name = "mnuLinguagens";
+			this.mnuLista.Size = new System.Drawing.Size(181, 74);
+			// 
+			// miEditarLouvor
+			// 
+			this.miEditarLouvor.Image = global::CamadaUI.Properties.Resources.editar_16;
+			this.miEditarLouvor.Name = "miEditarLouvor";
+			this.miEditarLouvor.Size = new System.Drawing.Size(180, 24);
+			this.miEditarLouvor.Text = "Editar Louvor";
+			this.miEditarLouvor.Click += new System.EventHandler(this.miEditarLouvor_Click);
+			// 
+			// miDefinirTom
+			// 
+			this.miDefinirTom.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.miTom1,
+            this.miTom2,
+            this.miTom3,
+            this.miTom4,
+            this.miTom5,
+            this.miTom6,
+            this.miTom7,
+            this.miTom8,
+            this.miTom9,
+            this.miTom10,
+            this.miTom11,
+            this.miTom12});
+			this.miDefinirTom.Image = global::CamadaUI.Properties.Resources.notamusical_16;
+			this.miDefinirTom.Name = "miDefinirTom";
+			this.miDefinirTom.Size = new System.Drawing.Size(180, 24);
+			this.miDefinirTom.Text = "Definir TOM";
+			// 
+			// miTom1
+			// 
+			this.miTom1.Name = "miTom1";
+			this.miTom1.Size = new System.Drawing.Size(247, 24);
+			this.miTom1.Tag = "1";
+			this.miTom1.Text = "A ou Am (Lá)";
+			// 
+			// miTom2
+			// 
+			this.miTom2.Name = "miTom2";
+			this.miTom2.Size = new System.Drawing.Size(247, 24);
+			this.miTom2.Tag = "2";
+			this.miTom2.Text = "Bb ou Bbm (Sí Bemol)";
+			// 
+			// miTom3
+			// 
+			this.miTom3.Name = "miTom3";
+			this.miTom3.Size = new System.Drawing.Size(247, 24);
+			this.miTom3.Tag = "3";
+			this.miTom3.Text = "B ou Bm (Sí)";
+			// 
+			// miTom4
+			// 
+			this.miTom4.Name = "miTom4";
+			this.miTom4.Size = new System.Drawing.Size(247, 24);
+			this.miTom4.Tag = "4";
+			this.miTom4.Text = "C ou Cm (Dó)";
+			// 
+			// miTom5
+			// 
+			this.miTom5.Name = "miTom5";
+			this.miTom5.Size = new System.Drawing.Size(247, 24);
+			this.miTom5.Tag = "5";
+			this.miTom5.Text = "C# ou C#m (Dó Sustenido)";
+			// 
+			// miTom6
+			// 
+			this.miTom6.Name = "miTom6";
+			this.miTom6.Size = new System.Drawing.Size(247, 24);
+			this.miTom6.Tag = "6";
+			this.miTom6.Text = "D ou Dm (Ré)";
+			// 
+			// miTom7
+			// 
+			this.miTom7.Name = "miTom7";
+			this.miTom7.Size = new System.Drawing.Size(247, 24);
+			this.miTom7.Tag = "7";
+			this.miTom7.Text = "Eb ou Ebm (Mí Bemol)";
+			// 
+			// miTom8
+			// 
+			this.miTom8.Name = "miTom8";
+			this.miTom8.Size = new System.Drawing.Size(247, 24);
+			this.miTom8.Tag = "8";
+			this.miTom8.Text = "E ou Em (Mí)";
+			// 
+			// miTom9
+			// 
+			this.miTom9.Name = "miTom9";
+			this.miTom9.Size = new System.Drawing.Size(247, 24);
+			this.miTom9.Tag = "9";
+			this.miTom9.Text = "F ou Fm (Fá)";
+			// 
+			// miTom10
+			// 
+			this.miTom10.Name = "miTom10";
+			this.miTom10.Size = new System.Drawing.Size(247, 24);
+			this.miTom10.Tag = "10";
+			this.miTom10.Text = "F# ou F#m (Fá Sustenido)";
+			// 
+			// miTom11
+			// 
+			this.miTom11.Name = "miTom11";
+			this.miTom11.Size = new System.Drawing.Size(247, 24);
+			this.miTom11.Tag = "11";
+			this.miTom11.Text = "G ou Gm (Sol)";
+			// 
+			// miTom12
+			// 
+			this.miTom12.Name = "miTom12";
+			this.miTom12.Size = new System.Drawing.Size(247, 24);
+			this.miTom12.Tag = "12";
+			this.miTom12.Text = "Ab (Lá Bemol)";
 			// 
 			// miRC
 			// 
@@ -160,7 +292,6 @@
 			this.btnInserir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnInserir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnInserir.UseVisualStyleBackColor = true;
-			this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
 			// 
 			// btnEscolher
 			// 
@@ -184,6 +315,8 @@
 			this.lstListagem.Columns.Add(this.clnIDLouvor);
 			this.lstListagem.Columns.Add(this.clnTitulo);
 			this.lstListagem.Columns.Add(this.clnNota);
+			this.lstListagem.Columns.Add(this.clnTomDesc);
+			this.lstListagem.ContextMenuStrip = this.mnuLista;
 			this.lstListagem.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lstListagem.Location = new System.Drawing.Point(12, 180);
 			this.lstListagem.MultiSelect = false;
@@ -213,6 +346,12 @@
 			this.clnNota.Name = "clnNota";
 			this.clnNota.Text = "Classificação";
 			this.clnNota.Width = 180;
+			// 
+			// clnTomDesc
+			// 
+			this.clnTomDesc.AlignHorizontal = ComponentOwl.BetterListView.TextAlignmentHorizontal.Center;
+			this.clnTomDesc.Name = "clnTomDesc";
+			this.clnTomDesc.Text = "Tom";
 			// 
 			// label1
 			// 
@@ -281,6 +420,7 @@
 			this.Text = "frmLouvorLista";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.pnlTop.ResumeLayout(false);
+			this.mnuLista.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.lstListagem)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -292,7 +432,7 @@
 		internal System.Windows.Forms.Button btnClose;
 		internal System.Windows.Forms.Button btnMinimizer;
 		private System.Windows.Forms.Label lblTitulo;
-		private System.Windows.Forms.ContextMenuStrip mnuLinguagens;
+		private System.Windows.Forms.ContextMenuStrip mnuLista;
 		private System.Windows.Forms.ToolStripMenuItem miRC;
 		private System.Windows.Forms.ToolStripMenuItem miRA;
 		private System.Windows.Forms.ToolStripMenuItem miNVI;
@@ -308,5 +448,20 @@
 		private System.Windows.Forms.TextBox txtProcura;
 		private System.Windows.Forms.Label lblVersiculo;
 		private Glass.GlassButton btnVoltar;
+		private System.Windows.Forms.ToolStripMenuItem miEditarLouvor;
+		private System.Windows.Forms.ToolStripMenuItem miDefinirTom;
+		private System.Windows.Forms.ToolStripMenuItem miTom1;
+		private System.Windows.Forms.ToolStripMenuItem miTom2;
+		private System.Windows.Forms.ToolStripMenuItem miTom3;
+		private System.Windows.Forms.ToolStripMenuItem miTom4;
+		private System.Windows.Forms.ToolStripMenuItem miTom5;
+		private System.Windows.Forms.ToolStripMenuItem miTom6;
+		private System.Windows.Forms.ToolStripMenuItem miTom7;
+		private System.Windows.Forms.ToolStripMenuItem miTom8;
+		private System.Windows.Forms.ToolStripMenuItem miTom9;
+		private System.Windows.Forms.ToolStripMenuItem miTom10;
+		private System.Windows.Forms.ToolStripMenuItem miTom11;
+		private System.Windows.Forms.ToolStripMenuItem miTom12;
+		private ComponentOwl.BetterListView.BetterListViewColumnHeader clnTomDesc;
 	}
 }

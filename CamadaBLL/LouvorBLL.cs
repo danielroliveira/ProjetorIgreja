@@ -255,7 +255,7 @@ namespace CamadaBLL
 				AcessoDados db = new AcessoDados(_dataBasePath);
 				DataTable dt = new DataTable();
 
-				string query = "SELECT * FROM tblLouvoresCategorias ORDER BY IDCategoria";
+				string query = "SELECT * FROM tblLouvoresCategorias ORDER BY Categoria";
 
 				return db.ExecutarConsulta(CommandType.Text, query);
 

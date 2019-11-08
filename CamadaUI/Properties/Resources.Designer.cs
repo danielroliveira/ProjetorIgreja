@@ -93,6 +93,16 @@ namespace CamadaUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap backup_24 {
+            get {
+                object obj = ResourceManager.GetObject("backup_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap biblia_32 {
             get {
                 object obj = ResourceManager.GetObject("biblia_32", resourceCulture);
@@ -106,6 +116,16 @@ namespace CamadaUI.Properties {
         internal static System.Drawing.Bitmap bibliaicon_peq {
             get {
                 object obj = ResourceManager.GetObject("bibliaicon_peq", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cancelar_24 {
+            get {
+                object obj = ResourceManager.GetObject("cancelar_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -156,6 +176,36 @@ namespace CamadaUI.Properties {
         internal static System.Drawing.Bitmap DropdownIcon {
             get {
                 object obj = ResourceManager.GetObject("DropdownIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap editar_16 {
+            get {
+                object obj = ResourceManager.GetObject("editar_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap favorite_64 {
+            get {
+                object obj = ResourceManager.GetObject("favorite_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap favorite_64_disable {
+            get {
+                object obj = ResourceManager.GetObject("favorite_64_disable", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -236,6 +286,16 @@ namespace CamadaUI.Properties {
         internal static System.Drawing.Bitmap First_32px_disabled {
             get {
                 object obj = ResourceManager.GetObject("First_32px_disabled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap folder_accept {
+            get {
+                object obj = ResourceManager.GetObject("folder_accept", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -333,16 +393,6 @@ namespace CamadaUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Louvores {
-            get {
-                object obj = ResourceManager.GetObject("Louvores", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Next_32px {
             get {
                 object obj = ResourceManager.GetObject("Next_32px", resourceCulture);
@@ -356,6 +406,26 @@ namespace CamadaUI.Properties {
         internal static System.Drawing.Bitmap Next_32px_disabled {
             get {
                 object obj = ResourceManager.GetObject("Next_32px_disabled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap notamusical_16 {
+            get {
+                object obj = ResourceManager.GetObject("notamusical_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NotasColor_32 {
+            get {
+                object obj = ResourceManager.GetObject("NotasColor_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -416,6 +486,26 @@ namespace CamadaUI.Properties {
         internal static System.Drawing.Bitmap search_peq {
             get {
                 object obj = ResourceManager.GetObject("search_peq", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Switch_OFF_PEQ {
+            get {
+                object obj = ResourceManager.GetObject("Switch_OFF_PEQ", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Switch_ON_PEQ {
+            get {
+                object obj = ResourceManager.GetObject("Switch_ON_PEQ", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
