@@ -24,8 +24,8 @@ namespace CamadaUI.Louvor
 		private Image imgFav3;
 		private Image imgFav4;
 		private Image imgFav5;
-
-
+		private Image TomSel = Properties.Resources.select_24;
+		
 		#region NEW AND PROPERTIES
 
 		// SUB NEW
@@ -110,17 +110,22 @@ namespace CamadaUI.Louvor
 
 			clnTitulo.DisplayMember = "Titulo";
 			clnTitulo.ValueMember = "Titulo";
-			clnTitulo.Width = 600;
+			clnTitulo.Width = 500;
 			clnTitulo.AllowResize = false;
 
-			//clnNota.ValueMember = "Classificacao";
+			clnCategoria.DisplayMember = "Categoria";
+			clnCategoria.ValueMember = "IDCategoria";
+			clnCategoria.Width = 300;
+			clnCategoria.AllowResize = false;
+
+			clnNota.ValueMember = "Favorito";
 			clnNota.Width = 170;
 			clnNota.AllowResize = false;
 			clnNota.AlignHorizontalImage = BetterListViewImageAlignmentHorizontal.BeforeTextCenter;
 
 			clnTomDesc.DisplayMember = "TomCifra";
 			clnTomDesc.ValueMember = "Tom";
-			clnTomDesc.Width = 100;
+			clnTomDesc.Width = 120;
 			clnTomDesc.AllowResize = false;
 			
 
@@ -157,31 +162,31 @@ namespace CamadaUI.Louvor
 		private void lstListagem_DrawItem(object sender, BetterListViewDrawItemEventArgs eventArgs)
 		{
 
-			eventArgs.Item.SubItems[3].AlignHorizontal = TextAlignmentHorizontal.Center;
-
 			eventArgs.Item.Text = $"{eventArgs.Item.Value:000}";
 
-			int Cl = Convert.ToInt32(eventArgs.Item.SubItems[2].Value);
+			eventArgs.Item.SubItems[4].AlignHorizontal = TextAlignmentHorizontal.Center;
+
+			int Cl = Convert.ToInt32(eventArgs.Item.SubItems[3].Value);
 
 			if (Cl == 1)
 			{
-				eventArgs.Item.SubItems[2].Image = imgFav1;
+				eventArgs.Item.SubItems[3].Image = imgFav1;
 			}
 			else if (Cl == 2)
 			{
-				eventArgs.Item.SubItems[2].Image = imgFav2;
+				eventArgs.Item.SubItems[3].Image = imgFav2;
 			}
 			else if (Cl == 3)
 			{
-				eventArgs.Item.SubItems[2].Image = imgFav3;
+				eventArgs.Item.SubItems[3].Image = imgFav3;
 			}
 			else if (Cl == 4)
 			{
-				eventArgs.Item.SubItems[2].Image = imgFav4;
+				eventArgs.Item.SubItems[3].Image = imgFav4;
 			}
 			else if (Cl == 5)
 			{
-				eventArgs.Item.SubItems[2].Image = imgFav5;
+				eventArgs.Item.SubItems[3].Image = imgFav5;
 			}
 		}
 
@@ -229,6 +234,54 @@ namespace CamadaUI.Louvor
 			}
 
 			clLouvor louvor = ListLouvor.Find(l => l.IDLouvor == (int)lstListagem.SelectedItems[0].Value);
+			string louvorPath = louvor.ProjecaoPath;
+
+			// verifica a existencia do DIR
+			if (!File.Exists(louvorPath))
+			{
+				AbrirDialog("O arquivo de projeção relacionado a esse louvor foi removido ou excluído do sua pasta de origem...",
+					"Arquivo não Encontrado", DialogType.OK, DialogIcon.Exclamation);
+				try
+				{
+					// --- Ampulheta ON
+					Cursor.Current = Cursors.WaitCursor;
+					lBLL.UpdateFileOKLouvor(louvor.IDLouvor, false);
+					louvor.FileOK = false;
+				}
+				catch (Exception ex)
+				{
+					AbrirDialog("Uma exceção ocorreu ao Atualizar a situação do arquivo..." + "\n" +
+								ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+				}
+				finally
+				{
+					// --- Ampulheta OFF
+					Cursor.Current = Cursors.Default;
+				}
+
+				return;
+			}
+			else if(File.Exists(louvorPath) && !louvor.FileOK)
+			{
+				try
+				{
+					// --- Ampulheta ON
+					Cursor.Current = Cursors.WaitCursor;
+					lBLL.UpdateFileOKLouvor(louvor.IDLouvor, false);
+					louvor.FileOK = true;
+				}
+				catch (Exception ex)
+				{
+					AbrirDialog("Uma exceção ocorreu ao Atualizar a situação do Louvor..." + "\n" +
+								ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+				}
+				finally
+				{
+					// --- Ampulheta OFF
+					Cursor.Current = Cursors.Default;
+				}
+
+			}
 
 			System.Diagnostics.Process.Start(louvor.ProjecaoPath);
 
@@ -240,6 +293,12 @@ namespace CamadaUI.Louvor
 			DialogResult = DialogResult.OK; */
 		}
 
+		// MINIMIZE
+		//-------------------------------------------------------------------------------------------------
+		private void btnMinimizer_Click(object sender, EventArgs e)
+		{
+			WindowState = FormWindowState.Minimized;
+		}
 
 		#endregion
 
@@ -338,20 +397,11 @@ namespace CamadaUI.Louvor
 		}
 
 		#endregion
-
-
-
-
-		private void btnMinimizer_Click(object sender, EventArgs e)
-		{
-			WindowState = FormWindowState.Minimized;
-		}
-
+			   		 	  	  
 		#region MENU LISTAGEM
 
-
-		#endregion
-
+		// EDIT HINO FIELDS
+		// =============================================================================
 		private void miEditarLouvor_Click(object sender, EventArgs e)
 		{
 			if(lstListagem.SelectedItems.Count == 0)
@@ -369,6 +419,11 @@ namespace CamadaUI.Louvor
 				using (frmLouvorEditar frm = new frmLouvorEditar(selLouvor, this) )
 				{
 					frm.ShowDialog();
+					if(frm.DialogResult == DialogResult.OK)
+					{
+						lstListagem.SelectedItems[0].SubItems[1].Text = selLouvor.Titulo;
+						lstListagem.SelectedItems[0].SubItems[2].Text = selLouvor.Categoria;
+					}
 				}
 			}
 			catch (Exception ex)
@@ -379,5 +434,67 @@ namespace CamadaUI.Louvor
 
 
 		}
+
+
+
+
+		// DEFINE COLOR OF SELECTED TOM WHEN OPEN MENU STRIP
+		// =============================================================================
+		private void mnuLista_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			// get TOM atual
+			byte? TomAtual = (byte?)lstListagem.SelectedItems[0].SubItems[4].Value;
+
+			foreach (ToolStripMenuItem item in miDefinirTom.DropDownItems)
+			{
+				if (Convert.ToByte(item.Tag) == TomAtual)
+				{
+					item.BackColor = Color.Moccasin;
+					item.Image = TomSel;
+				}
+				else
+				{
+					item.BackColor = Color.WhiteSmoke;
+					item.Image = null;
+				}
+			}
+
+		}
+
+		// DEFINE TOM OF SELECTED ITEM
+		// =============================================================================
+		private void DefineTom_Click(object sender, EventArgs e)
+		{
+			// get selected Louvor
+			int selID = (int)lstListagem.SelectedItems[0].Value;
+			clLouvor selLouvor = ListLouvor.Find(l => l.IDLouvor == selID);
+
+			ToolStripMenuItem tsm = (ToolStripMenuItem)sender;
+
+			selLouvor.Tom = Convert.ToByte(tsm.Tag);
+			lstListagem.SelectedItems[0].SubItems[4].Text = selLouvor.TomCifra;
+
+			// save in DB
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+				lBLL.UpdateTomLouvor(selLouvor.IDLouvor, (byte)selLouvor.Tom);
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Definir novo Tom do Louvor..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+
+		}
+
+		#endregion
+
 	}
 }

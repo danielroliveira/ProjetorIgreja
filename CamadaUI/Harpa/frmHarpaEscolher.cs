@@ -15,11 +15,11 @@ namespace CamadaUI.Harpa
 		private frmHarpa _formOrigem;
 		private List<clHarpaHino> ListHinos = null;
 
-		private Image imgFav1;
-		private Image imgFav2;
-		private Image imgFav3;
-		private Image imgFav4;
-		private Image imgFav5;
+		private Image imgFav1 = Properties.Resources.Favorito1;
+		private Image imgFav2 = Properties.Resources.Favorito2;
+		private Image imgFav3 = Properties.Resources.Favorito3;
+		private Image imgFav4 = Properties.Resources.Favorito4;
+		private Image imgFav5 = Properties.Resources.Favorito5;
 		public clHarpaHino HinoEscolhido = null; // hino escolhido
 		
 		#region NEW AND PROPERTIES
@@ -31,7 +31,6 @@ namespace CamadaUI.Harpa
 
 			// define Origem and Images
 			_formOrigem = formOrigem;
-			DefineImageList();
 
 			// get data
 			GetHinos();
@@ -47,15 +46,6 @@ namespace CamadaUI.Harpa
 		private void frmHarpaEscolher_Shown(object sender, EventArgs e)
 		{
 			txtProcura.Focus();
-		}
-
-		private void DefineImageList()
-		{
-			imgFav1 = Properties.Resources.Favorito1;
-			imgFav2 = Properties.Resources.Favorito2;
-			imgFav3 = Properties.Resources.Favorito3;
-			imgFav4 = Properties.Resources.Favorito4;
-			imgFav5 = Properties.Resources.Favorito5;
 		}
 
 		#endregion

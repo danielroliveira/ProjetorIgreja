@@ -339,6 +339,8 @@
   <ItemGroup>
     <Content Include="Config.xml" />
     <Content Include="projetor.ico" />
+    <None Include="Resources\editar_24.png" />
+    <None Include="Resources\select_24.png" />
     <None Include="Resources\cancelar_24.png" />
     <None Include="Resources\favorite_64_disable.png" />
     <None Include="Resources\favorite_64.png" />

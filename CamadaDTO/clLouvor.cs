@@ -16,7 +16,7 @@ namespace CamadaDTO
 			internal int IDLouvor;
 			internal string Titulo;
 			internal string ProjecaoPath;
-			internal byte? IDCategoria; // string Categoria
+			internal short? IDCategoria; // string Categoria
 			internal short EscolhidoCount;
 			internal byte Favorito;
 			internal bool FileOK;
@@ -131,7 +131,7 @@ namespace CamadaDTO
 
 		// Property IDCategoria
 		//------------------------------------------------------
-		public byte? IDCategoria
+		public short? IDCategoria
 		{
 			get => myData.IDCategoria;
 			set
@@ -236,43 +236,43 @@ namespace CamadaDTO
 				switch (Tom)
 				{
 					case 1:
-						Cifra = "A";
+						Cifra = "A | Am";
 						break;
 					case 2:
-						Cifra = "Bb";
+						Cifra = "Bb | Bbm";
 						break;
 					case 3:
-						Cifra = "B";
+						Cifra = "B | Bm";
 						break;
 					case 4:
-						Cifra = "C";
+						Cifra = "C | Cm";
 						break;
 					case 5:
-						Cifra = "C#";
+						Cifra = "C# | C#m";
 						break;
 					case 6:
-						Cifra = "D";
+						Cifra = "D | Dm";
 						break;
 					case 7:
-						Cifra = "Eb";
+						Cifra = "Eb | Ebm";
 						break;
 					case 8:
-						Cifra = "E";
+						Cifra = "E | Em";
 						break;
 					case 9:
-						Cifra = "F";
+						Cifra = "F | Fm";
 						break;
 					case 10:
-						Cifra = "F#";
+						Cifra = "F# | F#m";
 						break;
 					case 11:
-						Cifra = "G";
+						Cifra = "G | Gm";
 						break;
 					case 12:
-						Cifra = "Ab";
+						Cifra = "Ab | Abm";
 						break;
 					default:
-						Cifra = "A";
+						Cifra = "...";
 						break;
 				}
 

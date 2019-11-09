@@ -193,6 +193,16 @@ namespace CamadaUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap editar_24 {
+            get {
+                object obj = ResourceManager.GetObject("editar_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap favorite_64 {
             get {
                 object obj = ResourceManager.GetObject("favorite_64", resourceCulture);
@@ -486,6 +496,16 @@ namespace CamadaUI.Properties {
         internal static System.Drawing.Bitmap search_peq {
             get {
                 object obj = ResourceManager.GetObject("search_peq", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap select_24 {
+            get {
+                object obj = ResourceManager.GetObject("select_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

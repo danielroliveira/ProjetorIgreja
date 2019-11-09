@@ -117,6 +117,7 @@
 			// 
 			// cmbIDCategoria
 			// 
+			this.cmbIDCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cmbIDCategoria.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cmbIDCategoria.FormattingEnabled = true;
 			this.cmbIDCategoria.Location = new System.Drawing.Point(16, 222);
@@ -136,20 +137,23 @@
 			// 
 			// btnAtivo
 			// 
+			this.btnAtivo.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.btnAtivo.FlatAppearance.BorderSize = 0;
 			this.btnAtivo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnAtivo.Image = global::CamadaUI.Properties.Resources.Switch_ON_PEQ;
-			this.btnAtivo.Location = new System.Drawing.Point(38, 3);
+			this.btnAtivo.Location = new System.Drawing.Point(29, 3);
 			this.btnAtivo.Name = "btnAtivo";
-			this.btnAtivo.Size = new System.Drawing.Size(153, 43);
+			this.btnAtivo.Size = new System.Drawing.Size(174, 43);
 			this.btnAtivo.TabIndex = 12;
 			this.btnAtivo.Text = "Louvor Ativo";
 			this.btnAtivo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnAtivo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnAtivo.UseVisualStyleBackColor = true;
+			this.btnAtivo.Click += new System.EventHandler(this.btnAtivo_Click);
 			// 
 			// pctFav1
 			// 
+			this.pctFav1.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pctFav1.Image = global::CamadaUI.Properties.Resources.favorite_64;
 			this.pctFav1.Location = new System.Drawing.Point(6, 25);
 			this.pctFav1.Name = "pctFav1";
@@ -157,9 +161,12 @@
 			this.pctFav1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pctFav1.TabIndex = 13;
 			this.pctFav1.TabStop = false;
+			this.pctFav1.Tag = "1";
+			this.pctFav1.Click += new System.EventHandler(this.picFav_Click);
 			// 
 			// pctFav2
 			// 
+			this.pctFav2.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pctFav2.Image = global::CamadaUI.Properties.Resources.favorite_64;
 			this.pctFav2.Location = new System.Drawing.Point(50, 25);
 			this.pctFav2.Name = "pctFav2";
@@ -167,9 +174,12 @@
 			this.pctFav2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pctFav2.TabIndex = 13;
 			this.pctFav2.TabStop = false;
+			this.pctFav2.Tag = "2";
+			this.pctFav2.Click += new System.EventHandler(this.picFav_Click);
 			// 
 			// pctFav3
 			// 
+			this.pctFav3.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pctFav3.Image = global::CamadaUI.Properties.Resources.favorite_64;
 			this.pctFav3.Location = new System.Drawing.Point(94, 25);
 			this.pctFav3.Name = "pctFav3";
@@ -177,9 +187,12 @@
 			this.pctFav3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pctFav3.TabIndex = 13;
 			this.pctFav3.TabStop = false;
+			this.pctFav3.Tag = "3";
+			this.pctFav3.Click += new System.EventHandler(this.picFav_Click);
 			// 
 			// pctFav4
 			// 
+			this.pctFav4.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pctFav4.Image = global::CamadaUI.Properties.Resources.favorite_64_disable;
 			this.pctFav4.Location = new System.Drawing.Point(138, 25);
 			this.pctFav4.Name = "pctFav4";
@@ -187,9 +200,12 @@
 			this.pctFav4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pctFav4.TabIndex = 13;
 			this.pctFav4.TabStop = false;
+			this.pctFav4.Tag = "4";
+			this.pctFav4.Click += new System.EventHandler(this.picFav_Click);
 			// 
 			// pctFav5
 			// 
+			this.pctFav5.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.pctFav5.Image = global::CamadaUI.Properties.Resources.favorite_64_disable;
 			this.pctFav5.Location = new System.Drawing.Point(182, 25);
 			this.pctFav5.Name = "pctFav5";
@@ -197,6 +213,8 @@
 			this.pctFav5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pctFav5.TabIndex = 13;
 			this.pctFav5.TabStop = false;
+			this.pctFav5.Tag = "5";
+			this.pctFav5.Click += new System.EventHandler(this.picFav_Click);
 			// 
 			// pnlFavorito
 			// 
@@ -252,7 +270,7 @@
 			this.btnSalvar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
 			this.btnSalvar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSalvar.Image = global::CamadaUI.Properties.Resources.salvar_24;
-			this.btnSalvar.Location = new System.Drawing.Point(137, 353);
+			this.btnSalvar.Location = new System.Drawing.Point(139, 353);
 			this.btnSalvar.Name = "btnSalvar";
 			this.btnSalvar.Size = new System.Drawing.Size(158, 45);
 			this.btnSalvar.TabIndex = 15;
@@ -260,6 +278,7 @@
 			this.btnSalvar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnSalvar.UseVisualStyleBackColor = true;
+			this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
 			// 
 			// btnCancelar
 			// 
@@ -269,7 +288,7 @@
 			this.btnCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MistyRose;
 			this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnCancelar.Image = global::CamadaUI.Properties.Resources.cancelar_24;
-			this.btnCancelar.Location = new System.Drawing.Point(301, 353);
+			this.btnCancelar.Location = new System.Drawing.Point(303, 353);
 			this.btnCancelar.Name = "btnCancelar";
 			this.btnCancelar.Size = new System.Drawing.Size(158, 45);
 			this.btnCancelar.TabIndex = 15;
