@@ -18,6 +18,7 @@ namespace CamadaUI.Louvor
 		private string[] MensagemInicial = null;
 		private LouvorBLL lBLL = null;
 		public string DBPath;
+		private int? IDLouvorEscolhido = null;
 
 		private Image imgFav1;
 		private Image imgFav2;
@@ -283,7 +284,10 @@ namespace CamadaUI.Louvor
 
 			}
 
+			IDLouvorEscolhido = louvor.IDLouvor;
 			System.Diagnostics.Process.Start(louvor.ProjecaoPath);
+
+			//MessageBox.Show("voltei");
 
 			/* 
 			int IDHino = (int)lstListagem.SelectedItems[0].Value;
@@ -291,6 +295,33 @@ namespace CamadaUI.Louvor
 
 			HinoEscolhido = Hino;
 			DialogResult = DialogResult.OK; */
+
+			/*
+
+			using PowerPoint = Microsoft.Office.Interop.PowerPoint;
+
+			PowerPoint.Application oPPT;
+			PowerPoint.Presentations objPresSet;
+
+			//the location of your powerpoint presentation
+			string strPres;
+			strPres = @"mpPres.ppt";
+			//Create an instance of PowerPoint.
+			oPPT = new PowerPoint.ApplicationClass();
+			// Show PowerPoint to the user.
+			oPPT.Visible = Microsoft.Office.Core.MsoTriState.msoTrue;
+
+			objPresSet = oPPT.Presentations ;
+
+			//open the presentation
+			objPres = objPresSet.Open ( strPres,MsoTriState.msoFalse ,
+			MsoTriState.msoTrue ,MsoTriState.msoTrue );
+
+			*/
+
+
+
+
 		}
 
 		// MINIMIZE
@@ -496,5 +527,46 @@ namespace CamadaUI.Louvor
 
 		#endregion
 
+		private void frmLouvorLista_Activated(object sender, EventArgs e)
+		{
+			if (IDLouvorEscolhido == null)
+			{
+				return;
+			}
+
+			clLouvor louvor = ListLouvor.Find(l => l.IDLouvor == IDLouvorEscolhido);
+
+			DialogResult resp = AbrirDialog("Deseja acrescentar uma unidade ao número de vezes que: \n" +
+				louvor.Titulo + "\n foi escolhido?",
+				"Louvor Escolhido?", DialogType.SIM_NAO, DialogIcon.Question);
+
+			if (resp == DialogResult.No)
+			{
+				IDLouvorEscolhido = null;
+				return;
+			}
+				
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+				lBLL.AddEscolhidoLouvor(louvor.IDLouvor);
+				louvor.EscolhidoCount += 1;
+				IDLouvorEscolhido = null;
+			}
+			catch (Exception ex)
+			{
+				IDLouvorEscolhido = null;
+				AbrirDialog("Uma exceção ocorreu ao Acrescentar o número de escolhido..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+
+
+		}
 	}
 }

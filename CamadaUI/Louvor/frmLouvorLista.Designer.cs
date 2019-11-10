@@ -311,12 +311,12 @@
 			// btnEscolher
 			// 
 			this.btnEscolher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnEscolher.Image = global::CamadaUI.Properties.Resources.accept;
-			this.btnEscolher.Location = new System.Drawing.Point(992, 569);
+			this.btnEscolher.Image = global::CamadaUI.Properties.Resources.projetar_32;
+			this.btnEscolher.Location = new System.Drawing.Point(918, 569);
 			this.btnEscolher.Name = "btnEscolher";
-			this.btnEscolher.Size = new System.Drawing.Size(138, 45);
+			this.btnEscolher.Size = new System.Drawing.Size(212, 45);
 			this.btnEscolher.TabIndex = 13;
-			this.btnEscolher.Text = "&Escolher";
+			this.btnEscolher.Text = " &Projetar Louvor";
 			this.btnEscolher.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnEscolher.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnEscolher.UseVisualStyleBackColor = true;
@@ -441,6 +441,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "frmLouvorLista";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+			this.Activated += new System.EventHandler(this.frmLouvorLista_Activated);
 			this.pnlTop.ResumeLayout(false);
 			this.mnuLista.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.lstListagem)).EndInit();

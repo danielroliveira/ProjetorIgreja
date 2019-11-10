@@ -209,6 +209,29 @@ namespace CamadaBLL
 			}
 		}
 
+		// ADD ONE LOUVOR ESCOLHIDO BY ID
+		// =============================================================================
+		public void AddEscolhidoLouvor(int IDLouvor)
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(_dataBasePath);
+				db.LimparParametros();
+				db.AdicionarParametros("@IDLouvor", IDLouvor);
+
+				string query =
+					"UPDATE tblLouvores SET " +
+					"EscolhidoCount = EscolhidoCount + 1 " +
+					"WHERE IDLouvor = @IDLouvor;";
+
+				db.ExecutarManipulacao(CommandType.Text, query);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
 		// CONVERT DT IN CLASS LOUVOR
 		// =============================================================================
 		private clLouvor ConvertRowInClLouvor(DataRow r)
