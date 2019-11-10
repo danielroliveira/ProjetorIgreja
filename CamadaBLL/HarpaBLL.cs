@@ -216,11 +216,12 @@ namespace CamadaBLL
 
 		// ADD HISTORICO
 		// =============================================================================
-		public void AddHistorico(int IDHino, string DBPath)
+		public void AddHistorico(int IDHino)
 		{
 			try
 			{
-				AcessoDados db = new AcessoDados(DBPath);
+				AcessoDados db = new AcessoDados(_dataBasePath);
+				db.LimparParametros();
 				db.AdicionarParametros("@IDHino", IDHino);
 
 				string query = "INSERT INTO tblHinosHistorico(IDHino) VALUES (@IDHino)";
@@ -278,11 +279,11 @@ namespace CamadaBLL
 
 		// DELETE HISTORICO
 		// =============================================================================
-		public void DeleteHistoricoByID(int IDHistorico, string DBPath)
+		public void DeleteHistoricoByID(int IDHistorico)
 		{
 			try
 			{
-				AcessoDados db = new AcessoDados(DBPath);
+				AcessoDados db = new AcessoDados(_dataBasePath);
 
 				db.LimparParametros();
 				db.AdicionarParametros("@IDHistorico", IDHistorico);

@@ -527,14 +527,31 @@ namespace CamadaBLL
 
 		// ADD HISTORICO
 		// =============================================================================
-		public void AddHistorico(int IDLouvor, string DBPath)
+		public void AddHistorico(int IDLouvor)
 		{
 			try
 			{
-				AcessoDados db = new AcessoDados(DBPath);
+				AcessoDados db = new AcessoDados(_dataBasePath);
+				db.LimparParametros();
 				db.AdicionarParametros("@IDLouvor", IDLouvor);
 
-				string query = "INSERT INTO tblLouvorHistorico(IDLouvor) VALUES (@IDLouvor)";
+				// check the last IDLouvor add in historico
+				string query = "SELECT TOP 1 IDLouvor FROM tblLouvoresHistorico ORDER BY IDHistorico DESC";
+				DataTable dt = db.ExecutarConsulta(CommandType.Text, query);
+
+				if(dt.Rows.Count > 0)
+				{
+					int LastID = (int)dt.Rows[0][0];
+					if(LastID == IDLouvor) // check if is duplicated
+					{
+						return;
+					}
+				}
+
+				// add in historico
+				db.LimparParametros();
+				db.AdicionarParametros("@IDLouvor", IDLouvor);
+				query = "INSERT INTO tblLouvoresHistorico(IDLouvor) VALUES (@IDLouvor)";
 
 				db.ExecutarManipulacao(CommandType.Text, query);
 
@@ -571,7 +588,7 @@ namespace CamadaBLL
 						IDHistorico = (int)r["IDHistorico"],
 						HistoricoData = (DateTime)r["HistoricoData"],
 						Titulo = (string)r["Titulo"],
-						Tom = (byte)r["Tom"],
+						Tom = r["Tom"] == DBNull.Value ? null : (byte?)r["Tom"],
 						EscolhidoCount = (short)r["EscolhidoCount"]
 					};
 
@@ -596,7 +613,7 @@ namespace CamadaBLL
 
 				db.LimparParametros();
 				db.AdicionarParametros("@IDHistorico", IDHistorico);
-				string query = "DELETE IDHistorico FROM tblLouvorHistorico WHERE IDHistorico = @IDHistorico";
+				string query = "DELETE IDHistorico FROM tblLouvoresHistorico WHERE IDHistorico = @IDHistorico";
 
 				db.ExecutarManipulacao(CommandType.Text, query);
 			}
@@ -614,7 +631,7 @@ namespace CamadaBLL
 			{
 				AcessoDados db = new AcessoDados(DBPath);
 
-				string query = "DELETE * FROM tblLouvorHistorico";
+				string query = "DELETE * FROM tblLouvoresHistorico";
 
 				db.ExecutarManipulacao(CommandType.Text, query);
 			}

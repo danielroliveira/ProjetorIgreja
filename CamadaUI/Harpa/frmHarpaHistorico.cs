@@ -218,7 +218,7 @@ namespace CamadaUI.Harpa
 				}
 
 				clHistoricoHino hist = (clHistoricoHino)dgvListagem.SelectedRows[0].DataBoundItem;
-				hBLL.DeleteHistoricoByID(hist.IDHistorico, _formOrigem.DBPath);
+				hBLL.DeleteHistoricoByID(hist.IDHistorico);
 
 				// GET ITEM LIST
 				GetHistorico();

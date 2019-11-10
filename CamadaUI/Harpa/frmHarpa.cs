@@ -285,7 +285,7 @@ namespace CamadaUI.Harpa
 						{
 							try
 							{
-								hBLL.AddHistorico((int)frm.HinoEscolhido.IDHino, DBPath);
+								hBLL.AddHistorico((int)frm.HinoEscolhido.IDHino);
 							}
 							catch (Exception ex)
 							{

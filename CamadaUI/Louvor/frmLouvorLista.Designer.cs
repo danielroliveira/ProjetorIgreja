@@ -69,6 +69,7 @@
 			this.pnlHistorico = new System.Windows.Forms.Panel();
 			this.label2 = new System.Windows.Forms.Label();
 			this.btnHistorico = new System.Windows.Forms.Button();
+			this.btnProcurar = new System.Windows.Forms.Button();
 			this.pnlTop.SuspendLayout();
 			this.mnuLista.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.lstListagem)).BeginInit();
@@ -397,6 +398,7 @@
 			this.txtProcura.Size = new System.Drawing.Size(430, 33);
 			this.txtProcura.TabIndex = 10;
 			this.txtProcura.TextChanged += new System.EventHandler(this.txtProcura_TextChanged);
+			this.txtProcura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtProcura_KeyDown);
 			// 
 			// lblVersiculo
 			// 
@@ -469,12 +471,28 @@
 			this.btnHistorico.UseVisualStyleBackColor = false;
 			this.btnHistorico.Click += new System.EventHandler(this.btnHistorico_Click);
 			// 
+			// btnProcurar
+			// 
+			this.btnProcurar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnProcurar.Image = global::CamadaUI.Properties.Resources.search_peq;
+			this.btnProcurar.Location = new System.Drawing.Point(448, 136);
+			this.btnProcurar.Name = "btnProcurar";
+			this.btnProcurar.Size = new System.Drawing.Size(129, 33);
+			this.btnProcurar.TabIndex = 12;
+			this.btnProcurar.Tag = "Cliqui aqui para procurar...";
+			this.btnProcurar.Text = "&Procurar";
+			this.btnProcurar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.btnProcurar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnProcurar.UseVisualStyleBackColor = true;
+			this.btnProcurar.Click += new System.EventHandler(this.btnProcurar_Click);
+			// 
 			// frmLouvorLista
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1142, 623);
 			this.Controls.Add(this.pnlHistorico);
+			this.Controls.Add(this.btnProcurar);
 			this.Controls.Add(this.btnEditar);
 			this.Controls.Add(this.btnEscolher);
 			this.Controls.Add(this.lstListagem);
@@ -542,5 +560,6 @@
 		public System.Windows.Forms.Panel pnlHistorico;
 		private System.Windows.Forms.Label label2;
 		protected internal System.Windows.Forms.Button btnHistorico;
+		private System.Windows.Forms.Button btnProcurar;
 	}
 }

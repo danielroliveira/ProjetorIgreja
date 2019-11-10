@@ -34,6 +34,9 @@ namespace CamadaUI.Louvor
 		{
 			InitializeComponent();
 
+			// Ampulheta ON
+			Cursor.Current = Cursors.WaitCursor;
+
 			// define Origem and Images
 			DefineImageList();
 			DBPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ProjetorDB.mdb");
@@ -54,6 +57,9 @@ namespace CamadaUI.Louvor
 			}
 
 			pnlHistorico.Visible = true;
+
+			// Ampulheta OFF
+			Cursor.Current = Cursors.Default;
 		}
 
 		private void DefineImageList()
@@ -91,8 +97,11 @@ namespace CamadaUI.Louvor
 			}
 			finally
 			{
-				// --- Ampulheta OFF
-				Cursor.Current = Cursors.Default;
+				if (this.IsAccessible)
+				{
+					// --- Ampulheta OFF
+					Cursor.Current = Cursors.Default;
+				}
 			}
 		}
 
@@ -134,7 +143,7 @@ namespace CamadaUI.Louvor
 
 			lstListagem.SearchSettings = new BetterListViewSearchSettings(BetterListViewSearchMode.PrefixOrSubstring,
 																		  BetterListViewSearchOptions.UpdateSearchHighlight,
-																		  new int[] { 0, 1, 2 });
+																		  new int[] { 1 });
 		}
 
 		private void lstListagem_DrawColumnHeader(object sender, BetterListViewDrawColumnHeaderEventArgs eventArgs)
@@ -196,7 +205,7 @@ namespace CamadaUI.Louvor
 		// ESCOLHER HINO
 		private void lstListagem_ItemActivate(object sender, BetterListViewItemActivateEventArgs eventArgs)
 		{
-			EscolherHino();
+			btnEscolher_Click(sender, new EventArgs());
 		}
 
 		#endregion
@@ -222,13 +231,6 @@ namespace CamadaUI.Louvor
 		// ---------------------------------------------------------------------------
 		private void btnEscolher_Click(object sender, EventArgs e)
 		{
-			EscolherHino();
-		}
-
-		// ESCOLHER HINO
-		//-------------------------------------------------------------------------------------------------
-		private void EscolherHino()
-		{
 			if (lstListagem.SelectedItems.Count == 0)
 			{
 				AbrirDialog("Favor selecionar um Hino na listagem antes de Escolher...",
@@ -237,6 +239,14 @@ namespace CamadaUI.Louvor
 			}
 
 			clLouvor louvor = ListLouvor.Find(l => l.IDLouvor == (int)lstListagem.SelectedItems[0].Value);
+
+			ProjetarLouvor(louvor);
+		}
+
+		// ESCOLHER HINO
+		//-------------------------------------------------------------------------------------------------
+		public void ProjetarLouvor(clLouvor louvor)
+		{
 			string louvorPath = louvor.ProjecaoPath;
 
 			// verifica a existencia do DIR
@@ -320,10 +330,6 @@ namespace CamadaUI.Louvor
 			MsoTriState.msoTrue ,MsoTriState.msoTrue );
 
 			*/
-
-
-
-
 		}
 
 		// MINIMIZE
@@ -357,9 +363,8 @@ namespace CamadaUI.Louvor
 
 			clLouvor louvor = ListLouvor.Find(l => l.IDLouvor == IDLouvorEscolhido);
 
-			DialogResult resp = AbrirDialog("Deseja acrescentar uma unidade ao número de vezes que: \n" +
-				louvor.Titulo + "\n foi escolhido?",
-				"Louvor Escolhido?", DialogType.SIM_NAO, DialogIcon.Question);
+			DialogResult resp = AbrirDialog("Deseja adicionar Louvor ao histórico?",
+				"Louvor Escolhido", DialogType.SIM_NAO, DialogIcon.Question);
 
 			if (resp == DialogResult.No)
 			{
@@ -367,26 +372,7 @@ namespace CamadaUI.Louvor
 				return;
 			}
 
-			try
-			{
-				// --- Ampulheta ON
-				Cursor.Current = Cursors.WaitCursor;
-				lBLL.AddEscolhidoLouvor(louvor.IDLouvor);
-				louvor.EscolhidoCount += 1;
-				IDLouvorEscolhido = null;
-			}
-			catch (Exception ex)
-			{
-				IDLouvorEscolhido = null;
-				AbrirDialog("Uma exceção ocorreu ao Acrescentar o número de escolhido..." + "\n" +
-							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
-			}
-			finally
-			{
-				// --- Ampulheta OFF
-				Cursor.Current = Cursors.Default;
-			}
-
+			AddLouvorHistorico(louvor);
 
 		}
 
@@ -415,8 +401,11 @@ namespace CamadaUI.Louvor
 
 		// PROCURAR HINO PELO TITULO: TEXT CHANGE
 		// =============================================================================
-		private void txtProcura_TextChanged(object sender, EventArgs e)
+		private void btnProcurar_Click(object sender, EventArgs e)
 		{
+			// Ampulheta ON
+			Cursor.Current = Cursors.WaitCursor;
+
 			ProcurarHinoTxt();
 			BetterListViewItemCollection itemsFound;
 
@@ -429,8 +418,11 @@ namespace CamadaUI.Louvor
 				lstListagem.FindItemsWithText("?");
 				lstListagem.SelectedItems.Clear();
 			}
-		}
 
+			// Ampulheta OFF
+			Cursor.Current = Cursors.Default;
+		}
+		
 		// PROCURAR HINO PELO TITULO
 		// =============================================================================
 		private void ProcurarHinoTxt()
@@ -575,6 +567,41 @@ namespace CamadaUI.Louvor
 			   		 	  	  	   
 		#region PANEL HISTORICO
 
+		private void AddLouvorHistorico(clLouvor louvor)
+		{
+			// ADD Louvor Escolhido Count
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+				lBLL.AddEscolhidoLouvor(louvor.IDLouvor);
+				louvor.EscolhidoCount += 1;
+				IDLouvorEscolhido = null;
+			}
+			catch (Exception ex)
+			{
+				IDLouvorEscolhido = null;
+				AbrirDialog("Uma exceção ocorreu ao Acrescentar o número de escolhido..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+			
+			// add in HISTORICO if selected different Hino
+			try
+			{
+				lBLL.AddHistorico((int)louvor.IDLouvor);
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Um exceção ocorreu ao salvar Histórico \n" + ex.Message,
+					"Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+		}
+
 		private void btnHistorico_Click(object sender, EventArgs e)
 		{
 			OpenHistorico();
@@ -594,7 +621,7 @@ namespace CamadaUI.Louvor
 				Cursor.Current = Cursors.WaitCursor;
 
 				pnlHistorico.Width = 450;
-				pnlHistorico.Location = new Point(ClientSize.Width - 450, 100);
+				pnlHistorico.Location = new Point(ClientSize.Width - 450, 40);
 
 				using (frmLouvorHistorico frm = new frmLouvorHistorico(this))
 				{
@@ -621,9 +648,9 @@ namespace CamadaUI.Louvor
 
 		private void Tmr_Tick(object sender, EventArgs e)
 		{
-			if (pnlHistorico.Width <= 220)
+			if (pnlHistorico.Width <= 237)
 			{
-				pnlHistorico.Width = 220;
+				pnlHistorico.Width = 237;
 				Timer tmr = (Timer)sender;
 				tmr.Stop();
 			}
@@ -633,7 +660,52 @@ namespace CamadaUI.Louvor
 			pnlHistorico.Refresh();
 		}
 
+
 		#endregion
 
+		#region TOOLTIP
+
+		private void ShowToolTipo(Control controle)
+		{
+			//Cria a ToolTip e associa com o Form container.
+			ToolTip toolTip1 = new ToolTip()
+			{
+				AutoPopDelay = 2000, // Define o delay para a ToolTip
+				InitialDelay = 2000,
+				ReshowDelay = 500,
+				IsBalloon = true,
+				UseAnimation = true,
+				UseFading = true
+			};
+			
+			if(controle.Tag.ToString() == "") 
+			{
+				toolTip1.Show("Clique aqui...", controle, controle.Width - 30, -40, 2000);
+			}
+			else 
+			{
+				toolTip1.Show(controle.Tag.ToString(), controle, controle.Width - 30, -40, 2000);
+			}
+		}
+
+		// SHOW TOOLTIP ON TEXT CHANGE
+		private void txtProcura_TextChanged(object sender, EventArgs e)
+		{
+			ShowToolTipo((Control)btnProcurar);
+		}
+
+		#endregion
+
+		//---------------------------------------------------------------------------------------
+		//--- SUBSTITUI A TECLA (ENTER) PELA (TAB)
+		//---------------------------------------------------------------------------------------
+		private void txtProcura_KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyCode == Keys.Enter)
+			{
+				e.SuppressKeyPress = true;
+				btnProcurar_Click(sender, e);
+			}
+		}
 	}
 }

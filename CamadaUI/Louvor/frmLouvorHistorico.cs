@@ -37,7 +37,7 @@ namespace CamadaUI.Louvor
 			ConfiguraDataGrid();
 
 			int L = _formOrigem.Width;
-			Point ptLocation = new Point(L - Width, 100);
+			Point ptLocation = new Point(L - Width, 40);
 			
 			Location = ptLocation;
 			// Size = new Size(Width, formOrigem.Size.Height - 155);
