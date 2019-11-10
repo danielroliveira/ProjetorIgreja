@@ -23,4 +23,13 @@ namespace CamadaDTO
 		public int IDHistorico { get; set; }
 		public DateTime HistoricoData { get; set; }
 	}
+
+	public class clHistoricoLouvor : clLouvor
+	{
+		public clHistoricoLouvor(int IDLouvor) : base(IDLouvor)
+		{}
+
+		public int IDHistorico { get; set; }
+		public DateTime HistoricoData { get; set; }
+	}
 }

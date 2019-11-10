@@ -522,5 +522,108 @@ namespace CamadaBLL
 		}
 
 		#endregion
+
+		#region HISTORICO
+
+		// ADD HISTORICO
+		// =============================================================================
+		public void AddHistorico(int IDLouvor, string DBPath)
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(DBPath);
+				db.AdicionarParametros("@IDLouvor", IDLouvor);
+
+				string query = "INSERT INTO tblLouvorHistorico(IDLouvor) VALUES (@IDLouvor)";
+
+				db.ExecutarManipulacao(CommandType.Text, query);
+
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		// GET HISTORICO
+		// =============================================================================
+		public List<clHistoricoLouvor> GetHistorico()
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(_dataBasePath);
+				DataTable dt = new DataTable();
+
+				string query = "SELECT * FROM qryLouvorHistorico " +
+					"ORDER BY IDHistorico DESC";
+
+				dt = db.ExecutarConsulta(CommandType.Text, query);
+
+				List<clHistoricoLouvor> list = new List<clHistoricoLouvor>();
+
+				if (dt.Rows.Count == 0)
+					return list;
+
+				foreach (DataRow r in dt.Rows)
+				{
+					clHistoricoLouvor louvor = new clHistoricoLouvor((int)r["IDLouvor"])
+					{
+						IDHistorico = (int)r["IDHistorico"],
+						HistoricoData = (DateTime)r["HistoricoData"],
+						Titulo = (string)r["Titulo"],
+						Tom = (byte)r["Tom"],
+						EscolhidoCount = (short)r["EscolhidoCount"]
+					};
+
+					list.Add(louvor);
+				}
+
+				return list;
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		// DELETE HISTORICO
+		// =============================================================================
+		public void DeleteHistoricoByID(int IDHistorico, string DBPath)
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(DBPath);
+
+				db.LimparParametros();
+				db.AdicionarParametros("@IDHistorico", IDHistorico);
+				string query = "DELETE IDHistorico FROM tblLouvorHistorico WHERE IDHistorico = @IDHistorico";
+
+				db.ExecutarManipulacao(CommandType.Text, query);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		// CLEAR HISTORICO
+		// =============================================================================
+		public void ClearHistorico(string DBPath)
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(DBPath);
+
+				string query = "DELETE * FROM tblLouvorHistorico";
+
+				db.ExecutarManipulacao(CommandType.Text, query);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		#endregion
 	}
 }

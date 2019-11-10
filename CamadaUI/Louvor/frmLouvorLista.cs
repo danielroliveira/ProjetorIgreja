@@ -44,7 +44,7 @@ namespace CamadaUI.Louvor
 			FormataListagem();
 		}
 
-		private void frmLouvorEscolher_Shown(object sender, EventArgs e)
+		private void frmLouvorLista_Shown(object sender, EventArgs e)
 		{
 			txtProcura.Focus();
 			if (MensagemInicial != null)
@@ -52,6 +52,8 @@ namespace CamadaUI.Louvor
 				AbrirDialog(MensagemInicial[0], MensagemInicial[1],
 					DialogType.OK, DialogIcon.Exclamation);
 			}
+
+			pnlHistorico.Visible = true;
 		}
 
 		private void DefineImageList()
@@ -344,6 +346,50 @@ namespace CamadaUI.Louvor
 			}
 		}
 
+		// ASK USER ADD COUNT ESCOLHIDO
+		// =============================================================================
+		private void frmLouvorLista_Activated(object sender, EventArgs e)
+		{
+			if (IDLouvorEscolhido == null)
+			{
+				return;
+			}
+
+			clLouvor louvor = ListLouvor.Find(l => l.IDLouvor == IDLouvorEscolhido);
+
+			DialogResult resp = AbrirDialog("Deseja acrescentar uma unidade ao número de vezes que: \n" +
+				louvor.Titulo + "\n foi escolhido?",
+				"Louvor Escolhido?", DialogType.SIM_NAO, DialogIcon.Question);
+
+			if (resp == DialogResult.No)
+			{
+				IDLouvorEscolhido = null;
+				return;
+			}
+
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+				lBLL.AddEscolhidoLouvor(louvor.IDLouvor);
+				louvor.EscolhidoCount += 1;
+				IDLouvorEscolhido = null;
+			}
+			catch (Exception ex)
+			{
+				IDLouvorEscolhido = null;
+				AbrirDialog("Uma exceção ocorreu ao Acrescentar o número de escolhido..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+
+
+		}
+
 		#endregion
 
 		#region VISUAL EFFECTS
@@ -526,38 +572,44 @@ namespace CamadaUI.Louvor
 		}
 
 		#endregion
+			   		 	  	  	   
+		#region PANEL HISTORICO
 
-		private void frmLouvorLista_Activated(object sender, EventArgs e)
+		private void btnHistorico_Click(object sender, EventArgs e)
 		{
-			if (IDLouvorEscolhido == null)
-			{
-				return;
-			}
+			OpenHistorico();
+		}
 
-			clLouvor louvor = ListLouvor.Find(l => l.IDLouvor == IDLouvorEscolhido);
+		private void label1_Click(object sender, EventArgs e)
+		{
+			OpenHistorico();
+		}
 
-			DialogResult resp = AbrirDialog("Deseja acrescentar uma unidade ao número de vezes que: \n" +
-				louvor.Titulo + "\n foi escolhido?",
-				"Louvor Escolhido?", DialogType.SIM_NAO, DialogIcon.Question);
-
-			if (resp == DialogResult.No)
-			{
-				IDLouvorEscolhido = null;
-				return;
-			}
-				
+		// OPEN HISTORICO FORM
+		private void OpenHistorico()
+		{
 			try
 			{
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
-				lBLL.AddEscolhidoLouvor(louvor.IDLouvor);
-				louvor.EscolhidoCount += 1;
-				IDLouvorEscolhido = null;
+
+				pnlHistorico.Width = 450;
+				pnlHistorico.Location = new Point(ClientSize.Width - 450, 100);
+
+				using (frmLouvorHistorico frm = new frmLouvorHistorico(this))
+				{
+					frm.ShowDialog();
+				}
+
+				pnlHistorico.Visible = true;
+				Timer tmr = new Timer();
+				tmr.Interval = 1;
+				tmr.Tick += Tmr_Tick;
+				tmr.Start();
 			}
 			catch (Exception ex)
 			{
-				IDLouvorEscolhido = null;
-				AbrirDialog("Uma exceção ocorreu ao Acrescentar o número de escolhido..." + "\n" +
+				AbrirDialog("Uma exceção ocorreu ao Abrir o histórico de Louvor..." + "\n" +
 							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
 			}
 			finally
@@ -565,8 +617,23 @@ namespace CamadaUI.Louvor
 				// --- Ampulheta OFF
 				Cursor.Current = Cursors.Default;
 			}
-
-
 		}
+
+		private void Tmr_Tick(object sender, EventArgs e)
+		{
+			if (pnlHistorico.Width <= 220)
+			{
+				pnlHistorico.Width = 220;
+				Timer tmr = (Timer)sender;
+				tmr.Stop();
+			}
+
+			pnlHistorico.Width -= 5;
+			pnlHistorico.Location = new Point(pnlHistorico.Location.X + 5, pnlHistorico.Location.Y);
+			pnlHistorico.Refresh();
+		}
+
+		#endregion
+
 	}
 }

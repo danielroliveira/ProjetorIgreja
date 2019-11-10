@@ -66,9 +66,13 @@
 			this.txtProcura = new System.Windows.Forms.TextBox();
 			this.lblVersiculo = new System.Windows.Forms.Label();
 			this.btnVoltar = new Glass.GlassButton();
+			this.pnlHistorico = new System.Windows.Forms.Panel();
+			this.label2 = new System.Windows.Forms.Label();
+			this.btnHistorico = new System.Windows.Forms.Button();
 			this.pnlTop.SuspendLayout();
 			this.mnuLista.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.lstListagem)).BeginInit();
+			this.pnlHistorico.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pnlTop
@@ -420,11 +424,57 @@
 			this.btnVoltar.TabIndex = 7;
 			this.btnVoltar.Click += new System.EventHandler(this.btnClose_Click);
 			// 
+			// pnlHistorico
+			// 
+			this.pnlHistorico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.pnlHistorico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(171)))), ((int)(((byte)(205)))));
+			this.pnlHistorico.Controls.Add(this.label2);
+			this.pnlHistorico.Controls.Add(this.btnHistorico);
+			this.pnlHistorico.Location = new System.Drawing.Point(905, 40);
+			this.pnlHistorico.Name = "pnlHistorico";
+			this.pnlHistorico.Size = new System.Drawing.Size(237, 32);
+			this.pnlHistorico.TabIndex = 63;
+			this.pnlHistorico.Visible = false;
+			// 
+			// label2
+			// 
+			this.label2.Dock = System.Windows.Forms.DockStyle.Right;
+			this.label2.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
+			this.label2.ForeColor = System.Drawing.Color.White;
+			this.label2.Location = new System.Drawing.Point(4, 0);
+			this.label2.Name = "label2";
+			this.label2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 4);
+			this.label2.Size = new System.Drawing.Size(193, 32);
+			this.label2.TabIndex = 0;
+			this.label2.Text = "Histórico de Louvores";
+			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.label2.Click += new System.EventHandler(this.label1_Click);
+			// 
+			// btnHistorico
+			// 
+			this.btnHistorico.BackColor = System.Drawing.Color.Transparent;
+			this.btnHistorico.Dock = System.Windows.Forms.DockStyle.Right;
+			this.btnHistorico.FlatAppearance.BorderSize = 0;
+			this.btnHistorico.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGoldenrodYellow;
+			this.btnHistorico.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
+			this.btnHistorico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnHistorico.Image = global::CamadaUI.Properties.Resources.DropdownIcon;
+			this.btnHistorico.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			this.btnHistorico.Location = new System.Drawing.Point(197, 0);
+			this.btnHistorico.Margin = new System.Windows.Forms.Padding(0);
+			this.btnHistorico.Name = "btnHistorico";
+			this.btnHistorico.Size = new System.Drawing.Size(40, 32);
+			this.btnHistorico.TabIndex = 1;
+			this.btnHistorico.TabStop = false;
+			this.btnHistorico.UseVisualStyleBackColor = false;
+			this.btnHistorico.Click += new System.EventHandler(this.btnHistorico_Click);
+			// 
 			// frmLouvorLista
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1142, 623);
+			this.Controls.Add(this.pnlHistorico);
 			this.Controls.Add(this.btnEditar);
 			this.Controls.Add(this.btnEscolher);
 			this.Controls.Add(this.lstListagem);
@@ -442,9 +492,11 @@
 			this.Text = "frmLouvorLista";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Activated += new System.EventHandler(this.frmLouvorLista_Activated);
+			this.Shown += new System.EventHandler(this.frmLouvorLista_Shown);
 			this.pnlTop.ResumeLayout(false);
 			this.mnuLista.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.lstListagem)).EndInit();
+			this.pnlHistorico.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -487,5 +539,8 @@
 		private System.Windows.Forms.ToolStripMenuItem miTom12;
 		private ComponentOwl.BetterListView.BetterListViewColumnHeader clnTomDesc;
 		private ComponentOwl.BetterListView.BetterListViewColumnHeader clnCategoria;
+		public System.Windows.Forms.Panel pnlHistorico;
+		private System.Windows.Forms.Label label2;
+		protected internal System.Windows.Forms.Button btnHistorico;
 	}
 }

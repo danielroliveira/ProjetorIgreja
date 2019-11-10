@@ -186,6 +186,12 @@
     <Compile Include="Louvor\frmLouvorEditar.Designer.cs">
       <DependentUpon>frmLouvorEditar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Louvor\frmLouvorHistorico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Louvor\frmLouvorHistorico.designer.cs">
+      <DependentUpon>frmLouvorHistorico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Louvor\frmLouvorLista.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Louvor\frmLouvorEditar.resx">
       <DependentUpon>frmLouvorEditar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Louvor\frmLouvorHistorico.resx">
+      <DependentUpon>frmLouvorHistorico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Louvor\frmLouvorLista.resx">
       <DependentUpon>frmLouvorLista.cs</DependentUpon>
