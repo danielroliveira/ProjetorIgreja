@@ -35,7 +35,6 @@
 			this.clnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.clnTitulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btnFechar = new System.Windows.Forms.Button();
-			this.btnLimpar = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvListagem)).BeginInit();
 			this.SuspendLayout();
@@ -136,31 +135,11 @@
 			this.btnFechar.Visible = false;
 			this.btnFechar.Click += new System.EventHandler(this.btnClose_Click);
 			// 
-			// btnLimpar
-			// 
-			this.btnLimpar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnLimpar.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-			this.btnLimpar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MistyRose;
-			this.btnLimpar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.PowderBlue;
-			this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnLimpar.Image = global::CamadaUI.Properties.Resources.delete_page_24px;
-			this.btnLimpar.Location = new System.Drawing.Point(13, 486);
-			this.btnLimpar.Name = "btnLimpar";
-			this.btnLimpar.Size = new System.Drawing.Size(166, 35);
-			this.btnLimpar.TabIndex = 2;
-			this.btnLimpar.Text = "&Limpar Histórico";
-			this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnLimpar.UseVisualStyleBackColor = true;
-			this.btnLimpar.Visible = false;
-			this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
-			// 
 			// frmHarpaHistorico
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
 			this.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.ClientSize = new System.Drawing.Size(450, 529);
-			this.Controls.Add(this.btnLimpar);
 			this.Controls.Add(this.btnFechar);
 			this.Controls.Add(this.dgvListagem);
 			this.KeyPreview = true;
@@ -174,7 +153,6 @@
 			this.Controls.SetChildIndex(this.panel1, 0);
 			this.Controls.SetChildIndex(this.dgvListagem, 0);
 			this.Controls.SetChildIndex(this.btnFechar, 0);
-			this.Controls.SetChildIndex(this.btnLimpar, 0);
 			this.panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgvListagem)).EndInit();
 			this.ResumeLayout(false);
@@ -185,7 +163,6 @@
 
 		private CamadaUI.Controls.ctrlDataGridView dgvListagem;
 		private System.Windows.Forms.Button btnFechar;
-		private System.Windows.Forms.Button btnLimpar;
 		private System.Windows.Forms.DataGridViewTextBoxColumn clnID;
 		private System.Windows.Forms.DataGridViewTextBoxColumn clnTitulo;
 	}

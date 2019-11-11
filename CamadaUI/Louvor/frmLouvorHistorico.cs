@@ -33,8 +33,6 @@ namespace CamadaUI.Louvor
 			InitializeComponent();
 
 			_formOrigem = formOrigem;
-			GetHistorico();
-			ConfiguraDataGrid();
 
 			int L = _formOrigem.Width;
 			Point ptLocation = new Point(L - Width, 40);
@@ -45,7 +43,9 @@ namespace CamadaUI.Louvor
 			Size = new Size(Width, 32);
 			tmr.Interval = 1;
 			tmr.Tick += Tmr_Tick;
-
+			
+			GetHistorico();
+			//ConfiguraDataGrid();
 			btnFechar.Visible = false;
 		}
 
@@ -54,8 +54,13 @@ namespace CamadaUI.Louvor
 		private void frmLouvorHistorico_Load(object sender, EventArgs e)
 		{
 			dgvListagem.ScrollBars = ScrollBars.None;
-			tmr.Start();
+			//tmr.Start();
+			Height = _formOrigem.Height - 105;
+			btnFechar.Visible = true;
+			dgvListagem.ScrollBars = ScrollBars.Vertical;
+			ConfiguraDataGrid();
 			_formOrigem.pnlHistorico.Visible = false;
+
 		}
 
 		// GET HISTORICO
@@ -120,7 +125,7 @@ namespace CamadaUI.Louvor
 			// COLUNA HINO
 			clnID.DataPropertyName = "IDLouvor";
 			clnID.Resizable = DataGridViewTriState.False;
-			clnID.Visible = true;
+			clnID.Visible = false;
 			clnID.ReadOnly = true;
 			clnID.DefaultCellStyle.Format = "000";
 			clnID.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -134,8 +139,17 @@ namespace CamadaUI.Louvor
 			clnTitulo.SortMode = DataGridViewColumnSortMode.NotSortable;
 			clnTitulo.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
+			// COLUNA TITULO
+			clnDataRef.DataPropertyName = "HistoricoDataDesc";
+			clnDataRef.Resizable = DataGridViewTriState.False;
+			clnDataRef.Visible = true;
+			clnDataRef.ReadOnly = true;
+			clnDataRef.SortMode = DataGridViewColumnSortMode.NotSortable;
+			clnDataRef.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+			clnDataRef.DefaultCellStyle.Font = new Font("Calibri", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+
 			// --- adiciona as colunas editadas
-			dgvListagem.Columns.AddRange(new DataGridViewColumn[] {clnID, clnTitulo});
+			dgvListagem.Columns.AddRange(new DataGridViewColumn[] {clnID, clnTitulo, clnDataRef });
 		}
 
 
@@ -176,6 +190,8 @@ namespace CamadaUI.Louvor
 				return;
 			EscolherVersiculo();
 		}
+
+
 
 		#endregion
 
@@ -222,44 +238,6 @@ namespace CamadaUI.Louvor
 
 		#region BUTTONS FUNCTION
 
-		// LIMPAR HISTORICO
-		// =============================================================================
-		private void btnLimpar_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				// ASK USER
-				if (AbrirDialog("Deseja limpar o Histórico?", "Tem Certeza?", 
-					 DialogType.SIM_NAO, 
-					 DialogIcon.Warning, 
-					 DialogDefaultButton.Second) == DialogResult.No)
-				{
-					return;
-				}
-
-				// --- Ampulheta ON
-				Cursor.Current = Cursors.WaitCursor;
-
-				if (dgvListagem.Rows.Count == 0) return;
-
-				lBLL.ClearHistorico(_formOrigem.DBPath);
-
-				// GET NEW LIST
-				GetHistorico();
-				dgvListagem.DataSource = HistoricoList;
-			}
-			catch (Exception ex)
-			{
-				AbrirDialog("Uma exceção ocorreu ao Limpar Histórico..." + "\n" +
-							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
-			}
-			finally
-			{
-				// --- Ampulheta OFF
-				Cursor.Current = Cursors.Default;
-			}
-		}
-
 		// PRESS ESC TO CLOSE
 		// =============================================================================
 		private void frmLouvorHistorico_KeyDown(object sender, KeyEventArgs e)
@@ -289,13 +267,12 @@ namespace CamadaUI.Louvor
 		{
 			Height += 30;
 
-			if (Height >= _formOrigem.Height - 155)
+			if (Height >= _formOrigem.Height - 105)
 			{
-				Height = _formOrigem.Height - 155;
+				Height = _formOrigem.Height - 105;
 				btnFechar.Visible = true;
-				btnLimpar.Visible = true;
-				tmr.Stop();
 				dgvListagem.ScrollBars = ScrollBars.Vertical;
+				tmr.Stop();
 			}
 		}
 
@@ -313,8 +290,8 @@ namespace CamadaUI.Louvor
 									 rect);
 		}
 
-		#endregion
 
+		#endregion
 
 	}
 }

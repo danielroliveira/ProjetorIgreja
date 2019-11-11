@@ -72,7 +72,10 @@ namespace CamadaUI.Escritura
 		private void frmHistorico_Load(object sender, EventArgs e)
 		{
 			dgvListagem.ScrollBars = ScrollBars.None;
-			tmr.Start();
+			//tmr.Start();
+			Height = _formOrigem.Height - 155;
+			btnFechar.Visible = true;
+			dgvListagem.ScrollBars = ScrollBars.Vertical;
 			_formOrigem.pnlHistorico.Visible = false;
 		}
 
@@ -240,44 +243,6 @@ namespace CamadaUI.Escritura
 
 		#region BUTTONS FUNCTION
 
-		// LIMPAR HISTORICO
-		// =============================================================================
-		private void btnLimpar_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				// ASK USER
-				if (AbrirDialog("Deseja limpar o Histórico?", "Tem Certeza?", 
-					 DialogType.SIM_NAO, 
-					 DialogIcon.Warning, 
-					 DialogDefaultButton.Second) == DialogResult.No)
-				{
-					return;
-				}
-
-				// --- Ampulheta ON
-				Cursor.Current = Cursors.WaitCursor;
-
-				if (dgvListagem.Rows.Count == 0) return;
-
-				vBLL.ClearHistorico(_formOrigem.DBPath);
-
-				// GET NEW LIST
-				GetHistorico();
-				dgvListagem.DataSource = HistoricoList;
-			}
-			catch (Exception ex)
-			{
-				AbrirDialog("Uma exceção ocorreu ao Limpar Histórico..." + "\n" +
-							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
-			}
-			finally
-			{
-				// --- Ampulheta OFF
-				Cursor.Current = Cursors.Default;
-			}
-		}
-
 		// PRESS ESC TO CLOSE
 		// =============================================================================
 		private void frmHistorico_KeyDown(object sender, KeyEventArgs e)
@@ -311,9 +276,8 @@ namespace CamadaUI.Escritura
 			{
 				Height = _formOrigem.Height - 155;
 				btnFechar.Visible = true;
-				btnLimpar.Visible = true;
-				tmr.Stop();
 				dgvListagem.ScrollBars = ScrollBars.Vertical;
+				tmr.Stop();
 			}
 		}
 

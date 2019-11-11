@@ -299,11 +299,11 @@ namespace CamadaBLL
 
 		// CLEAR HISTORICO
 		// =============================================================================
-		public void ClearHistorico(string DBPath)
+		public void ClearHistorico()
 		{
 			try
 			{
-				AcessoDados db = new AcessoDados(DBPath);
+				AcessoDados db = new AcessoDados(_dataBasePath);
 
 				string query = "DELETE * FROM tblHinosHistorico";
 

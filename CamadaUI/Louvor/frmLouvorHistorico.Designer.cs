@@ -34,8 +34,8 @@
 			this.dgvListagem = new CamadaUI.Controls.ctrlDataGridView();
 			this.clnID = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.clnTitulo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.clnDataRef = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btnFechar = new System.Windows.Forms.Button();
-			this.btnLimpar = new System.Windows.Forms.Button();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvListagem)).BeginInit();
 			this.SuspendLayout();
@@ -43,7 +43,7 @@
 			// lblTitulo
 			// 
 			this.lblTitulo.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblTitulo.Location = new System.Drawing.Point(219, 0);
+			this.lblTitulo.Location = new System.Drawing.Point(269, 0);
 			this.lblTitulo.Size = new System.Drawing.Size(191, 32);
 			this.lblTitulo.TabIndex = 0;
 			this.lblTitulo.Text = "Histórico de Louvores";
@@ -53,7 +53,7 @@
 			this.btnClose.FlatAppearance.BorderSize = 0;
 			this.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGoldenrodYellow;
 			this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Firebrick;
-			this.btnClose.Location = new System.Drawing.Point(410, 0);
+			this.btnClose.Location = new System.Drawing.Point(460, 0);
 			this.btnClose.Size = new System.Drawing.Size(40, 32);
 			this.btnClose.TabIndex = 1;
 			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -61,10 +61,12 @@
 			// panel1
 			// 
 			this.panel1.BackColor = System.Drawing.Color.SteelBlue;
-			this.panel1.Size = new System.Drawing.Size(450, 32);
+			this.panel1.Size = new System.Drawing.Size(500, 32);
 			// 
 			// dgvListagem
 			// 
+			this.dgvListagem.AllowUserToAddRows = false;
+			this.dgvListagem.AllowUserToDeleteRows = false;
 			this.dgvListagem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -82,7 +84,8 @@
 			this.dgvListagem.ColumnHeadersVisible = false;
 			this.dgvListagem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clnID,
-            this.clnTitulo});
+            this.clnTitulo,
+            this.clnDataRef});
 			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
 			dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -94,11 +97,12 @@
 			this.dgvListagem.EnableHeadersVisualStyles = false;
 			this.dgvListagem.Location = new System.Drawing.Point(12, 46);
 			this.dgvListagem.Name = "dgvListagem";
+			this.dgvListagem.ReadOnly = true;
 			this.dgvListagem.RowHeadersVisible = false;
 			dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.dgvListagem.RowsDefaultCellStyle = dataGridViewCellStyle3;
 			this.dgvListagem.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.dgvListagem.Size = new System.Drawing.Size(426, 434);
+			this.dgvListagem.Size = new System.Drawing.Size(476, 434);
 			this.dgvListagem.TabIndex = 1;
 			this.dgvListagem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListagem_CellClick);
 			this.dgvListagem.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListagem_CellMouseEnter);
@@ -109,13 +113,22 @@
 			// 
 			this.clnID.HeaderText = "Numero";
 			this.clnID.Name = "clnID";
+			this.clnID.ReadOnly = true;
+			this.clnID.Visible = false;
 			this.clnID.Width = 70;
 			// 
 			// clnTitulo
 			// 
 			this.clnTitulo.HeaderText = "Titulo";
 			this.clnTitulo.Name = "clnTitulo";
+			this.clnTitulo.ReadOnly = true;
 			this.clnTitulo.Width = 320;
+			// 
+			// clnDataRef
+			// 
+			this.clnDataRef.HeaderText = "Quando";
+			this.clnDataRef.Name = "clnDataRef";
+			this.clnDataRef.ReadOnly = true;
 			// 
 			// btnFechar
 			// 
@@ -125,7 +138,7 @@
 			this.btnFechar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.PowderBlue;
 			this.btnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnFechar.Image = global::CamadaUI.Properties.Resources.Fechar_24x24;
-			this.btnFechar.Location = new System.Drawing.Point(272, 486);
+			this.btnFechar.Location = new System.Drawing.Point(322, 486);
 			this.btnFechar.Name = "btnFechar";
 			this.btnFechar.Size = new System.Drawing.Size(166, 35);
 			this.btnFechar.TabIndex = 3;
@@ -136,31 +149,11 @@
 			this.btnFechar.Visible = false;
 			this.btnFechar.Click += new System.EventHandler(this.btnClose_Click);
 			// 
-			// btnLimpar
-			// 
-			this.btnLimpar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnLimpar.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
-			this.btnLimpar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.MistyRose;
-			this.btnLimpar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.PowderBlue;
-			this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnLimpar.Image = global::CamadaUI.Properties.Resources.delete_page_24px;
-			this.btnLimpar.Location = new System.Drawing.Point(13, 486);
-			this.btnLimpar.Name = "btnLimpar";
-			this.btnLimpar.Size = new System.Drawing.Size(166, 35);
-			this.btnLimpar.TabIndex = 2;
-			this.btnLimpar.Text = "&Limpar Histórico";
-			this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.btnLimpar.UseVisualStyleBackColor = true;
-			this.btnLimpar.Visible = false;
-			this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
-			// 
 			// frmLouvorHistorico
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
 			this.BackColor = System.Drawing.Color.WhiteSmoke;
-			this.ClientSize = new System.Drawing.Size(450, 529);
-			this.Controls.Add(this.btnLimpar);
+			this.ClientSize = new System.Drawing.Size(500, 529);
 			this.Controls.Add(this.btnFechar);
 			this.Controls.Add(this.dgvListagem);
 			this.KeyPreview = true;
@@ -173,7 +166,6 @@
 			this.Controls.SetChildIndex(this.panel1, 0);
 			this.Controls.SetChildIndex(this.dgvListagem, 0);
 			this.Controls.SetChildIndex(this.btnFechar, 0);
-			this.Controls.SetChildIndex(this.btnLimpar, 0);
 			this.panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.dgvListagem)).EndInit();
 			this.ResumeLayout(false);
@@ -184,8 +176,8 @@
 
 		private CamadaUI.Controls.ctrlDataGridView dgvListagem;
 		private System.Windows.Forms.Button btnFechar;
-		private System.Windows.Forms.Button btnLimpar;
 		private System.Windows.Forms.DataGridViewTextBoxColumn clnID;
 		private System.Windows.Forms.DataGridViewTextBoxColumn clnTitulo;
+		private System.Windows.Forms.DataGridViewTextBoxColumn clnDataRef;
 	}
 }
