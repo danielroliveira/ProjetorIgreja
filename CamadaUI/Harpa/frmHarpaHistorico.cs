@@ -47,6 +47,7 @@ namespace CamadaUI.Harpa
 			tmr.Interval = 1;
 			tmr.Tick += Tmr_Tick;
 
+			_formOrigem.pnlHistorico.Visible = false;
 			btnFechar.Visible = false;
 		}
 
@@ -73,7 +74,6 @@ namespace CamadaUI.Harpa
 		{
 			dgvListagem.ScrollBars = ScrollBars.None;
 			//tmr.Start();
-			_formOrigem.pnlHistorico.Visible = false;
 			Height = _formOrigem.Height - 155;
 			btnFechar.Visible = true;
 			dgvListagem.ScrollBars = ScrollBars.Vertical;

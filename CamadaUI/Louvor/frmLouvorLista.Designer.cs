@@ -511,6 +511,7 @@
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.Activated += new System.EventHandler(this.frmLouvorLista_Activated);
 			this.Shown += new System.EventHandler(this.frmLouvorLista_Shown);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLouvorLista_KeyDown);
 			this.pnlTop.ResumeLayout(false);
 			this.mnuLista.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.lstListagem)).EndInit();

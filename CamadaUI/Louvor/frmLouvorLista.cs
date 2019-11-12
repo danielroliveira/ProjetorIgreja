@@ -707,5 +707,46 @@ namespace CamadaUI.Louvor
 				btnProcurar_Click(sender, e);
 			}
 		}
+
+		// SHORTCUTS NAVEGACAO BY ESTROFES
+		// =============================================================================
+		private void frmLouvorLista_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Right)
+			{
+				e.Handled = true;
+				btnNext_Click(sender, e);
+			}
+			else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Down)
+			{
+				e.Handled = true;
+				btnPrev_Click(sender, e);
+			}
+			else if (e.KeyCode == Keys.Escape)
+			{
+				e.Handled = true;
+				btnFechar_Click(sender, e);
+			}
+			else if (e.KeyCode == Keys.PageUp)
+			{
+				e.Handled = true;
+				NextHino();
+			}
+			else if (e.KeyCode == Keys.PageDown)
+			{
+				e.Handled = true;
+				PrevHino();
+			}
+			else if (e.KeyCode == Keys.P)
+			{
+				e.Handled = true;
+				ProcurarHino();
+			}
+			else if (e.KeyCode == Keys.H)
+			{
+				e.Handled = true;
+				OpenHistorico();
+			}
+		}
 	}
 }
