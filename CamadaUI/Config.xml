@@ -3,6 +3,10 @@
   <DefaultValues>
     <IDVersiculoPadrao>1</IDVersiculoPadrao>
     <IDVersiculoUltimo>116299</IDVersiculoUltimo>
-	<IDHinoUltimo></IDHinoUltimo>
+    <IDHinoUltimo></IDHinoUltimo>
   </DefaultValues>
+  <Folders>
+    <BackupFolder></BackupFolder>
+    <CopyAllNewFilesToBackup>true</CopyAllNewFilesToBackup>
+  </Folders>
 </Configuracao>

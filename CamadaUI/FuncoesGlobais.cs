@@ -40,6 +40,10 @@ namespace CamadaUI
 							new XElement("IDVersiculoPadrao", 1),
 							new XElement("IDVersiculoUltimo", 1),
 							new XElement("IDHinoUltimo", 1)
+						),
+						new XElement("Folders",
+							new XElement("BackupFolder", ""),
+							new XElement("CopyAllNewFilesToBackup", true)
 						)
 					)
 				)
@@ -89,7 +93,22 @@ namespace CamadaUI
 			{
 				return null;
 			}
+		}
 
+		// OBTER VALOR DO NODE XML DO ARQUIVO CONFIGXML PELO NOME
+		// =============================================================================
+		public static string ObterConfigValorNode(string NodeName)
+		{    
+			XmlNodeList elemList = MyConfig().GetElementsByTagName(NodeName);
+			string myValor = "";
+               
+			for (int i = 0; i < elemList.Count; i++)
+			{
+				myValor = elemList[i].InnerXml;
+			}
+        
+			return myValor;
+        
 		}
 
 		// SAVE CONFIG XML DEFAULT VALUE

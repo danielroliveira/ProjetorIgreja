@@ -397,6 +397,7 @@
 			this.txtProcura.Name = "txtProcura";
 			this.txtProcura.Size = new System.Drawing.Size(430, 33);
 			this.txtProcura.TabIndex = 10;
+			this.txtProcura.Tag = "Nenhum louvor encontrado, pressione DEL";
 			this.txtProcura.TextChanged += new System.EventHandler(this.txtProcura_TextChanged);
 			this.txtProcura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtProcura_KeyDown);
 			// 
@@ -512,6 +513,7 @@
 			this.Activated += new System.EventHandler(this.frmLouvorLista_Activated);
 			this.Shown += new System.EventHandler(this.frmLouvorLista_Shown);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLouvorLista_KeyDown);
+			this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLouvorLista_PreviewKeyDown);
 			this.pnlTop.ResumeLayout(false);
 			this.mnuLista.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.lstListagem)).EndInit();

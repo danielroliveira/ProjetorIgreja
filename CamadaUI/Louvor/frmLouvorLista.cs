@@ -19,6 +19,7 @@ namespace CamadaUI.Louvor
 		private LouvorBLL lBLL = null;
 		public string DBPath;
 		private int? IDLouvorEscolhido = null;
+		bool TextProcuraChanged = false;
 
 		private Image imgFav1;
 		private Image imgFav2;
@@ -252,7 +253,9 @@ namespace CamadaUI.Louvor
 			// verifica a existencia do DIR
 			if (!File.Exists(louvorPath))
 			{
-				AbrirDialog("O arquivo de projeção relacionado a esse louvor foi removido ou excluído do sua pasta de origem...",
+				AbrirDialog("O arquivo de projeção relacionado ao louvor : \n" + 
+					louvor.Titulo +
+					"\n foi removido ou excluído do sua pasta de origem...",
 					"Arquivo não Encontrado", DialogType.OK, DialogIcon.Exclamation);
 				try
 				{
@@ -343,15 +346,6 @@ namespace CamadaUI.Louvor
 
 		#region OTHER FUNCTIONS
 
-		private void frmLouvorEscolher_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Escape)
-			{
-				e.Handled = true;
-				btnClose_Click(sender, e);
-			}
-		}
-
 		// ASK USER ADD COUNT ESCOLHIDO
 		// =============================================================================
 		private void frmLouvorLista_Activated(object sender, EventArgs e)
@@ -407,10 +401,14 @@ namespace CamadaUI.Louvor
 			Cursor.Current = Cursors.WaitCursor;
 
 			ProcurarHinoTxt();
-			BetterListViewItemCollection itemsFound;
+			if(lstListagem.Items.Count == 0)
+			{
+				ShowToolTip(txtProcura);
+			}
 
 			if (txtProcura.Text.Length > 0)
 			{
+				BetterListViewItemCollection itemsFound;
 				itemsFound = lstListagem.FindItemsWithText(txtProcura.Text);
 			}
 			else
@@ -665,7 +663,7 @@ namespace CamadaUI.Louvor
 
 		#region TOOLTIP
 
-		private void ShowToolTipo(Control controle)
+		private void ShowToolTip(Control controle)
 		{
 			//Cria a ToolTip e associa com o Form container.
 			ToolTip toolTip1 = new ToolTip()
@@ -691,20 +689,40 @@ namespace CamadaUI.Louvor
 		// SHOW TOOLTIP ON TEXT CHANGE
 		private void txtProcura_TextChanged(object sender, EventArgs e)
 		{
-			ShowToolTipo((Control)btnProcurar);
+			TextProcuraChanged = true;
+			ShowToolTip((Control)btnProcurar);
 		}
 
 		#endregion
 
-		//---------------------------------------------------------------------------------------
-		//--- SUBSTITUI A TECLA (ENTER) PELA (TAB)
-		//---------------------------------------------------------------------------------------
+		// TECLA (ENTER) EXECUTE PROCURA
+		// =============================================================================
 		private void txtProcura_KeyDown(object sender, KeyEventArgs e)
 		{
-			if(e.KeyCode == Keys.Enter)
+			if (e.KeyCode == Keys.Enter)
 			{
 				e.SuppressKeyPress = true;
+
+				if (TextProcuraChanged)
+				{
+					btnProcurar_Click(sender, e);
+					TextProcuraChanged = false;
+				}
+				else
+				{
+					btnEscolher_Click(sender, new EventArgs());
+				}
+			}
+			else if(e.KeyCode == Keys.Delete)
+			{
+				txtProcura.Clear();
+				txtProcura.Refresh();
 				btnProcurar_Click(sender, e);
+				TextProcuraChanged = false;
+			}
+			else
+			{
+				frmLouvorLista_KeyDown(sender, e);
 			}
 		}
 
@@ -712,41 +730,79 @@ namespace CamadaUI.Louvor
 		// =============================================================================
 		private void frmLouvorLista_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Right)
+			if (e.KeyCode == Keys.Up)
 			{
+				//--- verifica se o combo não está aberto
+				//If cmbAtivo.DroppedDown = True Then Exit Sub
+
 				e.Handled = true;
-				btnNext_Click(sender, e);
+
+				if (lstListagem.Items.Count > 0)
+				{
+					if (lstListagem.SelectedItems.Count > 0)
+					{
+						int i = lstListagem.SelectedItems[0].Index;
+
+						lstListagem.Items[i].Selected = false;
+
+						if (i == 0)
+						{
+							i = lstListagem.Items.Count;
+						}
+
+						lstListagem.Items[i - 1].Selected = true;
+						lstListagem.EnsureVisible(i - 1);
+					}
+					else
+					{
+						lstListagem.Items[0].Selected = true;
+						lstListagem.EnsureVisible(0);
+					}
+				}
+
 			}
-			else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Down)
+			else if (e.KeyCode == Keys.Down)
 			{
 				e.Handled = true;
-				btnPrev_Click(sender, e);
+
+				if (lstListagem.Items.Count > 0)
+				{
+					if (lstListagem.SelectedItems.Count > 0)
+					{
+						int i = lstListagem.SelectedItems[0].Index;
+
+						lstListagem.Items[i].Selected = false;
+
+						if (i == lstListagem.Items.Count - 1)
+						{
+							i = -1;
+						}
+
+						lstListagem.Items[i + 1].Selected = true;
+						lstListagem.EnsureVisible(i + 1);
+					}
+					else
+					{
+						lstListagem.Items[0].Selected = true;
+					}
+				}
+
 			}
 			else if (e.KeyCode == Keys.Escape)
 			{
 				e.Handled = true;
-				btnFechar_Click(sender, e);
-			}
-			else if (e.KeyCode == Keys.PageUp)
-			{
-				e.Handled = true;
-				NextHino();
-			}
-			else if (e.KeyCode == Keys.PageDown)
-			{
-				e.Handled = true;
-				PrevHino();
-			}
-			else if (e.KeyCode == Keys.P)
-			{
-				e.Handled = true;
-				ProcurarHino();
+				btnClose_Click(sender, e);
 			}
 			else if (e.KeyCode == Keys.H)
 			{
 				e.Handled = true;
 				OpenHistorico();
 			}
+		}
+
+		private void frmLouvorLista_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+		{
+			e.IsInputKey = true;
 		}
 	}
 }
