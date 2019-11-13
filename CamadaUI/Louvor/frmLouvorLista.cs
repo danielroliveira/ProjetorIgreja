@@ -248,12 +248,27 @@ namespace CamadaUI.Louvor
 		//-------------------------------------------------------------------------------------------------
 		public void ProjetarLouvor(clLouvor louvor)
 		{
+			if (!CheckIfExistsLouvor(louvor))
+			{
+				return;
+			}
+
+			// Ampulheta ON
+			Cursor.Current = Cursors.WaitCursor;
+			IDLouvorEscolhido = louvor.IDLouvor;
+
+			System.Diagnostics.Process.Start(louvor.ProjecaoPath);
+
+		}
+
+		private bool CheckIfExistsLouvor(clLouvor louvor)
+		{
 			string louvorPath = louvor.ProjecaoPath;
 
 			// verifica a existencia do DIR
 			if (!File.Exists(louvorPath))
 			{
-				AbrirDialog("O arquivo de projeção relacionado ao louvor : \n" + 
+				AbrirDialog("O arquivo de projeção relacionado ao louvor : \n" +
 					louvor.Titulo +
 					"\n foi removido ou excluído do sua pasta de origem...",
 					"Arquivo não Encontrado", DialogType.OK, DialogIcon.Exclamation);
@@ -275,15 +290,15 @@ namespace CamadaUI.Louvor
 					Cursor.Current = Cursors.Default;
 				}
 
-				return;
+				return false;
 			}
-			else if(File.Exists(louvorPath) && !louvor.FileOK)
+			else if (File.Exists(louvorPath) && !louvor.FileOK)
 			{
 				try
 				{
 					// --- Ampulheta ON
 					Cursor.Current = Cursors.WaitCursor;
-					lBLL.UpdateFileOKLouvor(louvor.IDLouvor, false);
+					lBLL.UpdateFileOKLouvor(louvor.IDLouvor, true);
 					louvor.FileOK = true;
 				}
 				catch (Exception ex)
@@ -296,43 +311,9 @@ namespace CamadaUI.Louvor
 					// --- Ampulheta OFF
 					Cursor.Current = Cursors.Default;
 				}
-
 			}
 
-			IDLouvorEscolhido = louvor.IDLouvor;
-			System.Diagnostics.Process.Start(louvor.ProjecaoPath);
-
-			//MessageBox.Show("voltei");
-
-			/* 
-			int IDHino = (int)lstListagem.SelectedItems[0].Value;
-			clHarpaHino Hino = ListLouvor.Find(h => h.IDHino == IDHino);
-
-			HinoEscolhido = Hino;
-			DialogResult = DialogResult.OK; */
-
-			/*
-
-			using PowerPoint = Microsoft.Office.Interop.PowerPoint;
-
-			PowerPoint.Application oPPT;
-			PowerPoint.Presentations objPresSet;
-
-			//the location of your powerpoint presentation
-			string strPres;
-			strPres = @"mpPres.ppt";
-			//Create an instance of PowerPoint.
-			oPPT = new PowerPoint.ApplicationClass();
-			// Show PowerPoint to the user.
-			oPPT.Visible = Microsoft.Office.Core.MsoTriState.msoTrue;
-
-			objPresSet = oPPT.Presentations ;
-
-			//open the presentation
-			objPres = objPresSet.Open ( strPres,MsoTriState.msoFalse ,
-			MsoTriState.msoTrue ,MsoTriState.msoTrue );
-
-			*/
+			return true;
 		}
 
 		// MINIMIZE
@@ -346,7 +327,7 @@ namespace CamadaUI.Louvor
 
 		#region OTHER FUNCTIONS
 
-		// ASK USER ADD COUNT ESCOLHIDO
+		// ACTIVATE: ASK USER ADD COUNT ESCOLHIDO
 		// =============================================================================
 		private void frmLouvorLista_Activated(object sender, EventArgs e)
 		{
@@ -354,19 +335,13 @@ namespace CamadaUI.Louvor
 			{
 				return;
 			}
-
-			clLouvor louvor = ListLouvor.Find(l => l.IDLouvor == IDLouvorEscolhido);
-
-			DialogResult resp = AbrirDialog("Deseja adicionar Louvor ao histórico?",
-				"Louvor Escolhido", DialogType.SIM_NAO, DialogIcon.Question);
-
-			if (resp == DialogResult.No)
+			else
 			{
+				clLouvor louvor = ListLouvor.Find(l => l.IDLouvor == IDLouvorEscolhido);
 				IDLouvorEscolhido = null;
-				return;
+				// add to historico
+				AddLouvorHistorico(louvor);
 			}
-
-			AddLouvorHistorico(louvor);
 
 		}
 
@@ -567,19 +542,33 @@ namespace CamadaUI.Louvor
 
 		private void AddLouvorHistorico(clLouvor louvor)
 		{
+			// Ampulheta OFF
+			Cursor.Current = Cursors.Default;
+
+			//DialogResult resp = AbrirDialog("Deseja adicionar Louvor ao histórico?",
+			//	"Louvor Escolhido", DialogType.SIM_NAO, DialogIcon.Question,DialogDefaultButton.First);
+
+			DialogResult resp = DialogResult.Yes;
+
+			if (resp == DialogResult.No)
+			{
+				return;
+			}
+
 			// ADD Louvor Escolhido Count
 			try
 			{
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
+
 				lBLL.AddEscolhidoLouvor(louvor.IDLouvor);
 				louvor.EscolhidoCount += 1;
-				IDLouvorEscolhido = null;
+				lBLL.AddHistorico((int)louvor.IDLouvor);
+
 			}
 			catch (Exception ex)
 			{
-				IDLouvorEscolhido = null;
-				AbrirDialog("Uma exceção ocorreu ao Acrescentar o número de escolhido..." + "\n" +
+				AbrirDialog("Uma exceção ocorreu ao Acrescentar ao Histórico..." + "\n" +
 							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
 			}
 			finally
@@ -588,16 +577,6 @@ namespace CamadaUI.Louvor
 				Cursor.Current = Cursors.Default;
 			}
 			
-			// add in HISTORICO if selected different Hino
-			try
-			{
-				lBLL.AddHistorico((int)louvor.IDLouvor);
-			}
-			catch (Exception ex)
-			{
-				AbrirDialog("Um exceção ocorreu ao salvar Histórico \n" + ex.Message,
-					"Exceção", DialogType.OK, DialogIcon.Exclamation);
-			}
 		}
 
 		private void btnHistorico_Click(object sender, EventArgs e)
@@ -697,11 +676,19 @@ namespace CamadaUI.Louvor
 
 		// TECLA (ENTER) EXECUTE PROCURA
 		// =============================================================================
+		private void txtProcura_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if ((Keys)e.KeyChar == Keys.Enter)
+			{
+				e.Handled = true;
+			}
+		}
+
 		private void txtProcura_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
 			{
-				e.SuppressKeyPress = true;
+				e.Handled = e.SuppressKeyPress = true;
 
 				if (TextProcuraChanged)
 				{
@@ -710,11 +697,15 @@ namespace CamadaUI.Louvor
 				}
 				else
 				{
-					btnEscolher_Click(sender, new EventArgs());
+					btnEscolher_Click(btnEscolher, new EventArgs());
 				}
+
 			}
 			else if(e.KeyCode == Keys.Delete)
 			{
+				e.SuppressKeyPress = true;
+				e.Handled = true;
+
 				txtProcura.Clear();
 				txtProcura.Refresh();
 				btnProcurar_Click(sender, e);
@@ -804,5 +795,7 @@ namespace CamadaUI.Louvor
 		{
 			e.IsInputKey = true;
 		}
+
+
 	}
 }

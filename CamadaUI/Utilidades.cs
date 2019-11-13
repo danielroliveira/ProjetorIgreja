@@ -1,4 +1,8 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace CamadaUI
@@ -41,7 +45,7 @@ namespace CamadaUI
 				lblFont = new Font(myLabel.Font.FontFamily, myLabel.Font.Size, myLabel.Font.Style);
 			}
 		}
-
+			   
 	}
 
 }

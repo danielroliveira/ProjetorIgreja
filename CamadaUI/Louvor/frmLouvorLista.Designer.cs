@@ -86,7 +86,7 @@
 			this.pnlTop.Location = new System.Drawing.Point(0, 0);
 			this.pnlTop.Name = "pnlTop";
 			this.pnlTop.Size = new System.Drawing.Size(1142, 40);
-			this.pnlTop.TabIndex = 6;
+			this.pnlTop.TabIndex = 0;
 			// 
 			// lblTitulo
 			// 
@@ -306,12 +306,13 @@
 			this.btnEditar.Location = new System.Drawing.Point(12, 569);
 			this.btnEditar.Name = "btnEditar";
 			this.btnEditar.Size = new System.Drawing.Size(181, 45);
-			this.btnEditar.TabIndex = 12;
+			this.btnEditar.TabIndex = 5;
 			this.btnEditar.Text = "&Editar Louvor";
 			this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnEditar.UseVisualStyleBackColor = true;
 			this.btnEditar.Click += new System.EventHandler(this.miEditarLouvor_Click);
+			this.btnEditar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLouvorLista_KeyDown);
 			// 
 			// btnEscolher
 			// 
@@ -320,12 +321,13 @@
 			this.btnEscolher.Location = new System.Drawing.Point(918, 569);
 			this.btnEscolher.Name = "btnEscolher";
 			this.btnEscolher.Size = new System.Drawing.Size(212, 45);
-			this.btnEscolher.TabIndex = 13;
+			this.btnEscolher.TabIndex = 6;
 			this.btnEscolher.Text = " &Projetar Louvor";
 			this.btnEscolher.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnEscolher.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnEscolher.UseVisualStyleBackColor = true;
 			this.btnEscolher.Click += new System.EventHandler(this.btnEscolher_Click);
+			this.btnEscolher.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLouvorLista_KeyDown);
 			// 
 			// lstListagem
 			// 
@@ -343,7 +345,7 @@
 			this.lstListagem.MultiSelect = false;
 			this.lstListagem.Name = "lstListagem";
 			this.lstListagem.Size = new System.Drawing.Size(1118, 380);
-			this.lstListagem.TabIndex = 11;
+			this.lstListagem.TabIndex = 4;
 			this.lstListagem.ItemActivate += new ComponentOwl.BetterListView.BetterListViewItemActivateEventHandler(this.lstListagem_ItemActivate);
 			this.lstListagem.DrawColumnHeader += new ComponentOwl.BetterListView.BetterListViewDrawColumnHeaderEventHandler(this.lstListagem_DrawColumnHeader);
 			this.lstListagem.DrawItem += new ComponentOwl.BetterListView.BetterListViewDrawItemEventHandler(this.lstListagem_DrawItem);
@@ -387,7 +389,7 @@
 			this.label1.Location = new System.Drawing.Point(12, 110);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(288, 23);
-			this.label1.TabIndex = 9;
+			this.label1.TabIndex = 1;
 			this.label1.Text = "Digite o Título ou Número do Louvor";
 			// 
 			// txtProcura
@@ -396,10 +398,11 @@
 			this.txtProcura.Location = new System.Drawing.Point(12, 136);
 			this.txtProcura.Name = "txtProcura";
 			this.txtProcura.Size = new System.Drawing.Size(430, 33);
-			this.txtProcura.TabIndex = 10;
+			this.txtProcura.TabIndex = 2;
 			this.txtProcura.Tag = "Nenhum louvor encontrado, pressione DEL";
 			this.txtProcura.TextChanged += new System.EventHandler(this.txtProcura_TextChanged);
 			this.txtProcura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtProcura_KeyDown);
+			this.txtProcura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProcura_KeyPress);
 			// 
 			// lblVersiculo
 			// 
@@ -436,7 +439,7 @@
 			this.pnlHistorico.Location = new System.Drawing.Point(905, 40);
 			this.pnlHistorico.Name = "pnlHistorico";
 			this.pnlHistorico.Size = new System.Drawing.Size(237, 32);
-			this.pnlHistorico.TabIndex = 63;
+			this.pnlHistorico.TabIndex = 9;
 			this.pnlHistorico.Visible = false;
 			// 
 			// label2
@@ -479,13 +482,14 @@
 			this.btnProcurar.Location = new System.Drawing.Point(448, 136);
 			this.btnProcurar.Name = "btnProcurar";
 			this.btnProcurar.Size = new System.Drawing.Size(129, 33);
-			this.btnProcurar.TabIndex = 12;
+			this.btnProcurar.TabIndex = 3;
 			this.btnProcurar.Tag = "Cliqui aqui para procurar...";
 			this.btnProcurar.Text = "&Procurar";
 			this.btnProcurar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnProcurar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnProcurar.UseVisualStyleBackColor = true;
 			this.btnProcurar.Click += new System.EventHandler(this.btnProcurar_Click);
+			this.btnProcurar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLouvorLista_KeyDown);
 			// 
 			// frmLouvorLista
 			// 
@@ -505,6 +509,7 @@
 			this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+			this.KeyPreview = true;
 			this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
 			this.Name = "frmLouvorLista";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
