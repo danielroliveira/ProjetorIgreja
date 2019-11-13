@@ -16,6 +16,7 @@ namespace CamadaUI.Config
 		DataTable dtCategoria;
 		DataTable dtLouvorFolder;
 		int? EditRowNumber = null;
+		string PathBackupFolder = "";
 
 		#region SUB NEW | OPEN
 
@@ -24,6 +25,36 @@ namespace CamadaUI.Config
 			InitializeComponent();
 			GetFoldersDT();
 			GetCategoriasDT();
+		}
+
+		private void frmConfigLouvor_Load(object sender, EventArgs e)
+		{
+			// get Backup Folder
+			try
+			{
+				string backupFolder = FuncoesGlobais.ObterConfigValorNode("BackupFolder");
+				if(backupFolder.Length > 0)
+				{
+					PathBackupFolder = backupFolder;
+					lblPastaBackup.Text = backupFolder;
+				}
+				else
+				{
+					PathBackupFolder = "";
+					lblPastaBackup.Text = "Definir Pasta...";
+				}
+
+				string backupAuto = FuncoesGlobais.ObterConfigValorNode("CopyAllNewFilesToBackup");
+
+				chkBackupAuto.Checked = Convert.ToBoolean(backupAuto);
+
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Obter a pasta de Backup..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+
 		}
 
 		#endregion
@@ -402,7 +433,9 @@ namespace CamadaUI.Config
 		}
 
 		#endregion
-		
+
+		#region PESQUISA FOLDERS
+
 		// PESQUISA PASTAS DE LOUVORES
 		// =============================================================================
 		private void btnPesquisaLouvores_Click(object sender, EventArgs e)
@@ -503,6 +536,21 @@ namespace CamadaUI.Config
 				}
 
 				pgbLouvores.Visible = false;
+				pgbLouvores.Value = 0;
+
+				// Make automatic Backup
+				if (chkBackupAuto.Checked)
+				{
+					if (PathBackupFolder.Length > 0)
+					{
+						BackupNewFiles(PathBackupFolder);
+					}
+					else
+					{
+						AbrirDialog("Não foi possível realizar o Backup automático porque ainda não foi definida a pasta de Backup padrão... \n" + 
+							"Favor definir a pasta de Backup padrão...", "Pasta de Backup");
+					}
+				}
 
 				// Ampulheta OFF
 				Cursor.Current = Cursors.Default;
@@ -569,6 +617,158 @@ namespace CamadaUI.Config
 			return list;
 		}
 
+		// BACKUP OF NEW FILES
+		// =============================================================================
+		private void BackupNewFiles(string backupFolder)
+		{
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				// get all Files on Backup Folder
+				// ---------------------------------------------------------------------------
+				List<clLouvor> DirListLouvor = GetListOfFilesProjecao(backupFolder);
+
+				// --- get List of current Louvores in BD
+				List<clLouvor> curLouvoresList = GetLouvores();
+
+				// --- compare TWO lists and remove duplicated files
+				foreach (clLouvor Backuplouvor in DirListLouvor)
+				{
+					string FileName = Path.GetFileName(Backuplouvor.ProjecaoPath);
+					
+					clLouvor louvor = curLouvoresList.Find(l => Path.GetFileName(l.ProjecaoPath) == FileName);
+					curLouvoresList.Remove(louvor);
+				}
+
+				int foundCount = curLouvoresList.Count();
+
+				if(foundCount == 0)
+				{
+					AbrirDialog("Não existem novas projeções para Backup...", "Backup");
+					return;
+				}
+
+				pgbLouvores.Maximum = foundCount;
+				pgbLouvores.Visible = true;
+
+				// copy to Backup Dir
+				foreach (clLouvor louvor in curLouvoresList)
+				{
+					string FileName = Path.GetFileName(louvor.ProjecaoPath);
+					File.Copy(louvor.ProjecaoPath, $"{backupFolder}\\{FileName}");
+
+					pgbLouvores.Value += 1;
+				}
+
+				pgbLouvores.Visible = false;
+				pgbLouvores.Value = 0;
+
+				AbrirDialog("Backup relizado com sucesso! \n" +
+					$"Foram copiadas {foundCount} novas projeções.", "Backup");
+
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Realizar o Backup das novas projeções..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+
+		}
+
+		#endregion
+
+		#region BUTTONS
+
+		// DEFINIR PASTA BACKUP
+		// =============================================================================
+		private void btnPastaBackup_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				string path = "";
+
+				// CHECK IF EXISTS DEFAULT BACKUP FOLDER
+				if(PathBackupFolder == string.Empty)
+				{
+					string defFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+					defFolder += "\\Projetor\\Louvor\\";
+
+					if (Directory.Exists(defFolder))
+					{
+						path = defFolder;
+					}
+					else
+					{
+						DialogResult resp = AbrirDialog("Ainda não foi criada a pasta padrão para realizar o Backup das projeções. \n" +
+							"Deseja criar a pasta de Backup padrão?",
+							"Pasta de Backup",
+							DialogType.SIM_NAO,
+							DialogIcon.Question);
+
+						if(resp == DialogResult.Yes)
+						{
+							Directory.CreateDirectory(defFolder);
+							path = defFolder;
+						}
+						else
+						{
+							path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+						}
+					}
+				}
+				else
+				{
+					if (!Directory.Exists(PathBackupFolder))
+					{
+						PathBackupFolder = "";
+						btnPastaBackup_Click(sender, e);
+						return;
+					}
+					else
+					{
+						path = PathBackupFolder;
+					}
+				}
+
+				// get folder
+				using (FolderBrowserDialog FBDiag = new FolderBrowserDialog()
+				{
+					Description = "Pasta de Backup das Projeções",
+					SelectedPath = path,
+					ShowNewFolderButton = true
+				})
+				{
+
+					DialogResult result = FBDiag.ShowDialog();
+					if (result == DialogResult.OK)
+					{
+						path = FBDiag.SelectedPath;
+					}
+					else
+					{
+						return;
+					}
+				}
+
+				FuncoesGlobais.SaveConfigValorNode("BackupFolder", path);
+				lblPastaBackup.Text = path;
+				PathBackupFolder = path;
+
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Salvar Pasta de Backup..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+		}
+
 		// CLOSE FORM
 		// =============================================================================
 		private void btnClose_Click(object sender, EventArgs e)
@@ -577,5 +777,51 @@ namespace CamadaUI.Config
 			f.FormNoPanelClosed(this);
 		}
 
+
+		#endregion
+
+		// CHANGE BACKUP AUTOMATICO CHECKED
+		// =============================================================================
+		private void chkBackupAuto_CheckedChanged(object sender, EventArgs e)
+		{
+			try
+			{
+				FuncoesGlobais.SaveConfigValorNode("CopyAllNewFilesToBackup", chkBackupAuto.Checked.ToString());
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Salvar o arquivo de configuração..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+		}
+
+		// DO BACKUP ON FOLDER
+		// =============================================================================
+		private void btnBackupProjecoes_Click(object sender, EventArgs e)
+		{
+			string path = "";
+
+			// GET NEW FOLDER
+			using (FolderBrowserDialog FBDiag = new FolderBrowserDialog()
+			{
+				Description = "Local/Pasta de Backup",
+				SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+			})
+			{
+				DialogResult result = FBDiag.ShowDialog();
+				if (result == DialogResult.OK)
+				{
+					path = FBDiag.SelectedPath;
+					path = $"{path}\\Projetor\\Louvor\\";
+					Directory.CreateDirectory(path);
+					BackupNewFiles(path);
+				}
+				else
+				{
+					return;
+				}
+			}
+
+		}
 	}
 }

@@ -50,6 +50,7 @@
 			this.lblPastaBackup = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
+			this.chkBackupAuto = new System.Windows.Forms.CheckBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.lstPastas)).BeginInit();
@@ -323,7 +324,7 @@
 			this.btnPastaBackup.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
 			this.btnPastaBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPastaBackup.Image = global::CamadaUI.Properties.Resources.folder_accept;
-			this.btnPastaBackup.Location = new System.Drawing.Point(86, 126);
+			this.btnPastaBackup.Location = new System.Drawing.Point(86, 97);
 			this.btnPastaBackup.Name = "btnPastaBackup";
 			this.btnPastaBackup.Size = new System.Drawing.Size(208, 36);
 			this.btnPastaBackup.TabIndex = 3;
@@ -331,6 +332,7 @@
 			this.btnPastaBackup.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnPastaBackup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnPastaBackup.UseVisualStyleBackColor = true;
+			this.btnPastaBackup.Click += new System.EventHandler(this.btnPastaBackup_Click);
 			// 
 			// btnBackupDB
 			// 
@@ -341,7 +343,7 @@
 			this.btnBackupDB.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
 			this.btnBackupDB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBackupDB.Image = global::CamadaUI.Properties.Resources.backup_24;
-			this.btnBackupDB.Location = new System.Drawing.Point(86, 168);
+			this.btnBackupDB.Location = new System.Drawing.Point(86, 139);
 			this.btnBackupDB.Name = "btnBackupDB";
 			this.btnBackupDB.Size = new System.Drawing.Size(208, 36);
 			this.btnBackupDB.TabIndex = 3;
@@ -359,7 +361,7 @@
 			this.btnBackupProjecoes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightBlue;
 			this.btnBackupProjecoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnBackupProjecoes.Image = global::CamadaUI.Properties.Resources.backup_24;
-			this.btnBackupProjecoes.Location = new System.Drawing.Point(86, 210);
+			this.btnBackupProjecoes.Location = new System.Drawing.Point(86, 181);
 			this.btnBackupProjecoes.Name = "btnBackupProjecoes";
 			this.btnBackupProjecoes.Size = new System.Drawing.Size(208, 36);
 			this.btnBackupProjecoes.TabIndex = 3;
@@ -367,12 +369,13 @@
 			this.btnBackupProjecoes.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnBackupProjecoes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnBackupProjecoes.UseVisualStyleBackColor = true;
+			this.btnBackupProjecoes.Click += new System.EventHandler(this.btnBackupProjecoes_Click);
 			// 
 			// lblPastaBackup
 			// 
 			this.lblPastaBackup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(221)))), ((int)(((byte)(234)))));
 			this.lblPastaBackup.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblPastaBackup.Location = new System.Drawing.Point(357, 323);
+			this.lblPastaBackup.Location = new System.Drawing.Point(357, 312);
 			this.lblPastaBackup.Name = "lblPastaBackup";
 			this.lblPastaBackup.Size = new System.Drawing.Size(367, 28);
 			this.lblPastaBackup.TabIndex = 7;
@@ -382,7 +385,7 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label3.Location = new System.Drawing.Point(10, 52);
+			this.label3.Location = new System.Drawing.Point(10, 41);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(111, 18);
 			this.label3.TabIndex = 7;
@@ -391,6 +394,7 @@
 			// panel3
 			// 
 			this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(221)))), ((int)(((byte)(234)))));
+			this.panel3.Controls.Add(this.chkBackupAuto);
 			this.panel3.Controls.Add(this.label3);
 			this.panel3.Controls.Add(this.btnBackupProjecoes);
 			this.panel3.Controls.Add(this.label4);
@@ -400,6 +404,17 @@
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(379, 275);
 			this.panel3.TabIndex = 8;
+			// 
+			// chkBackupAuto
+			// 
+			this.chkBackupAuto.AutoSize = true;
+			this.chkBackupAuto.Location = new System.Drawing.Point(25, 237);
+			this.chkBackupAuto.Name = "chkBackupAuto";
+			this.chkBackupAuto.Size = new System.Drawing.Size(326, 23);
+			this.chkBackupAuto.TabIndex = 8;
+			this.chkBackupAuto.Text = "Fazer Backup automático das novas projeções";
+			this.chkBackupAuto.UseVisualStyleBackColor = true;
+			this.chkBackupAuto.CheckedChanged += new System.EventHandler(this.chkBackupAuto_CheckedChanged);
 			// 
 			// label4
 			// 
@@ -422,6 +437,7 @@
 			this.Controls.Add(this.pnlPastas);
 			this.Controls.Add(this.panel3);
 			this.Name = "frmConfigLouvor";
+			this.Load += new System.EventHandler(this.frmConfigLouvor_Load);
 			this.Controls.SetChildIndex(this.panel3, 0);
 			this.Controls.SetChildIndex(this.panel1, 0);
 			this.Controls.SetChildIndex(this.pnlPastas, 0);
@@ -468,5 +484,6 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.CheckBox chkBackupAuto;
 	}
 }

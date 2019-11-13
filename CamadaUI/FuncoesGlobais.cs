@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 using static CamadaUI.Utilidades;
+using CamadaDTO;
 
 namespace CamadaUI
 {
@@ -137,5 +138,33 @@ namespace CamadaUI
 				throw ex;
 			}
 		}
+
+		// SAVE CONFIG NODE VALOR CONFIGXML PELO NOME
+		// =============================================================================
+		public static bool SaveConfigValorNode(string NodeName, string NodeValue)
+		{
+			try
+			{
+				XmlDocument xmlConfig = MyConfig();
+				XmlNodeList elemList = xmlConfig.GetElementsByTagName(NodeName);
+
+				if(elemList.Count > 0)
+				{
+					elemList[0].InnerXml = NodeValue;
+					xmlConfig.Save("Config.xml");
+				}
+				else
+				{
+					throw new AppException("O xmlNode não foi encontrado...");
+				}
+
+				return true;
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
 	}
 }
