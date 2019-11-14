@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using CamadaBLL;
+using System;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using static CamadaUI.Utilidades;
-using CamadaBLL;
 
 namespace CamadaUI.Config
 {
@@ -133,5 +129,79 @@ namespace CamadaUI.Config
 
 		#endregion
 
+		// CONVERT ALL PPT OR PPTX IN PPS FILE
+		// =============================================================================
+		private void btnConverterPPT_Click(object sender, EventArgs e)
+		{
+			string myPath = "";
+
+			// GET NEW FOLDER
+			using (FolderBrowserDialog FBDiag = new FolderBrowserDialog()
+			{
+				Description = "Pasta das Projeções",
+				SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+			})
+			{
+				DialogResult result = FBDiag.ShowDialog();
+				if (result == DialogResult.OK)
+				{
+					myPath = FBDiag.SelectedPath;
+				}
+				else
+				{
+					return;
+				}
+			}
+			
+			DirectoryInfo dir = new DirectoryInfo(myPath);
+
+			// get number of PPT PPTX files
+			int countFiles = dir.GetFiles("*.ppt").Length;
+			countFiles += dir.GetFiles("*.pptx").Length;
+
+			if(countFiles == 0)
+			{
+				AbrirDialog("Não foi encontrado nenhum arquivo PPT ou PPTX para converter...",
+					"Conversão de Arquivos", DialogType.OK, DialogIcon.Exclamation);
+				return;
+			}
+
+			// create new Directory to converted Files
+			string convertedPath = myPath + "\\Convertidas";
+
+			if (!Directory.Exists(convertedPath))
+			{
+				Directory.CreateDirectory(convertedPath);
+			}
+
+			// Ampulheta ON
+			Cursor.Current = Cursors.WaitCursor;
+
+			// inicia o progress bar
+			pgbConfig.Value = 0;
+			pgbConfig.Visible = true;
+			pgbConfig.Maximum = countFiles;
+
+			// copia os arquivos
+			foreach (FileInfo file in dir.GetFiles())
+			{
+				if ((file.Extension == ".ppt" || file.Extension == ".pptx"))
+				{
+					string newFileFullName = $"{convertedPath}\\{Path.GetFileNameWithoutExtension(file.FullName)}.pps";
+					file.CopyTo(newFileFullName, true);
+
+					pgbConfig.Value += 1;
+				}
+			}
+
+			// finaliza o progress bar
+			pgbConfig.Visible = false;
+
+			// Ampulheta OFF
+			Cursor.Current = Cursors.Default;
+
+			AbrirDialog("Arquivos convertidos com sucesso em:\n" +
+				convertedPath, "Arquivos Convertidos");
+		}
 	}
 }

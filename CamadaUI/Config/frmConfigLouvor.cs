@@ -139,7 +139,7 @@ namespace CamadaUI.Config
 
 		private void btnInserirFolder_Click(object sender, EventArgs e)
 		{
-			string path = "";
+			string newPath = "";
 
 			// GET NEW FOLDER
 			using (FolderBrowserDialog FBDiag = new FolderBrowserDialog()
@@ -151,7 +151,7 @@ namespace CamadaUI.Config
 				DialogResult result = FBDiag.ShowDialog();
 				if (result == DialogResult.OK)
 				{
-					path = FBDiag.SelectedPath;
+					newPath = FBDiag.SelectedPath;
 				}
 				else
 				{
@@ -159,14 +159,46 @@ namespace CamadaUI.Config
 				}
 			}
 
-			// INSERT
+			int? IDFolder = null;
+
+			// CHECK IF IS SUB FOLDER OF INSERTED FOLDER
+			foreach (DataRow row in dtLouvorFolder.Rows)
+			{
+				string oldPath = (string)row["LouvorFolder"];
+
+				// verifica a existencia do DIR
+				if ( newPath.Contains(oldPath) )
+				{
+					AbrirDialog("A pasta: \n" + newPath + "\n já foi incluída... \n \n" +
+						"Favor verificar se a pasta não é um subdiretório de outra pasta que já foi incluída.", 
+						"Pasta já inserida", DialogType.OK, DialogIcon.Exclamation);
+					return;
+				}
+				else if (oldPath.Contains(newPath))
+				{
+					AbrirDialog("A pasta: \n" + newPath + "\n" +
+						"É uma pasta superior a outra pasta já incluída.\n" + 
+						"A pasta anterior será substituída.",
+						"Pasta Superior", DialogType.OK, DialogIcon.Exclamation);
+					IDFolder = (int)row["IDLouvorFolder"];
+				}
+			}
+
+			// INSERT OR UPDATE
 			try
 			{
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
 
-				// insert in DB
-				lBLL.InsertFolder(path);
+				// insert or update in DB
+				if(IDFolder == null)
+				{
+					lBLL.InsertFolder(newPath);
+				}
+				else
+				{
+					lBLL.UpdateFolder(newPath, (int)IDFolder);
+				}
 
 				// get
 				GetFoldersDT();
@@ -436,18 +468,51 @@ namespace CamadaUI.Config
 
 		#region PESQUISA FOLDERS
 
+		// PROPERTY OTHER TYPE OF FILES MESSAGE
+		// =============================================================================
+		bool _MessageOtherTypesOfFiles = false;
+		public bool MessageOtherTypesOfFiles
+		{
+			get => _MessageOtherTypesOfFiles;
+			set
+			{
+				if(value == true && _MessageOtherTypesOfFiles != value)
+				{
+					if (PathBackupFolder != string.Empty && Directory.Exists(PathBackupFolder))
+					{
+						AbrirDialog("Existem arquivos 'PPT' ou 'PPTX' nas pastas pesquisadas \n" +
+							"Essas projeções serão TRANSFERIDAS para pasta de Backup. \n" +
+							"Favor converter todos os arquivos em 'PPS' ou 'PPSX' ", "Atenção", 
+							DialogType.OK, DialogIcon.Exclamation);
+					}
+					else
+					{
+						AbrirDialog("Existem arquivos 'PPT' ou 'PPTX' nas pastas pesquisadas \n" +
+							"Essas projeções NÃO serão incluídas. \n" +
+							"Favor converter todos os arquivos em 'PPS' ou 'PPSX' ", "Atenção",
+							DialogType.OK, DialogIcon.Exclamation);
+					}
+				}
+
+				_MessageOtherTypesOfFiles = value;
+			}
+		}
+
+
 		// PESQUISA PASTAS DE LOUVORES
 		// =============================================================================
 		private void btnPesquisaLouvores_Click(object sender, EventArgs e)
 		{
 			try
 			{
+				MessageOtherTypesOfFiles = false;
+
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
 
 				//--- Check source FOLDERS
 				// ---------------------------------------------------------------------------
-				if( dtLouvorFolder.Rows.Count == 0)
+				if ( dtLouvorFolder.Rows.Count == 0)
 				{
 					AbrirDialog("Não existem pastas inseridas nas lista para realizar a pesquisa... \n" +
 						"Favor inserir pelo menos uma pasta de pesquisa.",
@@ -455,36 +520,8 @@ namespace CamadaUI.Config
 					return;
 				}
 
-
-
-				
 				// Create new list louvor
-				List<clLouvor> newListLouvor = new List<clLouvor>();
-
-				// --- make a list of louvor files in FOLDERS
-				foreach (DataRow row in dtLouvorFolder.Rows)
-				{
-					string path = (string)row["LouvorFolder"];
-
-					// verifica a existencia do DIR
-					if (Directory.Exists(path))
-					{
-						List<clLouvor> getListLouvor = GetListOfSlides(path);
-
-						if (getListLouvor != null)
-						{
-							newListLouvor.AddRange(getListLouvor);
-						}
-					}
-					else
-					{
-						AbrirDialog("A pasta: " + path + "\n não foi encontrada no computador... \n" +
-							"Favor verificar se foi removida ou transferida.", "Pasta não encontrada", DialogType.OK, DialogIcon.Exclamation);
-					}
-				}
-
-
-
+				List<clLouvor> newListLouvor = CheckAllFoldersAndGetAllLouvor();
 
 				// --- get List of current Louvores in BD
 				List<clLouvor> curLouvoresList = GetLouvores();
@@ -492,7 +529,7 @@ namespace CamadaUI.Config
 				// --- compare TWO lists and remove duplicated files
 				foreach (clLouvor louvor in curLouvoresList)
 				{
-					clLouvor dupLouvor = newListLouvor.Find(l => l.ProjecaoPath == louvor.ProjecaoPath);
+					clLouvor dupLouvor = newListLouvor.Find(l => l.ProjecaoFileName == louvor.ProjecaoFileName);
 					newListLouvor.Remove(dupLouvor);
 				}
 
@@ -576,29 +613,102 @@ namespace CamadaUI.Config
 			}
 		}
 
+		// CHECK ALL SOURCE FOLDERS LISTED AND GET LOUVOR PROJECTION
+		// =============================================================================
+		private List<clLouvor> CheckAllFoldersAndGetAllLouvor()
+		{
+			// Create new list louvor
+			List<clLouvor> list = new List<clLouvor>();
+			List<clLouvor> dupList = new List<clLouvor>();
+			
+			// --- make a list of louvor files in FOLDERS
+			foreach (DataRow row in dtLouvorFolder.Rows)
+			{
+				string path = (string)row["LouvorFolder"];
+
+				// verifica a existencia do DIR
+				if (Directory.Exists(path))
+				{
+					List<clLouvor> getListLouvor = GetListOfSlides(path, list, dupList);
+				}
+				else
+				{
+					AbrirDialog("A pasta: " + path + "\n não foi encontrada no computador... \n" +
+						"Favor verificar se foi removida ou transferida.", "Pasta não encontrada", DialogType.OK, DialogIcon.Exclamation);
+				}
+			}
+
+			return list;
+		}
+		
 		// GET LIST SLIDES FILES ON A DIRECTORY AND RETURN A LIST
 		// =============================================================================
-		private List<clLouvor> GetListOfSlides(string drivePath)
+		private List<clLouvor> GetListOfSlides(string drivePath, List<clLouvor> prevList, List<clLouvor> dupList)
 		{
 			// verifica a existencia do DIR
 			if (!Directory.Exists(drivePath))
 			{
-				return null;
+				return prevList;
 			}
 
-			List<clLouvor> list = new List<clLouvor>();
+			// seek in the first directory
+			List<string> dirPaths = new List<string>() { drivePath };
+			dirPaths.AddRange(Directory.GetDirectories(drivePath, "*", SearchOption.AllDirectories).ToList<string>());
 
-			// go through all files and insert in list
-			foreach (string dirPath in Directory.GetDirectories(drivePath))
+			try
 			{
-				GetListOfSlides(dirPath);
-			}
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
 
-			DirectoryInfo dir = new DirectoryInfo(drivePath);
+				// go through all files and insert in list
+				foreach (string subDir in dirPaths)
+				{
+					DirectoryInfo dir = new DirectoryInfo(subDir);
+
+					// get all louvor in subdir path
+					List<clLouvor> newList = GetLouvoresOfDir(dir);
+
+					// insert in list or in duplicated list
+					foreach (clLouvor newLouvor in newList)
+					{
+						// search for duplicated files names
+						if (prevList.Exists(l => l.ProjecaoFileName == newLouvor.ProjecaoFileName))
+						{
+							dupList.Add(newLouvor);
+						}
+						else
+						{
+							prevList.Add(newLouvor);
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao obter a lista de projeções da pasta..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+			
+			return prevList;
+		}
+
+		// GET ALL PPS OR PPSX IN A FOLDER
+		// =============================================================================
+		private List<clLouvor> GetLouvoresOfDir(DirectoryInfo dir)
+		{
+			List<clLouvor> list = new List<clLouvor>();
 
 			int numFiles = dir.GetFiles().Length;
 			int ID = 1;
-			bool avisoArquivo = true; // avisa se ext PPT ou PPTX
+			bool existsBackupFolder = PathBackupFolder != string.Empty && Directory.Exists(PathBackupFolder);
+
+			// Ampulheta ON
+			Cursor.Current = Cursors.WaitCursor;
 
 			foreach (FileInfo file in dir.GetFiles())
 			{
@@ -608,25 +718,60 @@ namespace CamadaUI.Config
 					int extL = file.Extension.Length;
 					int nameL = file.Name.Length;
 					louvor.Titulo = file.Name.Remove(nameL - extL);
+					louvor.ProjecaoFileName = file.Name;
 					louvor.ProjecaoPath = file.FullName;
 					louvor.IDLouvor = ID;
 					ID += 1;
 					list.Add(louvor);
 				}
-				else if ((file.Extension == ".ppt" || file.Extension == ".pptx") && avisoArquivo)
+				else if ((file.Extension == ".ppt" || file.Extension == ".pptx"))
 				{
-					AbrirDialog("Existem arquivos 'PPT' ou 'PPTX' na pasta \n" + 
-						drivePath + "\n" +
-						"Essas projeções não serão incluídas. \n" +
-						"Favor converter todos os arquivos em 'PPS' ou 'PPSX' ", "Atenção");
-					avisoArquivo = false;
+					MessageOtherTypesOfFiles = true;
+
+					// check if exist backup folder
+					if (existsBackupFolder)
+					{
+						string backupPath = PathBackupFolder + "\\ParaConverter";
+
+						if (!Directory.Exists(backupPath))
+						{
+							Directory.CreateDirectory(backupPath);
+						}
+
+						string moveFileTo = backupPath + $"\\{file.Name}";
+						
+						while (File.Exists(moveFileTo))
+						{
+							string actualName = Path.GetFileNameWithoutExtension(moveFileTo);
+
+							if (!actualName.Contains("_copia_"))
+							{
+								actualName += "_copia_01";
+							}
+							else
+							{
+								int splitIndex = actualName.LastIndexOf("_copia_");
+								string copiaName = actualName.Substring(splitIndex);
+								int copiaNumber = Convert.ToInt32(copiaName.Substring(7));
+								actualName = actualName.Substring(0, splitIndex) + $"_copia_{copiaNumber + 1:00}.{file.Extension}";
+							}
+
+							moveFileTo = $"{Path.GetDirectoryName(moveFileTo)}\\{actualName}";
+						}
+						
+						File.Move(file.FullName, moveFileTo);
+
+					}
 				}
 			}
+			
 			return list;
+
 		}
 
 		// CREATE LIST OF PROJECTOR FILES WITHOUT DUPLICATION
 		// =============================================================================
+		/*
 		private List<clLouvor> CreateFilesListNotDuplication()
 		{
 			// Create new list louvor
@@ -644,7 +789,11 @@ namespace CamadaUI.Config
 
 					if (getListLouvor != null)
 					{
+
+
 						newListLouvor.AddRange(getListLouvor);
+
+
 					}
 				}
 				else
@@ -662,11 +811,14 @@ namespace CamadaUI.Config
 				}
 			}
 		}
-		
+		*/
+
+
 		// BACKUP OF NEW FILES
 		// =============================================================================
 		private void BackupNewFiles(string backupFolder)
 		{
+			/*
 			try
 			{
 				// --- Ampulheta ON
@@ -725,7 +877,7 @@ namespace CamadaUI.Config
 				// --- Ampulheta OFF
 				Cursor.Current = Cursors.Default;
 			}
-
+			*/
 		}
 
 		#endregion

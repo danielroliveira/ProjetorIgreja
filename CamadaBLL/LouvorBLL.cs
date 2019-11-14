@@ -61,9 +61,10 @@ namespace CamadaBLL
 				db.AdicionarParametros("@IDLouvor", louvor.IDLouvor);
 				db.AdicionarParametros("@Titulo", louvor.Titulo);
 				db.AdicionarParametros("@ProjecaoPath", louvor.ProjecaoPath);
+				db.AdicionarParametros("@ProjecaoFileName", louvor.ProjecaoFileName);
 
-				string query = "INSERT INTO tblLouvores (IDLouvor, Titulo, ProjecaoPath) " +
-					"VALUES (@IDLouvor, @Titulo, @ProjecaoPath);";
+				string query = "INSERT INTO tblLouvores (IDLouvor, Titulo, ProjecaoPath, ProjecaoFileName) " +
+					"VALUES (@IDLouvor, @Titulo, @ProjecaoPath, @ProjecaoFileName);";
 
 				db.ExecutarManipulacao(CommandType.Text, query);
 			}
@@ -96,6 +97,7 @@ namespace CamadaBLL
 				db.LimparParametros();
 				db.AdicionarParametros("@Titulo", louvor.Titulo);
 				db.AdicionarParametros("@ProjecaoPath", louvor.ProjecaoPath);
+				db.AdicionarParametros("@ProjecaoFileName", louvor.ProjecaoFileName);
 				db.AdicionarParametros("@Favorito", louvor.Favorito);
 				db.AdicionarParametros("@IDCategoria", (object)louvor.IDCategoria ?? DBNull.Value);
 				db.AdicionarParametros("@Ativo", louvor.Ativo);
@@ -108,6 +110,7 @@ namespace CamadaBLL
 					"UPDATE tblLouvores SET " +
 					"Titulo = @Titulo, " +
 					"ProjecaoPath = @ProjecaoPath, " +
+					"ProjecaoFileName = @ProjecaoFileName, " +
 					"Favorito = @Favorito, " +
 					"IDCategoria = @IDCategoria, " +
 					"Ativo = @Ativo, " +
@@ -240,6 +243,7 @@ namespace CamadaBLL
 			{
 				Titulo = (string)r["Titulo"],
 				ProjecaoPath = (string)r["ProjecaoPath"],
+				ProjecaoFileName = (string)r["ProjecaoFileName"],
 				IDCategoria = r["IDCategoria"] == DBNull.Value ? null : (short?)r["IDCategoria"],
 				Categoria = r["Categoria"] == DBNull.Value ? string.Empty : (string)r["Categoria"],
 				EscolhidoCount = (short)r["EscolhidoCount"],
@@ -324,7 +328,7 @@ namespace CamadaBLL
 			}
 		}
 
-		// INSERT LOUVOR IN DB
+		// INSERT SOURCE LOUVOR FOLDER IN DB
 		// =============================================================================
 		public int InsertFolder(string folder)
 		{
@@ -347,6 +351,42 @@ namespace CamadaBLL
 					return 0;
 
 				return (int)dt.Rows[0][0];
+
+			}
+			catch (System.Data.OleDb.OleDbException ex)
+			{
+				if (ex.ErrorCode == -2147467259)
+				{
+					//return;
+					throw new AppException("Essa pasta já foi inserida...");
+				}
+				else
+				{
+					throw ex;
+				}
+
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		// INSERT SOURCE LOUVOR FOLDER IN DB
+		// =============================================================================
+		public void UpdateFolder(string folder, int IDLouvorFolder)
+		{
+			try
+			{
+				AcessoDados db = new AcessoDados(_dataBasePath);
+				db.LimparParametros();
+				db.AdicionarParametros("@LouvorFolder", folder);
+				db.AdicionarParametros("@IDLouvorFolder", IDLouvorFolder);
+
+				string query = "UPDATE tblLouvoresFolders SET LouvorFolder = @LouvorFolder " +
+					"WHERE IDLouvorFolder = @IDLouvorFolder;";
+
+				db.ExecutarManipulacao(CommandType.Text, query);
 
 			}
 			catch (System.Data.OleDb.OleDbException ex)

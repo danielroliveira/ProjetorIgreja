@@ -311,7 +311,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.pgbLouvores.Location = new System.Drawing.Point(14, 537);
 			this.pgbLouvores.Name = "pgbLouvores";
-			this.pgbLouvores.Size = new System.Drawing.Size(477, 30);
+			this.pgbLouvores.Size = new System.Drawing.Size(570, 30);
 			this.pgbLouvores.TabIndex = 6;
 			this.pgbLouvores.Visible = false;
 			// 

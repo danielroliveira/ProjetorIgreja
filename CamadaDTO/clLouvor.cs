@@ -17,6 +17,7 @@ namespace CamadaDTO
 			internal int IDLouvor;
 			internal string Titulo;
 			internal string ProjecaoPath;
+			internal string ProjecaoFileName;
 			internal short? IDCategoria; // string Categoria
 			internal short EscolhidoCount;
 			internal byte Favorito;
@@ -35,6 +36,7 @@ namespace CamadaDTO
 			myData = new StructData();
 			myData.IDLouvor = ID;
 			myData.Titulo = "";
+			myData.ProjecaoFileName = "";
 			myData.FileOK = true;
 			myData.Ativo = true;
 			myData.EscolhidoCount = 0;
@@ -130,11 +132,19 @@ namespace CamadaDTO
 			}
 		}
 
-		// Property ProjecaoPath
+		// Property ProjecaoFileName
 		//------------------------------------------------------
 		public string ProjecaoFileName
 		{
-			get => Path.GetFileName(ProjecaoPath);
+			get => myData.ProjecaoFileName;
+			set
+			{
+				if (value != myData.ProjecaoFileName)
+				{
+					Alterado?.Invoke();
+				}
+				myData.ProjecaoFileName = value;
+			}
 		}
 
 		// Property IDCategoria
