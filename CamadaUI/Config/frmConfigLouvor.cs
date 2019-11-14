@@ -45,7 +45,10 @@ namespace CamadaUI.Config
 				}
 
 				string backupAuto = FuncoesGlobais.ObterConfigValorNode("CopyAllNewFilesToBackup");
-
+				if (backupAuto == string.Empty)
+				{
+					backupAuto = "false";
+				}
 				chkBackupAuto.Checked = Convert.ToBoolean(backupAuto);
 
 			}
@@ -468,45 +471,12 @@ namespace CamadaUI.Config
 
 		#region PESQUISA FOLDERS
 
-		// PROPERTY OTHER TYPE OF FILES MESSAGE
-		// =============================================================================
-		bool _MessageOtherTypesOfFiles = false;
-		public bool MessageOtherTypesOfFiles
-		{
-			get => _MessageOtherTypesOfFiles;
-			set
-			{
-				if(value == true && _MessageOtherTypesOfFiles != value)
-				{
-					if (PathBackupFolder != string.Empty && Directory.Exists(PathBackupFolder))
-					{
-						AbrirDialog("Existem arquivos 'PPT' ou 'PPTX' nas pastas pesquisadas \n" +
-							"Essas projeções serão TRANSFERIDAS para pasta de Backup. \n" +
-							"Favor converter todos os arquivos em 'PPS' ou 'PPSX' ", "Atenção", 
-							DialogType.OK, DialogIcon.Exclamation);
-					}
-					else
-					{
-						AbrirDialog("Existem arquivos 'PPT' ou 'PPTX' nas pastas pesquisadas \n" +
-							"Essas projeções NÃO serão incluídas. \n" +
-							"Favor converter todos os arquivos em 'PPS' ou 'PPSX' ", "Atenção",
-							DialogType.OK, DialogIcon.Exclamation);
-					}
-				}
-
-				_MessageOtherTypesOfFiles = value;
-			}
-		}
-
-
 		// PESQUISA PASTAS DE LOUVORES
 		// =============================================================================
 		private void btnPesquisaLouvores_Click(object sender, EventArgs e)
 		{
 			try
 			{
-				MessageOtherTypesOfFiles = false;
-
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
 
@@ -697,7 +667,7 @@ namespace CamadaUI.Config
 			return prevList;
 		}
 
-		// GET ALL PPS OR PPSX IN A FOLDER
+		// GET ALL PPS OR PPSX IN A FOLDER AND CONVERT PPT ==> PPS
 		// =============================================================================
 		private List<clLouvor> GetLouvoresOfDir(DirectoryInfo dir)
 		{
@@ -705,11 +675,31 @@ namespace CamadaUI.Config
 
 			int numFiles = dir.GetFiles().Length;
 			int ID = 1;
-			bool existsBackupFolder = PathBackupFolder != string.Empty && Directory.Exists(PathBackupFolder);
 
 			// Ampulheta ON
 			Cursor.Current = Cursors.WaitCursor;
 
+			// CONVERT all PPTX or PPT to PPS
+			// ---------------------------------------------------------------------------
+
+			// GET files PPT or PPTX to convert in PPS
+			List<FileInfo> dirFiles = dir.GetFiles("*.ppt").ToList<FileInfo>();
+			dirFiles.AddRange(dir.GetFiles("*.pptx").ToList<FileInfo>());
+			
+			foreach (FileInfo file in dirFiles)
+			{
+				// check if exist correspondent PPS or PPSX file with the same NAME
+				string fileOnlyName = Path.GetFileNameWithoutExtension(file.FullName);
+
+				if (!(File.Exists($"{file.DirectoryName}\\{fileOnlyName}.pps") || File.Exists($"{file.DirectoryName}\\{fileOnlyName}.ppsx")))
+				{
+					// copy and convert file to PPS
+					file.CopyTo($"{file.DirectoryName}\\{fileOnlyName}.pps", true);
+				}
+			}
+
+			// insert Files in LIST
+			// ---------------------------------------------------------------------------
 			foreach (FileInfo file in dir.GetFiles())
 			{
 				if ((file.Extension == ".pps" || file.Extension == ".ppsx") && !file.Name.Contains("~"))
@@ -724,49 +714,9 @@ namespace CamadaUI.Config
 					ID += 1;
 					list.Add(louvor);
 				}
-				else if ((file.Extension == ".ppt" || file.Extension == ".pptx"))
-				{
-					MessageOtherTypesOfFiles = true;
-
-					// check if exist backup folder
-					if (existsBackupFolder)
-					{
-						string backupPath = PathBackupFolder + "\\ParaConverter";
-
-						if (!Directory.Exists(backupPath))
-						{
-							Directory.CreateDirectory(backupPath);
-						}
-
-						string moveFileTo = backupPath + $"\\{file.Name}";
-						
-						while (File.Exists(moveFileTo))
-						{
-							string actualName = Path.GetFileNameWithoutExtension(moveFileTo);
-
-							if (!actualName.Contains("_copia_"))
-							{
-								actualName += "_copia_01";
-							}
-							else
-							{
-								int splitIndex = actualName.LastIndexOf("_copia_");
-								string copiaName = actualName.Substring(splitIndex);
-								int copiaNumber = Convert.ToInt32(copiaName.Substring(7));
-								actualName = actualName.Substring(0, splitIndex) + $"_copia_{copiaNumber + 1:00}.{file.Extension}";
-							}
-
-							moveFileTo = $"{Path.GetDirectoryName(moveFileTo)}\\{actualName}";
-						}
-						
-						File.Move(file.FullName, moveFileTo);
-
-					}
-				}
 			}
 			
 			return list;
-
 		}
 
 		// CREATE LIST OF PROJECTOR FILES WITHOUT DUPLICATION

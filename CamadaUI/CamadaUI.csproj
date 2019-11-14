@@ -395,6 +395,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(SolutionDir)\Database\ProjetorDB.mdb $(TargetDir)</PostBuildEvent>
+    <PostBuildEvent>copy $(SolutionDir)\Database\ProjetorDB.mdb $(TargetDir)
+copy $(SolutionDir)\CamadaUI\Config.xml $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>
