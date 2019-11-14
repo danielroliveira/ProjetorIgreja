@@ -445,6 +445,8 @@ namespace CamadaUI.Config
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
 
+				//--- Check source FOLDERS
+				// ---------------------------------------------------------------------------
 				if( dtLouvorFolder.Rows.Count == 0)
 				{
 					AbrirDialog("Não existem pastas inseridas nas lista para realizar a pesquisa... \n" +
@@ -453,6 +455,9 @@ namespace CamadaUI.Config
 					return;
 				}
 
+
+
+				
 				// Create new list louvor
 				List<clLouvor> newListLouvor = new List<clLouvor>();
 
@@ -464,7 +469,7 @@ namespace CamadaUI.Config
 					// verifica a existencia do DIR
 					if (Directory.Exists(path))
 					{
-						List<clLouvor> getListLouvor = GetListOfFilesProjecao(path);
+						List<clLouvor> getListLouvor = GetListOfSlides(path);
 
 						if (getListLouvor != null)
 						{
@@ -477,6 +482,9 @@ namespace CamadaUI.Config
 							"Favor verificar se foi removida ou transferida.", "Pasta não encontrada", DialogType.OK, DialogIcon.Exclamation);
 					}
 				}
+
+
+
 
 				// --- get List of current Louvores in BD
 				List<clLouvor> curLouvoresList = GetLouvores();
@@ -568,9 +576,9 @@ namespace CamadaUI.Config
 			}
 		}
 
-		// GET ALL FILES ON A DIRECTORY AND RETURN A LIST
+		// GET LIST SLIDES FILES ON A DIRECTORY AND RETURN A LIST
 		// =============================================================================
-		public List<clLouvor> GetListOfFilesProjecao(string drivePath)
+		private List<clLouvor> GetListOfSlides(string drivePath)
 		{
 			// verifica a existencia do DIR
 			if (!Directory.Exists(drivePath))
@@ -583,7 +591,7 @@ namespace CamadaUI.Config
 			// go through all files and insert in list
 			foreach (string dirPath in Directory.GetDirectories(drivePath))
 			{
-				GetListOfFilesProjecao(dirPath);
+				GetListOfSlides(dirPath);
 			}
 
 			DirectoryInfo dir = new DirectoryInfo(drivePath);
@@ -617,6 +625,44 @@ namespace CamadaUI.Config
 			return list;
 		}
 
+		// CREATE LIST OF PROJECTOR FILES WITHOUT DUPLICATION
+		// =============================================================================
+		private List<clLouvor> CreateFilesListNotDuplication()
+		{
+			// Create new list louvor
+			List<clLouvor> newListLouvor = new List<clLouvor>();
+
+			// --- make a list of louvor files in FOLDERS
+			foreach (DataRow row in dtLouvorFolder.Rows)
+			{
+				string path = (string)row["LouvorFolder"];
+
+				// verifica a existencia do DIR
+				if (Directory.Exists(path))
+				{
+					List<clLouvor> getListLouvor = GetListOfSlides(path);
+
+					if (getListLouvor != null)
+					{
+						newListLouvor.AddRange(getListLouvor);
+					}
+				}
+				else
+				{
+					AbrirDialog("A pasta: " + path + "\n não foi encontrada no computador... \n" +
+						"Favor verificar se foi removida ou transferida.", "Pasta não encontrada", DialogType.OK, DialogIcon.Exclamation);
+				}
+			}
+
+			foreach (clLouvor louvor in newListLouvor)
+			{
+				if(newListLouvor.Exists(l => Path.GetFileName(l.ProjecaoPath) == Path.GetFileName(louvor.ProjecaoPath) && l.ProjecaoPath != louvor.ProjecaoPath  ))
+				{
+
+				}
+			}
+		}
+		
 		// BACKUP OF NEW FILES
 		// =============================================================================
 		private void BackupNewFiles(string backupFolder)
@@ -628,7 +674,7 @@ namespace CamadaUI.Config
 
 				// get all Files on Backup Folder
 				// ---------------------------------------------------------------------------
-				List<clLouvor> DirListLouvor = GetListOfFilesProjecao(backupFolder);
+				List<clLouvor> DirListLouvor = GetListOfSlides(backupFolder);
 
 				// --- get List of current Louvores in BD
 				List<clLouvor> curLouvoresList = GetLouvores();
