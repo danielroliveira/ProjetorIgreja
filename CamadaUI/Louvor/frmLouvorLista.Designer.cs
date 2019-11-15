@@ -49,6 +49,9 @@
 			this.miTom10 = new System.Windows.Forms.ToolStripMenuItem();
 			this.miTom11 = new System.Windows.Forms.ToolStripMenuItem();
 			this.miTom12 = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.miLouvorDuplicado = new System.Windows.Forms.ToolStripMenuItem();
+			this.miOcultarDaLista = new System.Windows.Forms.ToolStripMenuItem();
 			this.miRC = new System.Windows.Forms.ToolStripMenuItem();
 			this.miRA = new System.Windows.Forms.ToolStripMenuItem();
 			this.miNVI = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,10 +73,19 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.btnHistorico = new System.Windows.Forms.Button();
 			this.btnProcurar = new System.Windows.Forms.Button();
+			this.txtIDCategoria = new System.Windows.Forms.TextBox();
+			this.rbtAtivo = new System.Windows.Forms.RadioButton();
+			this.rbtOculto = new System.Windows.Forms.RadioButton();
+			this.rbtDuplicado = new System.Windows.Forms.RadioButton();
+			this.label3 = new System.Windows.Forms.Label();
+			this.pnlSituacao = new System.Windows.Forms.Panel();
+			this.label4 = new System.Windows.Forms.Label();
+			this.btnCategoriaEscolher = new System.Windows.Forms.Button();
 			this.pnlTop.SuspendLayout();
 			this.mnuLista.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.lstListagem)).BeginInit();
 			this.pnlHistorico.SuspendLayout();
+			this.pnlSituacao.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pnlTop
@@ -85,7 +97,7 @@
 			this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnlTop.Location = new System.Drawing.Point(0, 0);
 			this.pnlTop.Name = "pnlTop";
-			this.pnlTop.Size = new System.Drawing.Size(1142, 40);
+			this.pnlTop.Size = new System.Drawing.Size(1218, 40);
 			this.pnlTop.TabIndex = 0;
 			// 
 			// lblTitulo
@@ -98,7 +110,7 @@
 			this.lblTitulo.Name = "lblTitulo";
 			this.lblTitulo.Padding = new System.Windows.Forms.Padding(5, 0, 0, 5);
 			this.lblTitulo.Size = new System.Drawing.Size(316, 40);
-			this.lblTitulo.TabIndex = 1;
+			this.lblTitulo.TabIndex = 0;
 			this.lblTitulo.Text = "Escolher | Pesquisar Louvor";
 			this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
@@ -112,11 +124,11 @@
 			this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnClose.Image = global::CamadaUI.Properties.Resources.CloseIcon;
 			this.btnClose.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.btnClose.Location = new System.Drawing.Point(1102, 0);
+			this.btnClose.Location = new System.Drawing.Point(1178, 0);
 			this.btnClose.Margin = new System.Windows.Forms.Padding(0);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(40, 40);
-			this.btnClose.TabIndex = 0;
+			this.btnClose.TabIndex = 2;
 			this.btnClose.TabStop = false;
 			this.btnClose.UseVisualStyleBackColor = false;
 			this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -131,11 +143,11 @@
 			this.btnMinimizer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnMinimizer.Image = global::CamadaUI.Properties.Resources.DropdownIcon;
 			this.btnMinimizer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-			this.btnMinimizer.Location = new System.Drawing.Point(1062, 0);
+			this.btnMinimizer.Location = new System.Drawing.Point(1138, 0);
 			this.btnMinimizer.Margin = new System.Windows.Forms.Padding(0);
 			this.btnMinimizer.Name = "btnMinimizer";
 			this.btnMinimizer.Size = new System.Drawing.Size(40, 40);
-			this.btnMinimizer.TabIndex = 2;
+			this.btnMinimizer.TabIndex = 1;
 			this.btnMinimizer.TabStop = false;
 			this.btnMinimizer.UseVisualStyleBackColor = false;
 			this.btnMinimizer.Click += new System.EventHandler(this.btnMinimizer_Click);
@@ -145,16 +157,19 @@
 			this.mnuLista.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.mnuLista.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miEditarLouvor,
-            this.miDefinirTom});
+            this.miDefinirTom,
+            this.toolStripSeparator1,
+            this.miLouvorDuplicado,
+            this.miOcultarDaLista});
 			this.mnuLista.Name = "mnuLinguagens";
-			this.mnuLista.Size = new System.Drawing.Size(164, 52);
+			this.mnuLista.Size = new System.Drawing.Size(191, 106);
 			this.mnuLista.Opening += new System.ComponentModel.CancelEventHandler(this.mnuLista_Opening);
 			// 
 			// miEditarLouvor
 			// 
 			this.miEditarLouvor.Image = global::CamadaUI.Properties.Resources.editar_16;
 			this.miEditarLouvor.Name = "miEditarLouvor";
-			this.miEditarLouvor.Size = new System.Drawing.Size(163, 24);
+			this.miEditarLouvor.Size = new System.Drawing.Size(190, 24);
 			this.miEditarLouvor.Text = "Editar Louvor";
 			this.miEditarLouvor.Click += new System.EventHandler(this.miEditarLouvor_Click);
 			// 
@@ -175,7 +190,7 @@
             this.miTom12});
 			this.miDefinirTom.Image = global::CamadaUI.Properties.Resources.notamusical_16;
 			this.miDefinirTom.Name = "miDefinirTom";
-			this.miDefinirTom.Size = new System.Drawing.Size(163, 24);
+			this.miDefinirTom.Size = new System.Drawing.Size(190, 24);
 			this.miDefinirTom.Text = "Definir TOM";
 			// 
 			// miTom1
@@ -274,6 +289,27 @@
 			this.miTom12.Text = "Ab (Lá Bemol)";
 			this.miTom12.Click += new System.EventHandler(this.DefineTom_Click);
 			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(187, 6);
+			// 
+			// miLouvorDuplicado
+			// 
+			this.miLouvorDuplicado.Image = global::CamadaUI.Properties.Resources.warning;
+			this.miLouvorDuplicado.Name = "miLouvorDuplicado";
+			this.miLouvorDuplicado.Size = new System.Drawing.Size(190, 24);
+			this.miLouvorDuplicado.Text = "Louvor Duplicado";
+			this.miLouvorDuplicado.Click += new System.EventHandler(this.miLouvorDuplicado_Click);
+			// 
+			// miOcultarDaLista
+			// 
+			this.miOcultarDaLista.Image = global::CamadaUI.Properties.Resources.cancelar_24;
+			this.miOcultarDaLista.Name = "miOcultarDaLista";
+			this.miOcultarDaLista.Size = new System.Drawing.Size(190, 24);
+			this.miOcultarDaLista.Text = "Ocultar da Lista";
+			this.miOcultarDaLista.Click += new System.EventHandler(this.miOcultarDaLista_Click);
+			// 
 			// miRC
 			// 
 			this.miRC.Name = "miRC";
@@ -306,7 +342,7 @@
 			this.btnEditar.Location = new System.Drawing.Point(12, 569);
 			this.btnEditar.Name = "btnEditar";
 			this.btnEditar.Size = new System.Drawing.Size(181, 45);
-			this.btnEditar.TabIndex = 5;
+			this.btnEditar.TabIndex = 10;
 			this.btnEditar.Text = "&Editar Louvor";
 			this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -318,10 +354,10 @@
 			// 
 			this.btnEscolher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnEscolher.Image = global::CamadaUI.Properties.Resources.projetar_32;
-			this.btnEscolher.Location = new System.Drawing.Point(918, 569);
+			this.btnEscolher.Location = new System.Drawing.Point(994, 569);
 			this.btnEscolher.Name = "btnEscolher";
 			this.btnEscolher.Size = new System.Drawing.Size(212, 45);
-			this.btnEscolher.TabIndex = 6;
+			this.btnEscolher.TabIndex = 11;
 			this.btnEscolher.Text = " &Projetar Louvor";
 			this.btnEscolher.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnEscolher.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -344,8 +380,8 @@
 			this.lstListagem.Location = new System.Drawing.Point(12, 180);
 			this.lstListagem.MultiSelect = false;
 			this.lstListagem.Name = "lstListagem";
-			this.lstListagem.Size = new System.Drawing.Size(1118, 380);
-			this.lstListagem.TabIndex = 4;
+			this.lstListagem.Size = new System.Drawing.Size(1194, 380);
+			this.lstListagem.TabIndex = 9;
 			this.lstListagem.ItemActivate += new ComponentOwl.BetterListView.BetterListViewItemActivateEventHandler(this.lstListagem_ItemActivate);
 			this.lstListagem.DrawColumnHeader += new ComponentOwl.BetterListView.BetterListViewDrawColumnHeaderEventHandler(this.lstListagem_DrawColumnHeader);
 			this.lstListagem.DrawItem += new ComponentOwl.BetterListView.BetterListViewDrawItemEventHandler(this.lstListagem_DrawItem);
@@ -397,7 +433,7 @@
 			this.txtProcura.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.txtProcura.Location = new System.Drawing.Point(12, 136);
 			this.txtProcura.Name = "txtProcura";
-			this.txtProcura.Size = new System.Drawing.Size(430, 33);
+			this.txtProcura.Size = new System.Drawing.Size(396, 33);
 			this.txtProcura.TabIndex = 2;
 			this.txtProcura.Tag = "Nenhum louvor encontrado, pressione DEL";
 			this.txtProcura.TextChanged += new System.EventHandler(this.txtProcura_TextChanged);
@@ -412,7 +448,7 @@
 			this.lblVersiculo.Location = new System.Drawing.Point(75, 59);
 			this.lblVersiculo.Name = "lblVersiculo";
 			this.lblVersiculo.Size = new System.Drawing.Size(265, 29);
-			this.lblVersiculo.TabIndex = 8;
+			this.lblVersiculo.TabIndex = 14;
 			this.lblVersiculo.Text = "Escolha o Louvor...";
 			// 
 			// btnVoltar
@@ -427,7 +463,8 @@
 			this.btnVoltar.OuterBorderColor = System.Drawing.Color.Transparent;
 			this.btnVoltar.ShineColor = System.Drawing.Color.Linen;
 			this.btnVoltar.Size = new System.Drawing.Size(65, 49);
-			this.btnVoltar.TabIndex = 7;
+			this.btnVoltar.TabIndex = 13;
+			this.btnVoltar.TabStop = false;
 			this.btnVoltar.Click += new System.EventHandler(this.btnClose_Click);
 			// 
 			// pnlHistorico
@@ -436,10 +473,10 @@
 			this.pnlHistorico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(171)))), ((int)(((byte)(205)))));
 			this.pnlHistorico.Controls.Add(this.label2);
 			this.pnlHistorico.Controls.Add(this.btnHistorico);
-			this.pnlHistorico.Location = new System.Drawing.Point(905, 40);
+			this.pnlHistorico.Location = new System.Drawing.Point(981, 40);
 			this.pnlHistorico.Name = "pnlHistorico";
 			this.pnlHistorico.Size = new System.Drawing.Size(237, 32);
-			this.pnlHistorico.TabIndex = 9;
+			this.pnlHistorico.TabIndex = 12;
 			this.pnlHistorico.Visible = false;
 			// 
 			// label2
@@ -479,7 +516,7 @@
 			// 
 			this.btnProcurar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnProcurar.Image = global::CamadaUI.Properties.Resources.search_peq;
-			this.btnProcurar.Location = new System.Drawing.Point(448, 136);
+			this.btnProcurar.Location = new System.Drawing.Point(414, 136);
 			this.btnProcurar.Name = "btnProcurar";
 			this.btnProcurar.Size = new System.Drawing.Size(129, 33);
 			this.btnProcurar.TabIndex = 3;
@@ -491,16 +528,119 @@
 			this.btnProcurar.Click += new System.EventHandler(this.btnProcurar_Click);
 			this.btnProcurar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLouvorLista_KeyDown);
 			// 
+			// txtIDCategoria
+			// 
+			this.txtIDCategoria.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txtIDCategoria.Location = new System.Drawing.Point(562, 136);
+			this.txtIDCategoria.Name = "txtIDCategoria";
+			this.txtIDCategoria.Size = new System.Drawing.Size(289, 33);
+			this.txtIDCategoria.TabIndex = 5;
+			this.txtIDCategoria.Tag = "Pressione (+) para escolher categoria, ou (DEL) para limpar";
+			this.txtIDCategoria.Visible = false;
+			this.txtIDCategoria.Enter += new System.EventHandler(this.txtIDCategoria_Enter);
+			this.txtIDCategoria.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIDCategoria_KeyDown);
+			this.txtIDCategoria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProcura_KeyPress);
+			// 
+			// rbtAtivo
+			// 
+			this.rbtAtivo.AutoSize = true;
+			this.rbtAtivo.Checked = true;
+			this.rbtAtivo.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.rbtAtivo.Location = new System.Drawing.Point(11, 6);
+			this.rbtAtivo.Name = "rbtAtivo";
+			this.rbtAtivo.Size = new System.Drawing.Size(68, 22);
+			this.rbtAtivo.TabIndex = 0;
+			this.rbtAtivo.TabStop = true;
+			this.rbtAtivo.Text = "Ativo";
+			this.rbtAtivo.UseVisualStyleBackColor = true;
+			this.rbtAtivo.CheckedChanged += new System.EventHandler(this.rbtSituacao_CheckedChanged);
+			// 
+			// rbtOculto
+			// 
+			this.rbtOculto.AutoSize = true;
+			this.rbtOculto.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.rbtOculto.Location = new System.Drawing.Point(89, 6);
+			this.rbtOculto.Name = "rbtOculto";
+			this.rbtOculto.Size = new System.Drawing.Size(79, 22);
+			this.rbtOculto.TabIndex = 1;
+			this.rbtOculto.Text = "Oculto";
+			this.rbtOculto.UseVisualStyleBackColor = true;
+			this.rbtOculto.CheckedChanged += new System.EventHandler(this.rbtSituacao_CheckedChanged);
+			// 
+			// rbtDuplicado
+			// 
+			this.rbtDuplicado.AutoSize = true;
+			this.rbtDuplicado.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.rbtDuplicado.Location = new System.Drawing.Point(177, 6);
+			this.rbtDuplicado.Name = "rbtDuplicado";
+			this.rbtDuplicado.Size = new System.Drawing.Size(106, 22);
+			this.rbtDuplicado.TabIndex = 2;
+			this.rbtDuplicado.Text = "Duplicado";
+			this.rbtDuplicado.UseVisualStyleBackColor = true;
+			this.rbtDuplicado.CheckedChanged += new System.EventHandler(this.rbtSituacao_CheckedChanged);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label3.Location = new System.Drawing.Point(559, 110);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(158, 23);
+			this.label3.TabIndex = 4;
+			this.label3.Text = "Filtrar Categoria (+)";
+			// 
+			// pnlSituacao
+			// 
+			this.pnlSituacao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(217)))), ((int)(((byte)(233)))));
+			this.pnlSituacao.Controls.Add(this.rbtDuplicado);
+			this.pnlSituacao.Controls.Add(this.rbtOculto);
+			this.pnlSituacao.Controls.Add(this.rbtAtivo);
+			this.pnlSituacao.Location = new System.Drawing.Point(912, 136);
+			this.pnlSituacao.Name = "pnlSituacao";
+			this.pnlSituacao.Size = new System.Drawing.Size(294, 33);
+			this.pnlSituacao.TabIndex = 8;
+			this.pnlSituacao.Visible = false;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label4.Location = new System.Drawing.Point(908, 110);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(80, 23);
+			this.label4.TabIndex = 7;
+			this.label4.Text = "Situação:";
+			// 
+			// btnCategoriaEscolher
+			// 
+			this.btnCategoriaEscolher.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnCategoriaEscolher.Location = new System.Drawing.Point(857, 136);
+			this.btnCategoriaEscolher.Name = "btnCategoriaEscolher";
+			this.btnCategoriaEscolher.Size = new System.Drawing.Size(37, 33);
+			this.btnCategoriaEscolher.TabIndex = 6;
+			this.btnCategoriaEscolher.TabStop = false;
+			this.btnCategoriaEscolher.Tag = "Cliqui aqui para escolher a Categoria...";
+			this.btnCategoriaEscolher.Text = "...";
+			this.btnCategoriaEscolher.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.btnCategoriaEscolher.UseVisualStyleBackColor = true;
+			this.btnCategoriaEscolher.Click += new System.EventHandler(this.btnCategoriaEscolher_Click);
+			this.btnCategoriaEscolher.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLouvorLista_KeyDown);
+			// 
 			// frmLouvorLista
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1142, 623);
+			this.ClientSize = new System.Drawing.Size(1218, 623);
+			this.Controls.Add(this.pnlSituacao);
+			this.Controls.Add(this.txtIDCategoria);
 			this.Controls.Add(this.pnlHistorico);
+			this.Controls.Add(this.btnCategoriaEscolher);
 			this.Controls.Add(this.btnProcurar);
 			this.Controls.Add(this.btnEditar);
 			this.Controls.Add(this.btnEscolher);
 			this.Controls.Add(this.lstListagem);
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.txtProcura);
 			this.Controls.Add(this.lblVersiculo);
@@ -518,11 +658,14 @@
 			this.Activated += new System.EventHandler(this.frmLouvorLista_Activated);
 			this.Shown += new System.EventHandler(this.frmLouvorLista_Shown);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLouvorLista_KeyDown);
+			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmLouvorLista_KeyPress);
 			this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLouvorLista_PreviewKeyDown);
 			this.pnlTop.ResumeLayout(false);
 			this.mnuLista.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.lstListagem)).EndInit();
 			this.pnlHistorico.ResumeLayout(false);
+			this.pnlSituacao.ResumeLayout(false);
+			this.pnlSituacao.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -569,5 +712,16 @@
 		private System.Windows.Forms.Label label2;
 		protected internal System.Windows.Forms.Button btnHistorico;
 		private System.Windows.Forms.Button btnProcurar;
+		private System.Windows.Forms.ToolStripMenuItem miLouvorDuplicado;
+		private System.Windows.Forms.ToolStripMenuItem miOcultarDaLista;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.TextBox txtIDCategoria;
+		private System.Windows.Forms.RadioButton rbtOculto;
+		private System.Windows.Forms.RadioButton rbtAtivo;
+		private System.Windows.Forms.RadioButton rbtDuplicado;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Panel pnlSituacao;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Button btnCategoriaEscolher;
 	}
 }

@@ -64,6 +64,8 @@ namespace CamadaUI.Config
 
 		#region GET DB DATA
 
+		// GET SOURCE FOLDERS OF LOUVORES
+		// =============================================================================
 		private void GetFoldersDT()
 		{
 			try
@@ -88,6 +90,8 @@ namespace CamadaUI.Config
 
 		}
 
+		// GET CATEGORIAS OF LOUVORES
+		// =============================================================================
 		private void GetCategoriasDT()
 		{
 			try
@@ -120,7 +124,7 @@ namespace CamadaUI.Config
 				Cursor.Current = Cursors.WaitCursor;
 
 				// Get
-				return lBLL.GetLouvorList();
+				return lBLL.GetLouvorListAll();
 
 			}
 			catch (Exception ex)

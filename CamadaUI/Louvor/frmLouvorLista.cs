@@ -20,6 +20,8 @@ namespace CamadaUI.Louvor
 		public string DBPath;
 		private int? IDLouvorEscolhido = null;
 		bool TextProcuraChanged = false;
+		private short _IDCategoria = -1;
+		private byte Situacao = 1; // 1: Ativo | 2: Inativo | 3: Duplicado
 
 		private Image imgFav1;
 		private Image imgFav2;
@@ -58,6 +60,8 @@ namespace CamadaUI.Louvor
 			}
 
 			pnlHistorico.Visible = true;
+			pnlSituacao.Visible = true;
+			txtIDCategoria.Visible = true;
 
 			// Ampulheta OFF
 			Cursor.Current = Cursors.Default;
@@ -86,7 +90,7 @@ namespace CamadaUI.Louvor
 				Cursor.Current = Cursors.WaitCursor;
 
 				// Get
-				ListLouvor = lBLL.GetLouvorList();
+				ListLouvor = lBLL.GetLouvorList(rbtAtivo.Checked, rbtDuplicado.Checked, _IDCategoria);
 
 				// define List DataSource
 				lstListagem.DataSource = ListLouvor;
@@ -345,6 +349,13 @@ namespace CamadaUI.Louvor
 
 		}
 
+		// KEY PREVIEW TO NAVIGATE BY ARROWS
+		// =============================================================================
+		private void frmLouvorLista_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+		{
+			e.IsInputKey = true;
+		}
+
 		#endregion
 
 		#region VISUAL EFFECTS
@@ -476,10 +487,7 @@ namespace CamadaUI.Louvor
 
 
 		}
-
-
-
-
+			   		 
 		// DEFINE COLOR OF SELECTED TOM WHEN OPEN MENU STRIP
 		// =============================================================================
 		private void mnuLista_Opening(object sender, System.ComponentModel.CancelEventArgs e)
@@ -535,6 +543,70 @@ namespace CamadaUI.Louvor
 			}
 
 		}
+
+		// DEFINE LOUVOR DUPLICADO
+		// =============================================================================
+		private void miLouvorDuplicado_Click(object sender, EventArgs e)
+		{
+			// get selected Louvor
+			int selID = (int)lstListagem.SelectedItems[0].Value;
+			clLouvor selLouvor = ListLouvor.Find(l => l.IDLouvor == selID);
+
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				lBLL.UpdateDuplicadoLouvor(selLouvor.IDLouvor, !selLouvor.Duplicado);
+
+				// remove item of listagem
+				lstListagem.SelectedItems[0].Remove();
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao alterar situação desse louvor..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+
+		}
+
+		// DEFINE OCULTAR DA LISTA
+		// =============================================================================
+		private void miOcultarDaLista_Click(object sender, EventArgs e)
+		{
+			// get selected Louvor
+			int selID = (int)lstListagem.SelectedItems[0].Value;
+			clLouvor selLouvor = ListLouvor.Find(l => l.IDLouvor == selID);
+
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				lBLL.UpdateAtivoLouvor(selLouvor.IDLouvor, !selLouvor.Ativo);
+
+				// remove item of listagem
+				lstListagem.SelectedItems[0].Remove();
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao alterar situação desse louvor..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+		}
+
+
+
 
 		#endregion
 			   		 	  	  	   
@@ -674,6 +746,8 @@ namespace CamadaUI.Louvor
 
 		#endregion
 
+		#region NAVIGATION | KEYDOWN | KEYPRESS
+
 		// TECLA (ENTER) EXECUTE PROCURA
 		// =============================================================================
 		private void txtProcura_KeyPress(object sender, KeyPressEventArgs e)
@@ -683,7 +757,9 @@ namespace CamadaUI.Louvor
 				e.Handled = true;
 			}
 		}
-
+		
+		// KEY DOWN PROCURA ENTER (EXECUTE PROCURA) E DELETE (CLEAR FIELD)
+		// =============================================================================
 		private void txtProcura_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
@@ -791,11 +867,150 @@ namespace CamadaUI.Louvor
 			}
 		}
 
-		private void frmLouvorLista_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+		#endregion
+
+		// BLOQUEIA A TECLA (+)
+		// =============================================================================
+		private void frmLouvorLista_KeyPress(object sender, KeyPressEventArgs e)
 		{
-			e.IsInputKey = true;
+			if(e.KeyChar == "+".ToCharArray()[0])
+			{
+				//--- cria uma lista de controles que serao impedidos de receber '+'
+				string[] controlesBloqueados = new string[] {
+					"txtIDCategoria"
+				};
+
+				if (Array.Exists(controlesBloqueados, item => item == ActiveControl.Name))
+				{
+					e.Handled = true;
+				}
+			}
 		}
 
+		// CATEGORIA PRESS (+) OPEN FORM CATEGORIA ESCOLHER
+		// =============================================================================
+		private void txtIDCategoria_KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyCode == Keys.Add)
+			{
+				e.Handled = true;
+				btnCategoriaEscolher_Click(sender, new EventArgs());
+			}	
+			else if(e.KeyCode == Keys.Delete)
+			{
+				e.Handled = true;
+				txtIDCategoria.Clear();
+				txtIDCategoria.Refresh();
+				if (_IDCategoria != -1)
+				{
+					_IDCategoria = -1;
+					GetLouvores();
+				}
+			}
+			else if (e.KeyCode == Keys.Enter)
+			{
+				e.Handled = e.SuppressKeyPress = true;
 
+				if (TextProcuraChanged)
+				{
+					btnProcurar_Click(sender, e);
+					TextProcuraChanged = false;
+				}
+				else
+				{
+					btnEscolher_Click(btnEscolher, new EventArgs());
+				}
+
+			}
+			else
+			{
+				e.Handled = true;
+				e.SuppressKeyPress = true;
+			}
+		}
+
+		// OPEN FORM CATEGORIA ESCOLHER
+		// =============================================================================
+		private void btnCategoriaEscolher_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+				bool Consultar = false;
+
+				using (frmCategoriaEscolher frm = new frmCategoriaEscolher())
+				{
+					frm.ShowDialog();
+
+					if(frm.DialogResult == DialogResult.OK)
+					{
+						txtIDCategoria.Text = frm.CategoriaEscolhida;
+						if (_IDCategoria != frm.IDCategoriaEscolhida)
+							Consultar = true;
+						_IDCategoria = frm.IDCategoriaEscolhida;
+					}
+				}
+
+				txtIDCategoria.Focus();
+
+				if (Consultar)
+				{
+					GetLouvores();
+				}
+
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao abrir formulário de procura de Categoria..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+		}
+
+		// REVELA TOOLTIP E DESABILITA
+		// =============================================================================
+		private void txtIDCategoria_Enter(object sender, EventArgs e)
+		{
+			ShowToolTip(sender as Control);
+			txtIDCategoria.Enter -= txtIDCategoria_Enter;
+		}
+
+		// SITUACAO CHANGED 1: Ativo | 2: Inativo | 3: Duplicado
+		// =============================================================================
+		private void rbtSituacao_CheckedChanged(object sender, EventArgs e)
+		{
+			if (rbtAtivo.Checked)
+			{
+				if(Situacao != 1)
+				{
+					GetLouvores();
+				};
+
+				Situacao = 1;
+			}
+			else if (rbtOculto.Checked)
+			{
+				if (Situacao != 2)
+				{
+					GetLouvores();
+				};
+
+				Situacao = 2;
+			}
+			else if (rbtDuplicado.Checked)
+			{
+				if (Situacao != 3)
+				{
+					GetLouvores();
+				};
+
+				Situacao = 3;
+			}
+		}
 	}
 }

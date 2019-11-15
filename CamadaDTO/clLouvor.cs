@@ -24,6 +24,7 @@ namespace CamadaDTO
 			internal bool FileOK;
 			internal bool Ativo;
 			internal byte? Tom;
+			internal bool Duplicado;
 		}
 
 		private StructData myData;
@@ -40,6 +41,7 @@ namespace CamadaDTO
 			myData.FileOK = true;
 			myData.Ativo = true;
 			myData.EscolhidoCount = 0;
+			myData.Duplicado = false;
 		}
 
 		#endregion
@@ -239,6 +241,21 @@ namespace CamadaDTO
 					Alterado?.Invoke();
 				}
 				myData.Tom = value;
+			}
+		}
+		
+		// Property Duplicado
+		//------------------------------------------------------
+		public bool Duplicado
+		{
+			get => myData.Duplicado;
+			set
+			{
+				if (value != myData.Duplicado)
+				{
+					Alterado?.Invoke();
+				}
+				myData.Duplicado = value;
 			}
 		}
 

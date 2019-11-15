@@ -179,6 +179,12 @@
     <Compile Include="Harpa\frmHarpaHistorico.designer.cs">
       <DependentUpon>frmHarpaHistorico.cs</DependentUpon>
     </Compile>
+    <Compile Include="Louvor\frmCategoriaEscolher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Louvor\frmCategoriaEscolher.Designer.cs">
+      <DependentUpon>frmCategoriaEscolher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Louvor\frmLouvorEditar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -262,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Harpa\frmHarpaHistorico.resx">
       <DependentUpon>frmHarpaHistorico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Louvor\frmCategoriaEscolher.resx">
+      <DependentUpon>frmCategoriaEscolher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Louvor\frmLouvorEditar.resx">
       <DependentUpon>frmLouvorEditar.cs</DependentUpon>
@@ -347,6 +356,7 @@
   <ItemGroup>
     <Content Include="Config.xml" />
     <Content Include="projetor.ico" />
+    <None Include="Resources\warning.png" />
     <None Include="Resources\projetar_32.png" />
     <None Include="Resources\editar_24.png" />
     <None Include="Resources\select_24.png" />
