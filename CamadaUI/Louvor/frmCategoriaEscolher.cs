@@ -77,5 +77,13 @@ namespace CamadaUI.Louvor
 			btnEscolher_Click(sender, new EventArgs());
 		}
 
+		private void frmCategoriaEscolher_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Escape)
+			{
+				e.Handled = true;
+				btnCancelar_Click(sender, e);
+			}
+		}
 	}
 }

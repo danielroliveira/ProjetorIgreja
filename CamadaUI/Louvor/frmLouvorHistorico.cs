@@ -242,7 +242,7 @@ namespace CamadaUI.Louvor
 		// =============================================================================
 		private void frmLouvorHistorico_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Escape)
+			if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.H)
 			{
 				e.Handled = true;
 				btnClose_Click(sender, e);

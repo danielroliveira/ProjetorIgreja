@@ -21,7 +21,7 @@ namespace CamadaBLL
 
 		// GET LOUVOR LIST
 		// =============================================================================
-		public List<clLouvor> GetLouvorList(bool Ativo, bool Duplicado, short IDCategoria = -1)
+		public List<clLouvor> GetLouvorList(byte Ativo, short IDCategoria = -1)
 		{
 			try
 			{
@@ -29,11 +29,10 @@ namespace CamadaBLL
 				DataTable dt = new DataTable();
 
 				string query = "SELECT * FROM qryLouvores " + 
-					"WHERE Ativo = @Ativo AND Duplicado = @Duplicado ";
+					"WHERE Ativo = @Ativo ";
 
 				db.LimparParametros();
 				db.AdicionarParametros("@Ativo", Ativo);
-				db.AdicionarParametros("@Duplicado", Duplicado);
 				
 				if(IDCategoria > 0)
 				{
@@ -149,7 +148,6 @@ namespace CamadaBLL
 				db.AdicionarParametros("@EscolhidoCount", louvor.EscolhidoCount);
 				db.AdicionarParametros("@Tom", (object)louvor.Tom ?? DBNull.Value);
 				db.AdicionarParametros("@FileOK", louvor.FileOK);
-				db.AdicionarParametros("@Duplicado", louvor.Duplicado);
 				db.AdicionarParametros("@IDLouvor", louvor.IDLouvor);
 
 				string query =
@@ -163,7 +161,6 @@ namespace CamadaBLL
 					"EscolhidoCount = @EscolhidoCount, " +
 					"Tom = @Tom, " +
 					"FileOK = @FileOK " +
-					"Duplicado = @Duplicado " +
 					"WHERE IDLouvor = @IDLouvor;";
 
 				db.ExecutarManipulacao(CommandType.Text, query);
@@ -213,7 +210,7 @@ namespace CamadaBLL
 
 		// UPDATE LOUVOR ATIVO/INATIVO BY ID
 		// =============================================================================
-		public void UpdateAtivoLouvor(int IDLouvor, bool Ativo)
+		public void UpdateAtivoLouvor(int IDLouvor, byte Ativo)
 		{
 			try
 			{
@@ -249,30 +246,6 @@ namespace CamadaBLL
 				string query =
 					"UPDATE tblLouvores SET " +
 					"FileOK = @FileOK " +
-					"WHERE IDLouvor = @IDLouvor;";
-
-				db.ExecutarManipulacao(CommandType.Text, query);
-			}
-			catch (Exception ex)
-			{
-				throw ex;
-			}
-		}
-
-		// UPDATE LOUVOR ATIVO/INATIVO BY ID
-		// =============================================================================
-		public void UpdateDuplicadoLouvor(int IDLouvor, bool Duplicado)
-		{
-			try
-			{
-				AcessoDados db = new AcessoDados(_dataBasePath);
-				db.LimparParametros();
-				db.AdicionarParametros("@Duplicado", Duplicado);
-				db.AdicionarParametros("@IDLouvor", IDLouvor);
-
-				string query =
-					"UPDATE tblLouvores SET " +
-					"Duplicado = @Duplicado " +
 					"WHERE IDLouvor = @IDLouvor;";
 
 				db.ExecutarManipulacao(CommandType.Text, query);
@@ -320,8 +293,7 @@ namespace CamadaBLL
 				EscolhidoCount = (short)r["EscolhidoCount"],
 				Favorito = (byte)r["Favorito"],
 				FileOK = (bool)r["FileOK"],
-				Ativo = (bool)r["Duplicado"],
-				Duplicado = (bool)r["FileOK"],
+				Ativo = (byte)r["Ativo"],
 				Tom = r["Tom"] == DBNull.Value ? null : (byte?)r["Tom"]
 			};
 

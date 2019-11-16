@@ -21,7 +21,7 @@ namespace CamadaUI.Louvor
 		private int? IDLouvorEscolhido = null;
 		bool TextProcuraChanged = false;
 		private short _IDCategoria = -1;
-		private byte Situacao = 1; // 1: Ativo | 2: Inativo | 3: Duplicado
+		private byte _Situacao = 1; // 1: Ativo | 2: Inativo | 3: Duplicado
 
 		private Image imgFav1;
 		private Image imgFav2;
@@ -29,6 +29,8 @@ namespace CamadaUI.Louvor
 		private Image imgFav4;
 		private Image imgFav5;
 		private Image TomSel = Properties.Resources.select_24;
+		private Image LouvorAtivo = Properties.Resources.accept;
+		private Image LouvorInativo = Properties.Resources.cancelar_24;
 		
 		#region NEW AND PROPERTIES
 
@@ -76,6 +78,17 @@ namespace CamadaUI.Louvor
 			imgFav5 = Properties.Resources.Favorito5;
 		}
 
+		// PROPERTY SITUACAO
+		// =============================================================================
+		public byte Situacao
+		{
+			get => _Situacao;
+			set
+			{
+				_Situacao = value;
+			}
+		}
+			   
 		#endregion
 
 		#region GET DATA
@@ -90,7 +103,7 @@ namespace CamadaUI.Louvor
 				Cursor.Current = Cursors.WaitCursor;
 
 				// Get
-				ListLouvor = lBLL.GetLouvorList(rbtAtivo.Checked, rbtDuplicado.Checked, _IDCategoria);
+				ListLouvor = lBLL.GetLouvorList(Situacao, _IDCategoria);
 
 				// define List DataSource
 				lstListagem.DataSource = ListLouvor;
@@ -144,7 +157,11 @@ namespace CamadaUI.Louvor
 			clnTomDesc.ValueMember = "Tom";
 			clnTomDesc.Width = 120;
 			clnTomDesc.AllowResize = false;
-			
+
+			clnFileOK.DisplayMember = "FileOK";
+			clnFileOK.ValueMember = "FileOK";
+			clnFileOK.Width = 0;
+			clnFileOK.AllowResize = false;
 
 			lstListagem.SearchSettings = new BetterListViewSearchSettings(BetterListViewSearchMode.PrefixOrSubstring,
 																		  BetterListViewSearchOptions.UpdateSearchHighlight,
@@ -182,7 +199,14 @@ namespace CamadaUI.Louvor
 			eventArgs.Item.Text = $"{eventArgs.Item.Value:000}";
 
 			eventArgs.Item.SubItems[4].AlignHorizontal = TextAlignmentHorizontal.Center;
+			
+			// define FileOK color
+			if((bool)eventArgs.Item.SubItems[5].Value == false)
+			{
+				eventArgs.Item.ForeColor = Color.Red;
+			}
 
+			// define image classificacao
 			int Cl = Convert.ToInt32(eventArgs.Item.SubItems[3].Value);
 
 			if (Cl == 1)
@@ -265,6 +289,8 @@ namespace CamadaUI.Louvor
 
 		}
 
+		// CHECK IF EXISTS SOURCE PROJECTION FILE
+		// =============================================================================
 		private bool CheckIfExistsLouvor(clLouvor louvor)
 		{
 			string louvorPath = louvor.ProjecaoPath;
@@ -294,9 +320,19 @@ namespace CamadaUI.Louvor
 					Cursor.Current = Cursors.Default;
 				}
 
+				// change color of list item
+				foreach (BetterListViewItem item in lstListagem.Items)
+				{
+					if((int)item.Value == louvor.IDLouvor)
+					{
+						//item.BackColor = Color.FromArgb(237, 190, 175);
+						//item.SubItems[1].Font = new Font("Calibri", 15.75F, FontStyle.Strikeout, GraphicsUnit.Point, 0);
+						item.ForeColor = Color.Red;
+					}
+				}
 				return false;
 			}
-			else if (File.Exists(louvorPath) && !louvor.FileOK)
+			else if (File.Exists(louvorPath) && !louvor.FileOK) // louvor existe
 			{
 				try
 				{
@@ -492,12 +528,34 @@ namespace CamadaUI.Louvor
 		// =============================================================================
 		private void mnuLista_Opening(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			// get TOM atual
-			byte? TomAtual = (byte?)lstListagem.SelectedItems[0].SubItems[4].Value;
+			// get Louvor
+			int IDLouvor = (int)lstListagem.SelectedItems[0].Value;
+			clLouvor louvor = ListLouvor.Find(l => l.IDLouvor == IDLouvor);
 
+			// define labels
+			switch (Situacao)
+			{
+				case 1:
+					miOcultarDaLista.Text = "Ocultar da Listagem";
+					miLouvorDuplicado.Text = "Louvor Duplicado";
+					miOcultarDaLista.Image = LouvorInativo;
+					break;
+				case 2:
+					miOcultarDaLista.Text = "Ativar na Listagem";
+					miLouvorDuplicado.Text = "Louvor Duplicado";
+					miOcultarDaLista.Image = LouvorAtivo;
+					break;
+				case 3:
+					miOcultarDaLista.Text = "Ocultar da Listagem";
+					miLouvorDuplicado.Text = "Não é Duplicado";
+					miOcultarDaLista.Image = LouvorInativo;
+					break;
+			}
+
+			// mark selected Tom
 			foreach (ToolStripMenuItem item in miDefinirTom.DropDownItems)
 			{
-				if (Convert.ToByte(item.Tag) == TomAtual)
+				if (Convert.ToByte(item.Tag) == louvor.Tom)
 				{
 					item.BackColor = Color.Moccasin;
 					item.Image = TomSel;
@@ -557,7 +615,7 @@ namespace CamadaUI.Louvor
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
 
-				lBLL.UpdateDuplicadoLouvor(selLouvor.IDLouvor, !selLouvor.Duplicado);
+				lBLL.UpdateAtivoLouvor(selLouvor.IDLouvor, Convert.ToByte(selLouvor.Ativo == 1 ? 3 : 1));
 
 				// remove item of listagem
 				lstListagem.SelectedItems[0].Remove();
@@ -588,7 +646,7 @@ namespace CamadaUI.Louvor
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
 
-				lBLL.UpdateAtivoLouvor(selLouvor.IDLouvor, !selLouvor.Ativo);
+				lBLL.UpdateAtivoLouvor(selLouvor.IDLouvor, Convert.ToByte(selLouvor.Ativo == 1 ? 2 : 1));
 
 				// remove item of listagem
 				lstListagem.SelectedItems[0].Remove();
@@ -757,7 +815,25 @@ namespace CamadaUI.Louvor
 				e.Handled = true;
 			}
 		}
-		
+
+		// TECLA (ENTER) EXECUTE PROCURA (H) EXECUTE HISTORICO
+		// =============================================================================
+		private void txtIDCategoria_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if ((Keys)e.KeyChar == Keys.Enter)
+			{
+				e.Handled = true;
+			}
+			else if (e.KeyChar == 'h' || e.KeyChar == 'H')
+			{
+				e.Handled = true;
+			}
+			else if (e.KeyChar == '+')
+			{
+				e.Handled = true;
+			}
+		}
+
 		// KEY DOWN PROCURA ENTER (EXECUTE PROCURA) E DELETE (CLEAR FIELD)
 		// =============================================================================
 		private void txtProcura_KeyDown(object sender, KeyEventArgs e)
@@ -787,6 +863,10 @@ namespace CamadaUI.Louvor
 				btnProcurar_Click(sender, e);
 				TextProcuraChanged = false;
 			}
+			else if(e.KeyCode == Keys.H)
+			{
+				e.Handled = false;
+			}
 			else
 			{
 				frmLouvorLista_KeyDown(sender, e);
@@ -799,9 +879,6 @@ namespace CamadaUI.Louvor
 		{
 			if (e.KeyCode == Keys.Up)
 			{
-				//--- verifica se o combo não está aberto
-				//If cmbAtivo.DroppedDown = True Then Exit Sub
-
 				e.Handled = true;
 
 				if (lstListagem.Items.Count > 0)
@@ -863,29 +940,15 @@ namespace CamadaUI.Louvor
 			else if (e.KeyCode == Keys.H)
 			{
 				e.Handled = true;
+
+				if (txtProcura.ContainsFocus )
+					return;
+
 				OpenHistorico();
 			}
 		}
 
 		#endregion
-
-		// BLOQUEIA A TECLA (+)
-		// =============================================================================
-		private void frmLouvorLista_KeyPress(object sender, KeyPressEventArgs e)
-		{
-			if(e.KeyChar == "+".ToCharArray()[0])
-			{
-				//--- cria uma lista de controles que serao impedidos de receber '+'
-				string[] controlesBloqueados = new string[] {
-					"txtIDCategoria"
-				};
-
-				if (Array.Exists(controlesBloqueados, item => item == ActiveControl.Name))
-				{
-					e.Handled = true;
-				}
-			}
-		}
 
 		// CATEGORIA PRESS (+) OPEN FORM CATEGORIA ESCOLHER
 		// =============================================================================
@@ -920,7 +983,6 @@ namespace CamadaUI.Louvor
 				{
 					btnEscolher_Click(btnEscolher, new EventArgs());
 				}
-
 			}
 			else
 			{
@@ -988,28 +1050,28 @@ namespace CamadaUI.Louvor
 			{
 				if(Situacao != 1)
 				{
+					Situacao = 1;
 					GetLouvores();
 				};
 
-				Situacao = 1;
 			}
 			else if (rbtOculto.Checked)
 			{
 				if (Situacao != 2)
 				{
+					Situacao = 2;
 					GetLouvores();
 				};
 
-				Situacao = 2;
 			}
 			else if (rbtDuplicado.Checked)
 			{
 				if (Situacao != 3)
 				{
+					Situacao = 3;
 					GetLouvores();
 				};
 
-				Situacao = 3;
 			}
 		}
 	}

@@ -20,7 +20,8 @@ namespace CamadaUI.Louvor
 		Image FavAtivo = Properties.Resources.favorite_64;
 		Image FavDesativo = Properties.Resources.favorite_64_disable;
 		private byte _Favorito;
-		private bool _Ativo;
+		private byte _Ativo;
+		private bool IsDuplicado = false;
 
 		#region SUB NEW | OPEN
 
@@ -36,6 +37,8 @@ namespace CamadaUI.Louvor
 			Ativo = _louvor.Ativo;
 			bindLouvor.CancelEdit();
 
+			IsDuplicado = louvor.Ativo == 3;
+
 		}
 
 		private void _louvor_Alterado()
@@ -45,21 +48,26 @@ namespace CamadaUI.Louvor
 
 		// PROPERTY ATIVO
 		// =============================================================================
-		private bool Ativo
+		private byte Ativo
 		{
 			get => _Ativo;
 			set
 			{
 				_Ativo = value;
-				if (_Ativo)
+				if (_Ativo == 1)
 				{
 					btnAtivo.Image = Properties.Resources.Switch_ON_PEQ;
 					btnAtivo.Text = "Louvor Ativo";
 				}
-				else
+				else if (_Ativo == 2)
 				{
 					btnAtivo.Image = Properties.Resources.Switch_OFF_PEQ;
 					btnAtivo.Text = "Louvor Inativo";
+				}
+				else if (_Ativo == 3)
+				{
+					btnAtivo.Image = Properties.Resources.Switch_OFF_PEQ;
+					btnAtivo.Text = "Louvor Duplicado";
 				}
 			}
 		}
@@ -185,8 +193,21 @@ namespace CamadaUI.Louvor
 		// BTN ATIVO/INATIVO
 		private void btnAtivo_Click(object sender, EventArgs e)
 		{
-			_louvor.Ativo = !_louvor.Ativo;
-			Ativo = !Ativo;
+			if(_louvor.Ativo == 1)
+			{
+				if (!IsDuplicado)
+				{
+					_louvor.Ativo = Ativo = 2;
+				}
+				else
+				{
+					_louvor.Ativo = Ativo = 3;
+				}
+			}
+			else
+			{
+				_louvor.Ativo = Ativo = 1;
+			}
 		}
 
 		// BTN FECHAR CANCELAR

@@ -468,7 +468,6 @@
 		private System.Windows.Forms.Button btnPesquisaLouvores;
 		private System.Windows.Forms.Button button1;
 		private ComponentOwl.BetterListView.BetterListView lstCategorias;
-		private ComponentOwl.BetterListView.BetterListViewColumnHeader betterListViewColumnHeader1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button btnInserirCategoria;
 		private System.Windows.Forms.Button btnRemoverFolder;

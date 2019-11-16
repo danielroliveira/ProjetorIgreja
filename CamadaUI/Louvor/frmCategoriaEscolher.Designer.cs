@@ -135,7 +135,9 @@
 			this.Controls.Add(this.btnEscolher);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.lstCategorias);
+			this.KeyPreview = true;
 			this.Name = "frmCategoriaEscolher";
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCategoriaEscolher_KeyDown);
 			this.Controls.SetChildIndex(this.panel1, 0);
 			this.Controls.SetChildIndex(this.lstCategorias, 0);
 			this.Controls.SetChildIndex(this.label2, 0);

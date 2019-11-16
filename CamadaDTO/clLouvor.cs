@@ -22,9 +22,8 @@ namespace CamadaDTO
 			internal short EscolhidoCount;
 			internal byte Favorito;
 			internal bool FileOK;
-			internal bool Ativo;
+			internal byte Ativo;
 			internal byte? Tom;
-			internal bool Duplicado;
 		}
 
 		private StructData myData;
@@ -39,9 +38,8 @@ namespace CamadaDTO
 			myData.Titulo = "";
 			myData.ProjecaoFileName = "";
 			myData.FileOK = true;
-			myData.Ativo = true;
+			myData.Ativo = 1;
 			myData.EscolhidoCount = 0;
-			myData.Duplicado = false;
 		}
 
 		#endregion
@@ -216,7 +214,7 @@ namespace CamadaDTO
 
 		// Property Ativo
 		//------------------------------------------------------
-		public bool Ativo
+		public byte Ativo
 		{
 			get => myData.Ativo;
 			set
@@ -244,21 +242,6 @@ namespace CamadaDTO
 			}
 		}
 		
-		// Property Duplicado
-		//------------------------------------------------------
-		public bool Duplicado
-		{
-			get => myData.Duplicado;
-			set
-			{
-				if (value != myData.Duplicado)
-				{
-					Alterado?.Invoke();
-				}
-				myData.Duplicado = value;
-			}
-		}
-
 		// Property TomCifra
 		//------------------------------------------------------
 		public string TomCifra

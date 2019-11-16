@@ -81,6 +81,7 @@
 			this.pnlSituacao = new System.Windows.Forms.Panel();
 			this.label4 = new System.Windows.Forms.Label();
 			this.btnCategoriaEscolher = new System.Windows.Forms.Button();
+			this.clnFileOK = new ComponentOwl.BetterListView.BetterListViewColumnHeader();
 			this.pnlTop.SuspendLayout();
 			this.mnuLista.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.lstListagem)).BeginInit();
@@ -375,6 +376,7 @@
 			this.lstListagem.Columns.Add(this.clnCategoria);
 			this.lstListagem.Columns.Add(this.clnNota);
 			this.lstListagem.Columns.Add(this.clnTomDesc);
+			this.lstListagem.Columns.Add(this.clnFileOK);
 			this.lstListagem.ContextMenuStrip = this.mnuLista;
 			this.lstListagem.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lstListagem.Location = new System.Drawing.Point(12, 180);
@@ -539,7 +541,7 @@
 			this.txtIDCategoria.Visible = false;
 			this.txtIDCategoria.Enter += new System.EventHandler(this.txtIDCategoria_Enter);
 			this.txtIDCategoria.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtIDCategoria_KeyDown);
-			this.txtIDCategoria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProcura_KeyPress);
+			this.txtIDCategoria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIDCategoria_KeyPress);
 			// 
 			// rbtAtivo
 			// 
@@ -626,6 +628,15 @@
 			this.btnCategoriaEscolher.Click += new System.EventHandler(this.btnCategoriaEscolher_Click);
 			this.btnCategoriaEscolher.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLouvorLista_KeyDown);
 			// 
+			// clnFileOK
+			// 
+			this.clnFileOK.DisplayMember = "FileOK";
+			this.clnFileOK.MaximumWidth = 0;
+			this.clnFileOK.Name = "clnFileOK";
+			this.clnFileOK.Text = "FileOK";
+			this.clnFileOK.ValueMember = "FileOK";
+			this.clnFileOK.Width = 0;
+			// 
 			// frmLouvorLista
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -658,7 +669,6 @@
 			this.Activated += new System.EventHandler(this.frmLouvorLista_Activated);
 			this.Shown += new System.EventHandler(this.frmLouvorLista_Shown);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLouvorLista_KeyDown);
-			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmLouvorLista_KeyPress);
 			this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmLouvorLista_PreviewKeyDown);
 			this.pnlTop.ResumeLayout(false);
 			this.mnuLista.ResumeLayout(false);
@@ -723,5 +733,6 @@
 		private System.Windows.Forms.Panel pnlSituacao;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Button btnCategoriaEscolher;
+		private ComponentOwl.BetterListView.BetterListViewColumnHeader clnFileOK;
 	}
 }

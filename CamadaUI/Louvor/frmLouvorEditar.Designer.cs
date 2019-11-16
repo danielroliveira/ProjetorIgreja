@@ -141,9 +141,9 @@
 			this.btnAtivo.FlatAppearance.BorderSize = 0;
 			this.btnAtivo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnAtivo.Image = global::CamadaUI.Properties.Resources.Switch_ON_PEQ;
-			this.btnAtivo.Location = new System.Drawing.Point(29, 3);
+			this.btnAtivo.Location = new System.Drawing.Point(9, 3);
 			this.btnAtivo.Name = "btnAtivo";
-			this.btnAtivo.Size = new System.Drawing.Size(174, 43);
+			this.btnAtivo.Size = new System.Drawing.Size(216, 43);
 			this.btnAtivo.TabIndex = 12;
 			this.btnAtivo.Text = "Louvor Ativo";
 			this.btnAtivo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
