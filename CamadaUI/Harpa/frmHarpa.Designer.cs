@@ -47,8 +47,8 @@
 			this.pnlItems = new System.Windows.Forms.FlowLayoutPanel();
 			this.btnEstrofe1 = new MBGlassStyleButton.MBGlassButton();
 			this.mbGlassButton1 = new MBGlassStyleButton.MBGlassButton();
-			this.txtEstrofe = new CamadaUI.Controls.TextBox_unclick();
 			this.lblEstrofes = new System.Windows.Forms.Label();
+			this.txtEstrofe = new CamadaUI.Controls.TextBox_unclick();
 			this.pnlTop.SuspendLayout();
 			this.pnlInfo.SuspendLayout();
 			this.pnlNav.SuspendLayout();
@@ -365,6 +365,16 @@
 			this.mbGlassButton1.Text = "1";
 			this.mbGlassButton1.UseVisualStyleBackColor = false;
 			// 
+			// lblEstrofes
+			// 
+			this.lblEstrofes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.lblEstrofes.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblEstrofes.Location = new System.Drawing.Point(454, 581);
+			this.lblEstrofes.Name = "lblEstrofes";
+			this.lblEstrofes.Size = new System.Drawing.Size(115, 25);
+			this.lblEstrofes.TabIndex = 64;
+			this.lblEstrofes.Text = "Estrofes:";
+			// 
 			// txtEstrofe
 			// 
 			this.txtEstrofe.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -387,16 +397,6 @@
 			this.txtEstrofe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmHarpa_KeyDown);
 			this.txtEstrofe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEstrofe_KeyPress);
 			this.txtEstrofe.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmHarpa_PreviewKeyDown);
-			// 
-			// lblEstrofes
-			// 
-			this.lblEstrofes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.lblEstrofes.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblEstrofes.Location = new System.Drawing.Point(454, 581);
-			this.lblEstrofes.Name = "lblEstrofes";
-			this.lblEstrofes.Size = new System.Drawing.Size(115, 25);
-			this.lblEstrofes.TabIndex = 64;
-			this.lblEstrofes.Text = "Estrofes:";
 			// 
 			// frmHarpa
 			// 

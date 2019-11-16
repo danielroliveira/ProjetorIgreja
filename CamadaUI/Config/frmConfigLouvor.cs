@@ -540,15 +540,25 @@ namespace CamadaUI.Config
 
 				foreach (clLouvor louvor in newListLouvor)
 				{
-					try
+					bool inserido = false;
+					int versao = 1;
+					string titulo = louvor.Titulo;
+
+					while (!inserido)
 					{
-						louvor.IDLouvor = maxID;
-						lBLL.InsertLouvor(louvor);
-						maxID += 1;
-					}
-					catch (AppException ex)
-					{
-						AbrirDialog(ex.Message, "Duplicado");
+						try
+						{
+							louvor.IDLouvor = maxID;
+							lBLL.InsertLouvor(louvor);
+							inserido = true;
+							maxID += 1;
+						}
+						catch (AppException)
+						{
+							louvor.Titulo = $"{titulo}_versao_{versao : 00}";
+						}
+
+						versao += 1;
 					}
 
 					pgbLouvores.Value += 1;

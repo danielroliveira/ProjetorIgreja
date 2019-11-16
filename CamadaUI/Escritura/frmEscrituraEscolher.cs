@@ -388,6 +388,16 @@ namespace CamadaUI.Escritura
 				e.Handled = true;
 				btnClose_Click(sender, e);
 			}
+			else if (e.KeyCode == Keys.A)
+			{
+				e.Handled = true;
+				btnTestamento_Click(btnAntigoTestamento, new EventArgs());
+			}
+			else if (e.KeyCode == Keys.N)
+			{
+				e.Handled = true;
+				btnTestamento_Click(btnNovoTestamento, new EventArgs());
+			}
 		}
 
 		#endregion

@@ -26,5 +26,5 @@ namespace CamadaUI
 
             Application.Run(new frmPrincipal());
         }
-    }
+	}
 }

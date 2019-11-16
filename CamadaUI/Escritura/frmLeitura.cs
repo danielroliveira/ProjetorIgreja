@@ -56,7 +56,17 @@ namespace CamadaUI.Escritura
 		private void frmLeitura_Shown(object sender, EventArgs e)
 		{
 			// send first PreviewKey
-			SendKeys.Send("{LEFT}");
+			Resize += frmHarpa_Resize;
+		}
+
+		// ON RESIZE MINIMIZE TO MAXIMIZE
+		private void frmHarpa_Resize(object sender, EventArgs e)
+		{
+			if (this.WindowState == FormWindowState.Maximized)
+			{
+				SendKeys.Send("{LEFT}");
+				btnLinguagens.Focus();
+			}
 		}
 
 		// GET INICIAL: linguagens + livros + versiculoinicial

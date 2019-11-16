@@ -247,7 +247,7 @@ namespace CamadaUI.Harpa
 		// =============================================================================
 		private void frmHarpaHistorico_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Escape)
+			if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.H)
 			{
 				e.Handled = true;
 				btnClose_Click(sender, e);

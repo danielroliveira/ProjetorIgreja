@@ -67,6 +67,16 @@ namespace CamadaUI.Louvor
 
 			// Ampulheta OFF
 			Cursor.Current = Cursors.Default;
+			Resize += frmLouvorLista_Resize;
+		}
+
+		// ON RESIZE MINIMIZE TO MAXIMIZE
+		private void frmLouvorLista_Resize(object sender, EventArgs e)
+		{
+			if (this.WindowState == FormWindowState.Maximized)
+			{
+				txtProcura.Focus();
+			}
 		}
 
 		private void DefineImageList()
@@ -241,6 +251,49 @@ namespace CamadaUI.Louvor
 
 		#region BUTTONS FUNCTION
 
+		// OPEN FORM CATEGORIA ESCOLHER
+		// =============================================================================
+		private void btnCategoriaEscolher_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+				bool Consultar = false;
+
+				using (frmCategoriaEscolher frm = new frmCategoriaEscolher())
+				{
+					frm.ShowDialog();
+
+					if (frm.DialogResult == DialogResult.OK)
+					{
+						txtIDCategoria.Text = frm.CategoriaEscolhida;
+						if (_IDCategoria != frm.IDCategoriaEscolhida)
+							Consultar = true;
+						_IDCategoria = frm.IDCategoriaEscolhida;
+					}
+				}
+
+				txtIDCategoria.Focus();
+
+				if (Consultar)
+				{
+					GetLouvores();
+				}
+
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao abrir formulário de procura de Categoria..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+		}
+
 		// BTN VOLTAR ETAPA
 		// =============================================================================
 		private void btnVoltar_Click(object sender, EventArgs e)
@@ -390,6 +443,42 @@ namespace CamadaUI.Louvor
 		private void frmLouvorLista_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
 		{
 			e.IsInputKey = true;
+		}
+
+		// SITUACAO CHANGED 1: Ativo | 2: Inativo | 3: Duplicado
+		// =============================================================================
+		private void rbtSituacao_CheckedChanged(object sender, EventArgs e)
+		{
+			if (rbtAtivo.Checked)
+			{
+				if (Situacao != 1)
+				{
+					Situacao = 1;
+					txtProcura.Clear();
+					GetLouvores();
+				};
+
+			}
+			else if (rbtOculto.Checked)
+			{
+				if (Situacao != 2)
+				{
+					Situacao = 2;
+					txtProcura.Clear();
+					GetLouvores();
+				};
+
+			}
+			else if (rbtDuplicado.Checked)
+			{
+				if (Situacao != 3)
+				{
+					Situacao = 3;
+					txtProcura.Clear();
+					GetLouvores();
+				};
+
+			}
 		}
 
 		#endregion
@@ -802,6 +891,14 @@ namespace CamadaUI.Louvor
 			ShowToolTip((Control)btnProcurar);
 		}
 
+		// REVELA TOOLTIP E DESABILITA
+		// =============================================================================
+		private void txtIDCategoria_Enter(object sender, EventArgs e)
+		{
+			ShowToolTip(sender as Control);
+			txtIDCategoria.Enter -= txtIDCategoria_Enter;
+		}
+
 		#endregion
 
 		#region NAVIGATION | KEYDOWN | KEYPRESS
@@ -948,18 +1045,16 @@ namespace CamadaUI.Louvor
 			}
 		}
 
-		#endregion
-
 		// CATEGORIA PRESS (+) OPEN FORM CATEGORIA ESCOLHER
 		// =============================================================================
 		private void txtIDCategoria_KeyDown(object sender, KeyEventArgs e)
 		{
-			if(e.KeyCode == Keys.Add)
+			if (e.KeyCode == Keys.Add)
 			{
 				e.Handled = true;
 				btnCategoriaEscolher_Click(sender, new EventArgs());
-			}	
-			else if(e.KeyCode == Keys.Delete)
+			}
+			else if (e.KeyCode == Keys.Delete)
 			{
 				e.Handled = true;
 				txtIDCategoria.Clear();
@@ -991,88 +1086,6 @@ namespace CamadaUI.Louvor
 			}
 		}
 
-		// OPEN FORM CATEGORIA ESCOLHER
-		// =============================================================================
-		private void btnCategoriaEscolher_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				// --- Ampulheta ON
-				Cursor.Current = Cursors.WaitCursor;
-				bool Consultar = false;
-
-				using (frmCategoriaEscolher frm = new frmCategoriaEscolher())
-				{
-					frm.ShowDialog();
-
-					if(frm.DialogResult == DialogResult.OK)
-					{
-						txtIDCategoria.Text = frm.CategoriaEscolhida;
-						if (_IDCategoria != frm.IDCategoriaEscolhida)
-							Consultar = true;
-						_IDCategoria = frm.IDCategoriaEscolhida;
-					}
-				}
-
-				txtIDCategoria.Focus();
-
-				if (Consultar)
-				{
-					GetLouvores();
-				}
-
-			}
-			catch (Exception ex)
-			{
-				AbrirDialog("Uma exceção ocorreu ao abrir formulário de procura de Categoria..." + "\n" +
-							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
-			}
-			finally
-			{
-				// --- Ampulheta OFF
-				Cursor.Current = Cursors.Default;
-			}
-		}
-
-		// REVELA TOOLTIP E DESABILITA
-		// =============================================================================
-		private void txtIDCategoria_Enter(object sender, EventArgs e)
-		{
-			ShowToolTip(sender as Control);
-			txtIDCategoria.Enter -= txtIDCategoria_Enter;
-		}
-
-		// SITUACAO CHANGED 1: Ativo | 2: Inativo | 3: Duplicado
-		// =============================================================================
-		private void rbtSituacao_CheckedChanged(object sender, EventArgs e)
-		{
-			if (rbtAtivo.Checked)
-			{
-				if(Situacao != 1)
-				{
-					Situacao = 1;
-					GetLouvores();
-				};
-
-			}
-			else if (rbtOculto.Checked)
-			{
-				if (Situacao != 2)
-				{
-					Situacao = 2;
-					GetLouvores();
-				};
-
-			}
-			else if (rbtDuplicado.Checked)
-			{
-				if (Situacao != 3)
-				{
-					Situacao = 3;
-					GetLouvores();
-				};
-
-			}
-		}
+		#endregion
 	}
 }
