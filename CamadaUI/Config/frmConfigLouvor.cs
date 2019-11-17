@@ -549,6 +549,11 @@ namespace CamadaUI.Config
 					{
 						try
 						{
+							if(FileRenamedTo.Length > 0 && File.Exists(FileRenamedTo))
+							{
+								throw new AppException("");
+							}
+
 							louvor.IDLouvor = maxID;
 							lBLL.InsertLouvor(louvor);
 							inserido = true;

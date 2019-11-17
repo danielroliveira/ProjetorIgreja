@@ -1087,5 +1087,17 @@ namespace CamadaUI.Louvor
 		}
 
 		#endregion
+
+		private void miAlterarEditarProjecao_Click(object sender, EventArgs e)
+		{
+			ManagePresentation pres = new ManagePresentation();
+
+			// get selected Louvor
+			int selID = (int)lstListagem.SelectedItems[0].Value;
+			clLouvor selLouvor = ListLouvor.Find(l => l.IDLouvor == selID);
+
+			pres.EditPresentation(selLouvor.ProjecaoPath);
+
+		}
 	}
 }

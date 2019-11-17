@@ -124,20 +124,17 @@
   <data name="refresh_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refresh_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="notamusical_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\notamusical_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Switch_ON_PEQ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Switch_ON_PEQ.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="delete_page_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\delete_page_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Favorito2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Favorito2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icon_information" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_information.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="salvar_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\salvar_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="editar_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\editar_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Logo_FAES_cinza" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo FAES cinza PNG -201910.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,11 +151,8 @@
   <data name="sair_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sair_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="favorite_64_disable" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\favorite_64_disable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Next_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Next_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="accept" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\accept.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="editar_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\editar_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,14 +169,17 @@
   <data name="cancelar_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cancelar_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="select_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\select_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="biblia_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\biblia_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Last_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Last_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Favorito2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Favorito2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="editar_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\editar_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Previous_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Previous_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -196,14 +193,20 @@
   <data name="search_peq" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_peq.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Switch_ON_PEQ" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Switch_ON_PEQ.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Next_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Next_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CloseIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CloseIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="agenda_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\agenda_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Favorito3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Favorito3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_exclamation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_exclamation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Favorito5" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Favorito5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -244,8 +247,8 @@
   <data name="ConfigIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ConfigIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="accept" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\accept.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="notamusical_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\notamusical_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="delete_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\delete_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -253,11 +256,11 @@
   <data name="bibliaicon_peq" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bibliaicon_peq.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_exclamation" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_exclamation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="salvar_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\salvar_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="select_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\select_24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="favorite_64_disable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\favorite_64_disable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Logo_FAES_PRETO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo FAES PRETO PNG -201407.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -265,7 +268,7 @@
   <data name="icon_warning" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_warning.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="agenda_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\agenda_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Logo FAES cinza PNG Borda" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo FAES cinza PNG Borda.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

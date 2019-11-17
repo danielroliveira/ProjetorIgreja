@@ -65,6 +65,7 @@
 			this.clnCategoria = new ComponentOwl.BetterListView.BetterListViewColumnHeader();
 			this.clnNota = new ComponentOwl.BetterListView.BetterListViewColumnHeader();
 			this.clnTomDesc = new ComponentOwl.BetterListView.BetterListViewColumnHeader();
+			this.clnFileOK = new ComponentOwl.BetterListView.BetterListViewColumnHeader();
 			this.label1 = new System.Windows.Forms.Label();
 			this.txtProcura = new System.Windows.Forms.TextBox();
 			this.lblVersiculo = new System.Windows.Forms.Label();
@@ -81,7 +82,8 @@
 			this.pnlSituacao = new System.Windows.Forms.Panel();
 			this.label4 = new System.Windows.Forms.Label();
 			this.btnCategoriaEscolher = new System.Windows.Forms.Button();
-			this.clnFileOK = new ComponentOwl.BetterListView.BetterListViewColumnHeader();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.miAlterarEditarProjecao = new System.Windows.Forms.ToolStripMenuItem();
 			this.pnlTop.SuspendLayout();
 			this.mnuLista.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.lstListagem)).BeginInit();
@@ -161,16 +163,18 @@
             this.miDefinirTom,
             this.toolStripSeparator1,
             this.miLouvorDuplicado,
-            this.miOcultarDaLista});
+            this.miOcultarDaLista,
+            this.toolStripSeparator2,
+            this.miAlterarEditarProjecao});
 			this.mnuLista.Name = "mnuLinguagens";
-			this.mnuLista.Size = new System.Drawing.Size(191, 106);
+			this.mnuLista.Size = new System.Drawing.Size(235, 158);
 			this.mnuLista.Opening += new System.ComponentModel.CancelEventHandler(this.mnuLista_Opening);
 			// 
 			// miEditarLouvor
 			// 
 			this.miEditarLouvor.Image = global::CamadaUI.Properties.Resources.editar_16;
 			this.miEditarLouvor.Name = "miEditarLouvor";
-			this.miEditarLouvor.Size = new System.Drawing.Size(190, 24);
+			this.miEditarLouvor.Size = new System.Drawing.Size(234, 24);
 			this.miEditarLouvor.Text = "Editar Louvor";
 			this.miEditarLouvor.Click += new System.EventHandler(this.miEditarLouvor_Click);
 			// 
@@ -191,7 +195,7 @@
             this.miTom12});
 			this.miDefinirTom.Image = global::CamadaUI.Properties.Resources.notamusical_16;
 			this.miDefinirTom.Name = "miDefinirTom";
-			this.miDefinirTom.Size = new System.Drawing.Size(190, 24);
+			this.miDefinirTom.Size = new System.Drawing.Size(234, 24);
 			this.miDefinirTom.Text = "Definir TOM";
 			// 
 			// miTom1
@@ -293,13 +297,13 @@
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(187, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(231, 6);
 			// 
 			// miLouvorDuplicado
 			// 
 			this.miLouvorDuplicado.Image = global::CamadaUI.Properties.Resources.warning;
 			this.miLouvorDuplicado.Name = "miLouvorDuplicado";
-			this.miLouvorDuplicado.Size = new System.Drawing.Size(190, 24);
+			this.miLouvorDuplicado.Size = new System.Drawing.Size(234, 24);
 			this.miLouvorDuplicado.Text = "Louvor Duplicado";
 			this.miLouvorDuplicado.Click += new System.EventHandler(this.miLouvorDuplicado_Click);
 			// 
@@ -307,7 +311,7 @@
 			// 
 			this.miOcultarDaLista.Image = global::CamadaUI.Properties.Resources.cancelar_24;
 			this.miOcultarDaLista.Name = "miOcultarDaLista";
-			this.miOcultarDaLista.Size = new System.Drawing.Size(190, 24);
+			this.miOcultarDaLista.Size = new System.Drawing.Size(234, 24);
 			this.miOcultarDaLista.Text = "Ocultar da Lista";
 			this.miOcultarDaLista.Click += new System.EventHandler(this.miOcultarDaLista_Click);
 			// 
@@ -419,6 +423,15 @@
 			this.clnTomDesc.AlignHorizontal = ComponentOwl.BetterListView.TextAlignmentHorizontal.Center;
 			this.clnTomDesc.Name = "clnTomDesc";
 			this.clnTomDesc.Text = "Tom";
+			// 
+			// clnFileOK
+			// 
+			this.clnFileOK.DisplayMember = "FileOK";
+			this.clnFileOK.MaximumWidth = 0;
+			this.clnFileOK.Name = "clnFileOK";
+			this.clnFileOK.Text = "FileOK";
+			this.clnFileOK.ValueMember = "FileOK";
+			this.clnFileOK.Width = 0;
 			// 
 			// label1
 			// 
@@ -628,14 +641,17 @@
 			this.btnCategoriaEscolher.Click += new System.EventHandler(this.btnCategoriaEscolher_Click);
 			this.btnCategoriaEscolher.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLouvorLista_KeyDown);
 			// 
-			// clnFileOK
+			// toolStripSeparator2
 			// 
-			this.clnFileOK.DisplayMember = "FileOK";
-			this.clnFileOK.MaximumWidth = 0;
-			this.clnFileOK.Name = "clnFileOK";
-			this.clnFileOK.Text = "FileOK";
-			this.clnFileOK.ValueMember = "FileOK";
-			this.clnFileOK.Width = 0;
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(231, 6);
+			// 
+			// miAlterarEditarProjecao
+			// 
+			this.miAlterarEditarProjecao.Name = "miAlterarEditarProjecao";
+			this.miAlterarEditarProjecao.Size = new System.Drawing.Size(234, 24);
+			this.miAlterarEditarProjecao.Text = "Alterar / Editar Projeção";
+			this.miAlterarEditarProjecao.Click += new System.EventHandler(this.miAlterarEditarProjecao_Click);
 			// 
 			// frmLouvorLista
 			// 
@@ -734,5 +750,7 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Button btnCategoriaEscolher;
 		private ComponentOwl.BetterListView.BetterListViewColumnHeader clnFileOK;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripMenuItem miAlterarEditarProjecao;
 	}
 }
