@@ -1,28 +1,87 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using CamadaUI.Escritura;
 using static CamadaUI.Utilidades;
+using static CamadaUI.FuncoesGlobais;
 
 namespace CamadaUI
 {
 	public partial class frmPrincipal : Form
 	{
+		#region SUB NEW | LOAD
+
+		// SUB NEW
+		// =============================================================================
 		public frmPrincipal()
 		{
 			InitializeComponent();
+
 			pnlTop.BackColor = Properties.Settings.Default.PanelTopColor;
+			lblTitulo.Text = AplicacaoTitulo;
+
+			foreach (Control control in this.Controls)
+			{
+				MdiClient client = control as MdiClient;
+				if (!(client == null))
+				{
+					//client.BackgroundImage = Properties.Resources.Logo_FAES_cinza_PNG_Borda;
+
+					//Image cachorro = Image.FromFile("E:\\Desktop\\faes.png");
+					//Image cachorro = Image.FromFile("E:\\Desktop\\j0424399.jpg");
+
+					//Image cachorro = Properties.Resources.notamusical_16;
+					this.BackgroundImageLayout = ImageLayout.Zoom;
+					//client.BackColor = Color.FromArgb(195, 240, 123);
+
+					client.BackgroundImage = Properties.Resources.Logo_FAES_cinza_PNG_Borda;
+					//picFundo.BackColor = Color.Red;
+				}
+			}
+
 		}
 
+		// LOAD
+		// =============================================================================
+		private void frmPrincipal_Load(object sender, EventArgs e)
+		{
+			mnuPrincipal.Focus();
+			//btnBiblia.Select();
+		}
+
+		public string AplicacaoTitulo
+		{
+			get
+			{
+				return ObterDefault("IgrejaTitulo");
+			}
+			set
+			{
+				lblTitulo.Text = value;
+				SaveConfigValorNode("IgrejaTitulo", value);
+			}
+		}
+		
+		#endregion
+
+		#region BUTTONS
+
+		// APPLICATION EXIT
+		// =============================================================================
 		private void btnSair_Click(object sender, EventArgs e)
 		{
 			Application.Exit();
 		}
 
+		// APPLICATION MINIMIZE
+		// =============================================================================
 		private void btnMinimizer_Click(object sender, EventArgs e)
 		{
 			WindowState = FormWindowState.Minimized;
 		}
 
+		// OPEN ESCRITURA
+		// =============================================================================
 		private void btnBiblia_Click(object sender, EventArgs e)
 		{
 			frmLeitura f = new frmLeitura();
@@ -30,12 +89,8 @@ namespace CamadaUI
 			Visible = false;
 		}
 
-		private void frmPrincipal_Load(object sender, EventArgs e)
-		{
-			mnuPrincipal.Focus();
-			//btnBiblia.Select();
-		}
-
+		// OPEN HARPA
+		// =============================================================================
 		private void btnHarpa_Click(object sender, EventArgs e)
 		{
 			try
@@ -61,6 +116,8 @@ namespace CamadaUI
 
 		}
 
+		// OPEN LOUVORES
+		// =============================================================================
 		private void btnLouvores_Click(object sender, EventArgs e)
 		{
 			try
@@ -84,6 +141,8 @@ namespace CamadaUI
 			}
 		}
 
+		// OPEN CONFIG
+		// =============================================================================
 		private void btnConfig_Click(object sender, EventArgs e)
 		{
 			try
@@ -95,7 +154,6 @@ namespace CamadaUI
 				MenuEnabled(false);
 				f.MdiParent = this;
 				f.Show();
-
 			}
 			catch (Exception ex)
 			{
@@ -109,23 +167,16 @@ namespace CamadaUI
 			}
 		}
 
+		#endregion
 
-		private void frmPrincipal_MdiChildActivate(object sender, EventArgs e)
-		{
-			if(MdiChildren.Length > 0)
-			{
-				picFundo.Visible = false;
-			}
-			else
-			{
-				picFundo.Visible = true;
-			}
-		}
+		#region OTHER FUNCTIONS
 
 		public void MenuEnabled(bool IsEnabled)
 		{
 			mnuPrincipal.Enabled = IsEnabled;
 			btnConfig.Enabled = IsEnabled;
 		}
+		
+		#endregion
 	}
 }

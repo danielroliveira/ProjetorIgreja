@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using static CamadaUI.Utilidades;
+using static CamadaUI.FuncoesGlobais;
 
 namespace CamadaUI.Config
 {
@@ -14,21 +15,27 @@ namespace CamadaUI.Config
 		HarpaBLL hBLL;
 		VersiculoBLL vBLL;
 
+		#region SUB NEW | LOAD
+
 		// SUB NEW
 		public frmConfigGeral()
 		{
+			InitializeComponent();
+
 			lBLL = new LouvorBLL(db);
 			hBLL = new HarpaBLL(db);
 			vBLL = new VersiculoBLL(db);
-			InitializeComponent();
+
+			txtIgrejaTitulo.Text = ObterDefault("IgrejaTitulo");
 		}
 
-		// CLOSE
-		private void btnClose_Click(object sender, EventArgs e)
+		// LOAD
+		private void frmConfigGeral_Load(object sender, EventArgs e)
 		{
-			frmConfig f = Application.OpenForms.OfType<frmConfig>().FirstOrDefault();
-			f.FormNoPanelClosed(this);
+			txtIgrejaTitulo.Focus();
 		}
+
+		#endregion
 
 		#region BUTTONS FUNCTION
 
@@ -127,7 +134,17 @@ namespace CamadaUI.Config
 			}
 		}
 
+		// CLOSE
+		// =============================================================================
+		private void btnClose_Click(object sender, EventArgs e)
+		{
+			frmConfig f = Application.OpenForms.OfType<frmConfig>().FirstOrDefault();
+			f.FormNoPanelClosed(this);
+		}
+
 		#endregion
+
+		#region OTHER FUNCTIONS
 
 		// CONVERT ALL PPT OR PPTX IN PPS FILE
 		// =============================================================================
@@ -203,5 +220,22 @@ namespace CamadaUI.Config
 			AbrirDialog("Arquivos convertidos com sucesso em:\n" +
 				convertedPath, "Arquivos Convertidos");
 		}
+
+		#endregion
+
+		private void txtIgrejaTitulo_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			try
+			{
+				frmPrincipal f = Application.OpenForms.OfType<frmPrincipal>().FirstOrDefault();
+				f.AplicacaoTitulo = txtIgrejaTitulo.Text;
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Houve uma execeção ao salvar Config... \n" +
+					ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+		}
+		
 	}
 }

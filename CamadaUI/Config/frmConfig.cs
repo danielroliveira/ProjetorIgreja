@@ -61,12 +61,8 @@ namespace CamadaUI.Config
 			}
 		}
 
-		
-
 		#endregion
-
-
-
+			   
 		private void btnClose_Click(object sender, EventArgs e)
 		{
 			Close();

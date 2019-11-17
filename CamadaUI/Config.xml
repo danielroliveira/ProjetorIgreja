@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuracao>
   <DefaultValues>
+    <IgrejaTitulo></IgrejaTitulo>
     <IDVersiculoPadrao>1</IDVersiculoPadrao>
     <IDVersiculoUltimo>116299</IDVersiculoUltimo>
     <IDHinoUltimo></IDHinoUltimo>
@@ -9,4 +10,10 @@
     <BackupFolder></BackupFolder>
     <CopyAllNewFilesToBackup>true</CopyAllNewFilesToBackup>
   </Folders>
+  <Colors>
+    <TopTitleColor></TopTitleColor>
+    <PrincipalBackColor></PrincipalBackColor>
+    <PrincipalBackImage></PrincipalBackImage>
+    <PrincipalBackgroundImageLayout></PrincipalBackgroundImageLayout>
+  </Colors>
 </Configuracao>

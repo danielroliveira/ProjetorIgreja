@@ -38,6 +38,7 @@ namespace CamadaUI
 				new XDocument(
 					new XElement("Configuracao",
 						new XElement("DefaultValues",
+							new XElement("IgrejaTitulo",""),
 							new XElement("IDVersiculoPadrao", 1),
 							new XElement("IDVersiculoUltimo", 1),
 							new XElement("IDHinoUltimo", 1)
@@ -45,6 +46,12 @@ namespace CamadaUI
 						new XElement("Folders",
 							new XElement("BackupFolder", ""),
 							new XElement("CopyAllNewFilesToBackup", true)
+						),
+						new XElement("Colors",
+							new XElement("TopTitleColor", ""),
+							new XElement("PrincipalBackColor", ""),
+							new XElement("PrincipalBackImage", ""),
+							new XElement("PrincipalBackgroundImageLayout", "")
 						)
 					)
 				)
