@@ -106,9 +106,10 @@ namespace CamadaBLL
 				db.AdicionarParametros("@Titulo", louvor.Titulo);
 				db.AdicionarParametros("@ProjecaoPath", louvor.ProjecaoPath);
 				db.AdicionarParametros("@ProjecaoFileName", louvor.ProjecaoFileName);
+				db.AdicionarParametros("@Ativo", louvor.Ativo);
 
-				string query = "INSERT INTO tblLouvores (IDLouvor, Titulo, ProjecaoPath, ProjecaoFileName) " +
-					"VALUES (@IDLouvor, @Titulo, @ProjecaoPath, @ProjecaoFileName);";
+				string query = "INSERT INTO tblLouvores (IDLouvor, Titulo, ProjecaoPath, ProjecaoFileName, Ativo) " +
+					"VALUES (@IDLouvor, @Titulo, @ProjecaoPath, @ProjecaoFileName, @Ativo);";
 
 				db.ExecutarManipulacao(CommandType.Text, query);
 			}

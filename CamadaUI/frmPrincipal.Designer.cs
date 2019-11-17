@@ -40,6 +40,7 @@
 			this.btnMinimizer = new System.Windows.Forms.Button();
 			this.btnConfig = new System.Windows.Forms.Button();
 			this.picFundo = new System.Windows.Forms.PictureBox();
+			this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
 			this.mnuPrincipal.SuspendLayout();
 			this.pnlTop.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picFundo)).BeginInit();
@@ -54,7 +55,8 @@
             this.btnBiblia,
             this.toolStripSeparator1,
             this.btnLouvores,
-            this.btnHarpa});
+            this.btnHarpa,
+            this.toolStripSplitButton1});
 			this.mnuPrincipal.Location = new System.Drawing.Point(0, 40);
 			this.mnuPrincipal.Name = "mnuPrincipal";
 			this.mnuPrincipal.Size = new System.Drawing.Size(1110, 56);
@@ -203,6 +205,15 @@
 			this.picFundo.TabIndex = 2;
 			this.picFundo.TabStop = false;
 			// 
+			// toolStripSplitButton1
+			// 
+			this.toolStripSplitButton1.Image = global::CamadaUI.Properties.Resources.agenda_32;
+			this.toolStripSplitButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+			this.toolStripSplitButton1.Size = new System.Drawing.Size(117, 53);
+			this.toolStripSplitButton1.Text = "Avisos";
+			// 
 			// frmPrincipal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -246,6 +257,7 @@
         internal System.Windows.Forms.Button btnClose;
         internal System.Windows.Forms.Button btnMinimizer;
 		private System.Windows.Forms.PictureBox picFundo;
+		private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
 	}
 }
 

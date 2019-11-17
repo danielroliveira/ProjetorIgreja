@@ -543,6 +543,7 @@ namespace CamadaUI.Config
 					bool inserido = false;
 					int versao = 1;
 					string titulo = louvor.Titulo;
+					string FileRenamedTo = "";
 
 					while (!inserido)
 					{
@@ -555,10 +556,24 @@ namespace CamadaUI.Config
 						}
 						catch (AppException)
 						{
+							string projPath = Path.GetDirectoryName(louvor.ProjecaoPath);
+							string projExt = Path.GetExtension(louvor.ProjecaoPath);
+
 							louvor.Titulo = $"{titulo}_versao_{versao : 00}";
+							louvor.ProjecaoFileName = $"{louvor.Titulo}{projExt}";
+							louvor.ProjecaoPath = $"{projPath}\\{louvor.ProjecaoFileName}";
+							louvor.Ativo = 3;
+
+							FileRenamedTo = louvor.ProjecaoPath;
 						}
 
 						versao += 1;
+					}
+
+					if(FileRenamedTo.Length > 0)
+					{
+						string OriginalFile = $"{Path.GetDirectoryName(louvor.ProjecaoPath)}\\{titulo}{Path.GetExtension(louvor.ProjecaoPath)}";
+						File.Move(OriginalFile, FileRenamedTo);
 					}
 
 					pgbLouvores.Value += 1;
