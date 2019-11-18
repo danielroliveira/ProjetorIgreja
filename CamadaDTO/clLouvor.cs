@@ -147,6 +147,10 @@ namespace CamadaDTO
 			}
 		}
 
+		// Property FileExtension
+		//------------------------------------------------------
+		public string FileExtension { get; set; }
+
 		// Property IDCategoria
 		//------------------------------------------------------
 		public short? IDCategoria

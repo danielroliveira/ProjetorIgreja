@@ -617,6 +617,9 @@ namespace CamadaUI.Louvor
 		// =============================================================================
 		private void mnuLista_Opening(object sender, System.ComponentModel.CancelEventArgs e)
 		{
+			if (lstListagem.SelectedItems.Count == 0)
+				return;
+
 			// get Louvor
 			int IDLouvor = (int)lstListagem.SelectedItems[0].Value;
 			clLouvor louvor = ListLouvor.Find(l => l.IDLouvor == IDLouvor);

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Configuracao>
   <DefaultValues>
-    <IgrejaTitulo></IgrejaTitulo>
+    <IgrejaTitulo>Assembleia de Deus - Ministério FAES</IgrejaTitulo>
     <IDVersiculoPadrao>1</IDVersiculoPadrao>
     <IDVersiculoUltimo>116299</IDVersiculoUltimo>
     <IDHinoUltimo></IDHinoUltimo>

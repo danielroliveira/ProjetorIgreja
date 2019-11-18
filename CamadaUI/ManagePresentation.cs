@@ -17,7 +17,7 @@ namespace CamadaUI
 			Application ppApp = new Application();
 			ppApp.Visible = MsoTriState.msoTrue;
 			Presentations ppPresens = ppApp.Presentations;
-			Presentation objPres = ppPresens.Open(FileName, MsoTriState.msoFalse, MsoTriState.msoTrue, MsoTriState.msoTrue);
+			Presentation objPres = ppPresens.Open(FileName, MsoTriState.msoFalse, MsoTriState.msoFalse, MsoTriState.msoTrue);
 			/*
 			Slides objSlides = objPres.Slides;
 			SlideShowWindows objSSWs;
@@ -31,10 +31,10 @@ namespace CamadaUI
 			while (objSSWs.Count >= 1)
 				System.Threading.Thread.Sleep(100);
 			
+			*/
 			//Close the presentation without saving changes and quit PowerPoint
 			objPres.Close();
 			ppApp.Quit();
-			*/
 		}
 
 	}

@@ -33,7 +33,7 @@ namespace CamadaUI.Config
 			try
 			{
 				string backupFolder = FuncoesGlobais.ObterConfigValorNode("BackupFolder");
-				if(backupFolder.Length > 0)
+				if (backupFolder.Length > 0)
 				{
 					PathBackupFolder = backupFolder;
 					lblPastaBackup.Text = backupFolder;
@@ -174,17 +174,17 @@ namespace CamadaUI.Config
 				string oldPath = (string)row["LouvorFolder"];
 
 				// verifica a existencia do DIR
-				if ( newPath.Contains(oldPath) )
+				if (newPath.Contains(oldPath))
 				{
 					AbrirDialog("A pasta: \n" + newPath + "\n já foi incluída... \n \n" +
-						"Favor verificar se a pasta não é um subdiretório de outra pasta que já foi incluída.", 
+						"Favor verificar se a pasta não é um subdiretório de outra pasta que já foi incluída.",
 						"Pasta já inserida", DialogType.OK, DialogIcon.Exclamation);
 					return;
 				}
 				else if (oldPath.Contains(newPath))
 				{
 					AbrirDialog("A pasta: \n" + newPath + "\n" +
-						"É uma pasta superior a outra pasta já incluída.\n" + 
+						"É uma pasta superior a outra pasta já incluída.\n" +
 						"A pasta anterior será substituída.",
 						"Pasta Superior", DialogType.OK, DialogIcon.Exclamation);
 					IDFolder = (int)row["IDLouvorFolder"];
@@ -198,7 +198,7 @@ namespace CamadaUI.Config
 				Cursor.Current = Cursors.WaitCursor;
 
 				// insert or update in DB
-				if(IDFolder == null)
+				if (IDFolder == null)
 				{
 					lBLL.InsertFolder(newPath);
 				}
@@ -486,7 +486,7 @@ namespace CamadaUI.Config
 
 				//--- Check source FOLDERS
 				// ---------------------------------------------------------------------------
-				if ( dtLouvorFolder.Rows.Count == 0)
+				if (dtLouvorFolder.Rows.Count == 0)
 				{
 					AbrirDialog("Não existem pastas inseridas nas lista para realizar a pesquisa... \n" +
 						"Favor inserir pelo menos uma pasta de pesquisa.",
@@ -494,8 +494,17 @@ namespace CamadaUI.Config
 					return;
 				}
 
+				//--- Check if BACKUPFOLDER is Defined
+				// ---------------------------------------------------------------------------
+				if (PathBackupFolder.Length == 0 && Directory.Exists(PathBackupFolder))
+				{
+					AbrirDialog("Não é possível realizar a nova Pesquisa porque ainda não foi definida a pasta de Backup padrão... \n" +
+						"Favor definir a pasta de Backup padrão...", "Pasta de Backup");
+					return;
+				}
+
 				// Create new list louvor
-				List<clLouvor> newListLouvor = CheckAllFoldersAndGetAllLouvor();
+				List<clLouvor> newListLouvor = CheckAllFoldersAndGetAllSlides();
 
 				// --- get List of current Louvores in BD
 				List<clLouvor> curLouvoresList = GetLouvores();
@@ -503,14 +512,14 @@ namespace CamadaUI.Config
 				// --- compare TWO lists and remove duplicated files
 				foreach (clLouvor louvor in curLouvoresList)
 				{
-					clLouvor dupLouvor = newListLouvor.Find(l => l.ProjecaoFileName == louvor.ProjecaoFileName);
+					clLouvor dupLouvor = newListLouvor.Find(l => l.ProjecaoPath == louvor.ProjecaoPath);
 					newListLouvor.Remove(dupLouvor);
 				}
 
 				// --- check found quantity and ask user
 				int foundCount = newListLouvor.Count;
 
-				if(foundCount == 0)
+				if (foundCount == 0)
 				{
 					AbrirDialog("Não foi encontrado nenhum novo arquivo de projeção de louvor.",
 						"Pesquisar");
@@ -521,15 +530,18 @@ namespace CamadaUI.Config
 					"Deseja inserir as novas projeções encontradas no Banco de Dados?",
 					"Novas Projeções", DialogType.SIM_NAO, DialogIcon.Question);
 
-				if(resp == DialogResult.No)	return;
-				
+				if (resp == DialogResult.No)
+				{
+					return;
+				}
+
 				// --- insert NEW found louvores
 				pgbLouvores.Maximum = foundCount;
 				pgbLouvores.Visible = true;
 
 				// --- check Last/Max ID Louvor
 				int maxID = 0;
-				if(curLouvoresList.Count > 0)
+				if (curLouvoresList.Count > 0)
 				{
 					maxID = curLouvoresList.Max(l => l.IDLouvor);
 				}
@@ -549,7 +561,7 @@ namespace CamadaUI.Config
 					{
 						try
 						{
-							if(FileRenamedTo.Length > 0 && File.Exists(FileRenamedTo))
+							if (FileRenamedTo.Length > 0 && File.Exists(FileRenamedTo))
 							{
 								throw new AppException("");
 							}
@@ -564,7 +576,7 @@ namespace CamadaUI.Config
 							string projPath = Path.GetDirectoryName(louvor.ProjecaoPath);
 							string projExt = Path.GetExtension(louvor.ProjecaoPath);
 
-							louvor.Titulo = $"{titulo}_versao_{versao : 00}";
+							louvor.Titulo = $"{titulo}_versao_{versao: 00}";
 							louvor.ProjecaoFileName = $"{louvor.Titulo}{projExt}";
 							louvor.ProjecaoPath = $"{projPath}\\{louvor.ProjecaoFileName}";
 							louvor.Ativo = 3;
@@ -575,7 +587,7 @@ namespace CamadaUI.Config
 						versao += 1;
 					}
 
-					if(FileRenamedTo.Length > 0)
+					if (FileRenamedTo.Length > 0)
 					{
 						string OriginalFile = $"{Path.GetDirectoryName(louvor.ProjecaoPath)}\\{titulo}{Path.GetExtension(louvor.ProjecaoPath)}";
 						File.Move(OriginalFile, FileRenamedTo);
@@ -590,15 +602,12 @@ namespace CamadaUI.Config
 				// Make automatic Backup
 				if (chkBackupAuto.Checked)
 				{
-					if (PathBackupFolder.Length > 0)
-					{
-						BackupNewFiles(PathBackupFolder);
-					}
-					else
-					{
-						AbrirDialog("Não foi possível realizar o Backup automático porque ainda não foi definida a pasta de Backup padrão... \n" + 
-							"Favor definir a pasta de Backup padrão...", "Pasta de Backup");
-					}
+					BackupNewFiles(PathBackupFolder);
+				}
+				else
+				{
+					AbrirDialog("Não foi realizado o Backup automático porque Backup padrão não foi marcado... \n" +
+						"Backup Padrão", "Pasta de Backup");
 				}
 
 				// Ampulheta OFF
@@ -619,12 +628,13 @@ namespace CamadaUI.Config
 
 		// CHECK ALL SOURCE FOLDERS LISTED AND GET LOUVOR PROJECTION
 		// =============================================================================
-		private List<clLouvor> CheckAllFoldersAndGetAllLouvor()
+		private List<clLouvor> CheckAllFoldersAndGetAllSlides()
 		{
 			// Create new list louvor
 			List<clLouvor> list = new List<clLouvor>();
 			List<clLouvor> dupList = new List<clLouvor>();
-			
+			List<string> SourceFolders = new List<string>();
+
 			// --- make a list of louvor files in FOLDERS
 			foreach (DataRow row in dtLouvorFolder.Rows)
 			{
@@ -633,7 +643,7 @@ namespace CamadaUI.Config
 				// verifica a existencia do DIR
 				if (Directory.Exists(path))
 				{
-					List<clLouvor> getListLouvor = GetListOfSlides(path, list, dupList);
+					SourceFolders.Add(path);
 				}
 				else
 				{
@@ -642,49 +652,107 @@ namespace CamadaUI.Config
 				}
 			}
 
-			return list;
-		}
-		
-		// GET LIST SLIDES FILES ON A DIRECTORY AND RETURN A LIST
-		// =============================================================================
-		private List<clLouvor> GetListOfSlides(string drivePath, List<clLouvor> prevList, List<clLouvor> dupList)
-		{
-			// verifica a existencia do DIR
-			if (!Directory.Exists(drivePath))
+			list = GetListOfSlidesSepareteDuplicated(SourceFolders, list, dupList);
+
+			// MOVE DUPLICATED FILES to new FOLDER
+			foreach (clLouvor dupFile in dupList)
 			{
-				return prevList;
+				FileInfo file = new FileInfo(dupFile.ProjecaoPath);
+
+				file.MoveTo()
+
+				System.Diagnostics.Debug.Print(dupFile.ProjecaoPath);
+
 			}
 
-			// seek in the first directory
-			List<string> dirPaths = new List<string>() { drivePath };
-			dirPaths.AddRange(Directory.GetDirectories(drivePath, "*", SearchOption.AllDirectories).ToList<string>());
+			return list;
+			
+		}
 
+		// GET LIST SLIDES FILES ON A DIRECTORY AND RETURN A LIST
+		// =============================================================================
+		private List<clLouvor> GetListOfSlidesSepareteDuplicated(List<string> SourceFolders, List<clLouvor> prevList, List<clLouvor> dupList)
+		{
+
+			List<string> dirPathsList = new List<string>();
+
+			// create a list of ALL source FOLDERS and their SUBFOLDERS
+			foreach (string findFolder in SourceFolders)
+			{
+				// seek in the first directory
+				dirPathsList.Add(findFolder);
+				dirPathsList.AddRange(Directory.GetDirectories(findFolder, "*", SearchOption.AllDirectories).ToList<string>());
+			}
+
+			// create a BIG list of ALL slides: PPT, PPTX, PPS, PPSX
 			try
 			{
 				// --- Ampulheta ON
 				Cursor.Current = Cursors.WaitCursor;
 
+				List<clLouvor> BigList = new List<clLouvor>();
+				int initialID = 1;
+
 				// go through all files and insert in list
-				foreach (string subDir in dirPaths)
+				// clear all PPT or PPTX that exists correspondent PPS file
+				foreach (string findDir in dirPathsList)
 				{
-					DirectoryInfo dir = new DirectoryInfo(subDir);
+					DirectoryInfo dir = new DirectoryInfo(findDir);
 
 					// get all louvor in subdir path
-					List<clLouvor> newList = GetLouvoresOfDir(dir);
+					BigList.AddRange(GetSlidesOfDir(dir, initialID));
+					initialID = BigList.Count + 1;
+				}
 
-					// insert in list or in duplicated list
-					foreach (clLouvor newLouvor in newList)
+				foreach (clLouvor item in BigList)
+				{
+					System.Diagnostics.Debug.Print(item.IDLouvor.ToString());
+				}
+
+
+				// add all PPS or PPSX files in PrevLista
+				prevList.AddRange(BigList.FindAll(louvor => louvor.FileExtension == ".pps" || louvor.FileExtension == ".ppsx"));
+
+				// check files PPT, PPTX if exists correspondent PPS or PPSX file
+				List<clLouvor> PPTList = BigList.FindAll(louvor => louvor.FileExtension == ".ppt" || louvor.FileExtension == ".pptx");
+
+				foreach (clLouvor PPTLouvor in PPTList)
+				{
+					if (prevList.Exists(l => l.Titulo.ToUpper() == PPTLouvor.Titulo.ToUpper()))
 					{
-						// search for duplicated files names
-						if (prevList.Exists(l => l.ProjecaoFileName == newLouvor.ProjecaoFileName))
-						{
-							dupList.Add(newLouvor);
-						}
-						else
-						{
-							prevList.Add(newLouvor);
-						}
+						dupList.Add(PPTLouvor); // remove PPT or PPTX if there is PPS or PPSX
 					}
+					else
+					{
+						prevList.Add(PPTLouvor);
+					}
+				}
+
+				// SEPARATE - remove of list all FILE NAME duplicated in list
+				// ---------------------------------------------------------------------------
+				prevList = RemoveDuplicatedItem(prevList, dupList);
+
+				// CREATE | CONVERT PPS for all PPT or PPTX files
+				// ---------------------------------------------------------------------------
+				PPTList = prevList.FindAll(l => l.FileExtension == ".ppt" || l.FileExtension == ".pptx");
+
+				foreach (clLouvor pptFile in PPTList)
+				{
+					// check if exist correspondent PPS or PPSX file with the same NAME
+					FileInfo file = new FileInfo(pptFile.ProjecaoPath);
+
+					// copy and convert file to PPS
+					FileInfo newFile = file.CopyTo($"{Path.GetDirectoryName(pptFile.ProjecaoPath)}\\{pptFile.Titulo}.pps", true);
+
+					// move old PPT to duplist
+					dupList.Add(pptFile);
+
+					// edit list clLouvor
+					clLouvor louvor = prevList.Find(l => l.IDLouvor == pptFile.IDLouvor);
+					louvor.ProjecaoPath = newFile.FullName;
+					louvor.ProjecaoFileName = newFile.Name;
+					louvor.Titulo = Path.GetFileNameWithoutExtension(newFile.FullName);
+					louvor.FileExtension = newFile.Extension;
 				}
 			}
 			catch (Exception ex)
@@ -697,26 +765,65 @@ namespace CamadaUI.Config
 				// --- Ampulheta OFF
 				Cursor.Current = Cursors.Default;
 			}
-			
+
+			foreach (clLouvor item in prevList)
+			{
+				System.Diagnostics.Debug.Print(item.FileExtension);
+			}
+
 			return prevList;
+		}
+
+		// FIND DUPLICATED FILES AND RETURN PREFERED PPS OR PPSX FILES
+		// =============================================================================
+		private List<clLouvor> RemoveDuplicatedItem(List<clLouvor> prevList, List<clLouvor> duplicated)
+		{
+			// create new list
+			List<clLouvor> newList = new List<clLouvor>();
+
+			// group prevList for the same FileName
+
+			var groups = prevList.GroupBy(x => x.Titulo.ToUpper(), x => x);
+
+			foreach (IGrouping<string, clLouvor> group in groups)
+			{
+				if(group.Count() == 1)
+				{
+					newList.Add(group.First());
+				}
+				else
+				{
+					if(group.ToList().Exists(l => l.FileExtension == ".pps" || l.FileExtension == ".ppsx"))
+					{
+						clLouvor primeiro = group.First(l => l.FileExtension == ".pps" || l.FileExtension == ".ppsx");
+						newList.Add(primeiro);
+						duplicated.AddRange(group.ToList().FindAll(l => !l.Equals(primeiro)));
+					}
+					else // nao encontrou inclue o primeiro
+					{
+						clLouvor primeiro = group.First(l => l.FileExtension == ".ppt" || l.FileExtension == ".pptx");
+						newList.Add(primeiro);
+						duplicated.AddRange(group.ToList().FindAll(l => !l.Equals(primeiro)));
+					}
+				}
+			}
+
+			return newList;
 		}
 
 		// GET ALL PPS OR PPSX IN A FOLDER AND CONVERT PPT ==> PPS
 		// =============================================================================
-		private List<clLouvor> GetLouvoresOfDir(DirectoryInfo dir)
+		private List<clLouvor> GetSlidesOfDir(DirectoryInfo dir, int initialID)
 		{
 			List<clLouvor> list = new List<clLouvor>();
-
-			int numFiles = dir.GetFiles().Length;
-			int ID = 1;
 
 			// Ampulheta ON
 			Cursor.Current = Cursors.WaitCursor;
 
-			// CONVERT all PPTX or PPT to PPS
+			// CONVERT all PPTX or PPT to PPS // GET files PPT or PPTX to convert in PPS
 			// ---------------------------------------------------------------------------
 
-			// GET files PPT or PPTX to convert in PPS
+			/*
 			List<FileInfo> dirFiles = dir.GetFiles("*.ppt").ToList<FileInfo>();
 			dirFiles.AddRange(dir.GetFiles("*.pptx").ToList<FileInfo>());
 			
@@ -732,24 +839,30 @@ namespace CamadaUI.Config
 				}
 			}
 
-			// insert Files in LIST
+			*/
+
+			// INSERT Files in LIST
 			// ---------------------------------------------------------------------------
 			foreach (FileInfo file in dir.GetFiles())
 			{
-				if ((file.Extension == ".pps" || file.Extension == ".ppsx") && !file.Name.Contains("~"))
+				// create array of alowed extensions
+				string[] FileExtensions = new string[]{
+					".pps", ".ppsx" , ".ppt", ".pptx"
+				};
+
+				if (FileExtensions.Contains(file.Extension) && !file.Name.Contains("~"))
 				{
-					clLouvor louvor = new clLouvor(ID);
-					int extL = file.Extension.Length;
-					int nameL = file.Name.Length;
-					louvor.Titulo = file.Name.Remove(nameL - extL);
-					louvor.ProjecaoFileName = file.Name;
+					clLouvor louvor = new clLouvor(initialID);
 					louvor.ProjecaoPath = file.FullName;
-					louvor.IDLouvor = ID;
-					ID += 1;
+					louvor.ProjecaoFileName = file.Name;
+					louvor.Titulo = Path.GetFileNameWithoutExtension(file.FullName);
+					louvor.FileExtension = file.Extension;
+					louvor.IDLouvor = initialID;
+					initialID += 1;
 					list.Add(louvor);
 				}
 			}
-			
+
 			return list;
 		}
 
@@ -877,7 +990,7 @@ namespace CamadaUI.Config
 				string path = "";
 
 				// CHECK IF EXISTS DEFAULT BACKUP FOLDER
-				if(PathBackupFolder == string.Empty)
+				if (PathBackupFolder == string.Empty)
 				{
 					string defFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 					defFolder += "\\Projetor\\Louvor\\";
@@ -894,7 +1007,7 @@ namespace CamadaUI.Config
 							DialogType.SIM_NAO,
 							DialogIcon.Question);
 
-						if(resp == DialogResult.Yes)
+						if (resp == DialogResult.Yes)
 						{
 							Directory.CreateDirectory(defFolder);
 							path = defFolder;
