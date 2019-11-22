@@ -50,7 +50,6 @@
 			this.lblPastaBackup = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.panel3 = new System.Windows.Forms.Panel();
-			this.chkBackupAuto = new System.Windows.Forms.CheckBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.lstPastas)).BeginInit();
@@ -394,7 +393,6 @@
 			// panel3
 			// 
 			this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(221)))), ((int)(((byte)(234)))));
-			this.panel3.Controls.Add(this.chkBackupAuto);
 			this.panel3.Controls.Add(this.label3);
 			this.panel3.Controls.Add(this.btnBackupProjecoes);
 			this.panel3.Controls.Add(this.label4);
@@ -404,17 +402,6 @@
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(379, 275);
 			this.panel3.TabIndex = 8;
-			// 
-			// chkBackupAuto
-			// 
-			this.chkBackupAuto.AutoSize = true;
-			this.chkBackupAuto.Location = new System.Drawing.Point(25, 237);
-			this.chkBackupAuto.Name = "chkBackupAuto";
-			this.chkBackupAuto.Size = new System.Drawing.Size(326, 23);
-			this.chkBackupAuto.TabIndex = 8;
-			this.chkBackupAuto.Text = "Fazer Backup automático das novas projeções";
-			this.chkBackupAuto.UseVisualStyleBackColor = true;
-			this.chkBackupAuto.CheckedChanged += new System.EventHandler(this.chkBackupAuto_CheckedChanged);
 			// 
 			// label4
 			// 
@@ -483,6 +470,5 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.Label label4;
-		private System.Windows.Forms.CheckBox chkBackupAuto;
 	}
 }

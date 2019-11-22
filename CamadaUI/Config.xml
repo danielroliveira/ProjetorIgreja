@@ -8,7 +8,6 @@
   </DefaultValues>
   <Folders>
     <BackupFolder></BackupFolder>
-    <CopyAllNewFilesToBackup>true</CopyAllNewFilesToBackup>
   </Folders>
   <Colors>
     <TopTitleColor></TopTitleColor>

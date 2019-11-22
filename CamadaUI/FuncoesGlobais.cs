@@ -44,8 +44,7 @@ namespace CamadaUI
 							new XElement("IDHinoUltimo", 1)
 						),
 						new XElement("Folders",
-							new XElement("BackupFolder", ""),
-							new XElement("CopyAllNewFilesToBackup", true)
+							new XElement("BackupFolder", "")
 						),
 						new XElement("Colors",
 							new XElement("TopTitleColor", ""),
