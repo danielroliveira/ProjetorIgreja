@@ -505,7 +505,7 @@ namespace CamadaUI.Config
 					clLouvor dupLouvor = newListLouvor.Find(l => l.ProjecaoFileName == louvor.ProjecaoFileName);
 
 					// check path changes of louvor item
-					if(louvor.ProjecaoPath != dupLouvor.ProjecaoPath)
+					if (louvor.ProjecaoPath != dupLouvor.ProjecaoPath)
 					{
 						dupLouvor.ProjecaoPath = louvor.ProjecaoPath; // update Path
 						lBLL.UpdateLouvor(dupLouvor);
@@ -548,7 +548,7 @@ namespace CamadaUI.Config
 
 				// --- BACKUP Files automatically
 				// ---------------------------------------------------------------------------
-				resp = AbrirDialog("Pesquisa de Novos Louvores realizada com sucesso! \n\n" + 
+				resp = AbrirDialog("Pesquisa de Novos Louvores realizada com sucesso! \n\n" +
 					"Deseja fazer o Backup de todas as Projeções na pasta de Backup?",
 					"Pesquisa Realizada", DialogType.SIM_NAO, DialogIcon.Question);
 
@@ -721,13 +721,13 @@ namespace CamadaUI.Config
 
 			foreach (IGrouping<string, clLouvor> group in groups)
 			{
-				if(group.Count() == 1)
+				if (group.Count() == 1)
 				{
 					newList.Add(group.First());
 				}
 				else
 				{
-					if(group.ToList().Exists(l => l.FileExtension == ".pps" || l.FileExtension == ".ppsx"))
+					if (group.ToList().Exists(l => l.FileExtension == ".pps" || l.FileExtension == ".ppsx"))
 					{
 						clLouvor primeiro = group.First(l => l.FileExtension == ".pps" || l.FileExtension == ".ppsx");
 						newList.Add(primeiro);
@@ -920,66 +920,21 @@ namespace CamadaUI.Config
 			return true;
 		}
 
-		// BACKUP OF NEW FILES
+		#endregion
+
+		#region BUTTONS
+
+		// CLOSE FORM
 		// =============================================================================
-		private void BackupFiles(string backupFolder)
+		private void btnClose_Click(object sender, EventArgs e)
 		{
-			try
-			{
-				// --- Ampulheta ON
-				Cursor.Current = Cursors.WaitCursor;
-
-				// get all Files on Backup Folder
-				// ---------------------------------------------------------------------------
-				DirectoryInfo DirInfo = new DirectoryInfo(backupFolder);
-				List<clLouvor> DirListLouvor = GetSlidesOfDir(DirInfo, 1);
-
-				// --- get List of current Louvores in BD
-				List<clLouvor> curLouvoresList = GetLouvores();
-				int foundCount = curLouvoresList.Count();
-
-				if(foundCount == 0)
-				{
-					AbrirDialog("Não existem projeções para fazer o Backup...", "Backup");
-					return;
-				}
-
-				// progressbar Action
-				pgbLouvores.Maximum = foundCount;
-				pgbLouvores.Visible = true;
-
-				// copy to Backup Dir
-				foreach (clLouvor louvor in curLouvoresList)
-				{
-					string FileName = Path.GetFileName(louvor.ProjecaoPath);
-					File.Copy(louvor.ProjecaoPath, $"{backupFolder}\\{FileName}");
-
-					pgbLouvores.Value += 1;
-				}
-
-				pgbLouvores.Visible = false;
-				pgbLouvores.Value = 0;
-
-				AbrirDialog("Backup relizado com sucesso! \n" +
-					$"Foram copiadas {foundCount} novas projeções.", "Backup");
-
-			}
-			catch (Exception ex)
-			{
-				AbrirDialog("Uma exceção ocorreu ao Realizar o Backup das novas projeções..." + "\n" +
-							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
-			}
-			finally
-			{
-				// --- Ampulheta OFF
-				Cursor.Current = Cursors.Default;
-			}
-			
+			frmConfig f = Application.OpenForms.OfType<frmConfig>().FirstOrDefault();
+			f.FormNoPanelClosed(this);
 		}
 
 		#endregion
 
-		#region BUTTONS
+		#region BACKUP FILES
 
 		// DEFINIR PASTA BACKUP
 		// =============================================================================
@@ -1064,16 +1019,93 @@ namespace CamadaUI.Config
 			}
 		}
 
-		// CLOSE FORM
+		// BACKUP OF NEW FILES
 		// =============================================================================
-		private void btnClose_Click(object sender, EventArgs e)
+		private void BackupFiles(string backupFolder)
 		{
-			frmConfig f = Application.OpenForms.OfType<frmConfig>().FirstOrDefault();
-			f.FormNoPanelClosed(this);
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				// --- get List of current Louvores in BD
+				List<clLouvor> curLouvoresList = GetLouvores();
+				int foundCount = curLouvoresList.Count();
+
+				if (foundCount == 0)
+				{
+					AbrirDialog("Não existem projeções para fazer o Backup...", "Backup");
+					return;
+				}
+
+				// get all Files on Backup Folder
+				// ---------------------------------------------------------------------------
+				DirectoryInfo DirInfo = new DirectoryInfo(backupFolder);
+				ZipFileFunc zip = new ZipFileFunc();
+
+				string zipName = $"{backupFolder}\\BackupLouvores_{ DateTime.Today.Year}{DateTime.Today.Month:00}{DateTime.Today.Day:00}.zip";
+
+				// progressbar Action
+				pgbLouvores.Maximum = foundCount;
+				pgbLouvores.Visible = true;
+
+				// copy to Backup Dir
+				foreach (clLouvor louvor in curLouvoresList)
+				{
+
+					zip.CreateZipAndInsertFiles(DirInfo, zipName, pgbLouvores);
+
+
+					// string FileName = Path.GetFileName(louvor.ProjecaoPath);
+					// File.Copy(louvor.ProjecaoPath, $"{backupFolder}\\{FileName}");
+
+					// pgbLouvores.Value += 1;
+				}
+
+				pgbLouvores.Visible = false;
+				pgbLouvores.Value = 0;
+
+
+
+
+
+
+
+				//pgbLouvores.Maximum = DirInfo.GetFiles().Count();
+				//pgbLouvores.Value = 0;
+				//pgbLouvores.Visible = true;
+
+				//zip.CreateZipAndInsertFiles(DirInfo, zipName, pgbLouvores);
+
+				//pgbLouvores.Value = 0;
+				//pgbLouvores.Visible = false;
+
+				//return true;
+
+
+
+
+
+
+
+
+
+				AbrirDialog("Backup relizado com sucesso! \n" +
+					$"Foram copiadas {foundCount} novas projeções.", "Backup");
+
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Realizar o Backup das novas projeções..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+
 		}
-
-
-		#endregion
 
 		// DO BACKUP ON FOLDER
 		// =============================================================================
@@ -1101,6 +1133,75 @@ namespace CamadaUI.Config
 					return;
 				}
 			}
+		}
+
+		// CREATE ZIP FILE FROM FOLDER
+		// =============================================================================
+		private bool CreateZipFileFromFolder(string SourceFolder)
+		{
+			// get all Files on Backup Folder
+			// ---------------------------------------------------------------------------
+			DirectoryInfo DirInfo = new DirectoryInfo(SourceFolder);
+			ZipFileFunc zip = new ZipFileFunc();
+
+			try
+			{
+				// --- Ampulheta ON
+				Cursor.Current = Cursors.WaitCursor;
+
+				string zipName = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\BackupLouvores_{ DateTime.Today.Year}{DateTime.Today.Month:00}{DateTime.Today.Day:00}.zip";
+
+				pgbLouvores.Maximum = DirInfo.GetFiles().Count();
+				pgbLouvores.Value = 0;
+				pgbLouvores.Visible = true;
+
+				zip.CreateZipAndInsertFiles(DirInfo, zipName, pgbLouvores);
+
+				pgbLouvores.Value = 0;
+				pgbLouvores.Visible = false;
+
+				return true;
+			}
+			catch (Exception ex)
+			{
+				AbrirDialog("Uma exceção ocorreu ao Criar o arquivo Zip do Backup..." + "\n" +
+							ex.Message, "Exceção", DialogType.OK, DialogIcon.Exclamation);
+				return false;
+			}
+			finally
+			{
+				// --- Ampulheta OFF
+				Cursor.Current = Cursors.Default;
+			}
+
+		}
+
+		#endregion
+
+		private void btnBackupDB_Click(object sender, EventArgs e)
+		{
+			string path;
+
+			// get folder
+			using (FolderBrowserDialog FBDiag = new FolderBrowserDialog()
+			{
+				Description = "Pasta de Backup das Projeções",
+				ShowNewFolderButton = true
+			})
+			{
+
+				DialogResult result = FBDiag.ShowDialog();
+				if (result == DialogResult.OK)
+				{
+					path = FBDiag.SelectedPath;
+				}
+				else
+				{
+					return;
+				}
+			}
+
+			CreateZipFileFromFolder(path);
 
 		}
 	}

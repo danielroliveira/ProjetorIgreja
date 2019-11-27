@@ -350,6 +350,7 @@
 			this.btnBackupDB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.btnBackupDB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
 			this.btnBackupDB.UseVisualStyleBackColor = true;
+			this.btnBackupDB.Click += new System.EventHandler(this.btnBackupDB_Click);
 			// 
 			// btnBackupProjecoes
 			// 
